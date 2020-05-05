@@ -41,6 +41,12 @@ basic_autoencoder.compile_net()
 # Should add a plot of the loss in time
 basic_autoencoder.train_net(train_input, epochs=epochs, batch_size=batch_size)
 
+plt.plot(basic_autoencoder.history.history['loss'])
+plt.title('model loss - ' + basic_autoencoder.name)
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.savefig('Graphs\\' + basic_autoencoder.name + '_loss.png', bbox_inches = "tight")
+
 
 # To see the actual reconstructed images
 for i in range (0, train_input.shape[0]):
