@@ -1,5 +1,5 @@
 import numpy as np
-import cv2
+#import cv2
 from PIL import Image
 
 from Models.BasicAutoencoder import BasicAutoencoder
@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 img_width = 768
 img_height = 768
 input_shape = (img_width, img_height, 1)
-epochs = 30
+epochs = 150
 batch_size = 1
 
 
