@@ -1,11 +1,10 @@
 import numpy as np
-#import cv2
+import cv2
 from PIL import Image
 
 from Models.BasicAutoencoder import BasicAutoencoder
 
 import matplotlib.pyplot as plt
-
 
 
 # Notes : Sources say to not use dropout .. also that batch_norm may be an overkill, and also
@@ -17,8 +16,8 @@ import matplotlib.pyplot as plt
 img_width = 768
 img_height = 768
 input_shape = (img_width, img_height, 1)
-epochs = 150
-batch_size = 1
+epochs = 200
+batch_size = 4
 
 
 # Load the previously stored data
@@ -45,7 +44,7 @@ plt.plot(basic_autoencoder.history.history['loss'])
 plt.title('model loss - ' + basic_autoencoder.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs\\' + basic_autoencoder.name + '_loss.png', bbox_inches = "tight")
+plt.savefig('Graphs/' + basic_autoencoder.name + '_loss.png', bbox_inches = "tight")
 
 
 # To see the actual reconstructed images
@@ -58,8 +57,8 @@ for i in range (0, train_input.shape[0]):
     # Array has normalized values - need to multiply them again otherwise we get black picture
     im = Image.fromarray(reconstructed_img * 255.0)
     im = im.convert("L")
-    im.save('Reconstructed\\' + basic_autoencoder.name + str(i) + '.jpg')
+    im.save('Reconstructed/' + basic_autoencoder.name + str(i) + '.jpg')
 
     #cv2.imshow("reconstructed", reconstructed_img)
     #cv2.waitKey(0)
-    #cv2.imwrite('Reconstructed\\' + str(i) + '.jpg', reconstructed_img)
+    #cv2.imwrite('Reconstructed/' + str(i) + '.jpg', reconstructed_img)
