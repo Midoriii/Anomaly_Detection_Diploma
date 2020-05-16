@@ -41,10 +41,12 @@ for image in images:
 numpy_images = np.array(images_list)
 print(numpy_images.shape)
 
+# Since the file would be too large, I split it into roughly halves
 numpy_images_split = np.array_split(numpy_images, 145)
 part_1 = numpy_images[0:145]
 part_2 = numpy_images[145:len(numpy_images)]
 
+# Save it separately
 np.save('Data\\OK_1.npy', part_1)
 np.save('Data\\OK_2.npy', part_2)
 
