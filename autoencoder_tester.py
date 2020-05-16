@@ -85,7 +85,7 @@ model.compile_net()
 model.train_net(train_input, epochs=epochs, batch_size=batch_size)
 
 plt.plot(model.history.history['loss'])
-plt.title('model loss - ' + nodel.name)
+plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.savefig('Graphs/' + model.name + '_loss.png', bbox_inches = "tight")
