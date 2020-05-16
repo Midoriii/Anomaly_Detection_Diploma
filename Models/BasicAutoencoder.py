@@ -21,33 +21,34 @@ class BasicAutoencoder:
         self.model = Model()
         self.history = History()
         self.name = "BasicAutoencoder"
+        self.filters = 32
         return
 
 
     def create_net(self, input_shape):
         net_input = Input(shape=input_shape)
-        x = Conv2D(32, (3, 3), padding='same')(net_input)
+        x = Conv2D(self.filters, (3, 3), padding='same')(net_input)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
-        x = Conv2D(32, (3, 3), padding='same')(x)
+        x = Conv2D(self.filters, (3, 3), padding='same')(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
-        x = Conv2D(32, (3, 3), padding='same')(x)
+        x = Conv2D(self.filters, (3, 3), padding='same')(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         self.encoded = MaxPooling2D((2, 2), padding='same')(x)
 
         # And now the decoder part
-        x = Conv2D(32, (3, 3), padding='same')(self.encoded)
+        x = Conv2D(self.filters, (3, 3), padding='same')(self.encoded)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         x = UpSampling2D((2, 2))(x)
 
-        x = Conv2D(32, (3, 3), padding='same')(x)
+        x = Conv2D(self.filters, (3, 3), padding='same')(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         x = UpSampling2D((2, 2))(x)
 
-        x = Conv2D(32, (3, 3), padding='same')(x)
+        x = Conv2D(self.filters, (3, 3), padding='same')(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         x = UpSampling2D((2, 2))(x)
         self.decoded = Conv2D(1, (3, 3), activation='sigmoid', padding='same')(x)
@@ -69,3 +70,12 @@ class BasicAutoencoder:
 
     def predict(self, predict_input):
         return self.model.predict(predict_input)
+
+
+    def save_weights(self):
+        self.model.save_weights('Models/Weights/' + self.name + '_weights.h5')
+        return
+
+    def save_model(self):
+        self.model.save('Models/Detailed/' + self.name + '_detailed')
+        return
