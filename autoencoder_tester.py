@@ -175,3 +175,10 @@ plt.ylabel('Reconstruction Error')
 plt.xlabel('Index')
 plt.savefig('Graphs/ReconstructionErrors/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RError.png', bbox_inches = "tight")
 plt.close('all')
+
+# Save the error arrays too, so one can see which images were problematic
+reconstructed_ok_errors = np.array(reconstructed_ok_errors)
+reconstructed_anomalous_errors = np.array(reconstructed_anomalous_errors)
+
+np.save('Reconstructed/Error_Arrays/' +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_ROK.npy', reconstructed_ok_errors)
+np.save('Reconstructed/Error_Arrays/' +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RAnomalous.npy', reconstructed_anomalous_errors)

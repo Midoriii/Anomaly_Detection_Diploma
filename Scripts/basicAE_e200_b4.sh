@@ -20,7 +20,7 @@ cp -R $DATADIR/autoencoder_tester.py $DATADIR/Models $DATADIR/Data $SCRATCHDIR
 
 cd $SCRATCHDIR
 mkdir -p Graphs/{Losses,ReconstructionErrors}
-mkdir Reconstructed
+mkdir -p Reconstructed/Error_Arrays
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
@@ -30,6 +30,7 @@ python autoencoder_tester.py -e 200 -b 4 -m BasicAutoencoder
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
 cp -vr $SCRATCHDIR/Graphs/ReconstructionErrors/* $DATADIR/Graphs/ReconstructionErrors/
 cp -vr $SCRATCHDIR/Reconstructed/* $DATADIR/Reconstructed/
+cp -vr $SCRATCHDIR/Reconstructed/Error_Arrays/* $DATADIR/Reconstructed/Error_Arrays/
 cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/
 cp -vr $SCRATCHDIR/Model_Saves/Weights/* $DATADIR/Model_Saves/Weights/
 
