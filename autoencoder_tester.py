@@ -49,8 +49,7 @@ for current_argument, current_value in arguments:
 # Load the previously stored data
 part1 = np.load("Data/OK_1.npy")
 part2 = np.load("Data/OK_2.npy")
-#data = np.concatenate((part1, part2))
-data = part2
+data = np.concatenate((part1, part2))
 print(data.shape)
 # Load the anomalies too
 anomalies = np.load("Data/Vadne.npy")
