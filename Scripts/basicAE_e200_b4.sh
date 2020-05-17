@@ -3,6 +3,8 @@
 #PBS -l select=1:ncpus=1:mem=6gb:ngpus=1:scratch_local=3gb
 #PBS -l walltime=10:00:00
 
+cd ..
+
 DATADIR=/storage/brno2/home/apprehension
 
 module add python-3.6.2-gcc
@@ -17,18 +19,18 @@ cp -R $DATADIR/autoencoder_tester.py $DATADIR/Models $DATADIR/Data $SCRATCHDIR
 
 
 cd $SCRATCHDIR
-mkdir Graphs
+mkdir -p Graphs/{Losses,ReconstructionErrors}
 mkdir Reconstructed
-mkdir Model_Saves
+mkdir -p Model_Saves/{Detailed,Weights}
 
 
 python autoencoder_tester.py -e 200 -b 4 -m BasicAutoencoder
 
 
-cp -vr $SCRATCHDIR/Graphs/Losses* $DATADIR/Graphs/Losses/
-cp -vr $SCRATCHDIR/Graphs/ReconstructionErrors* $DATADIR/Graphs/ReconstructionErrors/
+cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
+cp -vr $SCRATCHDIR/Graphs/ReconstructionErrors/* $DATADIR/Graphs/ReconstructionErrors/
 cp -vr $SCRATCHDIR/Reconstructed/* $DATADIR/Reconstructed/
-cp -vr $SCRATCHDIR/Model_Saves/Detailed* $DATADIR/Model_Saves/Detailed/
-cp -vr $SCRATCHDIR/Model_Saves/Weights* $DATADIR/Model_Saves/Weights/
+cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/
+cp -vr $SCRATCHDIR/Model_Saves/Weights/* $DATADIR/Model_Saves/Weights/
 
 clean_scratch
