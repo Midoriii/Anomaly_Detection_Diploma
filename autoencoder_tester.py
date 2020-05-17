@@ -89,8 +89,8 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Losses/' + model.name + '_' + str(epochs) + '_' + str(batch_size) + '_loss.png', bbox_inches = "tight")
-plt.clf()
+plt.savefig('Graphs/Losses/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches = "tight")
+plt.close('all')
 
 # Save the weights and even the whole model
 model.save_weights(epochs, batch_size)
@@ -161,15 +161,18 @@ for i in range (0, anomalous_input.shape[0]):
     # Add reconstructed image MSE to the array
     reconstructed_anomalous_errors.append(np.square(np.subtract(original_image, reconstructed_anomalous_array[i])).mean())
 
-print(reconstructed_ok_errors)
-print(reconstructed_anomalous_errors)
+#print(reconstructed_ok_errors)
+#print(reconstructed_anomalous_errors)
 
 # Plot the MSEs
 x = range (0, len(reconstructed_ok_errors))
 z = range (0 + len(reconstructed_ok_errors), len(reconstructed_anomalous_errors) + len(reconstructed_ok_errors))
 plt.scatter(x, reconstructed_ok_errors, c='g', marker='o', label='OK')
 plt.scatter(z, reconstructed_anomalous_errors, c='r', marker='o', label='Anomalous')
+# Horizontal line at 3 times the standard deviation, typical for outlier detection
+plt.axhline(y= (3 * np.std(reconstructed_ok_errors)), color='r', linestyle='-')
 plt.legend(loc='upper left')
 plt.ylabel('Reconstruction Error')
 plt.xlabel('Index')
 plt.savefig('Graphs/ReconstructionErrors/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RError.png', bbox_inches = "tight")
+plt.close('all')
