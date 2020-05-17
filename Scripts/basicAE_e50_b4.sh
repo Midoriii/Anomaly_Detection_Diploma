@@ -5,7 +5,9 @@
 
 cd ..
 
-DATADIR=/storage/brno8/home/apprehension
+DATADIR=/storage/brno6/home/apprehension
+
+cd $DATADIR
 
 module add python-3.6.2-gcc
 module add python36-modules-gcc
