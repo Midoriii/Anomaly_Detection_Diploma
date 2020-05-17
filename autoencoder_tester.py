@@ -23,10 +23,6 @@ epochs = 2
 batch_size = 1
 desired_model = "BasicAutoencoder"
 
-# Arrays to hold reconstructed images for anoamly detection by mean squared error
-reconstructed_ok_array = np.array([])
-reconstructed_anomalous_array = np.array([])
-
 # Get full command-line arguments
 full_cmd_arguments = sys.argv
 # Keep all but the first
@@ -53,7 +49,8 @@ for current_argument, current_value in arguments:
 # Load the previously stored data
 part1 = np.load("Data/OK_1.npy")
 part2 = np.load("Data/OK_2.npy")
-data = np.concatenate((part1, part2))
+#data = np.concatenate((part1, part2))
+data = part2
 print(data.shape)
 # Load the anomalies too
 anomalies = np.load("Data/Vadne.npy")
@@ -62,6 +59,10 @@ print(anomalies.shape)
 # Reshape to fit the desired input
 data = data.reshape(data.shape[0], img_width, img_height, 1)
 anomalous_data = anomalies.reshape(anomalies.shape[0], img_width, img_height, 1)
+
+# Arrays to hold reconstructed images for anoamly detection by mean squared error
+reconstructed_ok_array = []
+reconstructed_anomalous_array = []
 
 # Normalize the data
 train_input = data.astype('float32') / 255.0
@@ -88,11 +89,12 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/' + model.name + '_loss.png', bbox_inches = "tight")
+plt.savefig('Graphs/Losses/' + model.name + '_' + str(epochs) + '_' + str(batch_size) + '_loss.png', bbox_inches = "tight")
+plt.clf()
 
 # Save the weights and even the whole model
-model.save_weights()
-model.save_model()
+model.save_weights(epochs, batch_size)
+model.save_model(epochs, batch_size)
 
 
 # To see the actual reconstructed images of the training data
@@ -104,36 +106,67 @@ for i in range (0, train_input.shape[0]):
     reconstructed_img = reconstructed_img.reshape(img_width, img_height)
 
     # Append the reconstructed image to the reconstructed_ok array
-    numpy.append(reconstructed_ok_array, reconstructed_img)
+    reconstructed_ok_array.append(reconstructed_img)
 
     # Array has normalized values - need to multiply them again otherwise we get black picture
     im = Image.fromarray(reconstructed_img * 255.0)
     im = im.convert("L")
-    im.save('Reconstructed/' + model.name + str(i) + '.jpg')
+    im.save('Reconstructed/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '.jpg')
 
     #cv2.imshow("reconstructed", reconstructed_img)
     #cv2.waitKey(0)
     #cv2.imwrite('Reconstructed/' + str(i) + '.jpg', reconstructed_img)
 
+# Convert to numpy array
+reconstructed_ok_array = np.array(reconstructed_ok_array)
+#print(reconstructed_ok_array.shape)
+#print(reconstructed_ok_array[2])
 
 # To see the actual reconstructed images of the anomalous data
 # And also to save them for MSE anomaly detection
 for i in range (0, anomalous_input.shape[0]):
     # Every image needs to be reshaped into 1,768,768,1
-    reconstructed_img = model.predict(anomalous[i].reshape(1, img_width, img_height, 1))
+    reconstructed_img = model.predict(anomalous_input[i].reshape(1, img_width, img_height, 1))
     # The reconstructed image afterwards needs to be reshaped back into 768 x 768
     reconstructed_img = reconstructed_img.reshape(img_width, img_height)
 
     # Append the reconstructed image to the reconstructed_ok array
-    numpy.append(reconstructed_anomalous_array, reconstructed_img)
+    reconstructed_anomalous_array.append(reconstructed_img)
 
     # Array has normalized values - need to multiply them again otherwise we get black picture
     im = Image.fromarray(reconstructed_img * 255.0)
     im = im.convert("L")
     im.save('Reconstructed/' + model.name + str(i) + '_anomalous.jpg')
 
+# Convert to numpy array
+reconstructed_anomalous_array = np.array(reconstructed_anomalous_array)
+#print(reconstructed_anomalous_array.shape)
+#print(reconstructed_anomalous_array[2])
 
-print(reconstructed_ok_array.shape)
-print(reconstructed_ok_array[2])
-print(reconstructed_anomalous_array.shape)
-print(reconstructed_anomalous_array[2])
+# Array to hold MSE values
+reconstructed_ok_errors = []
+reconstructed_anomalous_errors = []
+
+# Compute the reconstruction MSE for ok data
+for i in range (0, train_input.shape[0]):
+    # Reshape into 768x768
+    original_image = train_input[i].reshape(img_width, img_height)
+    # Add reconstructed image MSE to the array
+    reconstructed_ok_errors.append(np.square(np.subtract(original_image, reconstructed_ok_array[i])).mean())
+
+# Same for the anomalous data
+for i in range (0, anomalous_input.shape[0]):
+    # Reshape into 768x768
+    original_image = anomalous_input[i].reshape(img_width, img_height)
+    # Add reconstructed image MSE to the array
+    reconstructed_anomalous_errors.append(np.square(np.subtract(original_image, reconstructed_anomalous_array[i])).mean())
+
+# Plot the MSEs
+x = range (0, len(reconstructed_ok_errors))
+z = range (0 + len(reconstructed_ok_errors), len(reconstructed_anomalous_errors) + len(reconstructed_ok_errors))
+plt.scatter(x, reconstructed_ok_errors, c='g', marker='o', label='OK')
+plt.scatter(z, reconstructed_anomalous_errors, c='r', marker='o', label='Anomalous')
+plt.legend(loc='upper left')
+plt.ylabel('Reconstruction Error')
+plt.xlabel('Index')
+plt.savefig('Graphs/ReconstructionErrors/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RError.png', bbox_inches = "tight")

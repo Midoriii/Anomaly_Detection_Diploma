@@ -72,10 +72,10 @@ class BasicAutoencoder:
         return self.model.predict(predict_input)
 
 
-    def save_weights(self):
-        self.model.save_weights('Models/Weights/' + self.name + '_weights.h5')
+    def save_weights(self, epoch, batch_size):
+        self.model.save_weights('Model_Saves/Weights/' + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
         return
 
-    def save_model(self):
-        self.model.save('Models/Detailed/' + self.name + '_detailed')
+    def save_model(self, epoch, batch_size):
+        self.model.save('Model_Saves/Detailed/' + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
         return
