@@ -161,6 +161,9 @@ for i in range (0, anomalous_input.shape[0]):
     # Add reconstructed image MSE to the array
     reconstructed_anomalous_errors.append(np.square(np.subtract(original_image, reconstructed_anomalous_array[i])).mean())
 
+print(reconstructed_ok_errors)
+print(reconstructed_anomalous_errors)
+
 # Plot the MSEs
 x = range (0, len(reconstructed_ok_errors))
 z = range (0 + len(reconstructed_ok_errors), len(reconstructed_anomalous_errors) + len(reconstructed_ok_errors))
