@@ -4,6 +4,9 @@ from PIL import Image
 import sys, getopt
 
 from Models.BasicAutoencoder import BasicAutoencoder
+from Models.BasicAutoencoder_LF import BasicAutoencoder_LF
+from Models.HighStrideAutoencoder import HighStrideAutoencoder
+from Models.BasicAutoencoderDeeper import BasicAutoencoderDeeper
 
 import matplotlib.pyplot as plt
 
@@ -71,6 +74,12 @@ anomalous_input = anomalous_data.astype('float32') / 255.0
 # Choose the correct model
 if desired_model == "BasicAutoencoder":
     model = BasicAutoencoder()
+elif desired_model == "BasicAutoencoder_LF":
+    model = BasicAutoencoder_LF()
+elif desired_model == "HighStrideAutoencoder":
+    model = HighStrideAutoencoder()
+elif desired_model == "BasicAutoencoderDeeper":
+    model = BasicAutoencoderDeeper()
 else:
     print("No model specified")
     sys.exit()
