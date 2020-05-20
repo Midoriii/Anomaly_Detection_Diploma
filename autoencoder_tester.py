@@ -7,6 +7,8 @@ from Models.BasicAutoencoder import BasicAutoencoder
 from Models.BasicAutoencoder_LF import BasicAutoencoder_LF
 from Models.HighStrideAutoencoder import HighStrideAutoencoder
 from Models.BasicAutoencoderDeeper import BasicAutoencoderDeeper
+from Models.HighStrideAutoencoderDeeper import HighStrideAutoencoderDeeper
+from Models.BasicAutoencoderEvenDeeper import BasicAutoencoderEvenDeeper
 
 import matplotlib.pyplot as plt
 
@@ -78,8 +80,12 @@ elif desired_model == "BasicAutoencoder_LF":
     model = BasicAutoencoder_LF()
 elif desired_model == "HighStrideAutoencoder":
     model = HighStrideAutoencoder()
+elif desired_model == "HighStrideAutoencoderDeeper":
+    model = HighStrideAutoencoderDeeper()
 elif desired_model == "BasicAutoencoderDeeper":
     model = BasicAutoencoderDeeper()
+elif desired_model == "BasicAutoencoderEvenDeeper":
+    model = BasicAutoencoderEvenDeeper()
 else:
     print("No model specified")
     sys.exit()
