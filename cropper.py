@@ -4,8 +4,8 @@ import cv2
 
 
 # Grab all the .jpg images
-images = glob.glob('Clonky-ok/*')
-#images = glob.glob('Clonky-vadne/*.jpg')
+#images = glob.glob('Clonky-ok/*')
+images = glob.glob('Clonky-vadne/*.jpg')
 
 # To save the images and later convert into numpy array
 images_list = []
@@ -42,18 +42,18 @@ numpy_images = np.array(images_list)
 print(numpy_images.shape)
 
 # Since the file would be too large, I split it into roughly halves
-numpy_images_split = np.array_split(numpy_images, 145)
-part_1 = numpy_images[0:145]
-part_2 = numpy_images[145:len(numpy_images)]
+#numpy_images_split = np.array_split(numpy_images, 145)
+#part_1 = numpy_images[0:145]
+#part_2 = numpy_images[145:len(numpy_images)]
 
 # Save it separately
-np.save('Data\\OK_1.npy', part_1)
-np.save('Data\\OK_2.npy', part_2)
+#np.save('Data\\OK_1.npy', part_1)
+#np.save('Data\\OK_2.npy', part_2)
 
 
 # Finally save the numpy representation
 #np.save('Data\\OK.npy', numpy_images)
-#np.save('Data\\Vadne.npy', numpy_images)
+np.save('Data\\Vadne.npy', numpy_images)
 
 # Just a test
 #loaded = np.load('Data\\Vadne.npy')
