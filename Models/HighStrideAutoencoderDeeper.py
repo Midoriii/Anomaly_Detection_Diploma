@@ -6,6 +6,7 @@ from keras.layers import Activation, Conv2D, MaxPooling2D, UpSampling2D, PReLU
 from keras.initializers import Constant
 from keras.models import Model
 from keras.callbacks import History
+from keras.optimizers import Adam
 
 '''
 Convolutional Autoencoder with bigger strides in initial layers, deeper than the other one
@@ -18,6 +19,13 @@ class HighStrideAutoencoderDeeper(BaseModel):
     def __init__(self):
         super().__init__()
         self.name = "HighStrideAutoencoderDeeper"
+        return
+
+    # Custom optimizer learning rate to try and combat exploding loss
+    def compile_net(self):
+        opt = Adam(learning_rate=0.0001)
+        self.model.compile(optimizer=opt, loss='mse')
+        self.model.summary()
         return
 
     def create_net(self, input_shape):
