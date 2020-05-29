@@ -1,0 +1,59 @@
+import numpy as np
+import cv2
+from PIL import Image
+import sys, getopt
+
+import matplotlib.pyplot as plt
+from keras.models import load_model
+
+
+
+img_width = 768
+img_height = 768
+
+#Load the saved model itself
+model = load_model('Model_Saves/Detailed/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed')
+
+model.summary()
+
+#Load non-anomalous reconstruction errors to get their standard deviation
+ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_ROK.npy')
+
+#Load the OK images
+part1 = np.load("Data/OK_1.npy")
+part2 = np.load("Data/OK_2.npy")
+data = np.concatenate((part1, part2))
+print(data.shape)
+#Reshape into desired shape for the network
+valid_data = data.reshape(data.shape[0], img_width, img_height, 1)
+#Normalize
+valid_input = valid_data.astype('float32') / 255.0
+
+#Define the threshold for a picture to be called an anomaly
+#to be 3 * the standard deviation of reconstruction error on the OK pics
+threshold = 3 * np.std(ok_reconstruction_errors)
+
+#For every OK image, encode and decode it, get the reconstruction error and
+#compare with threshold - if higher, show the image, it's a false positive
+for i in range(0, valid_input.shape[0]):
+    print(i)
+    # Every image needs to be reshaped into 1,768,768,1
+    reconstructed_img = model.predict(valid_input[i].reshape(1, img_width, img_height, 1))
+    # The reconstructed image afterwards needs to be reshaped back into 768 x 768
+    reconstructed_img = reconstructed_img.reshape(img_width, img_height)
+    # Reshape also the original image to compute reconstruction error
+    original_image = valid_input[i].reshape(img_width, img_height)
+    # Compute the MSE between original and reconstructed
+    reconstruction_error = np.square(np.subtract(original_image, reconstructed_img)).mean()
+
+    # If the reconstruction error is above threshold, show the image
+    if threshold < reconstruction_error:
+        print("OK image!")
+        # Array has normalized values - need to multiply them again otherwise we get black picture
+        im = Image.fromarray(original_image * 255.0)
+        im = im.convert("L")
+        # Show the OK image
+        cv2.imshow("OK image", np.array(im))
+        cv2.waitKey(0)
+
+print("That's all")

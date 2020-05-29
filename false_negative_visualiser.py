@@ -1,0 +1,57 @@
+import numpy as np
+import cv2
+from PIL import Image
+import sys, getopt
+
+import matplotlib.pyplot as plt
+from keras.models import load_model
+
+
+
+img_width = 768
+img_height = 768
+
+#Load the saved model itself
+model = load_model('Model_Saves/Detailed/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed')
+
+model.summary()
+
+#Load non-anomalous reconstruction errors to get their standard deviation
+ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_ROK.npy')
+
+#Load the anomalous images
+anomalies = np.load("Data/Vadne.npy")
+print(anomalies.shape)
+#Reshape into desired shape for the network
+anomalous_data = anomalies.reshape(anomalies.shape[0], img_width, img_height, 1)
+#Normalize
+anomalous_input = anomalous_data.astype('float32') / 255.0
+
+#Define the threshold for a picture to be called an anomaly
+#to be 3 * the standard deviation of reconstruction error on the OK pics
+threshold = 3 * np.std(ok_reconstruction_errors)
+
+#For every anomalous image, encode and decode it, get the reconstruction error and
+#compare with threshold - if lower, show the image, it's a false negative
+for i in range(0, anomalous_input.shape[0]):
+    print(i)
+    # Every image needs to be reshaped into 1,768,768,1
+    reconstructed_img = model.predict(anomalous_input[i].reshape(1, img_width, img_height, 1))
+    # The reconstructed image afterwards needs to be reshaped back into 768 x 768
+    reconstructed_img = reconstructed_img.reshape(img_width, img_height)
+    # Reshape also the original image to compute reconstruction error
+    original_image = anomalous_input[i].reshape(img_width, img_height)
+    # Compute the MSE between original and reconstructed
+    reconstruction_error = np.square(np.subtract(original_image, reconstructed_img)).mean()
+
+    # If the reconstruction error is below threshold, show the image
+    if threshold > reconstruction_error:
+        print("Anomaly!")
+        # Array has normalized values - need to multiply them again otherwise we get black picture
+        im = Image.fromarray(original_image * 255.0)
+        im = im.convert("L")
+        # Show the anomalous image
+        cv2.imshow("Anomaly", np.array(im))
+        cv2.waitKey(0)
+
+print("That's all")

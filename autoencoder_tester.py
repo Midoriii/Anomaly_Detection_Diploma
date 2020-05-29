@@ -133,7 +133,7 @@ for i in range (0, train_input.shape[0]):
     im = im.convert("L")
     im.save('Reconstructed/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '.jpg')
 
-    #cv2.imshow("reconstructed", reconstructed_img)
+    #cv2.imshow("reconstructed", np.array(im))
     #cv2.waitKey(0)
     #cv2.imwrite('Reconstructed/' + str(i) + '.jpg', reconstructed_img)
 
