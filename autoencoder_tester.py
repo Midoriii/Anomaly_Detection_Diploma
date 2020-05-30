@@ -13,7 +13,7 @@ from Models.BasicAutoencoderEvenDeeperLLR import BasicAutoencoderEvenDeeperLLR
 from Models.BasicAutoencoderEvenDeeperExtraLLR import BasicAutoencoderEvenDeeperExtraLLR
 from Models.TransposeConvAutoencoder import TransposeConvAutoencoder
 from Models.TransposeConvAutoencoderDeepExtraLLR import TransposeConvAutoencoderDeepExtraLLR
-from Model.HighStrideTransposeConvAutoencoder import HighStrideTransposeConvAutoencoder
+from Models.HighStrideTransposeConvAutoencoder import HighStrideTransposeConvAutoencoder
 
 import matplotlib.pyplot as plt
 
