@@ -192,6 +192,7 @@ plt.scatter(z, reconstructed_anomalous_errors, c='r', s=10, marker='o', edgecolo
 # Horizontal line at 3 times the standard deviation, typical for outlier detection
 plt.axhline(y= (3 * np.std(reconstructed_ok_errors)), color='r', linestyle='-')
 plt.legend(loc='upper left')
+plt.title('model reconstruction error - ' + model.name)
 plt.ylabel('Reconstruction Error')
 plt.xlabel('Index')
 plt.savefig('Graphs/ReconstructionErrors/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RError.png', bbox_inches = "tight")
