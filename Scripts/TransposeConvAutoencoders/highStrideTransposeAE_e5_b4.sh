@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q gpu
-#PBS -l select=1:ncpus=1:mem=12gb:ngpus=1:scratch_local=3gb
-#PBS -l walltime=3:00:00
+#PBS -l select=1:ncpus=1:mem=10gb:ngpus=1:scratch_local=3gb
+#PBS -l walltime=1:00:00
 
 cd ..
 cd ..
@@ -27,7 +27,7 @@ mkdir -p Reconstructed/Error_Arrays
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python autoencoder_tester.py -e 200 -b 4 -m BasicAutoencoderEvenDeeper
+python autoencoder_tester.py -e 5 -b 4 -m HighStrideTransposeConvAutoencoder
 
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/

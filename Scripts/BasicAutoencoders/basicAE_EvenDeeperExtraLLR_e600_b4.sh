@@ -4,6 +4,7 @@
 #PBS -l walltime=5:00:00
 
 cd ..
+cd ..
 
 DATADIR=/storage/brno6/home/apprehension
 
