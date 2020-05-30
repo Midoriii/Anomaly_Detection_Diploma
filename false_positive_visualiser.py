@@ -48,12 +48,15 @@ for i in range(0, valid_input.shape[0]):
 
     # If the reconstruction error is above threshold, show the image
     if threshold < reconstruction_error:
-        print("OK image!")
+        print("Falsely hated OK image!")
         # Array has normalized values - need to multiply them again otherwise we get black picture
         im = Image.fromarray(original_image * 255.0)
+        rec_im = Image.fromarray(reconstructed_img * 255.0)
         im = im.convert("L")
+        rec_im = rec_im.convert("L")
         # Show the OK image
-        cv2.imshow("OK image", np.array(im))
+        cv2.imshow("OK image - original", np.array(im))
+        cv2.imshow("OK image - reconstructed", np.array(rec_im))
         cv2.waitKey(0)
 
 print("That's all")

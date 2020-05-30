@@ -46,12 +46,15 @@ for i in range(0, anomalous_input.shape[0]):
 
     # If the reconstruction error is below threshold, show the image
     if threshold > reconstruction_error:
-        print("Anomaly!")
+        print("Undiscovered Anomaly!")
         # Array has normalized values - need to multiply them again otherwise we get black picture
         im = Image.fromarray(original_image * 255.0)
+        rec_im = Image.fromarray(reconstructed_img * 255.0)
         im = im.convert("L")
+        rec_im = rec_im.convert("L")
         # Show the anomalous image
-        cv2.imshow("Anomaly", np.array(im))
+        cv2.imshow("Anomaly - original", np.array(im))
+        cv2.imshow("Anomaly - reconstructed", np.array(rec_im))
         cv2.waitKey(0)
 
 print("That's all")
