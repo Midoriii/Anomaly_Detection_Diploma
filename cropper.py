@@ -5,7 +5,8 @@ import cv2
 
 # Grab all the .jpg images
 #images = glob.glob('Clonky-ok/*')
-images = glob.glob('Clonky-vadne/*.jpg')
+#images = glob.glob('Clonky-vadne/*.jpg')
+images = glob.glob('Clonky-ok-filtered/*')
 
 # To save the images and later convert into numpy array
 images_list = []
@@ -52,8 +53,8 @@ print(numpy_images.shape)
 
 
 # Finally save the numpy representation
-#np.save('Data\\OK.npy', numpy_images)
-np.save('Data\\Vadne.npy', numpy_images)
+#np.save('Data\\Vadne.npy', numpy_images)
+np.save('Data\\OK_filtered.npy', numpy_images)
 
 # Just a test
 #loaded = np.load('Data\\Vadne.npy')
