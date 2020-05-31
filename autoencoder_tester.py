@@ -32,14 +32,16 @@ input_shape = (img_width, img_height, 1)
 epochs = 2
 batch_size = 1
 desired_model = "BasicAutoencoder"
+# Selection of full OK dataset or only filtered best ones
+is_data_filtered = ""
 
 # Get full command-line arguments
 full_cmd_arguments = sys.argv
 # Keep all but the first
 argument_list = full_cmd_arguments[1:]
 # Getopt options
-short_options = "e:b:m:"
-long_options = ["epochs=", "batch_size=", "model="]
+short_options = "e:b:m:d:"
+long_options = ["epochs=", "batch_size=", "model=", "data="]
 # Get the arguments and their respective values
 arguments, values = getopt.getopt(argument_list, short_options, long_options)
 
@@ -54,12 +56,20 @@ for current_argument, current_value in arguments:
     elif current_argument in ("-m", "--model"):
         desired_model = current_value
         #print (desired_model)
-
+    elif current_argument in ("-d", "--data"):
+        is_data_filtered = current_value
+        #print (is_data_filtered)
 
 # Load the previously stored data
-part1 = np.load("Data/OK_1.npy")
-part2 = np.load("Data/OK_2.npy")
-data = np.concatenate((part1, part2))
+# If filtered is desired, load those
+if is_data_filtered == "filtered":
+    data = np.load("Data/OK_filtered.npy")
+    # Otherwise load the full OK data
+else:
+    part1 = np.load("Data/OK_1.npy")
+    part2 = np.load("Data/OK_2.npy")
+    data = np.concatenate((part1, part2))
+
 print(data.shape)
 # Load the anomalies too
 anomalies = np.load("Data/Vadne.npy")
@@ -118,7 +128,7 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Losses/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches = "tight")
+plt.savefig('Graphs/Losses/' + is_data_filtered + "_" + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches = "tight")
 plt.close('all')
 
 # Save the weights and even the whole model
@@ -140,7 +150,7 @@ for i in range (0, train_input.shape[0]):
     # Array has normalized values - need to multiply them again otherwise we get black picture
     im = Image.fromarray(reconstructed_img * 255.0)
     im = im.convert("L")
-    im.save('Reconstructed/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '.jpg')
+    im.save('Reconstructed/' + is_data_filtered + "_" + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '.jpg')
 
     #cv2.imshow("reconstructed", np.array(im))
     #cv2.waitKey(0)
@@ -165,7 +175,7 @@ for i in range (0, anomalous_input.shape[0]):
     # Array has normalized values - need to multiply them again otherwise we get black picture
     im = Image.fromarray(reconstructed_img * 255.0)
     im = im.convert("L")
-    im.save('Reconstructed/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '_anomalous.jpg')
+    im.save('Reconstructed/' + is_data_filtered + "_" + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '_anomalous.jpg')
 
 # Convert to numpy array
 reconstructed_anomalous_array = np.array(reconstructed_anomalous_array)
@@ -204,12 +214,12 @@ plt.legend(loc='upper left')
 plt.title('model reconstruction error - ' + model.name)
 plt.ylabel('Reconstruction Error')
 plt.xlabel('Index')
-plt.savefig('Graphs/ReconstructionErrors/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RError.png', bbox_inches = "tight")
+plt.savefig('Graphs/ReconstructionErrors/' + is_data_filtered + "_" + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RError.png', bbox_inches = "tight")
 plt.close('all')
 
 # Save the error arrays too, so one can see which images were problematic
 reconstructed_ok_errors = np.array(reconstructed_ok_errors)
 reconstructed_anomalous_errors = np.array(reconstructed_anomalous_errors)
 
-np.save('Reconstructed/Error_Arrays/' +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_ROK.npy', reconstructed_ok_errors)
-np.save('Reconstructed/Error_Arrays/' +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RAnomalous.npy', reconstructed_anomalous_errors)
+np.save('Reconstructed/Error_Arrays/' + is_data_filtered + "_" +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_ROK.npy', reconstructed_ok_errors)
+np.save('Reconstructed/Error_Arrays/' + is_data_filtered + "_" +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RAnomalous.npy', reconstructed_anomalous_errors)
