@@ -1,4 +1,6 @@
 import numpy as np
+import cv2
+from PIL import Image
 import matplotlib.pyplot as plt
 
 from Models.BasicAutoencoderEvenDeeper import BasicAutoencoderEvenDeeper
@@ -48,6 +50,10 @@ for i in range (0, train_input.shape[0]):
     # Append the reconstructed image to the reconstructed_ok array
     reconstructed_ok_array.append(reconstructed_img)
 
+    im = Image.fromarray(reconstructed_img * 255.0)
+    im = im.convert("L")
+    im.save('Reconstructed/' + str(is_data_filtered) + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '.jpg')
+
 # Convert to numpy array
 reconstructed_ok_array = np.array(reconstructed_ok_array)
 
@@ -58,6 +64,10 @@ for i in range (0, anomalous_input.shape[0]):
     reconstructed_img = reconstructed_img.reshape(img_width, img_height)
     # Append the reconstructed image to the reconstructed_ok array
     reconstructed_anomalous_array.append(reconstructed_img)
+
+    im = Image.fromarray(reconstructed_img * 255.0)
+    im = im.convert("L")
+    im.save('Reconstructed/' + str(is_data_filtered) + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '.jpg')
 
 # Convert to numpy array
 reconstructed_anomalous_array = np.array(reconstructed_anomalous_array)
