@@ -115,6 +115,9 @@ else:
     print("No model specified")
     sys.exit()
 
+# A bit of a obscure thing - add the underscore so that later graph and file
+# names contain the 'filtered_' prefix when expected
+is_data_filtered = "filtered_"
 
 # Create and compile the model
 model.create_net(input_shape)
@@ -128,7 +131,7 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Losses/' + str(is_data_filtered) + "_" + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches = "tight")
+plt.savefig('Graphs/Losses/' + str(is_data_filtered) + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches = "tight")
 plt.close('all')
 
 # Save the weights and even the whole model
@@ -150,7 +153,7 @@ for i in range (0, train_input.shape[0]):
     # Array has normalized values - need to multiply them again otherwise we get black picture
     im = Image.fromarray(reconstructed_img * 255.0)
     im = im.convert("L")
-    im.save('Reconstructed/' + str(is_data_filtered) + "_" + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '.jpg')
+    im.save('Reconstructed/' + str(is_data_filtered) + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '.jpg')
 
     #cv2.imshow("reconstructed", np.array(im))
     #cv2.waitKey(0)
@@ -175,7 +178,7 @@ for i in range (0, anomalous_input.shape[0]):
     # Array has normalized values - need to multiply them again otherwise we get black picture
     im = Image.fromarray(reconstructed_img * 255.0)
     im = im.convert("L")
-    im.save('Reconstructed/' + str(is_data_filtered) + "_" + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '_anomalous.jpg')
+    im.save('Reconstructed/' + str(is_data_filtered) + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '_anomalous.jpg')
 
 # Convert to numpy array
 reconstructed_anomalous_array = np.array(reconstructed_anomalous_array)
@@ -214,12 +217,12 @@ plt.legend(loc='upper left')
 plt.title('model reconstruction error - ' + model.name)
 plt.ylabel('Reconstruction Error')
 plt.xlabel('Index')
-plt.savefig('Graphs/ReconstructionErrors/' + str(is_data_filtered) + "_" + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RError.png', bbox_inches = "tight")
+plt.savefig('Graphs/ReconstructionErrors/' + str(is_data_filtered) + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RError.png', bbox_inches = "tight")
 plt.close('all')
 
 # Save the error arrays too, so one can see which images were problematic
 reconstructed_ok_errors = np.array(reconstructed_ok_errors)
 reconstructed_anomalous_errors = np.array(reconstructed_anomalous_errors)
 
-np.save('Reconstructed/Error_Arrays/' + str(is_data_filtered) + "_" +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_ROK.npy', reconstructed_ok_errors)
-np.save('Reconstructed/Error_Arrays/' + str(is_data_filtered) + "_" +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RAnomalous.npy', reconstructed_anomalous_errors)
+np.save('Reconstructed/Error_Arrays/' + str(is_data_filtered) +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_ROK.npy', reconstructed_ok_errors)
+np.save('Reconstructed/Error_Arrays/' + str(is_data_filtered) +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RAnomalous.npy', reconstructed_anomalous_errors)
