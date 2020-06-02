@@ -5,6 +5,10 @@ from Models.BasicAutoencoderEvenDeeper import BasicAutoencoderEvenDeeper
 from keras.models import load_model
 
 
+'''
+Script that remade useful graphs from accidentaly almost deleted model
+'''
+
 img_width = 768
 img_height = 768
 
@@ -83,6 +87,7 @@ plt.scatter(x, reconstructed_ok_errors, c='g', s=10, marker='o', edgecolors='bla
 plt.scatter(z, reconstructed_anomalous_errors, c='r', s=10, marker='o', edgecolors='black', label='Anomalous')
 # Horizontal line at 3 times the standard deviation, typical for outlier detection
 plt.axhline(y= (3 * np.std(reconstructed_ok_errors)), color='r', linestyle='-')
+plt.axhline(y= (2.75 * np.std(reconstructed_ok_errors)), color='b', linestyle='-')
 plt.legend(loc='upper left')
 plt.title('model reconstruction error - ' + model.name)
 plt.ylabel('Reconstruction Error')
