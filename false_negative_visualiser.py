@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 from PIL import Image
-import sys, getopt
+import sys
 
 import matplotlib.pyplot as plt
 from keras.models import load_model
