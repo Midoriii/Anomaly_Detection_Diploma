@@ -10,7 +10,7 @@ img_height = 768
 
 epochs = 50
 batch_size = 4
-is_data_filtered = ""
+is_data_filtered = "filtered_"
 
 
 model = BasicAutoencoderEvenDeeper()
