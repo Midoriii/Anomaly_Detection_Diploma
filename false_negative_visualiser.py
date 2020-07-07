@@ -12,14 +12,14 @@ img_width = 768
 img_height = 768
 
 #Load the saved model itself
-#model = load_model('Model_Saves/Detailed/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed')
-model = load_model('Model_Saves/Detailed/filtered_BasicAutoencoderEvenDeeper_e50_b4_detailed')
+model = load_model('Model_Saves/Detailed/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed')
+#model = load_model('Model_Saves/Detailed/filtered_BasicAutoencoderEvenDeeper_e50_b4_detailed')
 
 model.summary()
 
 #Load non-anomalous reconstruction errors to get their standard deviation
-#ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_ROK.npy')
-ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/filtered_BasicAutoencoderEvenDeeper_e50_b4_ROK.npy')
+ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_ROK.npy')
+#ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/filtered_BasicAutoencoderEvenDeeper_e50_b4_ROK.npy')
 
 #Load the anomalous images
 anomalies = np.load("Data/Vadne.npy")
@@ -31,8 +31,8 @@ anomalous_input = anomalous_data.astype('float32') / 255.0
 
 #Define the threshold for a picture to be called an anomaly
 #to be 3 * the standard deviation of reconstruction error on the OK pics
-threshold = 2.75* np.std(ok_reconstruction_errors)
-#threshold = 3 * np.std(ok_reconstruction_errors)
+#threshold = 2.75* np.std(ok_reconstruction_errors)
+threshold = 3 * np.std(ok_reconstruction_errors)
 
 #For every anomalous image, encode and decode it, get the reconstruction error and
 #compare with threshold - if lower, show the image, it's a false negative
