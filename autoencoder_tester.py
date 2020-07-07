@@ -16,6 +16,7 @@ from Models.TransposeConvAutoencoderDeepExtraLLR import TransposeConvAutoencoder
 from Models.HighStrideTransposeConvAutoencoder import HighStrideTransposeConvAutoencoder
 from Models.BasicAutoencoderLFDeeperLLR import BasicAutoencoderLFDeeperLLR
 from Models.BasicAutoencoderHFDeeperLLR import BasicAutoencoderHFDeeperLLR
+from Models.BasicAutoencoderEvenDeeperSuperLLR import BasicAutoencoderEvenDeeperSuperLLR
 
 import matplotlib.pyplot as plt
 
@@ -121,6 +122,8 @@ elif desired_model == "BasicAutoencoderLFDeeperLLR":
     model = BasicAutoencoderLFDeeperLLR()
 elif desired_model == "BasicAutoencoderHFDeeperLLR":
     model = BasicAutoencoderHFDeeperLLR()
+elif desired_model == "BasicAutoencoderEvenDeeperSuperLLR":
+        model = BasicAutoencoderEvenDeeperSuperLLR()
 else:
     print("No model specified")
     sys.exit()
