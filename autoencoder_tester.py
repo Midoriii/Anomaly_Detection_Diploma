@@ -66,7 +66,11 @@ for current_argument, current_value in arguments:
 # If filtered is desired, load those
 if is_data_filtered == "filtered":
     data = np.load("Data/OK_filtered.npy")
-    # Otherwise load the full OK data
+    # Add the underscore so that later graph and file
+    # names contain the 'filtered_' prefix when expected
+    is_data_filtered = "filtered_"
+
+# Otherwise load the full OK data
 else:
     part1 = np.load("Data/OK_1.npy")
     part2 = np.load("Data/OK_2.npy")
@@ -120,10 +124,6 @@ elif desired_model == "BasicAutoencoderHFDeeperLLR":
 else:
     print("No model specified")
     sys.exit()
-
-# A bit of a obscure thing - add the underscore so that later graph and file
-# names contain the 'filtered_' prefix when expected
-is_data_filtered = "filtered_"
 
 # Create and compile the model
 model.create_net(input_shape)
