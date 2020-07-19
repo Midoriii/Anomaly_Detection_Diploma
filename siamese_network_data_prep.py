@@ -58,7 +58,7 @@ pairs_left = pairs_left[indices]
 pairs_right = pairs_right[indices]
 pairs_labels = pairs_labels[indices]
 
-print(pairs_label.shape)
+print(pairs_labels.shape)
 print(pairs_left.shape)
 print(pairs_right.shape)
 
