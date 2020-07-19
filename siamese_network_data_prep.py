@@ -63,6 +63,6 @@ print(pairs_left.shape)
 print(pairs_right.shape)
 
 # Save the data for future usage
-np.save('Data\\Pairs_Left.npy', pairs_left)
-np.save('Data\\Pairs_Right.npy', pairs_right)
-np.save('Data\\Pairs_Labels.npy', pairs_labels)
+np.save('Data/Pairs_Left.npy', pairs_left)
+np.save('Data/Pairs_Right.npy', pairs_right)
+np.save('Data/Pairs_Labels.npy', pairs_labels)
