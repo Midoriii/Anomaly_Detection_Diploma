@@ -13,7 +13,7 @@ module add python-3.6.2-gcc
 module add python36-modules-gcc
 
 
-cp -R $DATADIR/siamese_network_data_prep.py $DATADIR/Data $SCRATCHDIR
+cp -R $DATADIR/siamese_network_data_prep.py $DATADIR/DataHuge $SCRATCHDIR
 
 
 cd $SCRATCHDIR
@@ -22,6 +22,6 @@ cd $SCRATCHDIR
 python siamese_network_data_prep.py
 
 
-cp -vr $SCRATCHDIR/Data/* $DATADIR/Data/
+cp -vr $SCRATCHDIR/DataHuge/* $DATADIR/DataHuge/
 
 clean_scratch
