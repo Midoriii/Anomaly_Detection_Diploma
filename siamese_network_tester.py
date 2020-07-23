@@ -11,7 +11,7 @@ img_width = 768
 img_height = 768
 input_shape = (img_width, img_height, 1)
 # Default params
-epochs = 20
+epochs = 60
 batch_size = 4
 
 # Loading data and labels
@@ -43,3 +43,6 @@ plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.savefig('Graphs/Accuracies/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches = "tight")
 plt.close('all')
+
+prediction = model.predict(right_data[24])
+print(prediction)
