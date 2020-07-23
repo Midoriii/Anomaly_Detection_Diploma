@@ -25,27 +25,29 @@ class BasicSiameseNet(BaseSiameseModel):
         left_input = Input(shape=input_shape)
         right_input = Input(shape=input_shape)
 
+        dropout_rate = 0.5
+
         siamese_model_branch_sequence = [
             Conv2D(64, (3, 3), padding='same'),
-            Dropout(rate=0.3),
+            Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
             Conv2D(64, (3, 3), padding='same'),
-            Dropout(rate=0.3),
+            Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
             Conv2D(128, (3, 3), padding='same'),
-            Dropout(rate=0.3),
+            Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
             Conv2D(128, (3, 3), padding='same'),
-            Dropout(rate=0.3),
+            Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
