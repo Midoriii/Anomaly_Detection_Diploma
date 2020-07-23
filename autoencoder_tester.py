@@ -1,8 +1,8 @@
 import numpy as np
 import cv2
-from PIL import Image
 import sys, getopt
 
+from PIL import Image
 from Models.BasicAutoencoder import BasicAutoencoder
 from Models.BasicAutoencoder_LF import BasicAutoencoder_LF
 from Models.HighStrideAutoencoder import HighStrideAutoencoder
@@ -23,8 +23,6 @@ import matplotlib.pyplot as plt
 
 # Notes : Sources say to not use dropout .. also that batch_norm may be an overkill, and also
 # to use simple ReLU ... dunno about padding='same' as well ..
-# Shouldn't the decoder be using transposeconv2D ?
-# They're so fcking blurry .. which might be useful
 
 
 img_width = 768
@@ -133,7 +131,6 @@ model.create_net(input_shape)
 model.compile_net()
 
 # Train it
-# Should add a plot of the loss in time
 model.train_net(train_input, epochs=epochs, batch_size=batch_size)
 
 plt.plot(model.history.history['loss'])
