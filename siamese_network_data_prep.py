@@ -62,6 +62,10 @@ print(pairs_labels.shape)
 print(pairs_left.shape)
 print(pairs_right.shape)
 
+# Normalize the data
+pairs_left = pairs_left.astype('float32') / 255.0
+pairs_right = pairs_right.astype('float32') / 255.0
+
 # Save the data for future usage
 np.save('DataHuge/Pairs_Left.npy', pairs_left)
 np.save('DataHuge/Pairs_Right.npy', pairs_right)

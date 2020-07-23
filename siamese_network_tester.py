@@ -18,9 +18,7 @@ batch_size = 4
 left_data = np.load('DataHuge/Pairs_Left.npy')
 right_data = np.load('DataHuge/Pairs_Right.npy')
 labels = np.load('DataHuge/Pairs_Labels.npy')
-# Normalize the data
-left_data = left_data.astype('float32') / 255.0
-right_data = right_data.astype('float32') / 255.0
+# Normalization not needed, data is already normalized
 
 
 model = BasicSiameseNet()
