@@ -1,6 +1,6 @@
 import numpy as np
 
-''' Run this only if you have ~30GiB of RAM available, since the
+''' Run this only if you have ~100GiB of RAM available, since the
     data is by all means huge (tens of thousands of 768x768 images)
 '''
 
