@@ -46,3 +46,7 @@ plt.close('all')
 
 prediction = model.predict(right_data[24].reshape(1, img_width, img_height, 1))
 print(prediction)
+prediction = model.predict(right_data[20].reshape(1, img_width, img_height, 1))
+print(prediction)
+prediction = model.predict(right_data[25].reshape(1, img_width, img_height, 1))
+print(prediction)
