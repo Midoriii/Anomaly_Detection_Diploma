@@ -11,7 +11,7 @@ img_width = 768
 img_height = 768
 input_shape = (img_width, img_height, 1)
 # Default params
-epochs = 60
+epochs = 20
 batch_size = 4
 
 # Loading data and labels

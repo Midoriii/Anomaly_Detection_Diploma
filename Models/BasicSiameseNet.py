@@ -54,7 +54,7 @@ class BasicSiameseNet(BaseSiameseModel):
         right_embedding = branch(right_input)
 
         # Keep the left branch as embedding model for predictions
-        self.embedding = left_embedding
+        self.embedding = Model(left_input, left_embedding)
         # Using custom Lambda layer to compute eucldiean distance between the outputs of both branches
         distance_euclid = Lambda(lambda tensors: K.abs(tensors[0] - tensors[1]))([left_embedding , right_embedding])
         similarity_output = Dense(1, activation='sigmoid')(distance_euclid)
