@@ -19,6 +19,7 @@ class BasicSiameseNet(BaseSiameseModel):
     def __init__(self):
         super().__init__()
         self.name = "BasicSiameseNet"
+        self.lr = 0.00001
         return
 
     def create_net(self, input_shape):

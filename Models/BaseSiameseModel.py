@@ -19,6 +19,7 @@ class BaseSiameseModel:
         self.model = Model()
         self.history = History()
         self.name = "BaseSiameseModel"
+        self.lr = 0.0001
         return
 
 
@@ -27,7 +28,7 @@ class BaseSiameseModel:
 
 
     def compile_net(self):
-        self.model.compile(optimizer=Adam(lr=0.0001), loss='binary_crossentropy', metrics=['accuracy'])
+        self.model.compile(optimizer=Adam(lr=self.lr), loss='binary_crossentropy', metrics=['accuracy'])
         self.model.summary()
         return
 
