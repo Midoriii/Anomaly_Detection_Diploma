@@ -44,6 +44,12 @@ class BasicSiameseNet(BaseSiameseModel):
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
+            Conv2D(128, (3, 3), padding='same'),
+            Dropout(rate=0.3),
+            BatchNormalization(),
+            ReLU(),
+            MaxPooling2D((2, 2), padding='same'),
+
             Flatten(),
             Dense(64, activation='sigmoid')
         ]

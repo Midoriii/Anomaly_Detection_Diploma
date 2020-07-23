@@ -44,5 +44,5 @@ plt.xlabel('epoch')
 plt.savefig('Graphs/Accuracies/' + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches = "tight")
 plt.close('all')
 
-prediction = model.predict(right_data[24])
+prediction = model.predict(right_data[24].reshape(1, img_width, img_height, 1))
 print(prediction)
