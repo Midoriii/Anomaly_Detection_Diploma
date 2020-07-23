@@ -15,9 +15,9 @@ epochs = 20
 batch_size = 4
 
 # Loading data and labels
-left_data = np.load('Data/Test_Pairs_Left.npy')
-right_data = np.load('Data/Test_Pairs_Right.npy')
-labels = np.load('Data/Test_Pairs_Labels.npy')
+left_data = np.load('DataHuge/Pairs_Left.npy')
+right_data = np.load('DataHuge/Pairs_Right.npy')
+labels = np.load('DataHuge/Pairs_Labels.npy')
 # Normalize the data
 left_data = left_data.astype('float32') / 255.0
 right_data = right_data.astype('float32') / 255.0
