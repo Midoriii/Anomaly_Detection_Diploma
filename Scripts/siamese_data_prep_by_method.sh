@@ -14,7 +14,7 @@ module add python36-modules-gcc
 module add opencv-3.4.5-py36
 
 
-cp -R $DATADIR/siamese_network_data_prep.py $DATADIR/Clonky-ok $DATADIR/Clonky-vadne $SCRATCHDIR
+cp -R $DATADIR/siamese_network_data_prep_by_method.py $DATADIR/Clonky-ok $DATADIR/Clonky-vadne $SCRATCHDIR
 
 cd $SCRATCHDIR
 
