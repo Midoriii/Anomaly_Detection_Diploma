@@ -15,9 +15,9 @@ epochs = 20
 batch_size = 4
 
 # Loading data and labels
-left_data = np.load('DataHuge/Pairs_Left.npy')
-right_data = np.load('DataHuge/Pairs_Right.npy')
-labels = np.load('DataHuge/Pairs_Labels.npy')
+left_data = np.load('DataHuge/BSE_pairs_left.npy')
+right_data = np.load('DataHuge/BSE_pairs_right.npy')
+labels = np.load('DataHuge/BSE_pairs_labels.npy')
 # Normalization not needed, data is already normalized
 
 
