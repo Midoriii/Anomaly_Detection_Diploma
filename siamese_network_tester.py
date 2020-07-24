@@ -13,15 +13,49 @@ input_shape = (img_width, img_height, 1)
 # Default params
 epochs = 20
 batch_size = 4
+image_type = 'SE'
+desired_model = "BasicSiameseNet"
 
-# Loading data and labels
-left_data = np.load('DataHuge/BSE_pairs_left.npy')
-right_data = np.load('DataHuge/BSE_pairs_right.npy')
-labels = np.load('DataHuge/BSE_pairs_labels.npy')
+# Get full command-line arguments
+full_cmd_arguments = sys.argv
+# Keep all but the first
+argument_list = full_cmd_arguments[1:]
+# Getopt options
+short_options = "e:m:t:"
+long_options = ["epochs=", "model=", "type="]
+# Get the arguments and their respective values
+arguments, values = getopt.getopt(argument_list, short_options, long_options)
+
+# Evaluate given options
+for current_argument, current_value in arguments:
+    if current_argument in ("-e", "--epochs"):
+        epochs = int(current_value)
+    elif current_argument in ("-m", "--model"):
+        desired_model = current_value
+    elif current_argument in ("-t", "--type"):
+        image_type = current_value
+
+
+# Loading data and labels - BSE or SE image origin as chosen in args
+if image_type = 'BSE':
+    left_data = np.load('DataHuge/BSE_pairs_left.npy')
+    right_data = np.load('DataHuge/BSE_pairs_right.npy')
+    labels = np.load('DataHuge/BSE_pairs_labels.npy')
+elif image_type = 'SE':
+    left_data = np.load('DataHuge/SE_pairs_left.npy')
+    right_data = np.load('DataHuge/SE_pairs_right.npy')
+    labels = np.load('DataHuge/SE_pairs_labels.npy')
+else:
+    print("Wrong Image Type specified!")
+    sys.exit()
 # Normalization not needed, data is already normalized
 
 
-model = BasicSiameseNet()
+# Choose desired model
+if desired_model = "BasicSiameseNet":
+    model = BasicSiameseNet()
+
+
 # Create and compile the model
 model.create_net(input_shape)
 model.compile_net()

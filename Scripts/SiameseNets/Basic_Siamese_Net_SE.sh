@@ -26,7 +26,7 @@ mkdir -p Graphs/{Losses,Accuracies}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python siamese_network_tester.py
+python siamese_network_tester.py -m BasicSiameseNet -t SE
 
 cp -vr $SCRATCHDIR/Graphs/Accuracies/* $DATADIR/Graphs/Accuracies/
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
