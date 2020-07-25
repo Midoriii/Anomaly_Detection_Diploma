@@ -37,11 +37,11 @@ for current_argument, current_value in arguments:
 
 
 # Loading data and labels - BSE or SE image origin as chosen in args
-if image_type = 'BSE':
+if image_type == 'BSE':
     left_data = np.load('DataHuge/BSE_pairs_left.npy')
     right_data = np.load('DataHuge/BSE_pairs_right.npy')
     labels = np.load('DataHuge/BSE_pairs_labels.npy')
-elif image_type = 'SE':
+elif image_type == 'SE':
     left_data = np.load('DataHuge/SE_pairs_left.npy')
     right_data = np.load('DataHuge/SE_pairs_right.npy')
     labels = np.load('DataHuge/SE_pairs_labels.npy')
