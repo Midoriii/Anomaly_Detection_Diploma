@@ -52,7 +52,7 @@ else:
 
 
 # Choose desired model
-if desired_model = "BasicSiameseNet":
+if desired_model == "BasicSiameseNet":
     model = BasicSiameseNet()
 
 
