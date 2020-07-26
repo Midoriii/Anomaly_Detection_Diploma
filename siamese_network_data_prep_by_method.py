@@ -91,6 +91,11 @@ def main():
     faulty_images_se_list = crop_reshape(faulty_images_se)
     faulty_images_bse_list = crop_reshape(faulty_images_bse)
 
+    print(ok_images_se_list.shape)
+    print(ok_images_bse_list.shape)
+    print(faulty_images_se_list.shape)
+    print(faulty_images_bse_list.shape)
+
     se_pairs_left, se_pairs_right, se_pairs_labels = make_pairs(ok_images_se_list, faulty_images_se_list)
     bse_pairs_left, bse_pairs_right, bse_pairs_labels = make_pairs(ok_images_bse_list, faulty_images_bse_list)
 
