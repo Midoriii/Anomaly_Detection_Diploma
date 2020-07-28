@@ -30,8 +30,6 @@ def make_pairs(ok_images, faulty_images):
     pairs_left = []
     pairs_right = []
     pairs_labels = []
-    img_width = 768
-    img_height = 768
 
     # Create pairs from OK images
     # shape - 1 because the last one shouldn't need to be paired again
