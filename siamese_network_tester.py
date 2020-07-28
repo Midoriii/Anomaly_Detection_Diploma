@@ -113,7 +113,7 @@ anomaly_scores_ok = np.array(anomaly_scores_ok)
 anomaly_scores_faulty = np.array(anomaly_scores_faulty)
 
 # Set colors for graphs based on image type
-if image_type = 'BSE':
+if image_type == 'BSE':
     scatter_color = 'b'
 else:
     scatter_color = 'g'
