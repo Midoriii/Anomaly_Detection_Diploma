@@ -67,14 +67,21 @@ def make_pairs(ok_images, faulty_images):
     print(pairs_right.shape)
 
     # Normalize the data
-    pairs_left = pairs_left.astype('float32') / 255.0
-    pairs_right = pairs_right.astype('float32') / 255.0
-
-    # Reshape into desirable shape
-    pairs_left = pairs_left.reshape(pairs_left.shape[0], img_width, img_height, 1)
-    pairs_right = pairs_right.reshape(pairs_right.shape[0], img_width, img_height, 1)
+    pairs_left = reshape_normalize(pairs_left)
+    pairs_right = reshape_normalize(pairs_right)
 
     return pairs_left, pairs_right, pairs_labels
+
+
+def reshape_normalize(images):
+    img_width = 768
+    img_height = 768
+    # Normalize the data
+    normalized = images.astype('float32') / 255.0
+    # Reshape into desirable shape
+    reshaped = normalized.reshape(normalized.shape[0], img_width, img_height, 1)
+
+    return reshaped
 
 
 def main():
@@ -97,10 +104,10 @@ def main():
     print(faulty_images_bse_list.shape)
 
     # Save even the sorted data into SE and BSE types
-    np.save("Data/SE_ok.npy", ok_images_se_list)
-    np.save("Data/BSE_ok.npy", ok_images_bse_list)
-    np.save("Data/SE_faulty.npy", faulty_images_se_list)
-    np.save("Data/BSE_faulty.npy", faulty_images_bse_list)
+    np.save("Data/SE_ok.npy", reshape_normalize(ok_images_se_list))
+    np.save("Data/BSE_ok.npy", reshape_normalize(ok_images_bse_list))
+    np.save("Data/SE_faulty.npy", reshape_normalize(faulty_images_se_list))
+    np.save("Data/BSE_faulty.npy", reshape_normalize(faulty_images_bse_list))
 
     # Leave some of the images as testing data
     # 75% instead of 80% of faulty data is taken to represent all the error types
