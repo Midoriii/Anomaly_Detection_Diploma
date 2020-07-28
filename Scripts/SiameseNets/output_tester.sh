@@ -22,7 +22,7 @@ cp -R $DATADIR/siamese_network_tester.py $DATADIR/Models $DATADIR/Data $DATADIR/
 
 
 cd $SCRATCHDIR
-mkdir -p Graphs/{Losses,Accuracies}
+mkdir -p Graphs/{Losses,Accuracies,SiameseScores}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
@@ -30,6 +30,7 @@ python siamese_network_tester.py -e 1 -m BasicSiameseNet -t BSE
 
 cp -vr $SCRATCHDIR/Graphs/Accuracies/* $DATADIR/Graphs/Accuracies/
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
+cp -vr $SCRATCHDIR/Graphs/SiameseScores/* $DATADIR/Graphs/SiameseScores/
 cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/
 cp -vr $SCRATCHDIR/Model_Saves/Weights/* $DATADIR/Model_Saves/Weights/
 

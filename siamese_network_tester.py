@@ -59,9 +59,10 @@ if desired_model == "BasicSiameseNet":
 # Create and compile the model
 model.create_net(input_shape)
 model.compile_net()
-#Train it
+# Train it
 model.train_net(left_data, right_data, labels, epochs=epochs, batch_size=batch_size)
 
+# Plot loss and accuracy
 plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
@@ -76,5 +77,56 @@ plt.xlabel('epoch')
 plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches = "tight")
 plt.close('all')
 
-prediction = model.predict(right_data[24].reshape(1, img_width, img_height, 1))
-print(prediction)
+# Save the model weights and architecture
+model.save_model(epochs, batch_size, image_type)
+model.save_embedding_model(epochs, batch_size, image_type)
+
+# For performance evaluation, load prototypes and each image and get anomaly score
+# Load prototypes and actual data sorted by methods
+if image_type == 'SE':
+    test_prototypes = np.load("Data/SE_prototypes.npy")
+    test_ok = np.load("Data/SE_ok.npy")
+    test_ok_faulty = np.load("Data/SE_faulty.npy")
+else:
+    test_prototypes = np.load("Data/BSE_prototypes.npy")
+    test_ok = np.load("Data/BSE_ok.npy")
+    test_faulty = np.load("Data/BSE_faulty.npy")
+# List to save scores
+anomaly_scores_ok = []
+anomaly_scores_faulty = []
+
+# For each okay image, get the score with each prototype
+for sample in range(0, test_ok.shape[0]):
+    score = 0
+    for proto in range(0, test_prototypes.shape[0]):
+        score += model.predict(test_ok[sample], test_prototypes[proto])
+    anomaly_scores_ok.append(score)
+
+# For each faulty image, get the score with each prototype
+for sample in range(0, test_faulty.shape[0]):
+    score = 0
+    for proto in range(0, test_prototypes.shape[0]):
+        score += model.predict(test_ok[sample], test_prototypes[proto])
+    anomaly_scores_faulty.append(score)
+
+anomaly_scores_ok = np.array(anomaly_scores_ok)
+anomaly_scores_faulty = np.array(anomaly_scores_faulty)
+
+# Set colors for graphs based on image type
+if image_type = 'BSE':
+    scatter_color = 'b'
+else:
+    scatter_color = 'g'
+
+x = range(0, len(anomaly_scores_ok))
+z = range(0 + len(anomaly_scores_ok), len(anomaly_scores_ok) + len(anomaly_scores_faulty))
+
+# Plot the resulting numbers stored in array
+plt.scatter(x, anomaly_scores_ok, c=scatter_color, s=10, marker='o', edgecolors='black', label='OK')
+plt.scatter(z, anomaly_scores_faulty, c='r', s=10, marker='o', edgecolors='black', label='Anomalous')
+plt.legend(loc='upper left')
+plt.title('Model ' + model.name + "_" + image_type)
+plt.ylabel('Anomaly Score')
+plt.xlabel('Index')
+plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches = "tight")
+plt.close('all')
