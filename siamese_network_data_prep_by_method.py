@@ -108,6 +108,12 @@ def main():
     print(faulty_images_se_list.shape)
     print(faulty_images_bse_list.shape)
 
+    # Save even the sorted data into SE and BSE types
+    np.save("Data/SE_ok.npy", ok_images_se_list)
+    np.save("Data/BSE_ok.npy", ok_images_bse_list)
+    np.save("Data/SE_faulty.npy", faulty_images_se_list)
+    np.save("Data/BSE_faulty.npy", faulty_images_bse_list)
+
     se_pairs_left, se_pairs_right, se_pairs_labels = make_pairs(ok_images_se_list, faulty_images_se_list)
     bse_pairs_left, bse_pairs_right, bse_pairs_labels = make_pairs(ok_images_bse_list, faulty_images_bse_list)
 
