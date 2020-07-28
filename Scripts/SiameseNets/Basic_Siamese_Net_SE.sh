@@ -18,7 +18,7 @@ module add cuda-10.0
 module add cudnn-7.4.2-cuda10
 
 
-cp -R $DATADIR/siamese_network_tester.py $DATADIR/Models $DATADIR/DataHuge $SCRATCHDIR
+cp -R $DATADIR/siamese_network_tester.py $DATADIR/Models $DATADIR/Data $DATADIR/DataHuge $SCRATCHDIR
 
 
 cd $SCRATCHDIR
