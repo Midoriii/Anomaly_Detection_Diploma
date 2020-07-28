@@ -19,11 +19,13 @@ cp -R $DATADIR/siamese_network_data_prep_by_method.py $DATADIR/Clonky-ok $DATADI
 cd $SCRATCHDIR
 
 mkdir -p DataHuge
+mkdir -p Data
 
 
 python siamese_network_data_prep_by_method.py
 
 
 cp -vr $SCRATCHDIR/DataHuge/* $DATADIR/DataHuge/
+cp -vr $SCRATCHDIR/Data/* $DATADIR/Data/
 
 clean_scratch
