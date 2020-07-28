@@ -32,15 +32,15 @@ class BaseSiameseModel:
         self.model.summary()
         return
 
-
     def train_net(self, training_input_left, training_input_right, training_labels, epochs, batch_size):
         self.history = self.model.fit([training_input_left, training_input_right], training_labels, epochs = epochs, batch_size=batch_size)
         return
 
+    def predict(self, predict_input, prototype):
+        return self.model.predict([predict_input, prototype])
 
-    def predict(self, predict_input):
+    def embedding_predict(self, predict_input):
         return self.embedding.predict(predict_input)
-
 
     def save_weights(self, epoch, batch_size):
         self.model.save_weights('Model_Saves/Weights/' + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
