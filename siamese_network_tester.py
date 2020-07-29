@@ -86,7 +86,7 @@ model.save_embedding_model(epochs, batch_size, image_type)
 if image_type == 'SE':
     test_prototypes = np.load("Data/SE_prototypes.npy")
     test_ok = np.load("Data/SE_ok.npy")
-    test_ok_faulty = np.load("Data/SE_faulty.npy")
+    test_faulty = np.load("Data/SE_faulty.npy")
 else:
     test_prototypes = np.load("Data/BSE_prototypes.npy")
     test_ok = np.load("Data/BSE_ok.npy")
@@ -99,14 +99,16 @@ anomaly_scores_faulty = []
 for sample in range(0, test_ok.shape[0]):
     score = 0
     for proto in range(0, test_prototypes.shape[0]):
-        score += model.predict(test_ok[sample].reshape(1, img_width, img_height, 1), test_prototypes[proto].reshape(1, img_width, img_height, 1))
+        score += np.round(model.predict(test_ok[sample].reshape(1, img_width, img_height, 1),
+                                     test_prototypes[proto].reshape(1, img_width, img_height, 1)))
     anomaly_scores_ok.append(score)
 
 # For each faulty image, get the score with each prototype
 for sample in range(0, test_faulty.shape[0]):
     score = 0
     for proto in range(0, test_prototypes.shape[0]):
-        score += model.predict(test_ok[sample].reshape(1, img_width, img_height, 1), test_prototypes[proto].reshape(1, img_width, img_height, 1))
+        score += np.round(model.predict(test_ok[sample].reshape(1, img_width, img_height, 1),
+                                     test_prototypes[proto].reshape(1, img_width, img_height, 1)))
     anomaly_scores_faulty.append(score)
 
 anomaly_scores_ok = np.array(anomaly_scores_ok)
@@ -130,3 +132,5 @@ plt.ylabel('Anomaly Score')
 plt.xlabel('Index')
 plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches = "tight")
 plt.close('all')
+
+print(model.predict(test_ok[2].reshape(1, img_width, img_height, 1), test_ok[5].reshape(1, img_width, img_height, 1)))

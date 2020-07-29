@@ -37,7 +37,7 @@ class BaseSiameseModel:
         return
 
     def predict(self, predict_input, prototype):
-        return self.model.predict_classes([predict_input, prototype])
+        return self.model.predict([predict_input, prototype])
 
     def embedding_predict(self, predict_input):
         return self.embedding.predict(predict_input)
