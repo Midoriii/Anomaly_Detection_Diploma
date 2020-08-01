@@ -5,6 +5,10 @@ import matplotlib.pyplot as plt
 
 from PIL import Image
 from Models.BasicSiameseNet import BasicSiameseNet
+from Models.SiameseNetLF import SiameseNetLF
+from Models.SiameseNetDeeper import SiameseNetDeeper
+from Models.SiameseNetDeeperLLR import SiameseNetDeeperLLR
+from Models.SiameseNetMultipleConv import SiameseNetMultipleConv
 
 
 img_width = 768
@@ -54,7 +58,17 @@ else:
 # Choose desired model
 if desired_model == "BasicSiameseNet":
     model = BasicSiameseNet()
-
+elif desired_model == "SiameseNetLF":
+    model = SiameseNetLF()
+elif desired_model == "SiameseNetDeeper":
+    model = SiameseNetDeeper()
+elif desired_model == "SiameseNetDeeperLLR":
+    model = SiameseNetDeeperLLR()
+elif desired_model == "SiameseNetMultipleConv":
+    model = SiameseNetMultipleConv()
+else:
+    print("Wrong Model specified!")
+    sys.exit()
 
 # Create and compile the model
 model.create_net(input_shape)
