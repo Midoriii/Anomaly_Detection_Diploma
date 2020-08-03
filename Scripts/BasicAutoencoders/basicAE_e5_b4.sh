@@ -3,8 +3,6 @@
 #PBS -l select=1:ncpus=1:mem=6gb:ngpus=1:scratch_local=3gb
 #PBS -l walltime=1:00:00
 
-cd ..
-cd ..
 
 DATADIR=/storage/brno6/home/apprehension
 
