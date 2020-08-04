@@ -87,7 +87,7 @@ reconstructed_anomalous_array = []
 
 # Reshape to fit the desired input and Normalize the data
 train_input = reshape_normalize(data, img_width, img_height)
-anomalous_input = reshape_normalize(anomalous_data, img_width, img_height)
+anomalous_input = reshape_normalize(anomalies, img_width, img_height)
 #print(train_input.shape)
 
 # Choose the correct model
