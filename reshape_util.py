@@ -23,9 +23,7 @@ def crop_reshape(images):
     return images_list
 
 
-def reshape_normalize(images):
-    img_width = 768
-    img_height = 768
+def reshape_normalize(images, img_width, img_height):
     # Normalize the data
     normalized = images.astype('float32') / 255.0
     # Reshape into desirable shape

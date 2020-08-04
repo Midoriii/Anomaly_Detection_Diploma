@@ -3,6 +3,7 @@ import cv2
 import sys, getopt
 
 from PIL import Image
+from reshape_util import reshape_normalize
 from Models.BasicAutoencoder import BasicAutoencoder
 from Models.BasicAutoencoder_LF import BasicAutoencoder_LF
 from Models.HighStrideAutoencoder import HighStrideAutoencoder
@@ -80,17 +81,13 @@ print(data.shape)
 anomalies = np.load("Data/Vadne.npy")
 print(anomalies.shape)
 
-# Reshape to fit the desired input
-data = data.reshape(data.shape[0], img_width, img_height, 1)
-anomalous_data = anomalies.reshape(anomalies.shape[0], img_width, img_height, 1)
-
 # Arrays to hold reconstructed images for anoamly detection by mean squared error
 reconstructed_ok_array = []
 reconstructed_anomalous_array = []
 
-# Normalize the data
-train_input = data.astype('float32') / 255.0
-anomalous_input = anomalous_data.astype('float32') / 255.0
+# Reshape to fit the desired input and Normalize the data
+train_input = reshape_normalize(data, img_width, img_height)
+anomalous_input = reshape_normalize(anomalous_data, img_width, img_height)
 #print(train_input.shape)
 
 # Choose the correct model

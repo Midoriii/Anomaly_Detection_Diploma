@@ -5,6 +5,7 @@ import sys
 
 import matplotlib.pyplot as plt
 from keras.models import load_model
+from reshape_util import reshape_normalize
 
 
 
@@ -25,9 +26,8 @@ ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/BasicAutoencoderE
 anomalies = np.load("Data/Vadne.npy")
 print(anomalies.shape)
 #Reshape into desired shape for the network
-anomalous_data = anomalies.reshape(anomalies.shape[0], img_width, img_height, 1)
-#Normalize
-anomalous_input = anomalous_data.astype('float32') / 255.0
+anomalous_input = reshape_normalize(anomalies, img_width, img_height)
+
 
 #Define the threshold for a picture to be called an anomaly
 #to be 3 * the standard deviation of reconstruction error on the OK pics

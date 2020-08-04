@@ -5,6 +5,7 @@ import sys
 
 import matplotlib.pyplot as plt
 from keras.models import load_model
+from reshape_util import reshape_normalize
 
 
 
@@ -27,9 +28,7 @@ part2 = np.load("Data/OK_2.npy")
 data = np.concatenate((part1, part2))
 print(data.shape)
 #Reshape into desired shape for the network
-valid_data = data.reshape(data.shape[0], img_width, img_height, 1)
-#Normalize
-valid_input = valid_data.astype('float32') / 255.0
+valid_input = reshape_normalize(data, img_width, img_height)
 
 #Define the threshold for a picture to be called an anomaly
 #to be 3 * the standard deviation of reconstruction error on the OK pics
