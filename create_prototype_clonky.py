@@ -1,12 +1,11 @@
 import glob
 import numpy as np
 import cv2
-from siamese_network_data_prep_by_method import crop_reshape
-from siamese_network_data_prep_by_method import reshape_normalize
+
+from reshape_util import crop_reshape
+from reshape_util import reshape_normalize
 
 
-img_width = 768
-img_height = 768
 
 proto_images_se = glob.glob('Clonky-prototypy/*_3*')
 proto_images_bse = glob.glob('Clonky-prototypy/*_4*')
