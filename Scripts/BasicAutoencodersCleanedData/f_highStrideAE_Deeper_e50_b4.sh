@@ -16,7 +16,7 @@ module add cuda-10.0
 module add cudnn-7.4.2-cuda10
 
 
-cp -R $DATADIR/autoencoder_tester.py $DATADIR/Models $DATADIR/Data $SCRATCHDIR
+cp -R $DATADIR/autoencoder_tester.py $DATADIR/reshape_util.py $DATADIR/Models $DATADIR/Data $SCRATCHDIR
 
 
 cd $SCRATCHDIR
