@@ -9,17 +9,17 @@ from keras.models import Model, Sequential
 from keras.callbacks import History
 
 '''
-Deeper Siamese Net with further reduced learning rate
+Basic Siamese Network, slightly shallower, with multiple convolutions
 
 @Author: Stepan Benes
 '''
 
-class SiameseNetDeeperLLR(BaseSiameseModel):
+class SiameseNetLiteMultipleConv(BaseSiameseModel):
 
     def __init__(self):
         super().__init__()
-        self.name = "SiameseNetDeeperLLR"
-        self.lr = 0.000001
+        self.name = "SiameseNetLiteMultipleConv"
+        self.lr = 0.00001
         return
 
     def create_net(self, input_shape):
@@ -29,50 +29,32 @@ class SiameseNetDeeperLLR(BaseSiameseModel):
         dropout_rate = 0.5
 
         siamese_model_branch_sequence = [
-            Conv2D(64, (3, 3), padding='same'),
+            Conv2D(32, (3, 3), padding='same'),
+            Conv2D(32, (3, 3), padding='same'),
+            Conv2D(32, (3, 3), padding='same'),
             Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
             Conv2D(64, (3, 3), padding='same'),
+            Conv2D(32, (3, 3), padding='same'),
+            Conv2D(32, (3, 3), padding='same'),
             Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
             Conv2D(128, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
-            Conv2D(128, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
-            Conv2D(128, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
-            Conv2D(256, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
-            Conv2D(256, (3, 3), padding='same'),
+            Conv2D(32, (3, 3), padding='same'),
+            Conv2D(32, (3, 3), padding='same'),
             Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
             Flatten(),
-            Dense(1024, activation='sigmoid')
+            Dense(128, activation='sigmoid')
         ]
 
         branch = Sequential(siamese_model_branch_sequence)

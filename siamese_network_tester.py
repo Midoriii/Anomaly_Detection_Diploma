@@ -9,6 +9,8 @@ from Models.SiameseNetLF import SiameseNetLF
 from Models.SiameseNetDeeper import SiameseNetDeeper
 from Models.SiameseNetDeeperLLR import SiameseNetDeeperLLR
 from Models.SiameseNetMultipleConv import SiameseNetMultipleConv
+from Models.SiameseNetLite import SiameseNetLite
+from Models.SiameseNetLiteMultipleConv import SiameseNetLiteMultipleConv
 
 
 img_width = 768
@@ -66,6 +68,10 @@ elif desired_model == "SiameseNetDeeperLLR":
     model = SiameseNetDeeperLLR()
 elif desired_model == "SiameseNetMultipleConv":
     model = SiameseNetMultipleConv()
+elif desired_model == "SiameseNetLite":
+    model = SiameseNetLite()
+elif desired_model == "SiameseNetLiteMultipleConv":
+    model = SiameseNetLiteMultipleConv()
 else:
     print("Wrong Model specified!")
     sys.exit()

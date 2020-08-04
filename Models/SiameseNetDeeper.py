@@ -72,7 +72,7 @@ class SiameseNetDeeper(BaseSiameseModel):
             MaxPooling2D((2, 2), padding='same'),
 
             Flatten(),
-            Dense(128, activation='sigmoid')
+            Dense(1024, activation='sigmoid')
         ]
 
         branch = Sequential(siamese_model_branch_sequence)
