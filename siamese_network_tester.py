@@ -148,6 +148,7 @@ plt.scatter(x, anomaly_scores_ok, c=scatter_color, s=10, marker='o', edgecolors=
 plt.scatter(z, anomaly_scores_faulty, c='r', s=10, marker='o', edgecolors='black', label='Anomalous')
 plt.legend(loc='upper left')
 plt.title('Model ' + model.name + "_" + image_type)
+plt.xticks(np.arange(0.0, 6.0, 1.0))
 plt.ylabel('Anomaly Score')
 plt.xlabel('Index')
 plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches = "tight")
