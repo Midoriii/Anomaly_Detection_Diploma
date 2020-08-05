@@ -28,7 +28,7 @@ class BaseSiameseModel:
 
 
     def compile_net(self):
-        self.model.compile(optimizer=Adam(lr=self.lr), loss='binary_crossentropy', metrics=['accuracy'])
+        self.model.compile(optimizer=Adam(lr=self.lr), loss='binary_crossentropy', metrics=['binary_accuracy'])
         self.model.summary()
         return
 

@@ -90,7 +90,7 @@ plt.xlabel('epoch')
 plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches = "tight")
 plt.close('all')
 
-plt.plot(model.history.history['accuracy'])
+plt.plot(model.history.history['binary_accuracy'])
 plt.title('model accuracy - ' + model.name)
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
