@@ -18,7 +18,6 @@ model.summary()
 
 # Iterate through all the pairs and print results of predict
 for i in range (0, pairs_labels.shape[0]):
-    prediction = model.predict(pairs_left[i].reshape(1, img_width, img_height, 1),
-                               pairs_right[i].reshape(1, img_width, img_height, 1))
+    prediction = model.predict([pairs_left[i].reshape(1, img_width, img_height, 1), pairs_right[i].reshape(1, img_width, img_height, 1)])
 
     print("Predicted: " + str(prediction) + ", Label: " + str(pairs_labels[i]))
