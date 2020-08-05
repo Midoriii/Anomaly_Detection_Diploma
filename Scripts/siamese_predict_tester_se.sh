@@ -16,10 +16,10 @@ module add cuda-10.0
 module add cudnn-7.4.2-cuda10
 
 
-cp -R $DATADIR/siamese_predict_tester.py $DATADIR/DataHuge $DATADIR/Model_Saves $SCRATCHDIR
+cp -R $DATADIR/siamese_predict_tester_se.py $DATADIR/DataHuge $DATADIR/Model_Saves $SCRATCHDIR
 
 cd $SCRATCHDIR
 
-python siamese_predict_tester.py
+python siamese_predict_tester_se.py
 
 clean_scratch
