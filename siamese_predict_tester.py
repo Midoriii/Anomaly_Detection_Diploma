@@ -13,7 +13,7 @@ pairs_right = np.load("DataHuge/BSE_pairs_right.npy")
 pairs_labels = np.load("DataHuge/BSE_pairs_labels.npy")
 
 #Load the saved model itself
-model = load_model('Model_Saves/Detailed/SiameseNetDeeper_BSE_e40_b4_detailed')
+model = load_model('Model_Saves/Test/SiameseNetDeeper_BSE_e40_b4_detailed')
 model.summary()
 
 # Iterate through all the pairs and print results of predict

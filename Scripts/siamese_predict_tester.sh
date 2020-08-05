@@ -16,7 +16,7 @@ module add cuda-10.0
 module add cudnn-7.4.2-cuda10
 
 
-cp -R $DATADIR/siamese_predict_tester.py $DATADIR/DataHuge $DATADIR/Model_Saves/Detailed/SiameseNetDeeper_BSE_e40_b4_detailed $SCRATCHDIR
+cp -R $DATADIR/siamese_predict_tester.py $DATADIR/DataHuge $DATADIR/Model_Saves/Test $SCRATCHDIR
 
 cd $SCRATCHDIR
 
