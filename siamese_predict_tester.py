@@ -23,7 +23,7 @@ for i in range (0, pairs_labels.shape[0]):
 
     print("Predicted: " + str(prediction) + ", Label: " + str(pairs_labels[i]))
 
-    if int(np.around(prediction)) == (pairs_labels[i]):
+    if int(np.around(prediction)) != (pairs_labels[i]):
         count = count + 1
 
 print("Falsely labeled: " + str(count))
