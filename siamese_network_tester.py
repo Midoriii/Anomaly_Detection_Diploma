@@ -11,6 +11,8 @@ from Models.SiameseNetDeeperLLR import SiameseNetDeeperLLR
 from Models.SiameseNetMultipleConv import SiameseNetMultipleConv
 from Models.SiameseNetLite import SiameseNetLite
 from Models.SiameseNetLiteMultipleConv import SiameseNetLiteMultipleConv
+from Models.BasicSiameseNetLLR import BasicSiameseNetLLR
+from Models.BasicSiameseNetWoutBN import BasicSiameseNetWoutBN
 
 
 img_width = 768
@@ -60,6 +62,10 @@ else:
 # Choose desired model
 if desired_model == "BasicSiameseNet":
     model = BasicSiameseNet()
+elif desired_model == "BasicSiameseNetLLR":
+    model = BasicSiameseNetLLR()
+elif desired_model == "BasicSiameseNetWoutBN":
+    model = BasicSiameseNetWoutBN()
 elif desired_model == "SiameseNetLF":
     model = SiameseNetLF()
 elif desired_model == "SiameseNetDeeper":
