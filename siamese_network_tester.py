@@ -1,9 +1,7 @@
-import numpy as np
-import cv2
 import sys, getopt
+import numpy as np
 import matplotlib.pyplot as plt
 
-from PIL import Image
 from Models.BasicSiameseNet import BasicSiameseNet
 from Models.SiameseNetLF import SiameseNetLF
 from Models.SiameseNetDeeper import SiameseNetDeeper
