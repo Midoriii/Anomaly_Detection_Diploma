@@ -54,6 +54,6 @@ print(numpy_images.shape)
 
 
 # Finally save the numpy representation
-#np.save('Data\\Vadne.npy', numpy_images)
+#np.save('Data\\Faulty.npy', numpy_images)
 #np.save('Data\\OK_filtered.npy', numpy_images)
-np.save('Data\\Vadne_extended.npy', numpy_images)
+np.save('Data\\Faulty_extended.npy', numpy_images)

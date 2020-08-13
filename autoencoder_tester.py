@@ -78,7 +78,7 @@ else:
 
 print(data.shape)
 # Load the anomalies too
-anomalies = np.load("Data/Vadne.npy")
+anomalies = np.load("Data/Faulty.npy")
 print(anomalies.shape)
 
 # Arrays to hold reconstructed images for anoamly detection by mean squared error

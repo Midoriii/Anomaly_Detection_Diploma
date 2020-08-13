@@ -23,7 +23,7 @@ ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/BasicAutoencoderE
 #ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/filtered_BasicAutoencoderEvenDeeper_e50_b4_ROK.npy')
 
 #Load the anomalous images
-anomalies = np.load("Data/Vadne.npy")
+anomalies = np.load("Data/Faulty.npy")
 print(anomalies.shape)
 #Reshape into desired shape for the network
 anomalous_input = reshape_normalize(anomalies, img_width, img_height)
