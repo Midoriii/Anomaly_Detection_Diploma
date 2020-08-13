@@ -1,3 +1,4 @@
+import sys
 import glob
 import numpy as np
 import cv2
@@ -12,7 +13,7 @@ def make_pairs(ok_images, faulty_images):
     pairs_left = []
     pairs_right = []
     pairs_labels = []
-    
+
     img_width = 768
     img_height = 768
 
@@ -63,10 +64,20 @@ def main():
     ok_images_se = glob.glob('Clonky-ok/*_3*')
     ok_images_bse = glob.glob('Clonky-ok/*_4*')
 
-    # Apparently glob is incapable of such matching, that 'b' could be excluded
-    faulty_images_se = glob.glob('Clonky-vadne/[0-9].*')
-    faulty_images_se += glob.glob('Clonky-vadne/[0-9][0-9].*')
-    faulty_images_bse = glob.glob('Clonky-vadne/[0-9]*b.*')
+    extended = ""
+
+    # A cheap way to make distinction between making pairs with all the faulty
+    # images (which means even those that contain plugged center)
+    if len(sys.argv) > 1:
+        # Apparently glob is incapable of such matching, that 'b' could be excluded
+        faulty_images_se = glob.glob('Clonky-vadne-full/[0-9].*')
+        faulty_images_se += glob.glob('Clonky-vadne-full/[0-9][0-9].*')
+        faulty_images_bse = glob.glob('Clonky-vadne-full/[0-9]*b.*')
+        extended = "_extended"
+    else:
+        faulty_images_se = glob.glob('Clonky-vadne/[0-9].*')
+        faulty_images_se += glob.glob('Clonky-vadne/[0-9][0-9].*')
+        faulty_images_bse = glob.glob('Clonky-vadne/[0-9]*b.*')
 
     ok_images_se_list = crop_reshape(ok_images_se)
     ok_images_bse_list = crop_reshape(ok_images_bse)
@@ -81,8 +92,8 @@ def main():
     # Save even the sorted data into SE and BSE types
     np.save("Data/SE_ok.npy", reshape_normalize(ok_images_se_list, img_width, img_height))
     np.save("Data/BSE_ok.npy", reshape_normalize(ok_images_bse_list, img_width, img_height))
-    np.save("Data/SE_faulty.npy", reshape_normalize(faulty_images_se_list, img_width, img_height))
-    np.save("Data/BSE_faulty.npy", reshape_normalize(faulty_images_bse_list, img_width, img_height))
+    np.save("Data/SE_faulty" + extended + ".npy", reshape_normalize(faulty_images_se_list, img_width, img_height))
+    np.save("Data/BSE_faulty" + extended + ".npy", reshape_normalize(faulty_images_bse_list, img_width, img_height))
 
     # Leave some of the images as testing data
     # 75% instead of 80% of faulty data is taken to represent all the error types
@@ -99,13 +110,13 @@ def main():
     se_pairs_left, se_pairs_right, se_pairs_labels = make_pairs(ok_images_se_list, faulty_images_se_list)
     bse_pairs_left, bse_pairs_right, bse_pairs_labels = make_pairs(ok_images_bse_list, faulty_images_bse_list)
 
-    np.save("DataHuge/SE_pairs_left.npy", se_pairs_left)
-    np.save("DataHuge/SE_pairs_right.npy", se_pairs_right)
-    np.save("DataHuge/SE_pairs_labels.npy", se_pairs_labels)
+    np.save("DataHuge/SE_pairs_left" + extended + ".npy", se_pairs_left)
+    np.save("DataHuge/SE_pairs_right" + extended + ".npy", se_pairs_right)
+    np.save("DataHuge/SE_pairs_labels" + extended + ".npy", se_pairs_labels)
 
-    np.save("DataHuge/BSE_pairs_left.npy", bse_pairs_left)
-    np.save("DataHuge/BSE_pairs_right.npy", bse_pairs_right)
-    np.save("DataHuge/BSE_pairs_labels.npy", bse_pairs_labels)
+    np.save("DataHuge/BSE_pairs_left" + extended + ".npy", bse_pairs_left)
+    np.save("DataHuge/BSE_pairs_right" + extended + ".npy", bse_pairs_right)
+    np.save("DataHuge/BSE_pairs_labels" + extended + ".npy", bse_pairs_labels)
 
     return
 
