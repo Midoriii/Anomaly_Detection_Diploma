@@ -44,10 +44,10 @@ class BaseModel:
         return self.model.predict(predict_input)
 
 
-    def save_weights(self, epoch, batch_size, is_data_filtered):
-        self.model.save_weights('Model_Saves/Weights/' + is_data_filtered + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
+    def save_weights(self, epoch, batch_size, is_data_filtered, faulty_extended):
+        self.model.save_weights('Model_Saves/Weights/' + is_data_filtered + faulty_extended + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
         return
 
-    def save_model(self, epoch, batch_size, is_data_filtered):
-        self.model.save('Model_Saves/Detailed/' + is_data_filtered + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
+    def save_model(self, epoch, batch_size, is_data_filtered, faulty_extended):
+        self.model.save('Model_Saves/Detailed/' + is_data_filtered + faulty_extended + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
         return
