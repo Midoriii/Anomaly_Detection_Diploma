@@ -13,6 +13,8 @@ from Models.BasicSiameseNetLLR import BasicSiameseNetLLR
 from Models.BasicSiameseNetWoutBN import BasicSiameseNetWoutBN
 from Models.BasicSiameseNetWoutDropout import BasicSiameseNetWoutDropout
 from Models.BasicSiameseNetLowerDropout import BasicSiameseNetLowerDropout
+from Models.SiameseNetLiteMultipleConvLowerDropout import SiameseNetLiteMultipleConvLowerDropout
+from Models.SiameseNetLiteMultipleConvWithoutDropout import SiameseNetLiteMultipleConvWithoutDropout
 
 
 img_width = 768
@@ -82,6 +84,10 @@ elif desired_model == "BasicSiameseNetWoutDropout":
     model = BasicSiameseNetWoutDropout()
 elif desired_model == "BasicSiameseNetLowerDropout":
     model = BasicSiameseNetLowerDropout()
+elif desired_model == "SiameseNetLiteMultipleConvLowerDropout":
+    model = SiameseNetLiteMultipleConvLowerDropout()
+elif desired_model == "SiameseNetLiteMultipleConvWithoutDropout":
+    model = SiameseNetLiteMultipleConvWithoutDropout()
 else:
     print("Wrong Model specified!")
     sys.exit()
