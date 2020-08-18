@@ -1,7 +1,6 @@
 import sys
 import glob
 import numpy as np
-import cv2
 
 from reshape_util import crop_reshape
 from reshape_util import reshape_normalize
@@ -117,8 +116,6 @@ def main():
     np.save("DataHuge/BSE_pairs_left" + extended + ".npy", bse_pairs_left)
     np.save("DataHuge/BSE_pairs_right" + extended + ".npy", bse_pairs_right)
     np.save("DataHuge/BSE_pairs_labels" + extended + ".npy", bse_pairs_labels)
-
-    return
 
 
 if __name__ == "__main__":

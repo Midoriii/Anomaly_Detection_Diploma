@@ -1,4 +1,5 @@
-import sys, getopt
+import sys
+import getopt
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -103,14 +104,14 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches = "tight")
+plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
 plt.close('all')
 
 plt.plot(model.history.history['binary_accuracy'])
 plt.title('model accuracy - ' + model.name)
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches = "tight")
+plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches="tight")
 plt.close('all')
 
 # Save the model weights and architecture
@@ -136,7 +137,7 @@ for sample in range(0, test_ok.shape[0]):
     score = 0
     for proto in range(0, test_prototypes.shape[0]):
         score += np.around(model.predict(test_ok[sample].reshape(1, img_width, img_height, 1),
-                                     test_prototypes[proto].reshape(1, img_width, img_height, 1)))
+                                         test_prototypes[proto].reshape(1, img_width, img_height, 1)))
     anomaly_scores_ok.append(score)
 
 # For each faulty image, get the score with each prototype
@@ -144,7 +145,7 @@ for sample in range(0, test_faulty.shape[0]):
     score = 0
     for proto in range(0, test_prototypes.shape[0]):
         score += np.around(model.predict(test_faulty[sample].reshape(1, img_width, img_height, 1),
-                                     test_prototypes[proto].reshape(1, img_width, img_height, 1)))
+                                         test_prototypes[proto].reshape(1, img_width, img_height, 1)))
     anomaly_scores_faulty.append(score)
 
 anomaly_scores_ok = np.array(anomaly_scores_ok)
@@ -167,7 +168,7 @@ plt.title('Model ' + model.name + "_" + image_type)
 plt.yticks(np.arange(0.0, 6.0, 1.0))
 plt.ylabel('Anomaly Score')
 plt.xlabel('Index')
-plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches = "tight")
+plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
 plt.close('all')
 
 print(model.predict(test_ok[2].reshape(1, img_width, img_height, 1), test_ok[5].reshape(1, img_width, img_height, 1)))

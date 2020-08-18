@@ -1,11 +1,10 @@
 import numpy as np
-import cv2
+
+from cv2 import cv2
 
 
 def crop_reshape(images):
     images_list = []
-    img_width = 768
-    img_height = 768
 
     for image in images:
         img = cv2.imread(image)
