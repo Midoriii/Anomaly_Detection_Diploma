@@ -1,16 +1,15 @@
 import numpy as np
-import cv2
-from PIL import Image
-import sys
 
-import matplotlib.pyplot as plt
+from cv2 import cv2
+
+from PIL import Image
 from keras.models import load_model
 from reshape_util import reshape_normalize
 
 
-
 img_width = 768
 img_height = 768
+
 
 #Load the saved model itself
 model = load_model('Model_Saves/Detailed/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed')
