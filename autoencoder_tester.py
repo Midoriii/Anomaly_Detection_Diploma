@@ -62,6 +62,8 @@ for current_argument, current_value in arguments:
     elif current_argument in ("-f", "--faulty"):
         faulty_extended = current_value
 
+        
+
 # Load the previously stored data
 # If filtered is desired, load those
 if is_data_filtered == "filtered":
@@ -88,6 +90,8 @@ else:
     train_input = reshape_normalize(data, img_width, img_height)
 
 print(data.shape)
+
+
 # Load the anomalies too
 # Extended with plugged center part
 if faulty_extended == "extended":
