@@ -62,7 +62,7 @@ for current_argument, current_value in arguments:
     elif current_argument in ("-f", "--faulty"):
         faulty_extended = current_value
 
-        
+
 
 # Load the previously stored data
 # If filtered is desired, load those
@@ -151,7 +151,7 @@ elif desired_model == "BasicAutoencoderLFDeeperLLR":
 elif desired_model == "BasicAutoencoderHFDeeperLLR":
     model = BasicAutoencoderHFDeeperLLR()
 elif desired_model == "BasicAutoencoderEvenDeeperSuperLLR":
-        model = BasicAutoencoderEvenDeeperSuperLLR()
+    model = BasicAutoencoderEvenDeeperSuperLLR()
 else:
     print("No model specified")
     sys.exit()
