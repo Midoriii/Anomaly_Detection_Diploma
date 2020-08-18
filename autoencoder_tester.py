@@ -77,10 +77,12 @@ if is_data_filtered == "filtered":
 # If we want only the BSE Data
 elif is_data_filtered == "BSE":
     data = np.load("Data/BSE_ok.npy")
+    train_input = data
     is_data_filtered = "BSE_"
 # If we want only the SE Data
 elif is_data_filtered == "SE":
     data = np.load("Data/SE_ok.npy")
+    train_input = data
     is_data_filtered = "SE_"
 # Otherwise load the full OK data
 else:
@@ -98,8 +100,10 @@ print(data.shape)
 if faulty_extended == "extended":
     if is_data_filtered == "BSE_":
         anomalies = np.load("Data/BSE_faulty_extended.npy")
+        anomalous_input = anomalies
     elif is_data_filtered == "SE_":
         anomalies = np.load("Data/SE_faulty_extended.npy")
+        anomalous_input = anomalies
     else:
         anomalies = np.load("Data/Faulty_extended.npy")
         # Reshape to fit the desired input and Normalize the data
@@ -110,8 +114,10 @@ if faulty_extended == "extended":
 else:
     if is_data_filtered == "BSE_":
         anomalies = np.load("Data/BSE_faulty.npy")
+        anomalous_input = anomalies
     elif is_data_filtered == "SE_":
         anomalies = np.load("Data/SE_faulty.npy")
+        anomalous_input = anomalies
     else:
         anomalies = np.load("Data/Faulty.npy")
         # Reshape to fit the desired input and Normalize the data
