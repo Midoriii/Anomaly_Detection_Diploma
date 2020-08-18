@@ -241,7 +241,7 @@ z = range(0 + len(reconstructed_ok_errors), len(reconstructed_anomalous_errors) 
 plt.scatter(x, reconstructed_ok_errors, c='g', s=10, marker='o', edgecolors='black', label='OK')
 plt.scatter(z, reconstructed_anomalous_errors, c='r', s=10, marker='o', edgecolors='black', label='Anomalous')
 # Horizontal line at 3 times the standard deviation, typical for outlier detection
-plt.axhline(y= (3 * np.std(reconstructed_ok_errors)), color='r', linestyle='-')
+plt.axhline(y=(3 * np.std(reconstructed_ok_errors)), color='r', linestyle='-')
 plt.legend(loc='upper left')
 plt.title('model reconstruction error - ' + model.name)
 plt.ylabel('Reconstruction Error')
@@ -253,5 +253,12 @@ plt.close('all')
 reconstructed_ok_errors = np.array(reconstructed_ok_errors)
 reconstructed_anomalous_errors = np.array(reconstructed_anomalous_errors)
 
-np.save('Reconstructed/Error_Arrays/' + str(is_data_filtered) + str(faulty_extended) +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_ROK.npy', reconstructed_ok_errors)
-np.save('Reconstructed/Error_Arrays/' + str(is_data_filtered) + str(faulty_extended) +  model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_RAnomalous.npy', reconstructed_anomalous_errors)
+np.save('Reconstructed/Error_Arrays/' + str(is_data_filtered) +
+        str(faulty_extended) +  model.name + '_e' + str(epochs) +
+        '_b' + str(batch_size) + '_ROK.npy',
+        reconstructed_ok_errors)
+
+np.save('Reconstructed/Error_Arrays/' + str(is_data_filtered) +
+        str(faulty_extended) +  model.name + '_e' + str(epochs) +
+        '_b' + str(batch_size) + '_RAnomalous.npy',
+        reconstructed_anomalous_errors)
