@@ -66,27 +66,51 @@ for current_argument, current_value in arguments:
 # If filtered is desired, load those
 if is_data_filtered == "filtered":
     data = np.load("Data/OK_filtered.npy")
+    # Reshape to fit the desired input and Normalize the data
+    train_input = reshape_normalize(data, img_width, img_height)
     # Add the underscore so that later graph and file
     # names contain the 'filtered_' prefix when expected
     is_data_filtered = "filtered_"
-
+# If we want only the BSE Data
+elif is_data_filtered == "BSE":
+    data = np.load("Data/BSE_ok.npy")
+    is_data_filtered = "BSE_"
+# If we want only the SE Data
+elif is_data_filtered == "SE":
+    data = np.load("Data/SE_ok.npy")
+    is_data_filtered = "SE_"
 # Otherwise load the full OK data
 else:
     part1 = np.load("Data/OK_1.npy")
     part2 = np.load("Data/OK_2.npy")
     data = np.concatenate((part1, part2))
+    # Reshape to fit the desired input and Normalize the data
+    train_input = reshape_normalize(data, img_width, img_height)
 
 print(data.shape)
 # Load the anomalies too
 # Extended with plugged center part
 if faulty_extended == "extended":
-    anomalies = np.load("Data/Faulty_extended.npy")
+    if is_data_filtered == "BSE_":
+        anomalies = np.load("Data/BSE_faulty_extended.npy")
+    elif is_data_filtered == "SE_":
+        anomalies = np.load("Data/SE_faulty_extended.npy")
+    else:
+        anomalies = np.load("Data/Faulty_extended.npy")
+        # Reshape to fit the desired input and Normalize the data
+        anomalous_input = reshape_normalize(anomalies, img_width, img_height)
     # Same thing is above with filtered data
     faulty_extended = "extended_"
 # Or without the plugged center part
 else:
-    anomalies = np.load("Data/Faulty.npy")
-
+    if is_data_filtered == "BSE_":
+        anomalies = np.load("Data/BSE_faulty.npy")
+    elif is_data_filtered == "SE_":
+        anomalies = np.load("Data/SE_faulty.npy")
+    else:
+        anomalies = np.load("Data/Faulty.npy")
+        # Reshape to fit the desired input and Normalize the data
+        anomalous_input = reshape_normalize(anomalies, img_width, img_height)
 
 print(anomalies.shape)
 
@@ -94,10 +118,6 @@ print(anomalies.shape)
 reconstructed_ok_array = []
 reconstructed_anomalous_array = []
 
-# Reshape to fit the desired input and Normalize the data
-train_input = reshape_normalize(data, img_width, img_height)
-anomalous_input = reshape_normalize(anomalies, img_width, img_height)
-#print(train_input.shape)
 
 # Choose the correct model
 if desired_model == "BasicAutoencoder":
@@ -167,14 +187,8 @@ for i in range (0, train_input.shape[0]):
     im = im.convert("L")
     im.save('Reconstructed/' + str(is_data_filtered) + model.name + '_e' + str(epochs) + '_b' + str(batch_size) + '_' + str(i) + '.jpg')
 
-    #cv2.imshow("reconstructed", np.array(im))
-    #cv2.waitKey(0)
-    #cv2.imwrite('Reconstructed/' + str(i) + '.jpg', reconstructed_img)
-
 # Convert to numpy array
 reconstructed_ok_array = np.array(reconstructed_ok_array)
-#print(reconstructed_ok_array.shape)
-#print(reconstructed_ok_array[2])
 
 # To see the actual reconstructed images of the anomalous data
 # And also to save them for MSE anomaly detection
@@ -194,8 +208,6 @@ for i in range (0, anomalous_input.shape[0]):
 
 # Convert to numpy array
 reconstructed_anomalous_array = np.array(reconstructed_anomalous_array)
-#print(reconstructed_anomalous_array.shape)
-#print(reconstructed_anomalous_array[2])
 
 # Array to hold MSE values
 reconstructed_ok_errors = []
