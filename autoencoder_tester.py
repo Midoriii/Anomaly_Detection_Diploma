@@ -1,6 +1,6 @@
-import numpy as np
-import cv2
 import sys, getopt
+import numpy as np
+import matplotlib.pyplot as plt
 
 from PIL import Image
 from reshape_util import reshape_normalize
@@ -19,7 +19,7 @@ from Models.BasicAutoencoderLFDeeperLLR import BasicAutoencoderLFDeeperLLR
 from Models.BasicAutoencoderHFDeeperLLR import BasicAutoencoderHFDeeperLLR
 from Models.BasicAutoencoderEvenDeeperSuperLLR import BasicAutoencoderEvenDeeperSuperLLR
 
-import matplotlib.pyplot as plt
+
 
 
 # Notes : Sources say to not use dropout .. also that batch_norm may be an overkill, and also
