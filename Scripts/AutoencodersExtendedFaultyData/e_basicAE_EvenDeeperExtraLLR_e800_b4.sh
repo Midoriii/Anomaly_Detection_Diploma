@@ -25,7 +25,7 @@ mkdir -p Reconstructed/Error_Arrays
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python autoencoder_tester.py -e 600 -b 4 -m BasicAutoencoderEvenDeeperExtraLLR -f extended
+python autoencoder_tester.py -e 800 -b 4 -m BasicAutoencoderEvenDeeperExtraLLR -f extended
 
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
