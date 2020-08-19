@@ -25,6 +25,7 @@ input_shape = (img_width, img_height, 1)
 epochs = 20
 batch_size = 4
 image_type = 'SE'
+extended_faulty = ""
 desired_model = "BasicSiameseNet"
 
 # Get full command-line arguments
@@ -32,8 +33,8 @@ full_cmd_arguments = sys.argv
 # Keep all but the first
 argument_list = full_cmd_arguments[1:]
 # Getopt options
-short_options = "e:m:t:"
-long_options = ["epochs=", "model=", "type="]
+short_options = "e:m:t:f:"
+long_options = ["epochs=", "model=", "type=", "faulty="]
 # Get the arguments and their respective values
 arguments, values = getopt.getopt(argument_list, short_options, long_options)
 
@@ -45,17 +46,32 @@ for current_argument, current_value in arguments:
         desired_model = current_value
     elif current_argument in ("-t", "--type"):
         image_type = current_value
+    elif current_argument in ("-f", "--faulty"):
+        extended_faulty = current_value
 
 
 # Loading data and labels - BSE or SE image origin as chosen in args
 if image_type == 'BSE':
-    left_data = np.load('DataHuge/BSE_pairs_left.npy')
-    right_data = np.load('DataHuge/BSE_pairs_right.npy')
-    labels = np.load('DataHuge/BSE_pairs_labels.npy')
+    if extended_faulty == 'extended':
+        left_data = np.load('DataHuge/BSE_pairs_left_extended.npy')
+        right_data = np.load('DataHuge/BSE_pairs_right_extended.npy')
+        labels = np.load('DataHuge/BSE_pairs_labels_extended.npy')
+        extended_faulty = "_extended"
+    else:
+        left_data = np.load('DataHuge/BSE_pairs_left.npy')
+        right_data = np.load('DataHuge/BSE_pairs_right.npy')
+        labels = np.load('DataHuge/BSE_pairs_labels.npy')
+
 elif image_type == 'SE':
-    left_data = np.load('DataHuge/SE_pairs_left.npy')
-    right_data = np.load('DataHuge/SE_pairs_right.npy')
-    labels = np.load('DataHuge/SE_pairs_labels.npy')
+    if extended_faulty == 'extended':
+        left_data = np.load('DataHuge/SE_pairs_left_extended.npy')
+        right_data = np.load('DataHuge/SE_pairs_right_extended.npy')
+        labels = np.load('DataHuge/SE_pairs_labels_extended.npy')
+        extended_faulty = "_extended"
+    else:
+        left_data = np.load('DataHuge/SE_pairs_left.npy')
+        right_data = np.load('DataHuge/SE_pairs_right.npy')
+        labels = np.load('DataHuge/SE_pairs_labels.npy')
 else:
     print("Wrong Image Type specified!")
     sys.exit()
@@ -104,30 +120,36 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
+plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type) + str(extended_faulty) + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
 plt.close('all')
 
 plt.plot(model.history.history['binary_accuracy'])
 plt.title('model accuracy - ' + model.name)
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches="tight")
+plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type) + str(extended_faulty) + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches="tight")
 plt.close('all')
 
 # Save the model weights and architecture
-model.save_model(epochs, batch_size, image_type)
-model.save_embedding_model(epochs, batch_size, image_type)
+model.save_model(epochs, batch_size, image_type, extended_faulty)
+model.save_embedding_model(epochs, batch_size, image_type, extended_faulty)
 
 # For performance evaluation, load prototypes and each image and get anomaly score
 # Load prototypes and actual data sorted by methods
 if image_type == 'SE':
     test_prototypes = np.load("Data/SE_prototypes.npy")
     test_ok = np.load("Data/SE_ok.npy")
-    test_faulty = np.load("Data/SE_faulty.npy")
+    if extended_faulty == '_extended':
+        test_faulty = np.load("Data/SE_faulty_extended.npy")
+    else:
+        test_faulty = np.load("Data/SE_faulty.npy")
 else:
     test_prototypes = np.load("Data/BSE_prototypes.npy")
     test_ok = np.load("Data/BSE_ok.npy")
-    test_faulty = np.load("Data/BSE_faulty.npy")
+    if extended_faulty == '_extended':
+        test_faulty = np.load("Data/BSE_faulty_extended.npy")
+    else:
+        test_faulty = np.load("Data/BSE_faulty.npy")
 # List to save scores
 anomaly_scores_ok = []
 anomaly_scores_faulty = []
