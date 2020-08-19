@@ -190,7 +190,7 @@ plt.title('Model ' + model.name + "_" + image_type)
 plt.yticks(np.arange(0.0, 6.0, 1.0))
 plt.ylabel('Anomaly Score')
 plt.xlabel('Index')
-plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
+plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + str(extended_faulty) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
 plt.close('all')
 
 print(model.predict(test_ok[2].reshape(1, img_width, img_height, 1), test_ok[5].reshape(1, img_width, img_height, 1)))
