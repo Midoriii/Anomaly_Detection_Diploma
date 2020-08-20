@@ -83,9 +83,7 @@ elif is_data_filtered == "SE":
     is_data_filtered = "SE_"
 # Otherwise load the full OK data
 else:
-    part1 = np.load("Data/OK_1.npy")
-    part2 = np.load("Data/OK_2.npy")
-    data = np.concatenate((part1, part2))
+    data = np.load("Data/OK.npy")
 
 print(data.shape)
 
