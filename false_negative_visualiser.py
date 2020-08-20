@@ -6,8 +6,8 @@ from PIL import Image
 from keras.models import load_model
 
 
-img_width = 768
-img_height = 768
+IMG_WIDTH = 768
+IMG_HEIGHT = 768
 
 
 #Load the saved model itself
@@ -34,11 +34,11 @@ threshold = 3 * np.std(ok_reconstruction_errors)
 for i in range(0, anomalous_input.shape[0]):
     print(i)
     # Every image needs to be reshaped into 1,768,768,1
-    reconstructed_img = model.predict(anomalous_input[i].reshape(1, img_width, img_height, 1))
+    reconstructed_img = model.predict(anomalous_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
     # The reconstructed image afterwards needs to be reshaped back into 768 x 768
-    reconstructed_img = reconstructed_img.reshape(img_width, img_height)
+    reconstructed_img = reconstructed_img.reshape(IMG_WIDTH, IMG_HEIGHT)
     # Reshape also the original image to compute reconstruction error
-    original_image = anomalous_input[i].reshape(img_width, img_height)
+    original_image = anomalous_input[i].reshape(IMG_WIDTH, IMG_HEIGHT)
     # Compute the MSE between original and reconstructed
     reconstruction_error = np.square(np.subtract(original_image, reconstructed_img)).mean()
 
