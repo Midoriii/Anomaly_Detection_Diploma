@@ -8,8 +8,8 @@ from scipy import ndimage
 
 
 
-img_width = 768
-img_height = 768
+IMG_WIDTH = 768
+IMG_HEIGHT = 768
 threshold = 70
 
 # Load OK BSE data
@@ -20,7 +20,7 @@ faulty_data = np.load("Data/BSE_faulty.npy")
 # For each image, reshape back into 768x768 and stretch, since it's normalized
 for i in range (0, faulty_data.shape[0]):
     faulty_img = faulty_data[i] * 255.0
-    faulty_img = faulty_img.reshape(img_width, img_height)
+    faulty_img = faulty_img.reshape(IMG_WIDTH, IMG_HEIGHT)
     # Convert to Image
     actual_img = Image.fromarray(faulty_img)
     # Convert to grayscale

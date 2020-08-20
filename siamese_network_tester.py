@@ -18,9 +18,9 @@ from Models.SiameseNetLiteMultipleConvLowerDropout import SiameseNetLiteMultiple
 from Models.SiameseNetLiteMultipleConvWithoutDropout import SiameseNetLiteMultipleConvWithoutDropout
 
 
-img_width = 768
-img_height = 768
-input_shape = (img_width, img_height, 1)
+IMG_WIDTH = 768
+IMG_HEIGHT = 768
+input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)
 # Default params
 epochs = 20
 batch_size = 4
@@ -158,16 +158,16 @@ anomaly_scores_faulty = []
 for sample in range(0, test_ok.shape[0]):
     score = 0
     for proto in range(0, test_prototypes.shape[0]):
-        score += np.around(model.predict(test_ok[sample].reshape(1, img_width, img_height, 1),
-                                         test_prototypes[proto].reshape(1, img_width, img_height, 1)))
+        score += np.around(model.predict(test_ok[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                                         test_prototypes[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
     anomaly_scores_ok.append(score)
 
 # For each faulty image, get the score with each prototype
 for sample in range(0, test_faulty.shape[0]):
     score = 0
     for proto in range(0, test_prototypes.shape[0]):
-        score += np.around(model.predict(test_faulty[sample].reshape(1, img_width, img_height, 1),
-                                         test_prototypes[proto].reshape(1, img_width, img_height, 1)))
+        score += np.around(model.predict(test_faulty[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                                         test_prototypes[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
     anomaly_scores_faulty.append(score)
 
 anomaly_scores_ok = np.array(anomaly_scores_ok)
@@ -193,10 +193,10 @@ plt.xlabel('Index')
 plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + str(extended_faulty) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
 plt.close('all')
 
-print(model.predict(test_ok[2].reshape(1, img_width, img_height, 1), test_ok[5].reshape(1, img_width, img_height, 1)))
-print(model.predict(test_faulty[2].reshape(1, img_width, img_height, 1), test_ok[5].reshape(1, img_width, img_height, 1)))
-print(model.predict(test_ok[2].reshape(1, img_width, img_height, 1), test_faulty[5].reshape(1, img_width, img_height, 1)))
-print(model.predict(test_ok[20].reshape(1, img_width, img_height, 1), test_faulty[15].reshape(1, img_width, img_height, 1)))
-print(model.predict(test_ok[10].reshape(1, img_width, img_height, 1), test_ok[15].reshape(1, img_width, img_height, 1)))
-print(model.predict(test_ok[12].reshape(1, img_width, img_height, 1), test_ok[100].reshape(1, img_width, img_height, 1)))
-print(model.predict(test_faulty[2].reshape(1, img_width, img_height, 1), test_faulty[5].reshape(1, img_width, img_height, 1)))
+print(model.predict(test_ok[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_ok[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+print(model.predict(test_faulty[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_ok[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+print(model.predict(test_ok[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_faulty[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+print(model.predict(test_ok[20].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_faulty[15].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+print(model.predict(test_ok[10].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_ok[15].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+print(model.predict(test_ok[12].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_ok[100].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+print(model.predict(test_faulty[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_faulty[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))

@@ -13,8 +13,8 @@ def make_pairs(ok_images, faulty_images):
     pairs_right = []
     pairs_labels = []
 
-    img_width = 768
-    img_height = 768
+    IMG_WIDTH = 768
+    IMG_HEIGHT = 768
 
     # Create pairs from OK images
     # shape - 1 because the last one shouldn't need to be paired again
@@ -50,8 +50,8 @@ def make_pairs(ok_images, faulty_images):
     print(pairs_right.shape)
 
     # Normalize the data
-    pairs_left = reshape_normalize(pairs_left, img_width, img_height)
-    pairs_right = reshape_normalize(pairs_right, img_width, img_height)
+    pairs_left = reshape_normalize(pairs_left, IMG_WIDTH, IMG_HEIGHT)
+    pairs_right = reshape_normalize(pairs_right, IMG_WIDTH, IMG_HEIGHT)
 
     return pairs_left, pairs_right, pairs_labels
 

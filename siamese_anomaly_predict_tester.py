@@ -5,8 +5,8 @@ from keras.models import load_model
 # Gets predictions for given data with given prototypes
 # Faulty and Img_Type denote the correctness of Data and type of Images
 def get_predictions(data, data_prototypes, model, faulty="OK", img_type="BSE"):
-    img_width = 768
-    img_height = 768
+    IMG_WIDTH = 768
+    IMG_HEIGHT = 768
 
     for i in range(0, data.shape[0]):
         score = 0
@@ -14,8 +14,8 @@ def get_predictions(data, data_prototypes, model, faulty="OK", img_type="BSE"):
         # Run through the prototypes
         for j in range(0, data_prototypes.shape[0]):
             score += np.around(model.predict([
-                data[i].reshape(1, img_width, img_height, 1),
-                data_prototypes[j].reshape(1, img_width, img_height, 1)]))
+                data[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                data_prototypes[j].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)]))
 
         if score == 5:
             verdict = "OK"

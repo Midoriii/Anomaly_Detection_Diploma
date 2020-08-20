@@ -26,9 +26,9 @@ from Models.BasicAutoencoderEvenDeeperSuperLLR import BasicAutoencoderEvenDeeper
 # to use simple ReLU ... dunno about padding='same' as well ..
 
 
-img_width = 768
-img_height = 768
-input_shape = (img_width, img_height, 1)
+IMG_WIDTH = 768
+IMG_HEIGHT = 768
+input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)
 
 # Default params
 epochs = 2
@@ -171,9 +171,9 @@ model.save_model(epochs, batch_size, is_data_filtered, faulty_extended)
 # And also to save them for MSE anomaly detection
 for i in range(0, train_input.shape[0]):
     # Every image needs to be reshaped into 1,768,768,1
-    reconstructed_img = model.predict(train_input[i].reshape(1, img_width, img_height, 1))
+    reconstructed_img = model.predict(train_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
     # The reconstructed image afterwards needs to be reshaped back into 768 x 768
-    reconstructed_img = reconstructed_img.reshape(img_width, img_height)
+    reconstructed_img = reconstructed_img.reshape(IMG_WIDTH, IMG_HEIGHT)
 
     # Append the reconstructed image to the reconstructed_ok array
     reconstructed_ok_array.append(reconstructed_img)
@@ -190,9 +190,9 @@ reconstructed_ok_array = np.array(reconstructed_ok_array)
 # And also to save them for MSE anomaly detection
 for i in range(0, anomalous_input.shape[0]):
     # Every image needs to be reshaped into 1,768,768,1
-    reconstructed_img = model.predict(anomalous_input[i].reshape(1, img_width, img_height, 1))
+    reconstructed_img = model.predict(anomalous_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
     # The reconstructed image afterwards needs to be reshaped back into 768 x 768
-    reconstructed_img = reconstructed_img.reshape(img_width, img_height)
+    reconstructed_img = reconstructed_img.reshape(IMG_WIDTH, IMG_HEIGHT)
 
     # Append the reconstructed image to the reconstructed_ok array
     reconstructed_anomalous_array.append(reconstructed_img)
@@ -212,14 +212,14 @@ reconstructed_anomalous_errors = []
 # Compute the reconstruction MSE for ok data
 for i in range(0, train_input.shape[0]):
     # Reshape into 768x768
-    original_image = train_input[i].reshape(img_width, img_height)
+    original_image = train_input[i].reshape(IMG_WIDTH, IMG_HEIGHT)
     # Add reconstructed image MSE to the array
     reconstructed_ok_errors.append(np.square(np.subtract(original_image, reconstructed_ok_array[i])).mean())
 
 # Same for the anomalous data
 for i in range(0, anomalous_input.shape[0]):
     # Reshape into 768x768
-    original_image = anomalous_input[i].reshape(img_width, img_height)
+    original_image = anomalous_input[i].reshape(IMG_WIDTH, IMG_HEIGHT)
     # Add reconstructed image MSE to the array
     reconstructed_anomalous_errors.append(np.square(np.subtract(original_image, reconstructed_anomalous_array[i])).mean())
 
