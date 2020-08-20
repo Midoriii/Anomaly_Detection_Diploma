@@ -4,7 +4,6 @@ from cv2 import cv2
 
 from PIL import Image
 from keras.models import load_model
-from reshape_util import reshape_normalize
 
 
 img_width = 768
@@ -22,11 +21,8 @@ ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/BasicAutoencoderE
 #ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/filtered_BasicAutoencoderEvenDeeper_e50_b4_ROK.npy')
 
 #Load the anomalous images
-anomalies = np.load("Data/Faulty_extended.npy")
-print(anomalies.shape)
-#Reshape into desired shape for the network
-anomalous_input = reshape_normalize(anomalies, img_width, img_height)
-
+anomalous_input = np.load("Data/Faulty_extended.npy")
+print(anomalous_input.shape)
 
 #Define the threshold for a picture to be called an anomaly
 #to be 3 * the standard deviation of reconstruction error on the OK pics
