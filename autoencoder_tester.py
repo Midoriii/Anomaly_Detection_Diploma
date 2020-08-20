@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from PIL import Image
-from reshape_util import reshape_normalize
 from Models.BasicAutoencoder import BasicAutoencoder
 from Models.BasicAutoencoder_LF import BasicAutoencoder_LF
 from Models.HighStrideAutoencoder import HighStrideAutoencoder
@@ -69,8 +68,6 @@ for current_argument, current_value in arguments:
 # If filtered is desired, load those
 if is_data_filtered == "filtered":
     data = np.load("Data/OK_filtered.npy")
-    # Reshape to fit the desired input and Normalize the data
-    train_input = reshape_normalize(data, img_width, img_height)
     # Add the underscore so that later graph and file
     # names contain the 'filtered_' prefix when expected
     is_data_filtered = "filtered_"
@@ -89,8 +86,6 @@ else:
     part1 = np.load("Data/OK_1.npy")
     part2 = np.load("Data/OK_2.npy")
     data = np.concatenate((part1, part2))
-    # Reshape to fit the desired input and Normalize the data
-    train_input = reshape_normalize(data, img_width, img_height)
 
 print(data.shape)
 
@@ -106,8 +101,6 @@ if faulty_extended == "extended":
         anomalous_input = anomalies
     else:
         anomalies = np.load("Data/Faulty_extended.npy")
-        # Reshape to fit the desired input and Normalize the data
-        anomalous_input = reshape_normalize(anomalies, img_width, img_height)
     # Same thing is above with filtered data
     faulty_extended = "extended_"
 # Or without the plugged center part
@@ -120,8 +113,6 @@ else:
         anomalous_input = anomalies
     else:
         anomalies = np.load("Data/Faulty.npy")
-        # Reshape to fit the desired input and Normalize the data
-        anomalous_input = reshape_normalize(anomalies, img_width, img_height)
 
 print(anomalies.shape)
 
