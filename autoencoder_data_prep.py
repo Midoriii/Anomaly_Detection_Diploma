@@ -9,7 +9,7 @@ IMG_HEIGHT = 768
 
 # Grab all the images
 ok_images = glob.glob('Clonky-ok/*')
-faulty_images = glob.glob('Clonky-vadne/*.jpg')
+faulty_images = glob.glob('Clonky-vadne/*')
 ok_filtered_images = glob.glob('Clonky-ok-filtered/*')
 faulty_full_images = glob.glob('Clonky-vadne-full/*')
 
