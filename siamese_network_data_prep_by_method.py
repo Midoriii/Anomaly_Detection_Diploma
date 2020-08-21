@@ -57,8 +57,8 @@ def make_pairs(ok_images, faulty_images):
 
 
 def main():
-    img_width = 768
-    img_height = 768
+    IMG_WIDTH = 768
+    IMG_HEIGHT = 768
 
     ok_images_se = glob.glob('Clonky-ok/*_3*')
     ok_images_bse = glob.glob('Clonky-ok/*_4*')
@@ -89,10 +89,10 @@ def main():
     print(faulty_images_bse_list.shape)
 
     # Save even the sorted data into SE and BSE types
-    np.save("Data/SE_ok.npy", reshape_normalize(ok_images_se_list, img_width, img_height))
-    np.save("Data/BSE_ok.npy", reshape_normalize(ok_images_bse_list, img_width, img_height))
-    np.save("Data/SE_faulty" + extended + ".npy", reshape_normalize(faulty_images_se_list, img_width, img_height))
-    np.save("Data/BSE_faulty" + extended + ".npy", reshape_normalize(faulty_images_bse_list, img_width, img_height))
+    np.save("Data/SE_ok.npy", reshape_normalize(ok_images_se_list, IMG_WIDTH, IMG_HEIGHT))
+    np.save("Data/BSE_ok.npy", reshape_normalize(ok_images_bse_list, IMG_WIDTH, IMG_HEIGHT))
+    np.save("Data/SE_faulty" + extended + ".npy", reshape_normalize(faulty_images_se_list, IMG_WIDTH, IMG_HEIGHT))
+    np.save("Data/BSE_faulty" + extended + ".npy", reshape_normalize(faulty_images_bse_list, IMG_WIDTH, IMG_HEIGHT))
 
     # Leave some of the images as testing data
     # 75% instead of 80% of faulty data is taken to represent all the error types
