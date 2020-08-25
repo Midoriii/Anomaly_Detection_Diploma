@@ -1,48 +1,49 @@
 import numpy as np
-import cv2
-import matplotlib.pyplot as plt
-import sys
 
-from PIL import Image
-from scipy import ndimage
+from cv2 import cv2
+
+from granulo_utils import reshape_img_from_float
+from granulo_utils import show_opening_contours
+from granulo_utils import plot_histogram
+from granulo_utils import threshold_image
+from granulo_utils import granulometry_score
 
 
 
 IMG_WIDTH = 768
 IMG_HEIGHT = 768
-threshold = 70
+THRESHOLD = 70
 
 # Load OK BSE data
 ok_data = np.load("Data/BSE_ok.npy")
 # Load also the anomalous BSE data
 faulty_data = np.load("Data/BSE_faulty.npy")
 
+# Create structuring element for image opening
+struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
+
+okay_scores = []
+faulty_scores = []
+
 # For each image, reshape back into 768x768 and stretch, since it's normalized
-for i in range (0, faulty_data.shape[0]):
-    faulty_img = faulty_data[i] * 255.0
-    faulty_img = faulty_img.reshape(IMG_WIDTH, IMG_HEIGHT)
-    # Convert to Image
-    actual_img = Image.fromarray(faulty_img)
-    # Convert to grayscale
-    actual_img = actual_img.convert("L")
-    # Threshold the image .. INV since we want to count white pixels that have actual value in granulometry
-    ret, thresh = cv2.threshold(np.array(actual_img), threshold, 255, cv2.THRESH_BINARY_INV)
-    # Get Histogram
-    #hist = cv2.calcHist([np.array(actual_img)], [0], None, [256], [0, 256])
-    # Plot it
-    #plt.plot(hist)
-    #plt.xlim([0, 256])
-    # Show the thresholded image
-    cv2.imshow("Thresholded pic", thresh)
-    cv2.imshow("Orig pic", np.array(actual_img))
-    cv2.waitKey(0)
-    # Show histogram
-    #plt.show()
-    # Create structuring element for image opening
-    struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
-    # Do the opening itself
-    opening = ndimage.binary_opening(thresh, structure = struct_element)
-    # Plot the opening
-    plt.imshow(thresh, cmap=plt.cm.gray)
-    plt.contour(opening, [0.5], colors='b', linewidths=2)
-    plt.show()
+# Then threshold the image and perform opening, afterwards plot contours
+for i in range(0, faulty_data.shape[0]):
+    reshaped = reshape_img_from_float(faulty_data[i], IMG_WIDTH, IMG_HEIGHT)
+    thresholded = threshold_image(reshaped, THRESHOLD)
+    score = granulometry_score(thresholded, struct_element)
+    faulty_scores.append(score)
+    if score > 50:
+        show_opening_contours(thresholded, struct_element, "Faulty")
+
+for i in range(0, ok_data.shape[0]):
+    reshaped = reshape_img_from_float(ok_data[i], IMG_WIDTH, IMG_HEIGHT)
+    thresholded = threshold_image(reshaped, THRESHOLD)
+    score = granulometry_score(thresholded, struct_element)
+    okay_scores.append(score)
+    if score > 50:
+        show_opening_contours(thresholded, struct_element, "OK")
+
+print("Okay")
+print(okay_scores)
+print("Faulty")
+print(faulty_scores)
