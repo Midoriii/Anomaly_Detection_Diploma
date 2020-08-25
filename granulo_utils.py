@@ -12,7 +12,7 @@ def reshape_img_from_float(image, width, height):
     reshaped_image = image * 255.0
     # Reshape to desired size
     reshaped_image = reshaped_image.reshape(width, height)
-    # Convert array to Image
+    # Convert array to Image .. a roundabout way of transforming float32->uint8
     reshaped_image = Image.fromarray(reshaped_image)
     # Convert to grayscale
     reshaped_image = reshaped_image.convert("L")
