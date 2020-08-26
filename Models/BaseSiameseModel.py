@@ -27,8 +27,8 @@ class BaseSiameseModel:
         raise NotImplementedError
 
 
-    def compile_net(self):
-        self.model.compile(optimizer=Adam(lr=self.lr), loss='binary_crossentropy', metrics=['binary_accuracy'])
+    def compile_net(self, loss_func='binary_crossentropy'):
+        self.model.compile(optimizer=Adam(lr=self.lr), loss=loss_func, metrics=['binary_accuracy'])
         self.model.summary()
         return
 
