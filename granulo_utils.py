@@ -96,7 +96,7 @@ def remove_center(image):
         filled with 0s, effectively removing the area from granulometry, which
         counts pixels with value > 0.
     '''
-    image[354:404,354:404] = 0
+    image[354:404, 354:404] = 0
     return image
 
 
