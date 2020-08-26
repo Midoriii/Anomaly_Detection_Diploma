@@ -3,7 +3,7 @@ import numpy as np
 from cv2 import cv2
 
 from granulo_utils import reshape_img_from_float
-from granulo_utils import show_opening_contours
+from granulo_utils import show_opening
 from granulo_utils import plot_histogram
 from granulo_utils import threshold_image
 from granulo_utils import granulometry_score
@@ -39,7 +39,7 @@ for i in range(0, faulty_data.shape[0]):
     score = granulometry_score(removed, struct_element)
     faulty_scores.append(score)
     if score > SCORE_THRESHOLD:
-        #show_opening_contours(removed, struct_element, "Faulty")
+        #show_opening(removed, struct_element, "Faulty")
         faulty_flagged = faulty_flagged + 1
     else:
         cv2.imshow("Undetected Faulty", reshaped)
@@ -52,7 +52,7 @@ for i in range(0, ok_data.shape[0]):
     score = granulometry_score(removed, struct_element)
     okay_scores.append(score)
     if score > SCORE_THRESHOLD:
-        #show_opening_contours(removed, struct_element, "OK")
+        #show_opening(removed, struct_element, "OK")
         okay_flagged = okay_flagged + 1
         cv2.imshow("Falsely flagged OK", reshaped)
         cv2.waitKey(0)
