@@ -31,6 +31,11 @@ def threshold_image(image, threshold):
     return thresh
 
 
+def remove_center(image):
+    image[354:404,354:404] = 0
+    return image
+
+
 def plot_histogram(image):
     # Get Histogram
     hist = cv2.calcHist([image], [0], None, [256], [0, 256])
