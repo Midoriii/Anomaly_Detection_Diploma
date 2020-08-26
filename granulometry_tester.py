@@ -18,7 +18,7 @@ THRESHOLD = 55
 # Load OK BSE data
 ok_data = np.load("Data/BSE_ok.npy")
 # Load also the anomalous BSE data
-faulty_data = np.load("Data/BSE_faulty.npy")
+faulty_data = np.load("Data/BSE_faulty_extended.npy")
 
 # Create structuring element for image opening
 struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
