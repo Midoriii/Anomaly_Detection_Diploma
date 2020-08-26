@@ -47,10 +47,10 @@ def show_opening_contours(image, opening_element, label=""):
     # Plot the opening
     plt.figure(figsize=(12, 12))
     plt.subplot(121)
-    plt.imshow(image)
+    plt.imshow(image, cmap='gray')
     plt.title("Thresholded - " + label)
     plt.subplot(122)
-    plt.imshow(opening)
+    plt.imshow(opening, cmap='gray')
     plt.title("Opened")
     plt.contour(opening, [0.5], colors='b', linewidths=2)
     plt.show()
