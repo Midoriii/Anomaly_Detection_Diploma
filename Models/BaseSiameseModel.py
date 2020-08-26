@@ -4,6 +4,8 @@ from keras.optimizers import Adam
 from keras.models import Model
 from keras.callbacks import History
 
+from Models.Losses.custom_losses import contrastive_loss
+
 '''
 Base Model for all Siamese Networks
 
