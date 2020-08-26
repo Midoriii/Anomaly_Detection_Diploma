@@ -14,6 +14,8 @@ from granulo_utils import remove_center
 IMG_WIDTH = 768
 IMG_HEIGHT = 768
 THRESHOLD = 55
+# Score which indicated anomaly if val > score
+SCORE_THRESHOLD = 50
 
 # Load OK BSE data
 ok_data = np.load("Data/BSE_ok.npy")
@@ -36,7 +38,7 @@ for i in range(0, faulty_data.shape[0]):
     removed = remove_center(thresholded)
     score = granulometry_score(removed, struct_element)
     faulty_scores.append(score)
-    if score > 50:
+    if score > SCORE_THRESHOLD:
         #show_opening_contours(removed, struct_element, "Faulty")
         faulty_flagged = faulty_flagged + 1
     else:
@@ -49,7 +51,7 @@ for i in range(0, ok_data.shape[0]):
     removed = remove_center(thresholded)
     score = granulometry_score(removed, struct_element)
     okay_scores.append(score)
-    if score > 50:
+    if score > SCORE_THRESHOLD:
         #show_opening_contours(removed, struct_element, "OK")
         okay_flagged = okay_flagged + 1
         cv2.imshow("Falsely flagged OK", reshaped)
