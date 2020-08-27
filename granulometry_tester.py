@@ -6,6 +6,7 @@ from granulo_utils import reshape_img_from_float
 from granulo_utils import show_opening
 from granulo_utils import plot_histogram
 from granulo_utils import threshold_image
+from granulo_utils import adaptive_threshold_image
 from granulo_utils import granulometry_score
 from granulo_utils import remove_center
 
@@ -35,8 +36,10 @@ faulty_flagged = 0
 for i in range(0, faulty_data.shape[0]):
     reshaped = reshape_img_from_float(faulty_data[i], IMG_WIDTH, IMG_HEIGHT)
     thresholded = threshold_image(reshaped, THRESHOLD)
+    #thresholded = adaptive_threshold_image(reshaped)
     removed = remove_center(thresholded)
     score = granulometry_score(removed, struct_element)
+    #show_opening(removed, struct_element, "Faulty")
     faulty_scores.append(score)
     if score > SCORE_THRESHOLD:
         #show_opening(removed, struct_element, "Faulty")
@@ -48,6 +51,7 @@ for i in range(0, faulty_data.shape[0]):
 for i in range(0, ok_data.shape[0]):
     reshaped = reshape_img_from_float(ok_data[i], IMG_WIDTH, IMG_HEIGHT)
     thresholded = threshold_image(reshaped, THRESHOLD)
+    #thresholded = adaptive_threshold_image(reshaped)
     removed = remove_center(thresholded)
     score = granulometry_score(removed, struct_element)
     okay_scores.append(score)
