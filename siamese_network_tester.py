@@ -36,7 +36,7 @@ full_cmd_arguments = sys.argv
 argument_list = full_cmd_arguments[1:]
 # Getopt options
 short_options = "e:m:t:f:l:"
-long_options = ["epochs=", "model=", "type=", "faulty=","loss="]
+long_options = ["epochs=", "model=", "type=", "faulty=", "loss="]
 # Get the arguments and their respective values
 arguments, values = getopt.getopt(argument_list, short_options, long_options)
 
