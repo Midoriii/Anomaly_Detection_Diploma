@@ -30,7 +30,13 @@ class BaseSiameseModel:
 
 
     def compile_net(self, loss_func='binary_crossentropy'):
-        self.model.compile(optimizer=Adam(lr=self.lr), loss=loss_func, metrics=['binary_accuracy'])
+        # Has to be done this way, otherwise throws error - unknown loss func
+        if loss_func == 'contrastive_loss':
+            self.model.compile(optimizer=Adam(lr=self.lr), loss=contrastive_loss,
+                               metrics=['binary_accuracy'])
+        else:
+            self.model.compile(optimizer=Adam(lr=self.lr), loss=loss_func,
+                               metrics=['binary_accuracy'])
         self.model.summary()
         return
 
