@@ -24,17 +24,19 @@ input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)
 # Default params
 epochs = 20
 batch_size = 4
-image_type = 'SE'
+image_type = "SE"
 extended_faulty = ""
 desired_model = "BasicSiameseNet"
+desired_loss = "binary_crossentropy"
+loss_string = ""
 
 # Get full command-line arguments
 full_cmd_arguments = sys.argv
 # Keep all but the first
 argument_list = full_cmd_arguments[1:]
 # Getopt options
-short_options = "e:m:t:f:"
-long_options = ["epochs=", "model=", "type=", "faulty="]
+short_options = "e:m:t:f:l:"
+long_options = ["epochs=", "model=", "type=", "faulty=","loss="]
 # Get the arguments and their respective values
 arguments, values = getopt.getopt(argument_list, short_options, long_options)
 
@@ -48,6 +50,10 @@ for current_argument, current_value in arguments:
         image_type = current_value
     elif current_argument in ("-f", "--faulty"):
         extended_faulty = current_value
+    elif current_argument in ("-l", "--loss"):
+        desired_loss = current_value
+        if current_value == "contrastive_loss":
+            loss_string = "_ConLoss"
 
 
 # Loading data and labels - BSE or SE image origin as chosen in args
@@ -111,7 +117,7 @@ else:
 
 # Create and compile the model
 model.create_net(input_shape)
-model.compile_net()
+model.compile_net(desired_loss)
 # Train it
 model.train_net(left_data, right_data, labels, epochs=epochs, batch_size=batch_size)
 
@@ -120,19 +126,19 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type) + str(extended_faulty) + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
+plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type) + str(extended_faulty) + str(loss_string) + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
 plt.close('all')
 
 plt.plot(model.history.history['binary_accuracy'])
 plt.title('model accuracy - ' + model.name)
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type) + str(extended_faulty) + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches="tight")
+plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type) + str(extended_faulty) + str(loss_string) + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches="tight")
 plt.close('all')
 
 # Save the model weights and architecture
-model.save_model(epochs, batch_size, image_type, extended_faulty)
-model.save_embedding_model(epochs, batch_size, image_type, extended_faulty)
+model.save_model(epochs, batch_size, image_type, extended_faulty, loss_string)
+model.save_embedding_model(epochs, batch_size, image_type, extended_faulty, loss_string)
 
 # For performance evaluation, load prototypes and each image and get anomaly score
 # Load prototypes and actual data sorted by methods
@@ -190,7 +196,7 @@ plt.title('Model ' + model.name + "_" + image_type)
 plt.yticks(np.arange(0.0, 6.0, 1.0))
 plt.ylabel('Anomaly Score')
 plt.xlabel('Index')
-plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + str(extended_faulty) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
+plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + str(extended_faulty) + str(loss_string) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
 plt.close('all')
 
 print(model.predict(test_ok[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_ok[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))

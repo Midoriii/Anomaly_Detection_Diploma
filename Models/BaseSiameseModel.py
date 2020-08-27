@@ -44,18 +44,18 @@ class BaseSiameseModel:
     def embedding_predict(self, predict_input):
         return self.embedding.predict(predict_input)
 
-    def save_weights(self, epoch, batch_size, type, extended_faulty):
-        self.model.save_weights('Model_Saves/Weights/' + self.name + '_' + str(type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
+    def save_weights(self, epoch, batch_size, type, extended_faulty, loss_string):
+        self.model.save_weights('Model_Saves/Weights/' + self.name + '_' + str(type) + str(extended_faulty) + str(loss_string) + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
         return
 
-    def save_model(self, epoch, batch_size, type, extended_faulty):
-        self.model.save('Model_Saves/Detailed/' + self.name + '_' + str(type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
+    def save_model(self, epoch, batch_size, type, extended_faulty, loss_string):
+        self.model.save('Model_Saves/Detailed/' + self.name + '_' + str(type) + str(extended_faulty) + str(loss_string) + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
         return
 
-    def save_embedding_weights(self, epoch, batch_size, type, extended_faulty):
-        self.model.save_weights('Model_Saves/Weights/' + self.name + '_' + str(type) + str(extended_faulty) + '_embedding_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
+    def save_embedding_weights(self, epoch, batch_size, type, extended_faulty, loss_string):
+        self.model.save_weights('Model_Saves/Weights/' + self.name + '_' + str(type) + str(extended_faulty) + str(loss_string) + '_embedding_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
         return
 
-    def save_embedding_model(self, epoch, batch_size, type, extended_faulty):
-        self.model.save('Model_Saves/Detailed/' + self.name + '_' + str(type) + str(extended_faulty) + '_embedding_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
+    def save_embedding_model(self, epoch, batch_size, type, extended_faulty, loss_string):
+        self.model.save('Model_Saves/Detailed/' + self.name + '_' + str(type) + str(extended_faulty) + str(loss_string) + '_embedding_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
         return
