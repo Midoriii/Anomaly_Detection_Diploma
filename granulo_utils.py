@@ -9,6 +9,9 @@ func: reshape_img_from_float(image, width, height): Denormalizes image from floa
 func: threshold_image(image, threshold): Performs binary thresholding on image
 with given threshold.
 
+func: adaptive_threshold_image(image): Performs Gaussian adaptive thresholding
+on given image,
+
 func: remove_center(image): Removes 50x50 central area from image.
 
 func: plot_histogram(image): Calculates and shows the histogram of image.
@@ -79,6 +82,23 @@ def threshold_image(image, threshold):
     #cv2.imshow("Thresholded pic", thresh)
     #cv2.imshow("Orig pic", image)
     #cv2.waitKey(0)
+    return thresh
+
+
+def adaptive_threshold_image(image):
+    '''
+    Adaptive thresholding method using Gaussian as the thresholding method,
+    with fixed blockSize of 11 and constant C of 2. Should possibly help
+    with different lighting levels of images.
+
+    Arguments:
+        image: A numpy array representing a 2D image, in grayscale.
+
+    Returns:
+        thresh: A numpy array containing the thresholded binary image.
+    '''
+    thresh = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                   cv2.THRESH_BINARY_INV, 11, 2)
     return thresh
 
 
