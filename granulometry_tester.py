@@ -17,6 +17,9 @@ IMG_HEIGHT = 768
 THRESHOLD = 55
 # Score which indicated anomaly if val > score
 SCORE_THRESHOLD = 50
+# For adaptive thtesholding
+GROUP_SIZE = 151
+SUBTRACT_CONST = 60
 
 # Load OK BSE data
 ok_data = np.load("Data/BSE_ok.npy")
@@ -36,7 +39,7 @@ faulty_flagged = 0
 for i in range(0, faulty_data.shape[0]):
     reshaped = reshape_img_from_float(faulty_data[i], IMG_WIDTH, IMG_HEIGHT)
     thresholded = threshold_image(reshaped, THRESHOLD)
-    #thresholded = adaptive_threshold_image(reshaped)
+    #thresholded = adaptive_threshold_image(reshaped, GROUP_SIZE, SUBTRACT_CONST)
     removed = remove_center(thresholded)
     score = granulometry_score(removed, struct_element)
     #show_opening(removed, struct_element, "Faulty")
@@ -51,7 +54,7 @@ for i in range(0, faulty_data.shape[0]):
 for i in range(0, ok_data.shape[0]):
     reshaped = reshape_img_from_float(ok_data[i], IMG_WIDTH, IMG_HEIGHT)
     thresholded = threshold_image(reshaped, THRESHOLD)
-    #thresholded = adaptive_threshold_image(reshaped)
+    #thresholded = adaptive_threshold_image(reshaped, GROUP_SIZE, SUBTRACT_CONST)
     removed = remove_center(thresholded)
     score = granulometry_score(removed, struct_element)
     okay_scores.append(score)

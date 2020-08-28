@@ -85,20 +85,23 @@ def threshold_image(image, threshold):
     return thresh
 
 
-def adaptive_threshold_image(image):
+def adaptive_threshold_image(image, group_size, c):
     '''
     Adaptive thresholding method using Gaussian as the thresholding method,
-    with fixed blockSize and constant C. Should possibly help
+    with given blockSize and constant C. Should possibly help
     with different lighting levels of images.
 
     Arguments:
         image: A numpy array representing a 2D image, in grayscale.
+        group_size: Integer, desired group size as per cv2 adaptive thresholding
+        documentation.
+        c: Double, constant to subtract as per cv2 adaptive thresholding docu.
 
     Returns:
         thresh: A numpy array containing the thresholded binary image.
     '''
     thresh = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                   cv2.THRESH_BINARY_INV, 151, 60)
+                                   cv2.THRESH_BINARY_INV, group_size, c)
     return thresh
 
 
