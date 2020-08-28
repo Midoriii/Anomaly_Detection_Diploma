@@ -1,4 +1,4 @@
-# Scripts to run experiments on Metacentrum.cz
+# Scripts for running experiments on Metacentrum.cz
 FAIR WARNING: Running Siamese network scripts requires a lot of resources (High-end GPU,
 and mostly about 150GB of RAM) because of the size of the input images (768x768), which
 mustn't be reduced, lest crucial details are lost. Since the input data is made of
