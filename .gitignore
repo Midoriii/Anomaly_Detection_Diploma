@@ -1,3 +1,13 @@
-Model_Saves/
-Data/
-Cropped/
+Model_Saves/*
+Data/*
+Cropped/*
+
+Clonky-ok/*
+Clonky-ok-filtered/*
+Clonky-prototypy/*
+Clonky-vadne/*
+Clonky-vadne-full/*
+Clonky-vadne-orig/*
+
+Reconstructed/*
+!Reconstructed/Error_Arrays/
