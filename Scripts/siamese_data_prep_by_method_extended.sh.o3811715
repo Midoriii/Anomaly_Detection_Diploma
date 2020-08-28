@@ -1,0 +1,28 @@
+(138, 768, 768)
+(137, 768, 768)
+(23, 768, 768)
+(23, 768, 768)
+(110, 768, 768)
+(109, 768, 768)
+(17, 768, 768)
+(17, 768, 768)
+(7865,)
+(7865, 768, 768)
+(7865, 768, 768)
+(7739,)
+(7739, 768, 768)
+(7739, 768, 768)
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/DataHuge/BSE_pairs_labels_extended.npy' -> '/storage/brno6/home/apprehension/DataHuge/BSE_pairs_labels_extended.npy'
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/DataHuge/BSE_pairs_left_extended.npy' -> '/storage/brno6/home/apprehension/DataHuge/BSE_pairs_left_extended.npy'
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/DataHuge/BSE_pairs_right_extended.npy' -> '/storage/brno6/home/apprehension/DataHuge/BSE_pairs_right_extended.npy'
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/DataHuge/SE_pairs_labels_extended.npy' -> '/storage/brno6/home/apprehension/DataHuge/SE_pairs_labels_extended.npy'
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/DataHuge/SE_pairs_left_extended.npy' -> '/storage/brno6/home/apprehension/DataHuge/SE_pairs_left_extended.npy'
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/DataHuge/SE_pairs_right_extended.npy' -> '/storage/brno6/home/apprehension/DataHuge/SE_pairs_right_extended.npy'
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/Data/BSE_faulty_extended.npy' -> '/storage/brno6/home/apprehension/Data/BSE_faulty_extended.npy'
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/Data/BSE_ok.npy' -> '/storage/brno6/home/apprehension/Data/BSE_ok.npy'
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/Data/SE_faulty_extended.npy' -> '/storage/brno6/home/apprehension/Data/SE_faulty_extended.npy'
+'/scratch/apprehension/job_3811715.meta-pbs.metacentrum.cz/Data/SE_ok.npy' -> '/storage/brno6/home/apprehension/Data/SE_ok.npy'
+
+**********************************************************************************************************
+
+The SCRATCHes have been SUCCESSFULLY cleaned...
