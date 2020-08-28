@@ -34,7 +34,7 @@ def main():
     data_prototypes = np.load("Data/BSE_prototypes.npy")
 
     # Loading best BSE Model
-    model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConv_BSE_e40_b4_detailed")
+    model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConv_BSE_e40_b4_detailed", compile=False)
 
     # First get the predictions for BSE OK and then Faulty images
     get_predictions(data_ok, data_prototypes, model, "OK", "BSE")
@@ -45,7 +45,7 @@ def main():
     data_faulty = np.load("Data/SE_faulty.npy")
     data_prototypes = np.load("Data/SE_prototypes.npy")
     # Loading best SE model
-    model = load_model("Model_Saves/Detailed/BasicSiameseNet_SE_e20_b4_detailed")
+    model = load_model("Model_Saves/Detailed/BasicSiameseNet_SE_e20_b4_detailed", compile=False)
 
     # Then the same for SE images
     get_predictions(data_ok, data_prototypes, model, "OK", "SE")
