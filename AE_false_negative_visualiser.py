@@ -10,29 +10,31 @@ IMG_WIDTH = 768
 IMG_HEIGHT = 768
 
 
-#Load the saved model itself
+# Load the saved model itself
 #model = load_model('Model_Saves/Detailed/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed', compile=False)
 model = load_model('Model_Saves/Detailed/extended_BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed', compile=False)
 #model = load_model('Model_Saves/Detailed/filtered_BasicAutoencoderEvenDeeper_e50_b4_detailed', compile=False)
 
 model.summary()
 
-#Load non-anomalous reconstruction errors to get their standard deviation
+# Load non-anomalous reconstruction errors to get their standard deviation
 #ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_ROK.npy')
 ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/extended_BasicAutoencoderEvenDeeperExtraLLR_e600_b4_ROK.npy')
 #ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/filtered_BasicAutoencoderEvenDeeper_e50_b4_ROK.npy')
 
-#Load the anomalous images
+# Load the anomalous images
 anomalous_input = np.load("Data/Faulty_extended.npy")
 print(anomalous_input.shape)
 
-#Define the threshold for a picture to be called an anomaly
-#to be 3 * the standard deviation of reconstruction error on the OK pics
+# Define the threshold for a picture to be called an anomaly
 #threshold = 2.75* np.std(ok_reconstruction_errors)
 threshold = 3 * np.std(ok_reconstruction_errors)
 
-#For every anomalous image, encode and decode it, get the reconstruction error and
-#compare with threshold - if lower, show the image, it's a false negative
+# Missed anomalies counter
+missed_anomalies = 0
+
+# For every anomalous image, encode and decode it, get the reconstruction error and
+# compare it with threshold - if lower, show the image, it's a false negative
 for i in range(0, anomalous_input.shape[0]):
     print(i)
     # Every image needs to be reshaped into 1,768,768,1
@@ -56,5 +58,7 @@ for i in range(0, anomalous_input.shape[0]):
         cv2.imshow("Anomaly - original", np.array(im))
         cv2.imshow("Anomaly - reconstructed", np.array(rec_im))
         cv2.waitKey(0)
+        missed_anomalies = missed_anomalies + 1
 
+print(missed_anomalies)
 print("That's all")

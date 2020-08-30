@@ -18,16 +18,24 @@ from Models.SiameseNetLiteMultipleConvLowerDropout import SiameseNetLiteMultiple
 from Models.SiameseNetLiteMultipleConvWithoutDropout import SiameseNetLiteMultipleConvWithoutDropout
 
 
+#Constants
 IMG_WIDTH = 768
 IMG_HEIGHT = 768
 input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)
+
 # Default params
 epochs = 20
 batch_size = 4
+# Image type selection
 image_type = "SE"
+# Selection of faulty data - with or without plugged central holes
 extended_faulty = ""
+# The Model to be used
 desired_model = "BasicSiameseNet"
+# Loss for the siamese net to be used
 desired_loss = "binary_crossentropy"
+# String for when plots and weights are saved. Indicates the loss used,
+# none loss mentioned = binary cross entropy, otherwise it's specified.
 loss_string = ""
 
 # Get full command-line arguments
@@ -56,7 +64,7 @@ for current_argument, current_value in arguments:
             loss_string = "_ConLoss"
 
 
-# Loading data and labels - BSE or SE image origin as chosen in args
+# Loading data and labels - BSE or SE images as chosen in args
 if image_type == 'BSE':
     if extended_faulty == 'extended':
         left_data = np.load('DataHuge/BSE_pairs_left_extended.npy')
@@ -126,14 +134,18 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type) + str(extended_faulty) + str(loss_string) + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
+plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type)
+            + str(extended_faulty) + str(loss_string) + '_e' + str(epochs)
+            + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
 plt.close('all')
 
 plt.plot(model.history.history['binary_accuracy'])
 plt.title('model accuracy - ' + model.name)
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type) + str(extended_faulty) + str(loss_string) + '_e' + str(epochs) + '_b' + str(batch_size) + '_acc.png', bbox_inches="tight")
+plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type)
+            + str(extended_faulty) + str(loss_string) + '_e' + str(epochs)
+            + '_b' + str(batch_size) + '_acc.png', bbox_inches="tight")
 plt.close('all')
 
 # Save the model weights and architecture
@@ -156,7 +168,7 @@ else:
         test_faulty = np.load("Data/BSE_faulty_extended.npy")
     else:
         test_faulty = np.load("Data/BSE_faulty.npy")
-# List to save scores
+# Lists to save scores
 anomaly_scores_ok = []
 anomaly_scores_faulty = []
 
@@ -164,6 +176,7 @@ anomaly_scores_faulty = []
 for sample in range(0, test_ok.shape[0]):
     score = 0
     for proto in range(0, test_prototypes.shape[0]):
+        # It's rounded because we care only about 0s or 1s as predicted labels
         score += np.around(model.predict(test_ok[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
                                          test_prototypes[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
     anomaly_scores_ok.append(score)
@@ -185,24 +198,51 @@ if image_type == 'BSE':
 else:
     scatter_color = 'g'
 
+# X axis coords representing indices of the individual images
 x = range(0, len(anomaly_scores_ok))
-z = range(0 + len(anomaly_scores_ok), len(anomaly_scores_ok) + len(anomaly_scores_faulty))
+z = range(0 + len(anomaly_scores_ok),
+          len(anomaly_scores_ok) + len(anomaly_scores_faulty))
 
 # Plot the resulting numbers stored in array
-plt.scatter(x, anomaly_scores_ok, c=scatter_color, s=10, marker='o', edgecolors='black', label='OK')
-plt.scatter(z, anomaly_scores_faulty, c='r', s=10, marker='o', edgecolors='black', label='Anomalous')
+plt.scatter(x, anomaly_scores_ok, c=scatter_color,
+            s=10, marker='o', edgecolors='black', label='OK')
+plt.scatter(z, anomaly_scores_faulty, c='r',
+            s=10, marker='o', edgecolors='black', label='Anomalous')
 plt.legend(loc='upper left')
 plt.title('Model ' + model.name + "_" + image_type)
 plt.yticks(np.arange(0.0, 6.0, 1.0))
 plt.ylabel('Anomaly Score')
 plt.xlabel('Index')
-plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type) + str(extended_faulty) + str(loss_string) + '_e' + str(epochs) + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
+plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type)
+            + str(extended_faulty) + str(loss_string) + '_e' + str(epochs)
+            + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
 plt.close('all')
 
-print(model.predict(test_ok[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_ok[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-print(model.predict(test_faulty[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_ok[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-print(model.predict(test_ok[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_faulty[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-print(model.predict(test_ok[20].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_faulty[15].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-print(model.predict(test_ok[10].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_ok[15].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-print(model.predict(test_ok[12].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_ok[100].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-print(model.predict(test_faulty[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1), test_faulty[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+# Should be ~1
+print("Expected: ~1")
+print(model.predict(test_ok[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                    test_ok[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+# Should be ~0
+print("Expected: ~0")
+print(model.predict(test_faulty[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                    test_ok[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+# Should be ~0
+print("Expected: ~0")
+print(model.predict(test_ok[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                    test_faulty[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+# Should be ~0
+print("Expected: ~0")
+print(model.predict(test_ok[20].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                    test_faulty[15].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+# Should be ~1
+print("Expected: ~1")
+print(model.predict(test_ok[10].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                    test_ok[15].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+# Should be ~1
+print("Expected: ~1")
+print(model.predict(test_ok[12].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                    test_ok[100].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+# Should be ~1
+print("Expected: ~1")
+print(model.predict(test_faulty[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                    test_faulty[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))

@@ -10,31 +10,31 @@ IMG_WIDTH = 768
 IMG_HEIGHT = 768
 
 
-#Load the saved model itself
+# Load the saved model itself
 #model = load_model('Model_Saves/Detailed/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed', compile=False)
 model = load_model('Model_Saves/Detailed/extended_BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed', compile=False)
 #model = load_model('Model_Saves/Detailed/filtered_BasicAutoencoderEvenDeeper_e50_b4_detailed', compile=False)
 
 model.summary()
 
-#Load non-anomalous reconstruction errors to get their standard deviation
+# Load non-anomalous reconstruction errors to get their standard deviation
 #ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/BasicAutoencoderEvenDeeperExtraLLR_e600_b4_ROK.npy')
 ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/extended_BasicAutoencoderEvenDeeperExtraLLR_e600_b4_ROK.npy')
 #ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/filtered_BasicAutoencoderEvenDeeper_e50_b4_ROK.npy')
 
-#Load the OK images
+# Load the OK images
 valid_input = np.load("Data/OK.npy")
 print(valid_input.shape)
 
-#Define the threshold for a picture to be called an anomaly
-#to be 3 * the standard deviation of reconstruction error on the OK pics
+# Define the threshold for a picture to be called an anomaly
 #threshold = 2.75* np.std(ok_reconstruction_errors)
 threshold = 3 * np.std(ok_reconstruction_errors)
 
+# A counter of false positives
 falsely_accused = 0
 
-#For every OK image, encode and decode it, get the reconstruction error and
-#compare with threshold - if higher, show the image, it's a false positive
+# For every OK image, encode and decode it, get the reconstruction error and
+# compare it with threshold - if higher, show the image, it's a false positive
 for i in range(0, valid_input.shape[0]):
     print(i)
     # Every image needs to be reshaped into 1,768,768,1
@@ -54,7 +54,7 @@ for i in range(0, valid_input.shape[0]):
         rec_im = Image.fromarray(reconstructed_img * 255.0)
         im = im.convert("L")
         rec_im = rec_im.convert("L")
-        # Show the OK image
+        # Show the OK image and its reconstruction
         cv2.imshow("OK image - original", np.array(im))
         cv2.imshow("OK image - reconstructed", np.array(rec_im))
         cv2.waitKey(0)

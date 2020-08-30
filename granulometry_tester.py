@@ -14,6 +14,7 @@ from granulo_utils import remove_center
 
 IMG_WIDTH = 768
 IMG_HEIGHT = 768
+# For binary thresholding
 THRESHOLD = 55
 # Score which indicated anomaly if val > score
 SCORE_THRESHOLD = 50
@@ -30,12 +31,16 @@ faulty_data = np.load("Data/BSE_faulty_extended.npy")
 struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
 
 okay_scores = []
+# To count how many okay images were incorrectly flagged as faulty
 okay_flagged = 0
 faulty_scores = []
+# To count how many faulty images were correctly flagged as faulty
+# Should probably be how many weren't flagged but whatever
 faulty_flagged = 0
 
-# For each image, reshape back into 768x768 and stretch, since it's normalized
-# Then threshold the image and perform opening, afterwards plot contours
+# For each image, reshape back into 768x768 and stretch, since they're normalized
+# Then threshold the image and perform opening
+# Afterwards plot contours (currently commented out)
 for i in range(0, faulty_data.shape[0]):
     reshaped = reshape_img_from_float(faulty_data[i], IMG_WIDTH, IMG_HEIGHT)
     thresholded = threshold_image(reshaped, THRESHOLD)

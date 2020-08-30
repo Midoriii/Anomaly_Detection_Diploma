@@ -8,7 +8,7 @@ from reshape_util import reshape_normalize
 
 def make_pairs(ok_images, faulty_images):
     # Create pairs for the siamese net input
-    # Initial effort is to create each with each pairing
+    # Initial effort is to create 'each with each' pairing
     pairs_left = []
     pairs_right = []
     pairs_labels = []
@@ -65,10 +65,12 @@ def main():
 
     extended = ""
 
-    # A cheap way to make distinction between making pairs with all the faulty
-    # images (which means even those that contain plugged center)
+    # A cheap way to make a distinction between making pairs with all the faulty
+    # images (which means even those that contain plugged center) - if any
+    # argument is given, all the faulty images are used.
     if len(sys.argv) > 1:
         # Apparently glob is incapable of such matching, that 'b' could be excluded
+        # So I have to use this gimmick with 'numbers followed by dot'
         faulty_images_se = glob.glob('Clonky-vadne-full/[0-9].*')
         faulty_images_se += glob.glob('Clonky-vadne-full/[0-9][0-9].*')
         faulty_images_bse = glob.glob('Clonky-vadne-full/[0-9]*b.*')
@@ -78,6 +80,7 @@ def main():
         faulty_images_se += glob.glob('Clonky-vadne/[0-9][0-9].*')
         faulty_images_bse = glob.glob('Clonky-vadne/[0-9]*b.*')
 
+    # Remove the info bar from the images and reshape them into 768x768
     ok_images_se_list = crop_reshape(ok_images_se)
     ok_images_bse_list = crop_reshape(ok_images_bse)
     faulty_images_se_list = crop_reshape(faulty_images_se)
@@ -88,14 +91,15 @@ def main():
     print(faulty_images_se_list.shape)
     print(faulty_images_bse_list.shape)
 
-    # Save even the sorted data into SE and BSE types
+    # Save all of the data, divided by the image type
     np.save("Data/SE_ok.npy", reshape_normalize(ok_images_se_list, IMG_WIDTH, IMG_HEIGHT))
     np.save("Data/BSE_ok.npy", reshape_normalize(ok_images_bse_list, IMG_WIDTH, IMG_HEIGHT))
     np.save("Data/SE_faulty" + extended + ".npy", reshape_normalize(faulty_images_se_list, IMG_WIDTH, IMG_HEIGHT))
     np.save("Data/BSE_faulty" + extended + ".npy", reshape_normalize(faulty_images_bse_list, IMG_WIDTH, IMG_HEIGHT))
 
-    # Leave some of the images as testing data
-    # 75% instead of 80% of faulty data is taken to represent all the error types
+    # Leave some of the images as testing data.
+    # 75% instead of 80% of faulty data is taken to leave enough images
+    # to represent all the error types in the testing portion.
     ok_images_se_list = ok_images_se_list[:int(0.8*len(ok_images_se_list))]
     ok_images_bse_list = ok_images_bse_list[:int(0.8*len(ok_images_bse_list))]
     faulty_images_se_list = faulty_images_se_list[:int(0.75*len(faulty_images_se_list))]
@@ -106,9 +110,11 @@ def main():
     print(faulty_images_se_list.shape)
     print(faulty_images_bse_list.shape)
 
+    # Make input pairs out of the training data portion
     se_pairs_left, se_pairs_right, se_pairs_labels = make_pairs(ok_images_se_list, faulty_images_se_list)
     bse_pairs_left, bse_pairs_right, bse_pairs_labels = make_pairs(ok_images_bse_list, faulty_images_bse_list)
 
+    # And, of course, save them
     np.save("DataHuge/SE_pairs_left" + extended + ".npy", se_pairs_left)
     np.save("DataHuge/SE_pairs_right" + extended + ".npy", se_pairs_right)
     np.save("DataHuge/SE_pairs_labels" + extended + ".npy", se_pairs_labels)
