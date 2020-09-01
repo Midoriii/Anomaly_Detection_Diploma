@@ -25,7 +25,10 @@ important to find out good enough threshold for this score, and it heavily depen
 on the thresholding performed and its parameters, as well as on the structuring element
 used and its size.
 
-Current version shows the original image of both false positives and false negatives.
+Current version shows the original image of both false positives and false negatives,
+and awaits a keypress to continue. Upon finishing, the scores of individual images
+and total amounts of detected anomalie and falsely flagged OK images is printed
+to command line.
 
 Best performing params found so far are set as constants in this script. Unfortunately,
 it seems that the line between acceptable and faulty defects is too thin to be
