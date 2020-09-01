@@ -1,3 +1,17 @@
+'''
+This a simple visualiser of images that loaded the Autoencoder model deemed falsely
+positive, meaning OK images falsely flagged as faulty.
+
+For simplicity, the model and its saved reconstruction error array are hard-coded.
+
+The threshold for flagging an image as defective is 3 times the standard deviation
+of reconstruction errors on OK images, which is a typical threshold for anomaly
+detection.
+
+Upon showing an image that was flagged as anomaly (and its reconstruction),
+any key press continues the script. The total amount of false positives is also
+written to the command line after the script finishes.
+'''
 import numpy as np
 
 from cv2 import cv2
