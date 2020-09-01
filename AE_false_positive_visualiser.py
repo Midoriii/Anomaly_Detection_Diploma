@@ -10,7 +10,7 @@ detection.
 
 Upon showing an image that was flagged as anomaly (and its reconstruction),
 any key press continues the script. The total amount of false positives is also
-written to the command line after the script finishes.
+written to the command line after the script finishes. 
 '''
 import numpy as np
 
