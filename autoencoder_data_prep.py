@@ -1,3 +1,18 @@
+'''
+A script to create data from provided images for autoencoders. Doesn't
+divide the images by type, BSE and SE are mixed together.
+
+It takes in turn all of the OK images, hand-filtered best OK images,
+faulty images without plugged central hole and completely all
+of the faulty images, plugged center included.
+
+Images are cropped uniformly to 768x768, the dimensions of most of the
+provided images, and the info bar is removed. Afterwards they are normalized
+to float32 in range [0,1] and reshaped into preferred Keras Input shape,
+which is (len(images), width, height, 1).
+
+The resulting data is stored for further use, currently mainly by autoencoders. 
+'''
 import glob
 import numpy as np
 
