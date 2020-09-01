@@ -31,8 +31,6 @@ Best performing params found so far are set as constants in this script. Unfortu
 it seems that the line between acceptable and faulty defects is too thin to be
 captured perfectly and even granulometry still leaves some false negatives. False
 positives are a lesser issue, but can stem from exceptionally low quality input image.
-
-@Author: Stepan Benes
 '''
 import numpy as np
 
