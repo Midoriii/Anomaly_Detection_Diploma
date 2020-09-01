@@ -2,6 +2,8 @@ Model_Saves/*
 Data/*
 Cropped/*
 
+__pycache__/*
+
 Clonky-ok/*
 Clonky-ok-filtered/*
 Clonky-prototypy/*
