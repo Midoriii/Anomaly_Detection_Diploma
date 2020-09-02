@@ -26,7 +26,7 @@ which output confidence scores to standard otuput, they also serve preformance
 reviewing purposes.
 
 Arguments:
-    -e / --epochs: The desired number of epochs the net should be trained for
+    -e / --epochs: The desired number of epochs the net should be trained for.
     -m / --model: Name of the model class to be instantiated and used.
     -t / --type: Accepts either 'BSE' or 'SE', the type of images to be used.
     -f / --faulty: If 'extended' given, all faulty images, plugged central hole
