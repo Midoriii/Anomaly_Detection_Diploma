@@ -16,6 +16,7 @@ class BaseModel:
     def __init__(self):
         # Not entirely sure what encoded and decoded should be initialized as
         self.encoded = Model()
+        self.encoder = Model()
         self.decoded = Model()
         self.model = Model()
         self.history = History()
@@ -52,9 +53,9 @@ class BaseModel:
         return
 
     def save_encoder_weights(self, epoch, batch_size, is_data_filtered, faulty_extended):
-        self.encoded.save_weights('Model_Saves/Weights/encoder_' + is_data_filtered + faulty_extended + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
+        self.encoder.save_weights('Model_Saves/Weights/encoder_' + is_data_filtered + faulty_extended + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
         return
 
     def save_encoder_model(self, epoch, batch_size, is_data_filtered, faulty_extended):
-        self.encoded.save('Model_Saves/Detailed/encoder_' + is_data_filtered + faulty_extended + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
+        self.encoder.save('Model_Saves/Detailed/encoder_' + is_data_filtered + faulty_extended + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
         return

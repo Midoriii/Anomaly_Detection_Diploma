@@ -53,6 +53,9 @@ class BasicAutoencoderEvenDeeper(BaseModel):
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         self.encoded = MaxPooling2D((2, 2), padding='same')(x)
 
+        # Keep the encoder part
+        self.encoder = Model(net_input, self.encoded)
+
         # And now the decoder part
         x = Conv2D(self.filters, (3, 3), padding='same')(self.encoded)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
