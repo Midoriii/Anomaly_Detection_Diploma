@@ -1,3 +1,39 @@
+'''
+The purpose of this script is to train various Siamese Nets on SE or BSE images
+and test their anomaly detection performance.
+
+Images of desired type (BSE vs SE, given by an argument -t) are loaded, and fed to
+selected model (by an argument -m). Training happens for a number of epochs given
+by an argument -e, and the loss used is selected by argument -l.
+
+After training, the model's loss and accuracy is plotted across the epochs and
+saved for further reviewing. The model itself and its embedding part are also
+saved. Embedding part corresponds to a single branch, which transforms input
+into a feature vector.
+
+Hand-picked prototypes are then loaded, and each OK and each Faulty image of
+given type is tested against all 5 of the prototypes. Model.predict() returns a
+value in range [0,1], where > 0.5 means the model predicts the images to be similar
+and value <= 0.5 means the images are dissimilar. The sum of rounded predictions
+for each image serves as anomaly score, where score of 5 means that the image
+was predicted to be similar to all 5 prototypes and hence is considered OK,
+score of 0 means an anomaly, since the image wasn't similar enough to the prototypes.
+Anything in between is open for custom interpretation according to needs.
+
+Graph overview of scores of individual images is also saved for quick performance
+rating of the network. The final part of the script consist of some mock comparisons
+which output confidence scores to standard otuput, they also serve preformance
+reviewing purposes.
+
+Arguments:
+    -e / --epochs: The desired number of epochs the net should be trained for
+    -m / --model: Name of the model class to be instantiated and used.
+    -t / --type: Accepts either 'BSE' or 'SE', the type of images to be used.
+    -f / --faulty: If 'extended' given, all faulty images, plugged central hole
+    included, are used.
+    -l / --loss: Desired loss function for the model to use. Accepts: 'binary_crossentropy',
+    'triplet_loss', 'contrastive_loss'.
+'''
 import sys
 import getopt
 import numpy as np
@@ -21,7 +57,6 @@ from Models.SiameseNetLiteMultipleConvWithoutDropout import SiameseNetLiteMultip
 #Constants
 IMG_WIDTH = 768
 IMG_HEIGHT = 768
-input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)
 
 # Default params
 epochs = 20
@@ -124,6 +159,7 @@ else:
     sys.exit()
 
 # Create and compile the model
+input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)
 model.create_net(input_shape)
 model.compile_net(desired_loss)
 # Train it
@@ -148,7 +184,7 @@ plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type)
             + '_b' + str(batch_size) + '_acc.png', bbox_inches="tight")
 plt.close('all')
 
-# Save the model weights and architecture
+# Save the model and embedding model architecture
 model.save_model(epochs, batch_size, image_type, extended_faulty, loss_string)
 model.save_embedding_model(epochs, batch_size, image_type, extended_faulty, loss_string)
 
