@@ -1,3 +1,26 @@
+'''
+A script for making pairs of OK-OK and OK-Faulty images out of provided data.
+These images serve as an input for siamese network training. The images are
+divided by type, meaning the pairs are made of either BSE or SE images, not
+mixed together.
+
+If ran with any argument, the faulty images used are the extended variant
+which includes also the plugged central hole images.
+
+Pairs are made out of randomly shuffled images, with 80% of the OK ones and 75%
+of the faulty ones as the training set, the rest is left for testing purposes.
+
+
+func: make_pairs(ok_images, faulty_images): Makes pairs of ok_images with ok_images
+and ok_images with faulty_images. Also creates proper labels; 1 for OK-OK, 0 for
+OK-Faulty. Input images should be cropped 768x768 images [0,255]. Returns normalized
+float32 [0,1] Left input array of images, Right input array of images, and Labels.
+
+func: main(): Takes care of loading proper data, cropping and reshaping the images,
+saving images by type (BSE or SE), and making pairs out of them that
+serve as input for siamese nets. Also saves the created pairs. The pairs are
+saved separately as Left and Right input arrays for ease of use.
+'''
 import sys
 import glob
 import numpy as np
@@ -7,6 +30,22 @@ from reshape_util import reshape_normalize
 
 
 def make_pairs(ok_images, faulty_images):
+    '''
+    Makes pairs out of provided images. The strategy is 'all with all'. Pairs
+    made are also assigned a label; 1 for a pair of OK images, 0 for OK with Faulty.
+    Also normalizes and shuffles the data before returning the pairs.
+
+    Arguments:
+        ok_images: A numpy array containing 768x768 [0,255] image representation.
+        faulty_images: A numpy array containing 768x768 [0,255] image representation.
+
+    Returns:
+        pairs_left: Numpy array of normalized float32 [0,1] images serving as 'Left'
+        side of the siamese net input.
+        pairs_right: Numpy array of normalized float32 [0,1] images serving as 'Right'
+        side of the siamese net input.
+        pairs_labels: Numpy array of assigned labels.
+    '''
     # Create pairs for the siamese net input
     # Initial effort is to create 'each with each' pairing
     pairs_left = []
@@ -57,6 +96,11 @@ def make_pairs(ok_images, faulty_images):
 
 
 def main():
+    '''
+    Takes care of loading the data, cropping and reshaping it, feeding it to
+    the make_pairs() function, saving cropped normalized BSE and SE images by type,
+    creating training set out of the pairs and finally saving the training pairs too. 
+    '''
     IMG_WIDTH = 768
     IMG_HEIGHT = 768
 
