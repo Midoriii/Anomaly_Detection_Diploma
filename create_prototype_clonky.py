@@ -1,3 +1,12 @@
+'''
+The purpose of this script it to take the 5 BSE and 5 SE hand-picked prototype
+images and turn them into the same shape and format as the rest of the data.
+
+Prototype images are resized to 768x768, the info bar is cropped off. Afterwards
+the images are normalized to float32 in range [0,1] and reshaped into Keras Input
+shape of (len(images), width, height, 1). Finally they are saved for further use
+during anomaly detection with siamese networks.
+'''
 import glob
 import numpy as np
 import cv2
