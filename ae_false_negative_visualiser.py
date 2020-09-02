@@ -72,7 +72,7 @@ for i in range(0, anomalous_input.shape[0]):
         cv2.imshow("Anomaly - original", np.array(im))
         cv2.imshow("Anomaly - reconstructed", np.array(rec_im))
         cv2.waitKey(0)
-        missed_anomalies = missed_anomalies + 1
+        missed_anomalies += 1
 
 print(missed_anomalies)
 print("That's all")

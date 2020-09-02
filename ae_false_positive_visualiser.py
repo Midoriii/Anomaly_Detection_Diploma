@@ -72,7 +72,7 @@ for i in range(0, valid_input.shape[0]):
         cv2.imshow("OK image - original", np.array(im))
         cv2.imshow("OK image - reconstructed", np.array(rec_im))
         cv2.waitKey(0)
-        falsely_accused = falsely_accused + 1
+        falsely_accused += 1
 
 print(falsely_accused)
 print("That's all")

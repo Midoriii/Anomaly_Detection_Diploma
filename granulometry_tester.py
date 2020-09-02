@@ -88,7 +88,7 @@ for i in range(0, faulty_data.shape[0]):
     faulty_scores.append(score)
     if score > SCORE_THRESHOLD:
         #show_opening(removed, struct_element, "Faulty")
-        faulty_flagged = faulty_flagged + 1
+        faulty_flagged += 1
     else:
         cv2.imshow("Undetected Faulty", reshaped)
         cv2.waitKey(0)
@@ -102,7 +102,7 @@ for i in range(0, ok_data.shape[0]):
     okay_scores.append(score)
     if score > SCORE_THRESHOLD:
         #show_opening(removed, struct_element, "OK")
-        okay_flagged = okay_flagged + 1
+        okay_flagged += 1
         cv2.imshow("Falsely flagged OK", reshaped)
         cv2.waitKey(0)
 
