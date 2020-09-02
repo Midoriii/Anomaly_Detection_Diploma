@@ -1,3 +1,6 @@
+'''
+Deeper Siamese Net based on the basic one
+'''
 import numpy as np
 import keras.backend as K
 
@@ -8,11 +11,7 @@ from keras.layers import Activation, Conv2D, MaxPooling2D, BatchNormalization, D
 from keras.models import Model, Sequential
 from keras.callbacks import History
 
-'''
-Deeper Siamese Net based on the basic one
 
-@Author: Stepan Benes
-'''
 
 class SiameseNetDeeper(BaseSiameseModel):
 

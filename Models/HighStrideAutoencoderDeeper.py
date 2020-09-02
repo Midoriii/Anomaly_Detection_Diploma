@@ -1,3 +1,6 @@
+'''
+Convolutional Autoencoder with bigger strides in initial layers, deeper than the other one
+'''
 import numpy as np
 from Models.BaseModel import BaseModel
 
@@ -8,11 +11,7 @@ from keras.models import Model
 from keras.callbacks import History
 from keras.optimizers import Adam
 
-'''
-Convolutional Autoencoder with bigger strides in initial layers, deeper than the other one
 
-@Author: Stepan Benes
-'''
 
 class HighStrideAutoencoderDeeper(BaseModel):
 

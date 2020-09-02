@@ -1,3 +1,6 @@
+'''
+Basic Siamese Network without any dropout
+'''
 import numpy as np
 import keras.backend as K
 
@@ -8,11 +11,7 @@ from keras.layers import Activation, Conv2D, MaxPooling2D, BatchNormalization, D
 from keras.models import Model, Sequential
 from keras.callbacks import History
 
-'''
-Basic Siamese Network without any dropout
 
-@Author: Stepan Benes
-'''
 
 class BasicSiameseNetWoutDropout(BaseSiameseModel):
 

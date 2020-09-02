@@ -1,3 +1,7 @@
+'''
+Convolutional Autoencoder with learnable Conv2DTranspose layers and
+bigger strides in initial layers, also fairly deep, and with reduced learning rate
+'''
 import numpy as np
 from Models.BaseModel import BaseModel
 
@@ -8,12 +12,7 @@ from keras.models import Model
 from keras.callbacks import History
 from keras.optimizers import Adam
 
-'''
-Convolutional Autoencoder with learnable Conv2DTranspose layers and
-bigger strides in initial layers, also fairly deep, and with reduced learning rate
 
-@Author: Stepan Benes
-'''
 
 class HighStrideTransposeConvAutoencoder(BaseModel):
 

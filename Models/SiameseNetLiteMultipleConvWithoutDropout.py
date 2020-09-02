@@ -1,3 +1,7 @@
+'''
+Basic Siamese Network, slightly shallower, with multiple convolutions,
+without any dropout at all
+'''
 import numpy as np
 import keras.backend as K
 
@@ -8,12 +12,7 @@ from keras.layers import Activation, Conv2D, MaxPooling2D, BatchNormalization, D
 from keras.models import Model, Sequential
 from keras.callbacks import History
 
-'''
-Basic Siamese Network, slightly shallower, with multiple convolutions,
-without any dropout at all
 
-@Author: Stepan Benes
-'''
 
 class SiameseNetLiteMultipleConvWithoutDropout(BaseSiameseModel):
 

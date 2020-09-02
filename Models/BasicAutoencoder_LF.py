@@ -1,3 +1,6 @@
+'''
+Basic Convolutional Autoencoder - with reduced filter number to just 16
+'''
 import numpy as np
 from Models.BaseModel import BaseModel
 
@@ -7,11 +10,7 @@ from keras.initializers import Constant
 from keras.models import Model
 from keras.callbacks import History
 
-'''
-Basic Convolutional Autoencoder - with reduced filter number to just 16
 
-@Author: Stepan Benes
-'''
 
 class BasicAutoencoder_LF(BaseModel):
 

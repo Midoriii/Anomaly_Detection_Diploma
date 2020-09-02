@@ -1,3 +1,6 @@
+'''
+Basic Convolutional Autoencoder, few layers deeper than the initial one
+'''
 import numpy as np
 from Models.BaseModel import BaseModel
 
@@ -7,11 +10,7 @@ from keras.initializers import Constant
 from keras.models import Model
 from keras.callbacks import History
 
-'''
-Basic Convolutional Autoencoder, few layers deeper than the initial one
 
-@Author: Stepan Benes
-'''
 
 class BasicAutoencoderDeeper(BaseModel):
 

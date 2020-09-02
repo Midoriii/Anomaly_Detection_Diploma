@@ -1,3 +1,6 @@
+'''
+Base Model for all Convolutional Autoencoders
+'''
 import numpy as np
 
 from keras.layers import Input, Reshape, Dense, Flatten
@@ -6,11 +9,7 @@ from keras.initializers import Constant
 from keras.models import Model
 from keras.callbacks import History
 
-'''
-Base Model for all Convolutional Autoencoders
 
-@Author: Stepan Benes
-'''
 
 class BaseModel:
 

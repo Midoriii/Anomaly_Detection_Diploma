@@ -1,3 +1,7 @@
+'''
+Basic Convolutional Autoencoder, especially deep, the encoding is really small
+With even further decreased learning rate
+'''
 import numpy as np
 from Models.BaseModel import BaseModel
 
@@ -8,12 +12,7 @@ from keras.models import Model
 from keras.callbacks import History
 from keras.optimizers import Adam
 
-'''
-Basic Convolutional Autoencoder, especially deep, the encoding is really small
-With even further decreased learning rate
 
-@Author: Stepan Benes
-'''
 
 class BasicAutoencoderEvenDeeperExtraLLR(BaseModel):
 
