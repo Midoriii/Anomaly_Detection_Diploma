@@ -59,9 +59,9 @@ class BaseSiameseModel:
         return
 
     def save_embedding_weights(self, epoch, batch_size, type, extended_faulty, loss_string):
-        self.model.save_weights('Model_Saves/Weights/' + self.name + '_' + str(type) + str(extended_faulty) + str(loss_string) + '_embedding_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
+        self.embedding.save_weights('Model_Saves/Weights/embedding_' + self.name + '_' + str(type) + str(extended_faulty) + str(loss_string) + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
         return
 
     def save_embedding_model(self, epoch, batch_size, type, extended_faulty, loss_string):
-        self.model.save('Model_Saves/Detailed/' + self.name + '_' + str(type) + str(extended_faulty) + str(loss_string) + '_embedding_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
+        self.embedding.save('Model_Saves/Detailed/embedding_' + self.name + '_' + str(type) + str(extended_faulty) + str(loss_string) + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
         return

@@ -51,3 +51,11 @@ class BaseModel:
     def save_model(self, epoch, batch_size, is_data_filtered, faulty_extended):
         self.model.save('Model_Saves/Detailed/' + is_data_filtered + faulty_extended + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
         return
+
+    def save_encoder_weights(self, epoch, batch_size, is_data_filtered, faulty_extended):
+        self.encoded.save_weights('Model_Saves/Weights/encoder_' + is_data_filtered + faulty_extended + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
+        return
+
+    def save_encoder_model(self, epoch, batch_size, is_data_filtered, faulty_extended):
+        self.encoded.save('Model_Saves/Detailed/encoder_' + is_data_filtered + faulty_extended + self.name + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
+        return
