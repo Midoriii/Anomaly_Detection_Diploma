@@ -21,6 +21,10 @@ opened thresholded one with contours around the opening.
 
 func: granulometry_score(image, element): Performs granulometry on image,
 returns the sum of remaining white pixels after binary opening.
+
+func: perform_binary_granulometry(image, width, height, threshold, element):
+Performs full granulometry using binary thresholding, is made of earlier
+defined functions.
 '''
 
 import numpy as np
@@ -169,7 +173,7 @@ def show_opening(image, opening_element, label=""):
 
 def granulometry_score(image, opening_element):
     '''
-    Preforms binary opening on given image and afterwards sums up the pixels.
+    Performs binary opening on given image and afterwards sums up the pixels.
     Binary opening returns only 0s and 1s (False and True), so by simply
     summing the pixels one can get a sort of 'score' of how much of the picture
     remained after performing opening.
@@ -187,3 +191,25 @@ def granulometry_score(image, opening_element):
     # Calc how many pixels of the image remain
     granulo = opening.sum()
     return granulo
+
+
+def perform_binary_granulometry(image, width, height, threshold, opening_element):
+    '''
+    Performs whole granulometry with binary thresholding using functions
+    defined earlier in this module.
+
+    Arguments:
+        image: A numpy array of float32 [0,1] values representing an image.
+        width: Original width dimension of the image.
+        height: Original height dimension of the image.
+        threshold: A value representing threshold for the binary thresholding.
+        opening_element: Array of 0s and 1s representing an element with which
+        to perform the opening.
+
+    Returns:
+        granulometry_score: A sum of remaining pixels.
+    '''
+    reshaped = reshape_img_from_float(image, width, height)
+    thresholded = threshold_image(reshaped, threshold)
+    removed = remove_center(thresholded)
+    return granulometry_score(removed, opening_element)
