@@ -11,7 +11,7 @@ provided images, and the info bar is removed. Afterwards they are normalized
 to float32 in range [0,1] and reshaped into preferred Keras Input shape,
 which is (len(images), width, height, 1).
 
-The resulting data is stored for further use, currently mainly by autoencoders. 
+The resulting data is stored for further use, currently mainly by autoencoders.
 '''
 import glob
 import numpy as np
@@ -24,12 +24,13 @@ IMG_HEIGHT = 768
 
 # Grab all the images
 ok_images = glob.glob('Clonky-ok/*')
+ok_images_extra = glob.glob('Clonky-ok-2/*')
 faulty_images = glob.glob('Clonky-vadne/*')
 ok_filtered_images = glob.glob('Clonky-ok-filtered/*')
 faulty_full_images = glob.glob('Clonky-vadne-full/*')
 
-lists_of_images = [ok_images, ok_filtered_images, faulty_images, faulty_full_images]
-file_names = ["OK.npy", "OK_filtered.npy", "Faulty.npy", "Faulty_extended.npy"]
+lists_of_images = [ok_images, ok_images_extra, ok_filtered_images, faulty_images, faulty_full_images]
+file_names = ["OK.npy", "OK_extra.npy", "OK_filtered.npy", "Faulty.npy", "Faulty_extended.npy"]
 
 # Go through the loaded images and crop them, reshape them into 768x768,
 # Normalize them and finally save them
