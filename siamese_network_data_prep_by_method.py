@@ -99,7 +99,7 @@ def main():
     '''
     Takes care of loading the data, cropping and reshaping it, feeding it to
     the make_pairs() function, saving cropped normalized BSE and SE images by type,
-    creating training set out of the pairs and finally saving the training pairs too. 
+    creating training set out of the pairs and finally saving the training pairs too.
     '''
     IMG_WIDTH = 768
     IMG_HEIGHT = 768
