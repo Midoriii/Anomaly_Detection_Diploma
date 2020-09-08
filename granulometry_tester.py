@@ -61,6 +61,10 @@ SUBTRACT_CONST = 60
 
 # Load OK BSE data
 ok_data = np.load("Data/BSE_ok.npy")
+# Load the extra OK BSE data
+ok_data_extra = np.load("Data/BSE_ok_extra.npy")
+# Concat both of the OK BSE data
+ok_data = np.concatenate((ok_data, ok_data_extra))
 # Load also the anomalous BSE data
 faulty_data = np.load("Data/BSE_faulty_extended.npy")
 

@@ -37,6 +37,10 @@ def main():
     '''
     # Load BSE data
     ok_data = np.load("Data/BSE_ok.npy")
+    # Load the extra ok images for testing
+    ok_data_extra = np.load("Data/BSE_ok_extra.npy")
+    # Concat the ok data
+    ok_data = np.concatenate((ok_data, ok_data_extra))
     faulty_data = np.load("Data/BSE_faulty_extended.npy")
 
     # Load Autoencoder model and error array
