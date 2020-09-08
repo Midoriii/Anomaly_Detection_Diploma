@@ -55,7 +55,7 @@ IMG_HEIGHT = 768
 THRESHOLD = 55
 # Score which indicated anomaly if val > score
 SCORE_THRESHOLD = 50
-# For adaptive thtesholding
+# For adaptive thresholding
 GROUP_SIZE = 151
 SUBTRACT_CONST = 60
 
