@@ -37,7 +37,9 @@ ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/extended_BasicAut
 #ok_reconstruction_errors = np.load('Reconstructed/Error_Arrays/filtered_BasicAutoencoderEvenDeeper_e50_b4_ROK.npy')
 
 # Load the OK images
-valid_input = np.load("Data/OK.npy")
+#valid_input = np.load("Data/OK.npy")
+# Or the extra OK images, given later on, to test on
+valid_input = np.load("Data/OK_extra.npy")
 print(valid_input.shape)
 
 # Define the threshold for a picture to be called an anomaly
