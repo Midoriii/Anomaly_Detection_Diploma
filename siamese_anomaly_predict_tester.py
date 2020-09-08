@@ -72,7 +72,7 @@ def main():
     # Loading the extra OK data for testing purposes
     data_ok_extra = np.load("Data/BSE_ok_extra.npy")
     # Concat them both
-    data_ok = np.concatenate(data_ok, data_ok_extra))
+    data_ok = np.concatenate((data_ok, data_ok_extra))
     data_faulty = np.load("Data/BSE_faulty_extended.npy")
     data_prototypes = np.load("Data/BSE_prototypes.npy")
 
