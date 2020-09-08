@@ -71,7 +71,7 @@ def main():
     #data_ok = np.load("Data/BSE_ok.npy")
     # Loading the extra OK data for testing purposes
     data_ok = np.load("Data/BSE_ok_extra.npy")
-    data_faulty = np.load("Data/BSE_faulty.npy")
+    data_faulty = np.load("Data/BSE_faulty_extended.npy")
     data_prototypes = np.load("Data/BSE_prototypes.npy")
 
     # Loading best BSE Model
@@ -85,7 +85,7 @@ def main():
     #data_ok = np.load("Data/SE_ok.npy")
     # Loading the extra OK data for testing purposes
     data_ok = np.load("Data/SE_ok_extra.npy")
-    data_faulty = np.load("Data/SE_faulty.npy")
+    data_faulty = np.load("Data/SE_faulty_extended.npy")
     data_prototypes = np.load("Data/SE_prototypes.npy")
     # Loading best SE model
     model = load_model("Model_Saves/Detailed/BasicSiameseNet_SE_e20_b4_detailed", compile=False)
