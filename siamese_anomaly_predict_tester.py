@@ -68,7 +68,9 @@ def main():
     get_predictions() is called on OK data and then on Faulty data.
     '''
     # Loading BSE data
-    data_ok = np.load("Data/BSE_ok.npy")
+    #data_ok = np.load("Data/BSE_ok.npy")
+    # Loading the extra OK data for testing purposes
+    data_ok = np.load("Data/BSE_ok_extra.npy")
     data_faulty = np.load("Data/BSE_faulty.npy")
     data_prototypes = np.load("Data/BSE_prototypes.npy")
 
@@ -80,7 +82,9 @@ def main():
     get_predictions(data_faulty, data_prototypes, model, "Faulty", "BSE")
 
     # Loading SE data
-    data_ok = np.load("Data/SE_ok.npy")
+    #data_ok = np.load("Data/SE_ok.npy")
+    # Loading the extra OK data for testing purposes
+    data_ok = np.load("Data/SE_ok_extra.npy")
     data_faulty = np.load("Data/SE_faulty.npy")
     data_prototypes = np.load("Data/SE_prototypes.npy")
     # Loading best SE model
