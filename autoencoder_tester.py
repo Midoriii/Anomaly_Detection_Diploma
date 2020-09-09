@@ -1,3 +1,44 @@
+'''
+The purpose of this script is to test various Autoencoder models on provided
+images.
+
+The type of images to use for training and testing is given by the parameters -d,
+-f, respectively, and the model to be trained and tested is given by -m.
+The number of training epochs by -e and the batch size to be used by -b.
+
+The model is trained exclusively on the OK images. After training is done, the
+model's loss is plotted to a graph and saved. The model itself and the weights
+are saved too, along with the model's Encoder part, which transforms input into
+features.
+
+For performance evaluation, the OK and Faulty images are served to the trained
+model (using Model.predict()) and the reconstructions are saved to OK and Faulty
+lists. Afterwards, for each image, the MSE of the difference of the original image
+and its reconstruction is computed and serves as a 'score' of sorts.
+
+The idea is that a large reconstruction error points to an anomaly, as the model
+is trained only on the OK data, and should struggle to reconstruct anomalous input.
+
+To visualize the performance a graph is plotted of image's and their respective
+reconstruction errors. Green dots = truly OK images, red dots = truly Faulty images.
+
+Common practice for finding a threshold for anomaly detection is to use 3 times the
+standard deviation of OK scores. Such threshold is also shown on the graph and
+serves as a divider of sorts showing which images are possibly faulty and which are OK.
+Of course any such threshold can be edited to better serve FP vs FN needs.
+
+
+Arguments:
+    -e / --epochs: Desired number of epochs for the model to train for.
+    -b / --batch_size: Training batch_size to be used, can't handle more than 4
+    reliably on most GPUs due to VRAM limits.
+    -m / --model: Name of the model class to be instantiated and used.
+    -d / --data: Type of data to be used, if none given, all of the OK images
+    are used, regardless of type. If 'BSE' or 'SE' given, only such images are
+    used. If 'filtered' is given only the hand-picked best OK images are used.
+    -f / --faulty: If 'extended' given, all of the faulty images are used for
+    testing, including those with plugged central hole.
+'''
 import sys
 import getopt
 import numpy as np
@@ -22,7 +63,6 @@ from Models.BasicAutoencoderEvenDeeperSuperLLR import BasicAutoencoderEvenDeeper
 # Constants
 IMG_WIDTH = 768
 IMG_HEIGHT = 768
-input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)
 
 # Default params
 epochs = 2
@@ -141,9 +181,9 @@ else:
     sys.exit()
 
 # Create and compile the model
+input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)
 model.create_net(input_shape)
 model.compile_net()
-
 # Train it
 model.train_net(train_input, epochs=epochs, batch_size=batch_size)
 
@@ -160,7 +200,8 @@ plt.close('all')
 # Save the weights and even the whole model
 model.save_weights(epochs, batch_size, is_data_filtered, faulty_extended)
 model.save_model(epochs, batch_size, is_data_filtered, faulty_extended)
-
+# Save also the encoder part
+model.save_encoder_model(epochs, batch_size, is_data_filtered, faulty_extended)
 
 # To see the actual reconstructed images of the training data
 # And also to save them for MSE anomaly detection
