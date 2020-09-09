@@ -76,6 +76,14 @@ def train_oc_svm(ok_data, faulty_data, model):
     for i in range(0, faulty_data.shape[0]):
         faulty_data_features.append(model.predict(faulty_data[i].reshape(1, IMG_WIDTH,
                                                                          IMG_HEIGHT, 1)))
+    # Convert to numpy arrays
+    ok_data_features = np.asarray(ok_data_features)
+    faulty_data_features = np.asarray(faulty_data_features)
+    # Reshape to 2D for OC-SVM, -1 means 'make it fit' 
+    ok_data_features = ok_data_features.reshape(ok_data_features.shape[0], -1)
+    faulty_data_features = faulty_data_features.reshape(faulty_data_features.shape[0], -1)
+    #print(ok_data_features.shape)
+
     # Train OC-SVM on OK images
     oc_svm_model.fit(ok_data_features)
     # Predict on faulty data and also ok data ?
@@ -84,9 +92,9 @@ def train_oc_svm(ok_data, faulty_data, model):
     faulty_predictions = oc_svm_model.predict(faulty_data_features)
 
     print("FP:")
-    print(ok_predictions.count(-1))
+    print((ok_predictions == -1).sum())
     print("FN:")
-    print(faulty_predictions.count(1))
+    print((faulty_predictions == 1).sum())
 
 
 
