@@ -67,8 +67,8 @@ def train_oc_svm(ok_data, faulty_data, model):
     '''
     ok_data_features = []
     faulty_data_features = []
-    # Create the OC-SVM model
-    oc_svm_model = OneClassSVM(gamma='auto', nu=0.1)
+    # Create the OC-SVM model, gamma='auto' vs 'scale', 'auto' seems better
+    oc_svm_model = OneClassSVM(gamma='auto', nu=0.02)
     # Get encodings of all OK and Faulty images
     for i in range(0, ok_data.shape[0]):
         ok_data_features.append(model.predict(ok_data[i].reshape(1, IMG_WIDTH,
