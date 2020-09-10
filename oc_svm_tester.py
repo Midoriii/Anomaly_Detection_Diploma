@@ -107,7 +107,7 @@ def extract_features(images, model):
         model: An instantiated pretrained embedding or encoding model.
 
     Returns:
-        A numpy array of extracted features for each input image.
+        A 2D numpy array of extracted features for each input image.
     '''
     images_features = []
 
