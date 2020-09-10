@@ -99,7 +99,7 @@ def train_oc_svm(ok_data_features, faulty_data_features,
 
 def extract_features(images, model):
     '''
-    Extracts features from given image data using model.predict() of a loaded
+    Extracts features from given image data using model.predict() with a loaded
     pretrained model.
 
     Arguments:
