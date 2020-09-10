@@ -44,11 +44,11 @@ def main():
 
     # Load the Encoding or BSE Embedding model
     model = load_model("Model_Saves/Detailed/encoder_extended_BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed", compile=False)
-    #
+    #model = load_model("Model_Saves/Detailed/embedding_BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
     print("BSE:")
     train_oc_svm(bse_ok_data, bse_faulty_data, model)
     # Load SE embedding model
-    #
+    #model = load_model("Model_Saves/Detailed/embedding_BasicSiameseNetWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
     print("SE:")
     train_oc_svm(se_ok_data, se_faulty_data, model)
 
@@ -68,7 +68,7 @@ def train_oc_svm(ok_data, faulty_data, model):
     ok_data_features = []
     faulty_data_features = []
     # Create the OC-SVM model
-    oc_svm_model = OneClassSVM(gamma='auto')
+    oc_svm_model = OneClassSVM(gamma='auto', nu=0.3)
     # Get encodings of all OK and Faulty images
     for i in range(0, ok_data.shape[0]):
         ok_data_features.append(model.predict(ok_data[i].reshape(1, IMG_WIDTH,
@@ -79,7 +79,7 @@ def train_oc_svm(ok_data, faulty_data, model):
     # Convert to numpy arrays
     ok_data_features = np.asarray(ok_data_features)
     faulty_data_features = np.asarray(faulty_data_features)
-    # Reshape to 2D for OC-SVM, -1 means 'make it fit' 
+    # Reshape to 2D for OC-SVM, -1 means 'make it fit'
     ok_data_features = ok_data_features.reshape(ok_data_features.shape[0], -1)
     faulty_data_features = faulty_data_features.reshape(faulty_data_features.shape[0], -1)
     #print(ok_data_features.shape)
