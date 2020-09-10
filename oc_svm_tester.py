@@ -113,7 +113,7 @@ def extract_features(images, model):
 
     # Get encodings of all given images, using given model.predict()
     for i in range(0, images.shape[0]):
-        images_features.append(model.predict(images_data[i].reshape(1, IMG_WIDTH,
+        images_features.append(model.predict(images[i].reshape(1, IMG_WIDTH,
                                                                      IMG_HEIGHT, 1)))
     # Convert to numpy array
     images_features = np.asarray(images_features)
