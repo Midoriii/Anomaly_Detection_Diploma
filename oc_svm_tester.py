@@ -105,8 +105,8 @@ def main():
     print("Siamese SE:")
     for nu_value in nu_values:
         print("Value of nu: " + str(nu_value))
-        train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
-                     bse_ok_data_extra_features, siamese_SE)
+        train_oc_svm(se_ok_data_features, se_faulty_data_features,
+                     se_ok_data_extra_features, siamese_SE)
 
 
 
