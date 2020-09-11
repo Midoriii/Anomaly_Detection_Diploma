@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q gpu
-#PBS -l select=1:ncpus=1:mem=8gb:ngpus=1:scratch_local=10gb
-#PBS -l walltime=5:00:00
+#PBS -l select=1:ncpus=1:mem=150gb:ngpus=1:scratch_local=80gb
+#PBS -l walltime=14:00:00
 
 
 DATADIR=/storage/brno6/home/apprehension
@@ -16,13 +16,20 @@ module add cuda-10.0
 module add cudnn-7.4.2-cuda10
 
 
-cp -R $DATADIR/oc_svm_tester.py $DATADIR/Model_Saves/Detailed/OcSvm $DATADIR/Data $SCRATCHDIR
+cp -R $DATADIR/siamese_network_tester.py $DATADIR/Models $DATADIR/Data $DATADIR/DataHuge $SCRATCHDIR
 
 
 cd $SCRATCHDIR
+mkdir -p Graphs/{Losses,Accuracies,SiameseScores}
+mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python oc_svm_tester.py
+python siamese_network_tester.py -e 40 -m BasicSiameseNet -t BSE
 
+cp -vr $SCRATCHDIR/Graphs/Accuracies/* $DATADIR/Graphs/Accuracies/
+cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
+cp -vr $SCRATCHDIR/Graphs/SiameseScores/* $DATADIR/Graphs/SiameseScores/
+cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/
+cp -vr $SCRATCHDIR/Model_Saves/Weights/* $DATADIR/Model_Saves/Weights/
 
 clean_scratch
