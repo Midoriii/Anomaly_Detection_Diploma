@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -q gpu
-#PBS -l select=1:ncpus=1:mem=8gb:ngpus=1:scratch_local=10gb
+#PBS -l select=1:ncpus=1:mem=16gb:ngpus=1:scratch_local=10gb
 #PBS -l walltime=5:00:00
 
 
