@@ -53,6 +53,7 @@ from Models.HighStrideAutoencoderDeeper import HighStrideAutoencoderDeeper
 from Models.BasicAutoencoderEvenDeeper import BasicAutoencoderEvenDeeper
 from Models.BasicAutoencoderEvenDeeperLLR import BasicAutoencoderEvenDeeperLLR
 from Models.BasicAutoencoderEvenDeeperExtraLLR import BasicAutoencoderEvenDeeperExtraLLR
+from Models.BasicAutoencoderEvenDeeperExtraLLRMultipleConv import BasicAutoencoderEvenDeeperExtraLLRMultipleConv
 from Models.TransposeConvAutoencoder import TransposeConvAutoencoder
 from Models.TransposeConvAutoencoderDeepExtraLLR import TransposeConvAutoencoderDeepExtraLLR
 from Models.HighStrideTransposeConvAutoencoder import HighStrideTransposeConvAutoencoder
@@ -164,6 +165,8 @@ elif desired_model == "BasicAutoencoderEvenDeeperLLR":
     model = BasicAutoencoderEvenDeeperLLR()
 elif desired_model == "BasicAutoencoderEvenDeeperExtraLLR":
     model = BasicAutoencoderEvenDeeperExtraLLR()
+elif desired_model == "BasicAutoencoderEvenDeeperExtraLLRMultipleConv":
+    model = BasicAutoencoderEvenDeeperExtraLLRMultipleConv()
 elif desired_model == "TransposeConvAutoencoder":
     model = TransposeConvAutoencoder()
 elif desired_model == "HighStrideTransposeConvAutoencoder":
