@@ -77,10 +77,10 @@ def main():
             print("Value of nu: " + str(nu_value))
             print("BSE:")
             train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
-                         bse_ok_data_extra_features, model)
+                         bse_ok_data_extra_features, nu_val=nu_value)
             print("SE:")
             train_oc_svm(se_ok_data_features, se_faulty_data_features,
-                         se_ok_data_extra_features, model)
+                         se_ok_data_extra_features, nu_val=nu_value)
 
 
     # Load the BSE embedding model
@@ -94,7 +94,7 @@ def main():
     for nu_value in nu_values:
         print("Value of nu: " + str(nu_value))
         train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
-                     bse_ok_data_extra_features, siamese_BSE)
+                     bse_ok_data_extra_features, nu_val=nu_value)
 
     # Load the SE embedding model
     siamese_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
@@ -106,7 +106,7 @@ def main():
     for nu_value in nu_values:
         print("Value of nu: " + str(nu_value))
         train_oc_svm(se_ok_data_features, se_faulty_data_features,
-                     se_ok_data_extra_features, siamese_SE)
+                     se_ok_data_extra_features, nu_val=nu_value)
 
 
 
