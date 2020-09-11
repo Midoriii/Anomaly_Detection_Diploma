@@ -111,7 +111,7 @@ def main():
 
 
 def train_oc_svm(ok_data_features, faulty_data_features,
-                 testing_ok_data_features, model, nu_val=0.02):
+                 testing_ok_data_features, nu_val=0.02):
     '''
     Creates and trains an OC-SVM model on given OK features. Predictions are then
     made on extra Ok and Faulty data. Finally, the number of false positives and
@@ -124,7 +124,6 @@ def train_oc_svm(ok_data_features, faulty_data_features,
             Used for testing.
         testing_ok_data: A numpy array representing extracted features from extra OK data.
             Used for testing.
-        model: An instantiated pretrained embedding or encoding model.
         nu_val: OC-SVM parameter, refer to:
         https://scikit-learn.org/stable/modules/generated/sklearn.svm.OneClassSVM.html
     '''
@@ -161,7 +160,7 @@ def extract_features(images, model):
     # Get encodings of all given images, using given model.predict()
     for i in range(0, images.shape[0]):
         images_features.append(model.predict(images[i].reshape(1, IMG_WIDTH,
-                                                                     IMG_HEIGHT, 1)))
+                                                               IMG_HEIGHT, 1)))
     # Convert to numpy array
     images_features = np.asarray(images_features)
     # Reshape to 2D for OC-SVM, -1 means 'make it fit'
