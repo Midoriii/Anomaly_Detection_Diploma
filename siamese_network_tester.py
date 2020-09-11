@@ -43,10 +43,13 @@ import matplotlib.pyplot as plt
 from Models.BasicSiameseNet import BasicSiameseNet
 from Models.SiameseNetLF import SiameseNetLF
 from Models.SiameseNetDeeper import SiameseNetDeeper
+from Models.SiameseNetMultipleConvDeeper import SiameseNetMultipleConvDeeper
 from Models.SiameseNetDeeperLLR import SiameseNetDeeperLLR
 from Models.SiameseNetMultipleConv import SiameseNetMultipleConv
 from Models.SiameseNetLite import SiameseNetLite
 from Models.SiameseNetLiteMultipleConv import SiameseNetLiteMultipleConv
+from Models.SiameseNetLiteMultipleConvAlt import SiameseNetLiteMultipleConvAlt
+from Models.SiameseNetLiteMultipleConvAltTwo import SiameseNetLiteMultipleConvAltTwo
 from Models.BasicSiameseNetLLR import BasicSiameseNetLLR
 from Models.BasicSiameseNetWoutBN import BasicSiameseNetWoutBN
 from Models.BasicSiameseNetWoutDropout import BasicSiameseNetWoutDropout
@@ -139,6 +142,8 @@ elif desired_model == "SiameseNetLF":
     model = SiameseNetLF()
 elif desired_model == "SiameseNetDeeper":
     model = SiameseNetDeeper()
+elif desired_model == "SiameseNetMultipleConvDeeper":
+    model = SiameseNetMultipleConvDeeper()
 elif desired_model == "SiameseNetDeeperLLR":
     model = SiameseNetDeeperLLR()
 elif desired_model == "SiameseNetMultipleConv":
@@ -147,6 +152,10 @@ elif desired_model == "SiameseNetLite":
     model = SiameseNetLite()
 elif desired_model == "SiameseNetLiteMultipleConv":
     model = SiameseNetLiteMultipleConv()
+elif desired_model == "SiameseNetLiteMultipleConvAlt":
+    model = SiameseNetLiteMultipleConvAlt()
+elif desired_model == "SiameseNetLiteMultipleConvAltTwo":
+    model = SiameseNetLiteMultipleConvAltTwo()
 elif desired_model == "BasicSiameseNetWoutDropout":
     model = BasicSiameseNetWoutDropout()
 elif desired_model == "BasicSiameseNetLowerDropout":

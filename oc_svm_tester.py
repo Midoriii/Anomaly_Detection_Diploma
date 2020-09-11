@@ -54,7 +54,7 @@ def main():
                  bse_ok_data_extra_features, model)
 
     # Load SE embedding model
-    model = load_model("Model_Saves/Detailed/embedding_BasicSiameseNetWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
+    model = load_model("Model_Saves/Detailed/embedding_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
     print("SE:")
     se_ok_data_features = extract_features(se_ok_data, model)
     se_faulty_data_features = extract_features(se_faulty_data, model)
