@@ -43,7 +43,6 @@ import matplotlib.pyplot as plt
 from Models.BasicSiameseNet import BasicSiameseNet
 from Models.SiameseNetLF import SiameseNetLF
 from Models.SiameseNetDeeper import SiameseNetDeeper
-from Models.SiameseNetMultipleConvDeeper import SiameseNetMultipleConvDeeper
 from Models.SiameseNetDeeperLLR import SiameseNetDeeperLLR
 from Models.SiameseNetMultipleConv import SiameseNetMultipleConv
 from Models.SiameseNetLite import SiameseNetLite
@@ -142,8 +141,6 @@ elif desired_model == "SiameseNetLF":
     model = SiameseNetLF()
 elif desired_model == "SiameseNetDeeper":
     model = SiameseNetDeeper()
-elif desired_model == "SiameseNetMultipleConvDeeper":
-    model = SiameseNetMultipleConvDeeper()
 elif desired_model == "SiameseNetDeeperLLR":
     model = SiameseNetDeeperLLR()
 elif desired_model == "SiameseNetMultipleConv":
