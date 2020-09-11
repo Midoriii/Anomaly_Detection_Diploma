@@ -15,11 +15,12 @@ module add opencv-3.4.5-py36
 module add cuda-10.0
 module add cudnn-7.4.2-cuda10
 
-
-cp -R $DATADIR/oc_svm_tester.py $DATADIR/Model_Saves/Detailed/OcSvm $DATADIR/Data $SCRATCHDIR
-
-
 cd $SCRATCHDIR
+
+mkdir -p Model_Saves/Detailed/OcSvm
+
+cp -R $DATADIR/Model_Saves/Detailed/OcSvm/* $SCRATCHDIR/Model_Saves/Detailed/OcSvm
+cp -R $DATADIR/oc_svm_tester.py $DATADIR/Data $SCRATCHDIR
 
 
 python oc_svm_tester.py
