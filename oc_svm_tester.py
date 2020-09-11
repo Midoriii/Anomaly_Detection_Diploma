@@ -12,6 +12,8 @@ model needs to be provided.
 
 After training is done, the OC-SVM is tested on extracted features of extra OK and
 Faulty data. The amount of False Negatives and False Positives is finally printed out.
+This is done for several possible values of 'nu' parameter of OC-SVM models, to try
+and find the best model and config.
 
 Results will be added here.
 '''
@@ -28,9 +30,10 @@ IMG_HEIGHT = 768
 
 def main():
     '''
-    Loads OK, Faulty and extra OK data and the encoding / embedding models, calls
-    extract_features() to get the features of the loaded data, and finally calls
-    train_oc_svm(), once for each type of data, SE vs BSE.
+    Loads OK, Faulty and extra OK data and the Encoding / Embedding models. For
+    each Encoding and Embedding model the data features are extracted using
+    extract_feature() method and used for OC-SVM training and testing  on several
+    values of 'nu' parameter using train_oc_svm(). The results are then printed.
     '''
     # Load SE and BSE ok and faulty data
     bse_ok_data = np.load("Data/BSE_ok.npy")
@@ -41,26 +44,70 @@ def main():
     se_ok_data_extra = np.load("Data/SE_ok_extra.npy")
     se_faulty_data = np.load("Data/SE_faulty_extended.npy")
 
-    # Load the Encoding or BSE Embedding model
-    #model = load_model("Model_Saves/Detailed/encoder_extended_BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed", compile=False)
-    model = load_model("Model_Saves/Detailed/embedding_BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
-    print("BSE:")
-    # Extract features from each type of data
-    bse_ok_data_features = extract_features(bse_ok_data, model)
-    bse_faulty_data_features = extract_features(bse_faulty_data, model)
-    bse_ok_data_extra_features = extract_features(bse_ok_data_extra, model)
-    # Train the model and get the results
-    train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
-                 bse_ok_data_extra_features, model)
+    # Load the Encoding models
+    AE_1 = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed", compile=False)
+    AE_2 = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_BasicAutoencoderDeeper_e400_b4_detailed", compile=False)
+    AE_3 = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_BasicAutoencoderHFDeeperLLR_e400_b4_detailed", compile=False)
+    AE_4 = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_BasicAutoencoderLFDeeperLLR_e400_b4_detailed", compile=False)
+    AE_5 = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_HighStrideAutoencoderDeeper_e400_b4_detailed", compile=False)
+    AE_6 = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_HighStrideTransposeConvAutoencoder_e400_b4_detailed", compile=False)
+    AE_7 = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_TransposeConvAutoencoder_e400_b4_detailed", compile=False)
 
-    # Load SE embedding model
-    model = load_model("Model_Saves/Detailed/embedding_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
-    print("SE:")
-    se_ok_data_features = extract_features(se_ok_data, model)
-    se_faulty_data_features = extract_features(se_faulty_data, model)
-    se_ok_data_extra_features = extract_features(se_ok_data_extra, model)
-    train_oc_svm(se_ok_data_features, se_faulty_data_features,
-                 se_ok_data_extra_features, model)
+    # Lists to hold arrays and their shortened names
+    models = [AE_1, AE_2, AE_3, AE_4, AE_5, AE_6, AE_7]
+    model_names = ["Basic_Even_Deeper", "Basic", "HF_Deeper", "LF_Deeper",
+                   "High_Stride", "High_Stride_Transpose", "Transpose"]
+
+    # Values of 'nu' parameter to test and find the best from
+    nu_values = [0.3, 0.1, 0.05, 0.02, 0.01, 0.001]
+
+    # Extract BSE and SE features for each model and test through several 'nu' values
+    for model, name in zip(models, model_names):
+        print(name)
+        # Extract BSE and then SE features
+        bse_ok_data_features = extract_features(bse_ok_data, model)
+        bse_faulty_data_features = extract_features(bse_faulty_data, model)
+        bse_ok_data_extra_features = extract_features(bse_ok_data_extra, model)
+
+        se_ok_data_features = extract_features(se_ok_data, model)
+        se_faulty_data_features = extract_features(se_faulty_data, model)
+        se_ok_data_extra_features = extract_features(se_ok_data_extra, model)
+        # For each 'nu' parameter value, train and test the oc-svm model
+        for nu_value in nu_values:
+            print("Value of nu: " + str(nu_value))
+            print("BSE:")
+            train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
+                         bse_ok_data_extra_features, model)
+            print("SE:")
+            train_oc_svm(se_ok_data_features, se_faulty_data_features,
+                         se_ok_data_extra_features, model)
+
+
+    # Load the BSE embedding model
+    siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
+    # Extract BSE data features from each type of data
+    bse_ok_data_features = extract_features(bse_ok_data, siamese_BSE)
+    bse_faulty_data_features = extract_features(bse_faulty_data, siamese_BSE)
+    bse_ok_data_extra_features = extract_features(bse_ok_data_extra, siamese_BSE)
+    # Iterate over possible 'nu' values even for Siamese nets
+    print("Siamese BSE:")
+    for nu_value in nu_values:
+        print("Value of nu: " + str(nu_value))
+        train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
+                     bse_ok_data_extra_features, siamese_BSE)
+
+    # Load the SE embedding model
+    siamese_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
+    # Extract SE data features too
+    se_ok_data_features = extract_features(se_ok_data, siamese_SE)
+    se_faulty_data_features = extract_features(se_faulty_data, siamese_SE)
+    se_ok_data_extra_features = extract_features(se_ok_data_extra, siamese_SE)
+    print("Siamese SE:")
+    for nu_value in nu_values:
+        print("Value of nu: " + str(nu_value))
+        train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
+                     bse_ok_data_extra_features, siamese_SE)
+
 
 
 def train_oc_svm(ok_data_features, faulty_data_features,
