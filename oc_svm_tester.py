@@ -59,7 +59,7 @@ def main():
                    "High_Stride", "High_Stride_Transpose", "Transpose"]
 
     # Values of 'nu' parameter to test and find the best from
-    nu_values = [0.3, 0.1, 0.05, 0.02, 0.01, 0.001]
+    nu_values = [0.5, 0.3, 0.2, 0.1, 0.05, 0.02, 0.01, 0.001]
 
     # Extract BSE and SE features for each model and test through several 'nu' values
     for model, name in zip(models, model_names):
