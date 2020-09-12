@@ -110,6 +110,7 @@ FP:
 34
 FN:
 0
+
 #MODEL
 Basic
 Value of nu: 0.7
@@ -222,6 +223,7 @@ FP:
 33
 FN:
 0
+
 #MODEL
 HF_Deeper
 Value of nu: 0.7
@@ -334,6 +336,7 @@ FP:
 34
 FN:
 0
+
 #MODEL
 LF_Deeper
 Value of nu: 0.7
@@ -446,6 +449,7 @@ FP:
 34
 FN:
 0
+
 #MODEL
 High_Stride
 Value of nu: 0.7
@@ -558,6 +562,7 @@ FP:
 34
 FN:
 0
+
 #MODEL
 High_Stride_Transpose
 Value of nu: 0.7
@@ -670,6 +675,7 @@ FP:
 0
 FN:
 23
+
 #MODEL
 Transpose
 Value of nu: 0.7
@@ -782,6 +788,8 @@ FP:
 0
 FN:
 23
+
+#MODEL
 Siamese BSE:
 #NU
 Value of nu: 0.7
@@ -843,6 +851,8 @@ FP:
 3
 FN:
 0
+
+#MODEL
 Siamese SE:
 Value of nu: 0.7
 FP:
