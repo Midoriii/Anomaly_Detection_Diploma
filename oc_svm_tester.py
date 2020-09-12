@@ -86,6 +86,7 @@ def main():
 
     # Load the BSE embedding model
     siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
+    #siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=false)
     # Extract BSE data features from each type of data
     bse_ok_data_features = extract_features(bse_ok_data, siamese_BSE)
     bse_faulty_data_features = extract_features(bse_faulty_data, siamese_BSE)
@@ -99,7 +100,7 @@ def main():
                      bse_ok_data_extra_features, nu_val=nu_value)
 
     # Load the SE embedding model
-    siamese_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
+    siamese_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConv_SE_extended_e40_b4_detailed", compile=False)
     # Extract SE data features too
     se_ok_data_features = extract_features(se_ok_data, siamese_SE)
     se_faulty_data_features = extract_features(se_faulty_data, siamese_SE)
