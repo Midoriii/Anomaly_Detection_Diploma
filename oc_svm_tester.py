@@ -64,7 +64,7 @@ def main():
     # Extract BSE and SE features for each model and test through several 'nu' values
     for model, name in zip(models, model_names):
         print("\n#MODEL")
-        print(name)
+        print(name + "\n")
         # Extract BSE and then SE features
         bse_ok_data_features = extract_features(bse_ok_data, model)
         bse_faulty_data_features = extract_features(bse_faulty_data, model)
@@ -75,7 +75,7 @@ def main():
         se_ok_data_extra_features = extract_features(se_ok_data_extra, model)
         # For each 'nu' parameter value, train and test the oc-svm model
         for nu_value in nu_values:
-            print("Value of nu: " + str(nu_value) + "\n")
+            print("\nValue of nu: " + str(nu_value) + "\n")
             print("BSE:")
             train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
                          bse_ok_data_extra_features, nu_val=nu_value)
@@ -95,8 +95,7 @@ def main():
     print("\n#MODEL")
     print("Siamese BSE:")
     for nu_value in nu_values:
-        print("#NU")
-        print("Value of nu: " + str(nu_value) + "\n")
+        print("\nValue of nu: " + str(nu_value) + "\n")
         train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
                      bse_ok_data_extra_features, nu_val=nu_value)
 
@@ -109,7 +108,7 @@ def main():
     print("\n#MODEL")
     print("Siamese SE:")
     for nu_value in nu_values:
-        print("Value of nu: " + str(nu_value) + "\n")
+        print("\nValue of nu: " + str(nu_value) + "\n")
         train_oc_svm(se_ok_data_features, se_faulty_data_features,
                      se_ok_data_extra_features, nu_val=nu_value)
 
