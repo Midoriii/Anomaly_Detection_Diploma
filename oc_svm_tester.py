@@ -63,7 +63,7 @@ def main():
 
     # Extract BSE and SE features for each model and test through several 'nu' values
     for model, name in zip(models, model_names):
-        print("#MODEL")
+        print("\n#MODEL")
         print(name)
         # Extract BSE and then SE features
         bse_ok_data_features = extract_features(bse_ok_data, model)
@@ -92,6 +92,7 @@ def main():
     bse_faulty_data_features = extract_features(bse_faulty_data, siamese_BSE)
     bse_ok_data_extra_features = extract_features(bse_ok_data_extra, siamese_BSE)
     # Iterate over possible 'nu' values even for Siamese nets
+    print("\n#MODEL")
     print("Siamese BSE:")
     for nu_value in nu_values:
         print("#NU")
@@ -105,6 +106,7 @@ def main():
     se_ok_data_features = extract_features(se_ok_data, siamese_SE)
     se_faulty_data_features = extract_features(se_faulty_data, siamese_SE)
     se_ok_data_extra_features = extract_features(se_ok_data_extra, siamese_SE)
+    print("\n#MODEL")
     print("Siamese SE:")
     for nu_value in nu_values:
         print("Value of nu: " + str(nu_value))
