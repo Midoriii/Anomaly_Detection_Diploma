@@ -1,4 +1,16 @@
+#MODEL
 Basic_Even_Deeper
+Value of nu: 0.7
+BSE:
+FP:
+26
+FN:
+7
+SE:
+FP:
+21
+FN:
+0
 Value of nu: 0.5
 BSE:
 FP:
@@ -8,6 +20,17 @@ FN:
 SE:
 FP:
 16
+FN:
+0
+Value of nu: 0.4
+BSE:
+FP:
+17
+FN:
+9
+SE:
+FP:
+9
 FN:
 0
 Value of nu: 0.3
@@ -87,7 +110,19 @@ FP:
 34
 FN:
 0
+#MODEL
 Basic
+Value of nu: 0.7
+BSE:
+FP:
+33
+FN:
+0
+SE:
+FP:
+27
+FN:
+0
 Value of nu: 0.5
 BSE:
 FP:
@@ -97,6 +132,17 @@ FN:
 SE:
 FP:
 27
+FN:
+0
+Value of nu: 0.4
+BSE:
+FP:
+31
+FN:
+0
+SE:
+FP:
+26
 FN:
 0
 Value of nu: 0.3
@@ -176,7 +222,19 @@ FP:
 33
 FN:
 0
+#MODEL
 HF_Deeper
+Value of nu: 0.7
+BSE:
+FP:
+26
+FN:
+5
+SE:
+FP:
+21
+FN:
+0
 Value of nu: 0.5
 BSE:
 FP:
@@ -186,6 +244,17 @@ FN:
 SE:
 FP:
 17
+FN:
+0
+Value of nu: 0.4
+BSE:
+FP:
+16
+FN:
+9
+SE:
+FP:
+10
 FN:
 0
 Value of nu: 0.3
@@ -265,7 +334,19 @@ FP:
 34
 FN:
 0
+#MODEL
 LF_Deeper
+Value of nu: 0.7
+BSE:
+FP:
+26
+FN:
+5
+SE:
+FP:
+21
+FN:
+0
 Value of nu: 0.5
 BSE:
 FP:
@@ -275,6 +356,17 @@ FN:
 SE:
 FP:
 11
+FN:
+0
+Value of nu: 0.4
+BSE:
+FP:
+16
+FN:
+9
+SE:
+FP:
+9
 FN:
 0
 Value of nu: 0.3
@@ -354,7 +446,19 @@ FP:
 34
 FN:
 0
+#MODEL
 High_Stride
+Value of nu: 0.7
+BSE:
+FP:
+20
+FN:
+5
+SE:
+FP:
+19
+FN:
+0
 Value of nu: 0.5
 BSE:
 FP:
@@ -364,6 +468,17 @@ FN:
 SE:
 FP:
 14
+FN:
+0
+Value of nu: 0.4
+BSE:
+FP:
+13
+FN:
+9
+SE:
+FP:
+13
 FN:
 0
 Value of nu: 0.3
@@ -443,7 +558,19 @@ FP:
 34
 FN:
 0
+#MODEL
 High_Stride_Transpose
+Value of nu: 0.7
+BSE:
+FP:
+23
+FN:
+2
+SE:
+FP:
+20
+FN:
+0
 Value of nu: 0.5
 BSE:
 FP:
@@ -453,6 +580,17 @@ FN:
 SE:
 FP:
 14
+FN:
+0
+Value of nu: 0.4
+BSE:
+FP:
+13
+FN:
+9
+SE:
+FP:
+13
 FN:
 0
 Value of nu: 0.3
@@ -532,7 +670,19 @@ FP:
 0
 FN:
 23
+#MODEL
 Transpose
+Value of nu: 0.7
+BSE:
+FP:
+28
+FN:
+1
+SE:
+FP:
+25
+FN:
+0
 Value of nu: 0.5
 BSE:
 FP:
@@ -542,6 +692,17 @@ FN:
 SE:
 FP:
 16
+FN:
+0
+Value of nu: 0.4
+BSE:
+FP:
+20
+FN:
+6
+SE:
+FP:
+10
 FN:
 0
 Value of nu: 0.3
@@ -622,50 +783,80 @@ FP:
 FN:
 23
 Siamese BSE:
+#NU
+Value of nu: 0.7
+FP:
+14
+FN:
+0
+#NU
 Value of nu: 0.5
 FP:
 11
 FN:
 0
+#NU
+Value of nu: 0.4
+FP:
+7
+FN:
+0
+#NU
 Value of nu: 0.3
 FP:
 6
 FN:
 0
+#NU
 Value of nu: 0.2
 FP:
 4
 FN:
 0
+#NU
 Value of nu: 0.1
 FP:
 3
 FN:
 0
+#NU
 Value of nu: 0.05
 FP:
 3
 FN:
 0
+#NU
 Value of nu: 0.02
 FP:
 3
 FN:
 0
+#NU
 Value of nu: 0.01
 FP:
 3
 FN:
 0
+#NU
 Value of nu: 0.001
 FP:
 3
 FN:
 0
 Siamese SE:
+Value of nu: 0.7
+FP:
+11
+FN:
+0
 Value of nu: 0.5
 FP:
 7
+FN:
+0
+Value of nu: 0.4
+FP:
+4
 FN:
 0
 Value of nu: 0.3
