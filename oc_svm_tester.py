@@ -79,7 +79,7 @@ def main():
             print("BSE:")
             train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
                          bse_ok_data_extra_features, nu_val=nu_value)
-            print("SE:")
+            print("\nSE:")
             train_oc_svm(se_ok_data_features, se_faulty_data_features,
                          se_ok_data_extra_features, nu_val=nu_value)
 
@@ -142,10 +142,8 @@ def train_oc_svm(ok_data_features, faulty_data_features,
     testing_ok_predictions = oc_svm_model.predict(testing_ok_data_features)
     faulty_predictions = oc_svm_model.predict(faulty_data_features)
 
-    print("FP:")
-    print((testing_ok_predictions == -1).sum())
-    print("FN:")
-    print((faulty_predictions == 1).sum())
+    print("FP:" + str((testing_ok_predictions == -1).sum()))
+    print("FN:" + str((faulty_predictions == 1).sum()))
 
 
 def extract_features(images, model):
