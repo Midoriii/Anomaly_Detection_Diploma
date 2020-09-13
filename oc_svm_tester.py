@@ -136,11 +136,13 @@ def train_oc_svm(ok_data_features, faulty_data_features,
     # Train OC-SVM on OK image features
     oc_svm_model.fit(ok_data_features)
 
-    # Predict on training OK data and Faulty data
+    # Predict on training OK data, testing OK data and Faulty data
     # 1 for inliers, -1 for outliers
+    ok_predictions = oc_svm_model.predict(ok_data_features)
     testing_ok_predictions = oc_svm_model.predict(testing_ok_data_features)
     faulty_predictions = oc_svm_model.predict(faulty_data_features)
 
+    print("Training FP:" + str((ok_predictions == -1).sum()))
     print("FP:" + str((testing_ok_predictions == -1).sum()))
     print("FN:" + str((faulty_predictions == 1).sum()))
 
