@@ -1,0 +1,1190 @@
+
+#MODEL
+Basic_Even_Deeper
+
+
+Value of nu: 0.9
+
+BSE:
+Training FP:124
+FP:32
+FN:0
+
+SE:
+Training FP:124
+FP:29
+FN:0
+
+Value of nu: 0.7
+
+BSE:
+Training FP:96
+FP:26
+FN:6
+
+SE:
+Training FP:96
+FP:21
+FN:0
+
+Value of nu: 0.5
+
+BSE:
+Training FP:69
+FP:21
+FN:9
+
+SE:
+Training FP:69
+FP:16
+FN:0
+
+Value of nu: 0.4
+
+BSE:
+Training FP:55
+FP:17
+FN:9
+
+SE:
+Training FP:55
+FP:9
+FN:0
+
+Value of nu: 0.3
+
+BSE:
+Training FP:42
+FP:12
+FN:9
+
+SE:
+Training FP:42
+FP:6
+FN:1
+
+Value of nu: 0.25
+
+BSE:
+Training FP:34
+FP:8
+FN:9
+
+SE:
+Training FP:34
+FP:5
+FN:1
+
+Value of nu: 0.2
+
+BSE:
+Training FP:28
+FP:7
+FN:18
+
+SE:
+Training FP:28
+FP:4
+FN:2
+
+Value of nu: 0.1
+
+BSE:
+Training FP:14
+FP:2
+FN:21
+
+SE:
+Training FP:15
+FP:2
+FN:9
+
+Value of nu: 0.05
+
+BSE:
+Training FP:7
+FP:1
+FN:22
+
+SE:
+Training FP:6
+FP:1
+FN:15
+
+Value of nu: 0.02
+
+BSE:
+Training FP:4
+FP:1
+FN:23
+
+SE:
+Training FP:3
+FP:1
+FN:19
+
+Value of nu: 0.01
+
+BSE:
+Training FP:0
+FP:0
+FN:23
+
+SE:
+Training FP:0
+FP:0
+FN:23
+
+Value of nu: 0.001
+
+BSE:
+Training FP:0
+FP:0
+FN:23
+
+SE:
+Training FP:0
+FP:0
+FN:23
+
+#MODEL
+Basic
+
+
+Value of nu: 0.9
+
+BSE:
+Training FP:125
+FP:33
+FN:0
+
+SE:
+Training FP:124
+FP:31
+FN:0
+
+Value of nu: 0.7
+
+BSE:
+Training FP:95
+FP:25
+FN:3
+
+SE:
+Training FP:97
+FP:24
+FN:0
+
+Value of nu: 0.5
+
+BSE:
+Training FP:68
+FP:18
+FN:9
+
+SE:
+Training FP:69
+FP:16
+FN:0
+
+Value of nu: 0.4
+
+BSE:
+Training FP:55
+FP:14
+FN:9
+
+SE:
+Training FP:55
+FP:12
+FN:0
+
+Value of nu: 0.3
+
+BSE:
+Training FP:41
+FP:9
+FN:9
+
+SE:
+Training FP:41
+FP:7
+FN:0
+
+Value of nu: 0.25
+
+BSE:
+Training FP:36
+FP:9
+FN:9
+
+SE:
+Training FP:36
+FP:6
+FN:0
+
+Value of nu: 0.2
+
+BSE:
+Training FP:27
+FP:7
+FN:17
+
+SE:
+Training FP:28
+FP:4
+FN:2
+
+Value of nu: 0.1
+
+BSE:
+Training FP:15
+FP:2
+FN:21
+
+SE:
+Training FP:15
+FP:2
+FN:8
+
+Value of nu: 0.05
+
+BSE:
+Training FP:7
+FP:2
+FN:22
+
+SE:
+Training FP:7
+FP:1
+FN:18
+
+Value of nu: 0.02
+
+BSE:
+Training FP:3
+FP:1
+FN:23
+
+SE:
+Training FP:2
+FP:0
+FN:23
+
+Value of nu: 0.01
+
+BSE:
+Training FP:2
+FP:0
+FN:23
+
+SE:
+Training FP:2
+FP:0
+FN:23
+
+Value of nu: 0.001
+
+BSE:
+Training FP:2
+FP:0
+FN:23
+
+SE:
+Training FP:2
+FP:0
+FN:23
+
+#MODEL
+HF_Deeper
+
+
+Value of nu: 0.9
+
+BSE:
+Training FP:124
+FP:32
+FN:0
+
+SE:
+Training FP:125
+FP:30
+FN:0
+
+Value of nu: 0.7
+
+BSE:
+Training FP:96
+FP:26
+FN:4
+
+SE:
+Training FP:96
+FP:21
+FN:0
+
+Value of nu: 0.5
+
+BSE:
+Training FP:68
+FP:22
+FN:9
+
+SE:
+Training FP:69
+FP:16
+FN:0
+
+Value of nu: 0.4
+
+BSE:
+Training FP:55
+FP:16
+FN:9
+
+SE:
+Training FP:55
+FP:9
+FN:0
+
+Value of nu: 0.3
+
+BSE:
+Training FP:41
+FP:11
+FN:9
+
+SE:
+Training FP:42
+FP:6
+FN:0
+
+Value of nu: 0.25
+
+BSE:
+Training FP:35
+FP:9
+FN:9
+
+SE:
+Training FP:35
+FP:6
+FN:1
+
+Value of nu: 0.2
+
+BSE:
+Training FP:27
+FP:7
+FN:14
+
+SE:
+Training FP:30
+FP:4
+FN:1
+
+Value of nu: 0.1
+
+BSE:
+Training FP:14
+FP:2
+FN:21
+
+SE:
+Training FP:14
+FP:3
+FN:6
+
+Value of nu: 0.05
+
+BSE:
+Training FP:6
+FP:1
+FN:21
+
+SE:
+Training FP:6
+FP:1
+FN:12
+
+Value of nu: 0.02
+
+BSE:
+Training FP:2
+FP:1
+FN:23
+
+SE:
+Training FP:3
+FP:1
+FN:17
+
+Value of nu: 0.01
+
+BSE:
+Training FP:0
+FP:0
+FN:23
+
+SE:
+Training FP:2
+FP:0
+FN:23
+
+Value of nu: 0.001
+
+BSE:
+Training FP:0
+FP:0
+FN:23
+
+SE:
+Training FP:2
+FP:0
+FN:23
+
+#MODEL
+LF_Deeper
+
+
+Value of nu: 0.9
+
+BSE:
+Training FP:123
+FP:33
+FN:0
+
+SE:
+Training FP:123
+FP:29
+FN:0
+
+Value of nu: 0.7
+
+BSE:
+Training FP:96
+FP:25
+FN:5
+
+SE:
+Training FP:96
+FP:23
+FN:0
+
+Value of nu: 0.5
+
+BSE:
+Training FP:68
+FP:22
+FN:6
+
+SE:
+Training FP:69
+FP:10
+FN:0
+
+Value of nu: 0.4
+
+BSE:
+Training FP:55
+FP:16
+FN:9
+
+SE:
+Training FP:55
+FP:9
+FN:0
+
+Value of nu: 0.3
+
+BSE:
+Training FP:43
+FP:13
+FN:9
+
+SE:
+Training FP:41
+FP:5
+FN:0
+
+Value of nu: 0.25
+
+BSE:
+Training FP:33
+FP:9
+FN:9
+
+SE:
+Training FP:34
+FP:4
+FN:0
+
+Value of nu: 0.2
+
+BSE:
+Training FP:29
+FP:7
+FN:10
+
+SE:
+Training FP:29
+FP:4
+FN:0
+
+Value of nu: 0.1
+
+BSE:
+Training FP:13
+FP:2
+FN:20
+
+SE:
+Training FP:13
+FP:4
+FN:1
+
+Value of nu: 0.05
+
+BSE:
+Training FP:6
+FP:1
+FN:21
+
+SE:
+Training FP:7
+FP:1
+FN:3
+
+Value of nu: 0.02
+
+BSE:
+Training FP:3
+FP:1
+FN:23
+
+SE:
+Training FP:3
+FP:0
+FN:4
+
+Value of nu: 0.01
+
+BSE:
+Training FP:1
+FP:0
+FN:23
+
+SE:
+Training FP:0
+FP:0
+FN:8
+
+Value of nu: 0.001
+
+BSE:
+Training FP:1
+FP:0
+FN:23
+
+SE:
+Training FP:0
+FP:0
+FN:8
+
+#MODEL
+High_Stride
+
+
+Value of nu: 0.9
+
+BSE:
+Training FP:124
+FP:29
+FN:0
+
+SE:
+Training FP:124
+FP:31
+FN:0
+
+Value of nu: 0.7
+
+BSE:
+Training FP:96
+FP:22
+FN:2
+
+SE:
+Training FP:97
+FP:20
+FN:0
+
+Value of nu: 0.5
+
+BSE:
+Training FP:70
+FP:17
+FN:9
+
+SE:
+Training FP:69
+FP:15
+FN:0
+
+Value of nu: 0.4
+
+BSE:
+Training FP:55
+FP:13
+FN:9
+
+SE:
+Training FP:56
+FP:13
+FN:0
+
+Value of nu: 0.3
+
+BSE:
+Training FP:42
+FP:9
+FN:9
+
+SE:
+Training FP:42
+FP:7
+FN:0
+
+Value of nu: 0.25
+
+BSE:
+Training FP:34
+FP:9
+FN:10
+
+SE:
+Training FP:35
+FP:4
+FN:0
+
+Value of nu: 0.2
+
+BSE:
+Training FP:28
+FP:5
+FN:17
+
+SE:
+Training FP:28
+FP:3
+FN:0
+
+Value of nu: 0.1
+
+BSE:
+Training FP:12
+FP:2
+FN:22
+
+SE:
+Training FP:14
+FP:1
+FN:0
+
+Value of nu: 0.05
+
+BSE:
+Training FP:5
+FP:1
+FN:22
+
+SE:
+Training FP:8
+FP:0
+FN:0
+
+Value of nu: 0.02
+
+BSE:
+Training FP:5
+FP:0
+FN:12
+
+SE:
+Training FP:4
+FP:0
+FN:0
+
+Value of nu: 0.01
+
+BSE:
+Training FP:3
+FP:0
+FN:16
+
+SE:
+Training FP:5
+FP:0
+FN:0
+
+Value of nu: 0.001
+
+BSE:
+Training FP:5
+FP:0
+FN:15
+
+SE:
+Training FP:7
+FP:0
+FN:0
+
+#MODEL
+High_Stride_Transpose
+
+
+Value of nu: 0.9
+
+BSE:
+Training FP:123
+FP:30
+FN:0
+
+SE:
+Training FP:124
+FP:31
+FN:0
+
+Value of nu: 0.7
+
+BSE:
+Training FP:96
+FP:23
+FN:2
+
+SE:
+Training FP:97
+FP:21
+FN:0
+
+Value of nu: 0.5
+
+BSE:
+Training FP:70
+FP:17
+FN:9
+
+SE:
+Training FP:69
+FP:14
+FN:0
+
+Value of nu: 0.4
+
+BSE:
+Training FP:54
+FP:13
+FN:9
+
+SE:
+Training FP:55
+FP:12
+FN:0
+
+Value of nu: 0.3
+
+BSE:
+Training FP:41
+FP:9
+FN:11
+
+SE:
+Training FP:42
+FP:6
+FN:0
+
+Value of nu: 0.25
+
+BSE:
+Training FP:35
+FP:9
+FN:14
+
+SE:
+Training FP:35
+FP:4
+FN:1
+
+Value of nu: 0.2
+
+BSE:
+Training FP:27
+FP:6
+FN:17
+
+SE:
+Training FP:27
+FP:4
+FN:5
+
+Value of nu: 0.1
+
+BSE:
+Training FP:13
+FP:2
+FN:22
+
+SE:
+Training FP:14
+FP:2
+FN:16
+
+Value of nu: 0.05
+
+BSE:
+Training FP:7
+FP:2
+FN:23
+
+SE:
+Training FP:7
+FP:0
+FN:23
+
+Value of nu: 0.02
+
+BSE:
+Training FP:4
+FP:1
+FN:23
+
+SE:
+Training FP:4
+FP:0
+FN:23
+
+Value of nu: 0.01
+
+BSE:
+Training FP:0
+FP:0
+FN:23
+
+SE:
+Training FP:1
+FP:0
+FN:23
+
+Value of nu: 0.001
+
+BSE:
+Training FP:0
+FP:0
+FN:23
+
+SE:
+Training FP:4
+FP:0
+FN:23
+
+#MODEL
+Transpose
+
+
+Value of nu: 0.9
+
+BSE:
+Training FP:124
+FP:34
+FN:0
+
+SE:
+Training FP:125
+FP:33
+FN:0
+
+Value of nu: 0.7
+
+BSE:
+Training FP:96
+FP:28
+FN:0
+
+SE:
+Training FP:96
+FP:26
+FN:0
+
+Value of nu: 0.5
+
+BSE:
+Training FP:68
+FP:21
+FN:6
+
+SE:
+Training FP:68
+FP:19
+FN:0
+
+Value of nu: 0.4
+
+BSE:
+Training FP:55
+FP:19
+FN:6
+
+SE:
+Training FP:55
+FP:9
+FN:0
+
+Value of nu: 0.3
+
+BSE:
+Training FP:43
+FP:16
+FN:6
+
+SE:
+Training FP:41
+FP:7
+FN:0
+
+Value of nu: 0.25
+
+BSE:
+Training FP:35
+FP:14
+FN:6
+
+SE:
+Training FP:38
+FP:6
+FN:0
+
+Value of nu: 0.2
+
+BSE:
+Training FP:28
+FP:10
+FN:6
+
+SE:
+Training FP:28
+FP:5
+FN:0
+
+Value of nu: 0.1
+
+BSE:
+Training FP:13
+FP:9
+FN:6
+
+SE:
+Training FP:13
+FP:2
+FN:0
+
+Value of nu: 0.05
+
+BSE:
+Training FP:9
+FP:6
+FN:3
+
+SE:
+Training FP:10
+FP:2
+FN:0
+
+Value of nu: 0.02
+
+BSE:
+Training FP:8
+FP:7
+FN:2
+
+SE:
+Training FP:8
+FP:2
+FN:0
+
+Value of nu: 0.01
+
+BSE:
+Training FP:6
+FP:7
+FN:2
+
+SE:
+Training FP:9
+FP:2
+FN:0
+
+Value of nu: 0.001
+
+BSE:
+Training FP:10
+FP:7
+FN:2
+
+SE:
+Training FP:11
+FP:1
+FN:0
+
+#MODEL
+Siamese BSE:
+
+Value of nu: 0.9
+
+Training FP:123
+FP:33
+FN:0
+
+Value of nu: 0.7
+
+Training FP:96
+FP:20
+FN:0
+
+Value of nu: 0.5
+
+Training FP:66
+FP:10
+FN:0
+
+Value of nu: 0.4
+
+Training FP:57
+FP:9
+FN:0
+
+Value of nu: 0.3
+
+Training FP:40
+FP:5
+FN:0
+
+Value of nu: 0.25
+
+Training FP:34
+FP:4
+FN:0
+
+Value of nu: 0.2
+
+Training FP:28
+FP:4
+FN:0
+
+Value of nu: 0.1
+
+Training FP:12
+FP:3
+FN:0
+
+Value of nu: 0.05
+
+Training FP:9
+FP:3
+FN:0
+
+Value of nu: 0.02
+
+Training FP:9
+FP:3
+FN:0
+
+Value of nu: 0.01
+
+Training FP:10
+FP:3
+FN:0
+
+Value of nu: 0.001
+
+Training FP:14
+FP:3
+FN:0
+
+#MODEL
+Siamese SE:
+
+Value of nu: 0.9
+
+Training FP:123
+FP:30
+FN:0
+
+Value of nu: 0.7
+
+Training FP:97
+FP:23
+FN:0
+
+Value of nu: 0.5
+
+Training FP:69
+FP:16
+FN:0
+
+Value of nu: 0.4
+
+Training FP:53
+FP:13
+FN:0
+
+Value of nu: 0.3
+
+Training FP:44
+FP:10
+FN:0
+
+Value of nu: 0.25
+
+Training FP:34
+FP:7
+FN:0
+
+Value of nu: 0.2
+
+Training FP:28
+FP:6
+FN:0
+
+Value of nu: 0.1
+
+Training FP:19
+FP:5
+FN:0
+
+Value of nu: 0.05
+
+Training FP:12
+FP:4
+FN:0
+
+Value of nu: 0.02
+
+Training FP:13
+FP:4
+FN:0
+
+Value of nu: 0.01
+
+Training FP:16
+FP:4
+FN:0
+
+Value of nu: 0.001
+
+Training FP:21
+FP:3
+FN:0
+
+**********************************************************************************************************
+
+The SCRATCHes have been SUCCESSFULLY cleaned...
