@@ -4,7 +4,9 @@ and test their anomaly detection performance.
 
 Images of desired type (BSE vs SE, given by an argument -t) are loaded, and fed to
 selected model (by an argument -m). Training happens for a number of epochs given
-by an argument -e, and the loss used is selected by argument -l.
+by an argument -e, and the loss used is selected by argument -l. Data of lower
+dimensionality can also be selected by argument -d. Extended faulty data is
+selected by argument -f.
 
 After training, the model's loss and accuracy is plotted across the epochs and
 saved for further reviewing. The model itself and its embedding part are also
@@ -34,6 +36,9 @@ Arguments:
     included, are used.
     -l / --loss: Desired loss function for the model to use. Accepts: 'binary_crossentropy',
     'triplet_loss', 'contrastive_loss'.
+    -d / --dimensions: If 'low_dims' given, 384x384 images and prototypes are used
+    instead. Low dimensional data is already using 'extended' faulty data, so
+    this option requires the -f argument to be also set.
 '''
 import sys
 import getopt
@@ -75,14 +80,16 @@ desired_loss = "binary_crossentropy"
 # String for when plots and weights are saved. Indicates the loss used,
 # none loss mentioned = binary cross entropy, otherwise it's specified.
 loss_string = ""
+# String for when low dimensionality images are to be used
+low_dims = ""
 
 # Get full command-line arguments
 full_cmd_arguments = sys.argv
 # Keep all but the first
 argument_list = full_cmd_arguments[1:]
 # Getopt options
-short_options = "e:m:t:f:l:"
-long_options = ["epochs=", "model=", "type=", "faulty=", "loss="]
+short_options = "e:m:t:f:l:d:"
+long_options = ["epochs=", "model=", "type=", "faulty=", "loss=", "dimensions="]
 # Get the arguments and their respective values
 arguments, values = getopt.getopt(argument_list, short_options, long_options)
 
@@ -100,14 +107,27 @@ for current_argument, current_value in arguments:
         desired_loss = current_value
         if current_value == "contrastive_loss":
             loss_string = "_ConLoss"
+    elif current_argument in ("-d", "--dimensions"):
+        low_dims = current_value
 
+# Set the constants to 384x384 if low dimensional data is used
+if low_dims == 'low_dims':
+    IMG_WIDTH = 384
+    IMG_HEIGHT = 384
+    # Same old trick
+    low_dims = "low_dims_"
 
 # Loading data and labels - BSE or SE images as chosen in args
 if image_type == 'BSE':
     if extended_faulty == 'extended':
-        left_data = np.load('DataHuge/BSE_pairs_left_extended.npy')
-        right_data = np.load('DataHuge/BSE_pairs_right_extended.npy')
-        labels = np.load('DataHuge/BSE_pairs_labels_extended.npy')
+        if low_dims == "low_dims_":
+            left_data = np.load('DataHuge/low_dim_BSE_pairs_left_extended.npy')
+            right_data = np.load('DataHuge/low_dim_BSE_pairs_right_extended.npy')
+            labels = np.load('DataHuge/low_dim_BSE_pairs_labels_extended.npy')
+        else:
+            left_data = np.load('DataHuge/BSE_pairs_left_extended.npy')
+            right_data = np.load('DataHuge/BSE_pairs_right_extended.npy')
+            labels = np.load('DataHuge/BSE_pairs_labels_extended.npy')
         extended_faulty = "_extended"
     else:
         left_data = np.load('DataHuge/BSE_pairs_left.npy')
@@ -116,9 +136,14 @@ if image_type == 'BSE':
 
 elif image_type == 'SE':
     if extended_faulty == 'extended':
-        left_data = np.load('DataHuge/SE_pairs_left_extended.npy')
-        right_data = np.load('DataHuge/SE_pairs_right_extended.npy')
-        labels = np.load('DataHuge/SE_pairs_labels_extended.npy')
+        if low_dims == "low_dims_":
+            left_data = np.load('DataHuge/low_dim_SE_pairs_left_extended.npy')
+            right_data = np.load('DataHuge/low_dim_SE_pairs_right_extended.npy')
+            labels = np.load('DataHuge/low_dim_SE_pairs_labels_extended.npy')
+        else:
+            left_data = np.load('DataHuge/SE_pairs_left_extended.npy')
+            right_data = np.load('DataHuge/SE_pairs_right_extended.npy')
+            labels = np.load('DataHuge/SE_pairs_labels_extended.npy')
         extended_faulty = "_extended"
     else:
         left_data = np.load('DataHuge/SE_pairs_left.npy')
@@ -177,7 +202,7 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Losses/' + model.name + '_' + str(image_type)
+plt.savefig('Graphs/Losses/' + str(low_dims) + model.name + '_' + str(image_type)
             + str(extended_faulty) + str(loss_string) + '_e' + str(epochs)
             + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
 plt.close('all')
@@ -186,29 +211,43 @@ plt.plot(model.history.history['binary_accuracy'])
 plt.title('model accuracy - ' + model.name)
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Accuracies/' + model.name + '_' + str(image_type)
+plt.savefig('Graphs/Accuracies/' + str(low_dims) + model.name + '_' + str(image_type)
             + str(extended_faulty) + str(loss_string) + '_e' + str(epochs)
             + '_b' + str(batch_size) + '_acc.png', bbox_inches="tight")
 plt.close('all')
 
 # Save the model and embedding model architecture
-model.save_model(epochs, batch_size, image_type, extended_faulty, loss_string)
-model.save_embedding_model(epochs, batch_size, image_type, extended_faulty, loss_string)
+model.save_model(epochs, batch_size, image_type, extended_faulty, loss_string,
+                 low_dims)
+model.save_embedding_model(epochs, batch_size, image_type, extended_faulty, loss_string,
+                           low_dims)
 
 # For performance evaluation, load prototypes and each image and get anomaly score
 # Load prototypes and actual data sorted by methods
 if image_type == 'SE':
-    test_prototypes = np.load("Data/SE_prototypes.npy")
+    if low_dims == 'low_dims_':
+        test_prototypes = np.load("Data/low_dim_SE_prototypes.npy")
+    else:
+        test_prototypes = np.load("Data/SE_prototypes.npy")
     test_ok = np.load("Data/SE_ok.npy")
     if extended_faulty == '_extended':
-        test_faulty = np.load("Data/SE_faulty_extended.npy")
+        if low_dims == 'low_dim_':
+            test_faulty = np.load("Data/low_dim_SE_faulty_extended.npy")
+        else:
+            test_faulty = np.load("Data/SE_faulty_extended.npy")
     else:
         test_faulty = np.load("Data/SE_faulty.npy")
 else:
-    test_prototypes = np.load("Data/BSE_prototypes.npy")
+    if low_dims == 'low_dims_':
+        test_prototypes = np.load("Data/low_dim_BSE_prototypes.npy")
+    else:
+        test_prototypes = np.load("Data/BSE_prototypes.npy")
     test_ok = np.load("Data/BSE_ok.npy")
     if extended_faulty == '_extended':
-        test_faulty = np.load("Data/BSE_faulty_extended.npy")
+        if low_dims == 'low_dim_':
+            test_faulty = np.load("Data/low_dim_BSE_faulty_extended.npy")
+        else:
+            test_faulty = np.load("Data/BSE_faulty_extended.npy")
     else:
         test_faulty = np.load("Data/BSE_faulty.npy")
 # Lists to save scores
@@ -256,7 +295,7 @@ plt.title('Model ' + model.name + "_" + image_type)
 plt.yticks(np.arange(0.0, 6.0, 1.0))
 plt.ylabel('Anomaly Score')
 plt.xlabel('Index')
-plt.savefig('Graphs/SiameseScores/' + model.name + "_" + str(image_type)
+plt.savefig('Graphs/SiameseScores/' + str(low_dims) + model.name + "_" + str(image_type)
             + str(extended_faulty) + str(loss_string) + '_e' + str(epochs)
             + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
 plt.close('all')
