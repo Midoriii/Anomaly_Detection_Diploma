@@ -250,6 +250,7 @@ else:
             test_faulty = np.load("Data/BSE_faulty_extended.npy")
     else:
         test_faulty = np.load("Data/BSE_faulty.npy")
+
 # Lists to save scores
 anomaly_scores_ok = []
 anomaly_scores_faulty = []
