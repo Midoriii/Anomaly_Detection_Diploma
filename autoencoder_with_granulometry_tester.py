@@ -64,6 +64,7 @@ def main():
                 marker='o', edgecolors='black', label='Anomalous')
     plt.legend(loc='upper left')
     plt.title('AE & Granulo scores')
+    plt.yticks(np.arange(0.0, 4.0, 1.0), ('None', 'AE', 'GR', 'Both'))
     plt.ylabel('Result')
     plt.xlabel('Index')
     plt.show()
