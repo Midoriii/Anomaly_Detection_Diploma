@@ -233,7 +233,7 @@ if image_type == 'SE':
         test_ok = np.load("Data/SE_ok.npy")
 
     if extended_faulty == '_extended':
-        if low_dims == 'low_dim_':
+        if low_dims == 'low_dims_':
             test_faulty = np.load("Data/low_dim_SE_faulty_extended.npy")
         else:
             test_faulty = np.load("Data/SE_faulty_extended.npy")
@@ -248,7 +248,7 @@ else:
         test_ok = np.load("Data/BSE_ok.npy")
 
     if extended_faulty == '_extended':
-        if low_dims == 'low_dim_':
+        if low_dims == 'low_dims_':
             test_faulty = np.load("Data/low_dim_BSE_faulty_extended.npy")
         else:
             test_faulty = np.load("Data/BSE_faulty_extended.npy")
