@@ -12,6 +12,9 @@ func: get_predictions(data, prototypes, model, faulty, image_type):
         Afterwards for each image a verdict is printed in the command line. FP, FN
         and undecided images are also plotted.
 
+func: show_misclassified_image(img, msg): Helper function that shows misclassified
+        image and waits for a key press to continue.
+
 func: main(): Loads data, prototypes and model. Then calls get_predictions().
         Does so separately for each image type; BSE and SE.
 '''
