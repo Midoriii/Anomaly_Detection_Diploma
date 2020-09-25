@@ -227,9 +227,11 @@ model.save_embedding_model(epochs, batch_size, image_type, extended_faulty, loss
 if image_type == 'SE':
     if low_dims == 'low_dims_':
         test_prototypes = np.load("Data/low_dim_SE_prototypes.npy")
+        test_ok = np.load("Data/low_dim_SE_ok.npy")
     else:
         test_prototypes = np.load("Data/SE_prototypes.npy")
-    test_ok = np.load("Data/SE_ok.npy")
+        test_ok = np.load("Data/SE_ok.npy")
+
     if extended_faulty == '_extended':
         if low_dims == 'low_dim_':
             test_faulty = np.load("Data/low_dim_SE_faulty_extended.npy")
@@ -240,9 +242,11 @@ if image_type == 'SE':
 else:
     if low_dims == 'low_dims_':
         test_prototypes = np.load("Data/low_dim_BSE_prototypes.npy")
+        test_ok = np.load("Data/low_dim_BSE_ok.npy")
     else:
         test_prototypes = np.load("Data/BSE_prototypes.npy")
-    test_ok = np.load("Data/BSE_ok.npy")
+        test_ok = np.load("Data/BSE_ok.npy")
+        
     if extended_faulty == '_extended':
         if low_dims == 'low_dim_':
             test_faulty = np.load("Data/low_dim_BSE_faulty_extended.npy")
