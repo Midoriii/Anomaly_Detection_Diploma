@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l select=1:ncpus=1:mem=175gb:scratch_local=80gb
+#PBS -l select=1:ncpus=1:mem=40gb:scratch_local=80gb
 #PBS -l walltime=3:00:00
 
 
