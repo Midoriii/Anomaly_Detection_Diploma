@@ -35,7 +35,7 @@ Arguments:
     -f / --faulty: If 'extended' given, all faulty images, plugged central hole
     included, are used.
     -l / --loss: Desired loss function for the model to use. Accepts: 'binary_crossentropy',
-    'triplet_loss', 'contrastive_loss'.
+    'contrastive_loss'.
     -d / --dimensions: If 'low_dims' given, 384x384 images and prototypes are used
     instead. Low dimensional data is already using 'extended' faulty data, so
     this option requires the -f argument to be also set.
@@ -246,7 +246,7 @@ else:
     else:
         test_prototypes = np.load("Data/BSE_prototypes.npy")
         test_ok = np.load("Data/BSE_ok.npy")
-        
+
     if extended_faulty == '_extended':
         if low_dims == 'low_dim_':
             test_faulty = np.load("Data/low_dim_BSE_faulty_extended.npy")
