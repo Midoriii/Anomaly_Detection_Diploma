@@ -60,22 +60,22 @@ def get_predictions(data, data_prototypes, model, faulty="OK", img_type="BSE"):
         if score == 5:
             verdict = "OK"
             if faulty == "Faulty":
-                show_missclassified_image(data[i], "False Negative")
+                show_misclassified_image(data[i], "False Negative")
         elif score == 0:
             verdict = "Faulty"
             if faulty == "OK":
-                show_missclassified_image(data[i], "False Positive")
+                show_misclassified_image(data[i], "False Positive")
         else:
             verdict = "Don't know"
             if faulty == "OK":
-                show_missclassified_image(data[i], "Don't know, OK image")
+                show_misclassified_image(data[i], "Don't know, OK image")
             else:
-                show_missclassified_image(data[i], "Don't know, Faulty image")
+                show_misclassified_image(data[i], "Don't know, Faulty image")
 
         print(img_type + " " + faulty + " clonka #" + str(i) + ": " + verdict)
 
 
-def show_missclassified_image(img, msg):
+def show_misclassified_image(img, msg):
     '''
     Reshapes, stretches and finally shows given image.
 
