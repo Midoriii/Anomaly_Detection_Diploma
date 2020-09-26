@@ -36,6 +36,7 @@ Arguments:
     -d / --data: Type of data to be used, if none given, all of the OK images
     are used, regardless of type. If 'BSE' or 'SE' given, only such images are
     used. If 'filtered' is given only the hand-picked best OK images are used.
+    If 'low_dim' is given, lower dimensions variant of data is used.
     -f / --faulty: If 'extended' given, all of the faulty images are used for
     testing, including those with plugged central hole.
 '''
@@ -99,6 +100,10 @@ for current_argument, current_value in arguments:
         faulty_extended = current_value
 
 
+# If we want to use lower dimensional data, rewrite the constants
+if is_data_filtered == "low_dims":
+    IMG_WIDTH = 384
+    IMG_HEIGHT = 384
 
 # Load the previously stored data
 # If filtered is desired, load those
@@ -115,6 +120,10 @@ elif is_data_filtered == "BSE":
 elif is_data_filtered == "SE":
     train_input = np.load("Data/SE_ok.npy")
     is_data_filtered = "SE_"
+# If we want only the lower dimensional data
+elif is_data_filtered == "low_dims":
+    train_input = np.load("Data/low_dim_OK.npy")
+    is_data_filtered = "low_dims_"
 # Otherwise load the full OK data
 else:
     train_input = np.load("Data/OK.npy")
@@ -128,6 +137,8 @@ if faulty_extended == "extended":
         anomalous_input = np.load("Data/BSE_faulty_extended.npy")
     elif is_data_filtered == "SE_":
         anomalous_input = np.load("Data/SE_faulty_extended.npy")
+    elif is_data_filtered == "low_dims_":
+        anomalous_input = np.load("Data/low_dim_Faulty_extended.npy")
     else:
         anomalous_input = np.load("Data/Faulty_extended.npy")
     # Same thing is above with filtered data
@@ -138,6 +149,8 @@ else:
         anomalous_input = np.load("Data/BSE_faulty.npy")
     elif is_data_filtered == "SE_":
         anomalous_input = np.load("Data/SE_faulty.npy")
+    elif is_data_filtered == "low_dims_":
+        anomalous_input = np.load("Data/low_dim_Faulty.npy")
     else:
         anomalous_input = np.load("Data/Faulty.npy")
 
