@@ -51,6 +51,10 @@ class BasicAutoencoderDeeperExtraLLR(BaseModel):
 
         x = Conv2D(self.filters, (3, 3), padding='same')(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
+        x = MaxPooling2D((2, 2), padding='same')(x)
+
+        x = Conv2D(self.filters, (3, 3), padding='same')(x)
+        x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         self.encoded = MaxPooling2D((2, 2), padding='same')(x)
 
         # Keep the encoder part
@@ -58,6 +62,10 @@ class BasicAutoencoderDeeperExtraLLR(BaseModel):
 
         # And now the decoder part
         x = Conv2D(self.filters, (3, 3), padding='same')(self.encoded)
+        x = PReLU(alpha_initializer=Constant(value=0.25))(x)
+        x = UpSampling2D((2, 2))(x)
+
+        x = Conv2D(self.filters, (3, 3), padding='same')(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         x = UpSampling2D((2, 2))(x)
 
