@@ -65,7 +65,7 @@ def main():
     plt.legend(loc='upper left')
     plt.title('AE & Granulo scores')
     plt.yticks(np.arange(0.0, 4.0, 1.0), ('None', 'AE', 'GR', 'Both'))
-    plt.ylabel('Result')
+    plt.ylabel('Flagged as Anomaly by:')
     plt.xlabel('Index')
     plt.show()
 
