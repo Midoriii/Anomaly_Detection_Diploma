@@ -3,6 +3,8 @@ A script for loading previously saved siamese network and performing
 anomaly prediction with it. Prediction is done using prototypes, based on
 the same principle as in siamese_network_tester.py.
 
+Models and image dimensions can be manually altered by commenting / uncommenting.
+
 Script outputs results to command line, it also shows the False Negatives
 and False Positives, along with undecided images.
 
