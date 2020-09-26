@@ -26,8 +26,11 @@ from PIL import Image
 from keras.models import load_model
 
 # Constants
-IMG_WIDTH = 768
-IMG_HEIGHT = 768
+#IMG_WIDTH = 768
+#IMG_HEIGHT = 768
+# Low Dim variant
+IMG_WIDTH = 384
+IMG_HEIGHT = 384
 
 # Gets predictions for given data with given prototypes
 # Faulty and Img_Type denote the correctness of Data and type of Images
@@ -114,9 +117,11 @@ def main():
 
     # Loading best BSE Model
     # This one leaves 3 faulty as undecided
-    model = load_model("Model_Saves/Detailed/BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
+    #model = load_model("Model_Saves/Detailed/BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
     # This one leaves 3 OK as undecided
     #model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
+    # Best lowDim model - and overall best BSE
+    model = load_model("Model_Saves/Detailed/low_dims_SiameseNetLiteMultipleConvWithoutDropout_BSE_extended_e40_b4_detailed", compile=False)
 
     # First get the predictions for BSE OK and then Faulty images
     get_predictions(data_ok, data_prototypes, model, "OK", "BSE")
@@ -130,8 +135,10 @@ def main():
     data_ok = np.concatenate((data_ok, data_ok_extra))
     data_faulty = np.load("Data/SE_faulty_extended.npy")
     data_prototypes = np.load("Data/SE_prototypes.npy")
-    # Loading best SE model
-    model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConv_SE_extended_e40_b4_detailed", compile=False)
+    # Loading best 768x768 SE model
+    #model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConv_SE_extended_e40_b4_detailed", compile=False)
+    # Loading the overall best SE model, low dim 384x384 one
+    model = load_model("Model_Saves/Detailed/low_dims_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
 
     # Then the same for SE images
     get_predictions(data_ok, data_prototypes, model, "OK", "SE")
