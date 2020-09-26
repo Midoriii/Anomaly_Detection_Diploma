@@ -50,6 +50,7 @@ from Models.BasicAutoencoder import BasicAutoencoder
 from Models.BasicAutoencoder_LF import BasicAutoencoder_LF
 from Models.HighStrideAutoencoder import HighStrideAutoencoder
 from Models.BasicAutoencoderDeeper import BasicAutoencoderDeeper
+from Models.BasicAutoencoderDeeperExtraLLR import BasicAutoencoderDeeperExtraLLR
 from Models.HighStrideAutoencoderDeeper import HighStrideAutoencoderDeeper
 from Models.BasicAutoencoderEvenDeeper import BasicAutoencoderEvenDeeper
 from Models.BasicAutoencoderEvenDeeperLLR import BasicAutoencoderEvenDeeperLLR
@@ -172,6 +173,8 @@ elif desired_model == "HighStrideAutoencoderDeeper":
     model = HighStrideAutoencoderDeeper()
 elif desired_model == "BasicAutoencoderDeeper":
     model = BasicAutoencoderDeeper()
+elif desired_model == "BasicAutoencoderDeeperExtraLLR":
+    model = BasicAutoencoderDeeperExtraLLR()
 elif desired_model == "BasicAutoencoderEvenDeeper":
     model = BasicAutoencoderEvenDeeper()
 elif desired_model == "BasicAutoencoderEvenDeeperLLR":
