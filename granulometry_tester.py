@@ -34,7 +34,11 @@ Best performing params found so far are set as constants in this script. Unfortu
 it seems that the line between acceptable and faulty defects is too thin to be
 captured perfectly and even granulometry still leaves some false negatives. False
 positives are a lesser issue, but can stem from exceptionally low quality input image.
+
+
+Running the script with any argument will result in using low dimensionality data.
 '''
+import sys
 import numpy as np
 
 from cv2 import cv2
@@ -49,10 +53,8 @@ from granulo_utils import remove_center
 
 
 
-#IMG_WIDTH = 768
-#IMG_HEIGHT = 768
-IMG_WIDTH = 384
-IMG_HEIGHT = 384
+IMG_WIDTH = 768
+IMG_HEIGHT = 768
 # For binary thresholding
 THRESHOLD = 55
 # Score which indicated anomaly if val > score
@@ -61,21 +63,34 @@ SCORE_THRESHOLD = 50
 GROUP_SIZE = 151
 SUBTRACT_CONST = 60
 
-# Load OK BSE data
-#ok_data = np.load("Data/BSE_ok.npy")
-ok_data = np.load("Data/low_dim_BSE_ok.npy")
-# Load the extra OK BSE data
-#ok_data_extra = np.load("Data/BSE_ok_extra.npy")
-ok_data_extra = np.load("Data/low_dim_BSE_ok_extra.npy")
+# If any arugment given, use low dim data constants
+if len(sys.argv) > 1:
+    IMG_WIDTH = 384
+    IMG_HEIGHT = 384
+    SCORE_THRESHOLD = 25
+# And also load low dim data
+if len(sys.argv) > 1:
+    ok_data = np.load("Data/low_dim_BSE_ok.npy")
+    ok_data_extra = np.load("Data/low_dim_BSE_ok_extra.npy")
+    faulty_data = np.load("Data/low_dim_BSE_faulty_extended.npy")
+else:
+    # Load OK BSE data
+    ok_data = np.load("Data/BSE_ok.npy")
+    # Load the extra OK BSE data
+    ok_data_extra = np.load("Data/BSE_ok_extra.npy")
+    # Load also the anomalous BSE data
+    faulty_data = np.load("Data/BSE_faulty_extended.npy")
+
+
 # Concat both of the OK BSE data
 ok_data = np.concatenate((ok_data, ok_data_extra))
-# Load also the anomalous BSE data
-#faulty_data = np.load("Data/BSE_faulty_extended.npy")
-faulty_data = np.load("Data/low_dim_BSE_faulty_extended.npy")
 
 # Create structuring element for image opening
-#struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
-struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2, 2))
+# Low dim variant
+if len(sys.argv) > 1:
+    struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2, 2))
+else:
+    struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
 
 okay_scores = []
 # To count how many okay images were incorrectly flagged as faulty
@@ -120,5 +135,5 @@ print("Okay")
 print(okay_flagged)
 print(okay_scores)
 print("Faulty")
-print(faulty_flagged)
+print(str(faulty_flagged) + "/23")
 print(faulty_scores)
