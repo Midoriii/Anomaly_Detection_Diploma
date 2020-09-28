@@ -109,8 +109,9 @@ def main():
     siamese_net_eval(se_ok_data, se_ok_data_extra, se_faulty_data, siamese_SE, nu_values)
 
     # Now for low dim siamese models
-    global IMG_WIDTH = 384
-    global IMG_HEIGHT = 384
+    globals_list = globals()
+    globals_list['IMG_WIDTH'] = 384
+    globals_list['IMG_HEIGHT'] = 384
 
     siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dims_SiameseNetLiteMultipleConvWithoutDropout_BSE_extended_e40_b4_detailed", compile=False)
     print("\n#MODEL")
