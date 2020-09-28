@@ -3,7 +3,7 @@ A script for loading previously saved siamese network and performing
 anomaly prediction with it. Prediction is done using prototypes, based on
 the same principle as in siamese_network_tester.py.
 
-Models and image dimensions can be manually altered by commenting / uncommenting.
+If any argument is given, the scripts loads lower dimension data and models.
 
 Script outputs results to command line, it also shows the False Negatives
 and False Positives, along with undecided images.
@@ -20,6 +20,7 @@ func: show_misclassified_image(img, msg): Helper function that shows misclassifi
 func: main(): Loads data, prototypes and model. Then calls get_predictions().
         Does so separately for each image type; BSE and SE.
 '''
+import sys
 import numpy as np
 
 from cv2 import cv2
@@ -28,11 +29,8 @@ from PIL import Image
 from keras.models import load_model
 
 # Constants
-#IMG_WIDTH = 768
-#IMG_HEIGHT = 768
-# Low Dim variant
-IMG_WIDTH = 384
-IMG_HEIGHT = 384
+IMG_WIDTH = 768
+IMG_HEIGHT = 768
 
 # Gets predictions for given data with given prototypes
 # Faulty and Img_Type denote the correctness of Data and type of Images
@@ -108,47 +106,68 @@ def main():
     loads a siamese net model (hardcoded for simplicity). Finally for each image type,
     get_predictions() is called on OK data and then on Faulty data.
     '''
-    # Loading BSE data
-    #data_ok = np.load("Data/BSE_ok.npy")
-    data_ok = np.load("Data/low_dim_BSE_ok.npy")
-    # Loading the extra OK data for testing purposes
-    #data_ok_extra = np.load("Data/BSE_ok_extra.npy")
-    data_ok_extra = np.load("Data/low_dim_BSE_ok_extra.npy")
-    # Concat them both
-    data_ok = np.concatenate((data_ok, data_ok_extra))
-    #data_faulty = np.load("Data/BSE_faulty_extended.npy")
-    data_faulty = np.load("Data/low_dim_BSE_faulty_extended.npy")
-    #data_prototypes = np.load("Data/BSE_prototypes.npy")
-    data_prototypes = np.load("Data/low_dim_BSE_prototypes.npy")
+    # If any argument is given, work with low dim data
+    if len(sys.argv) > 1:
+        # Must change global constants to reflect working with low dim data
+        globals_list = globals()
+        globals_list['IMG_WIDTH'] = 384
+        globals_list['IMG_HEIGHT'] = 384
 
-    # Loading best BSE Model
-    # This one leaves 3 faulty as undecided
-    #model = load_model("Model_Saves/Detailed/BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
-    # This one leaves 6 OK as undecided
-    #model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
-    # Best lowDim model - and overall best BSE
-    model = load_model("Model_Saves/Detailed/low_dims_SiameseNetLiteMultipleConvWithoutDropout_BSE_extended_e40_b4_detailed", compile=False)
+        data_ok = np.load("Data/low_dim_BSE_ok.npy")
+        data_ok_extra = np.load("Data/low_dim_BSE_ok_extra.npy")
+        data_faulty = np.load("Data/low_dim_BSE_faulty_extended.npy")
+        data_prototypes = np.load("Data/low_dim_BSE_prototypes.npy")
+    else:
+        # Loading BSE data
+        data_ok = np.load("Data/BSE_ok.npy")
+        # Loading the extra OK data for testing purposes
+        data_ok_extra = np.load("Data/BSE_ok_extra.npy")
+        # Loading faulty data
+        data_faulty = np.load("Data/BSE_faulty_extended.npy")
+        # Loading prototypes
+        data_prototypes = np.load("Data/BSE_prototypes.npy")
+
+    # Concat the ok data
+    data_ok = np.concatenate((data_ok, data_ok_extra))
+
+    # Loading best BSE Models
+    # Low dims ?
+    if len(sys.argv) > 1:
+        # Best lowDim model - and overall best BSE
+        model = load_model("Model_Saves/Detailed/low_dims_SiameseNetLiteMultipleConvWithoutDropout_BSE_extended_e40_b4_detailed", compile=False)
+    else:
+        # This one leaves 3 faulty as undecided
+        #model = load_model("Model_Saves/Detailed/BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
+        # This one leaves 6 OK as undecided
+        model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
 
     # First get the predictions for BSE OK and then Faulty images
     get_predictions(data_ok, data_prototypes, model, "OK", "BSE")
     get_predictions(data_faulty, data_prototypes, model, "Faulty", "BSE")
 
     # Loading SE data
-    #data_ok = np.load("Data/SE_ok.npy")
-    data_ok = np.load("Data/low_dim_SE_ok.npy")
-    # Loading the extra OK data for testing purposes
-    data_ok_extra = np.load("Data/low_dim_SE_ok_extra.npy")
-    #data_ok_extra = np.load("Data/SE_ok_extra.npy")
-    # Concat them both
+    # Low dims ?
+    if len(sys.argv) > 1:
+        data_ok = np.load("Data/low_dim_SE_ok.npy")
+        data_ok_extra = np.load("Data/low_dim_SE_ok_extra.npy")
+        data_faulty = np.load("Data/low_dim_SE_faulty_extended.npy")
+        data_prototypes = np.load("Data/low_dim_SE_prototypes.npy")
+    else:
+        data_ok = np.load("Data/SE_ok.npy")
+        data_ok_extra = np.load("Data/SE_ok_extra.npy")
+        data_faulty = np.load("Data/SE_faulty_extended.npy")
+        data_prototypes = np.load("Data/SE_prototypes.npy")
+
+    # Concat the ok data
     data_ok = np.concatenate((data_ok, data_ok_extra))
-    #data_faulty = np.load("Data/SE_faulty_extended.npy")
-    data_faulty = np.load("Data/low_dim_SE_faulty_extended.npy")
-    #data_prototypes = np.load("Data/SE_prototypes.npy")
-    data_prototypes = np.load("Data/low_dim_SE_prototypes.npy")
-    # Loading best 768x768 SE model
-    #model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConv_SE_extended_e40_b4_detailed", compile=False)
-    # Loading the overall best SE model, low dim 384x384 one
-    model = load_model("Model_Saves/Detailed/low_dims_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
+
+    # Low dims ?
+    if len(sys.argv) > 1:
+        # Loading the overall best SE model, low dim 384x384 one
+        model = load_model("Model_Saves/Detailed/low_dims_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
+    else:
+        # Loading best 768x768 SE model
+        model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConv_SE_extended_e40_b4_detailed", compile=False)
 
     # Then the same for SE images
     get_predictions(data_ok, data_prototypes, model, "OK", "SE")
