@@ -49,8 +49,10 @@ from granulo_utils import remove_center
 
 
 
-IMG_WIDTH = 768
-IMG_HEIGHT = 768
+#IMG_WIDTH = 768
+#IMG_HEIGHT = 768
+IMG_WIDTH = 384
+IMG_HEIGHT = 384
 # For binary thresholding
 THRESHOLD = 55
 # Score which indicated anomaly if val > score
@@ -60,16 +62,20 @@ GROUP_SIZE = 151
 SUBTRACT_CONST = 60
 
 # Load OK BSE data
-ok_data = np.load("Data/BSE_ok.npy")
+#ok_data = np.load("Data/BSE_ok.npy")
+ok_data = np.load("Data/low_dim_BSE_ok.npy")
 # Load the extra OK BSE data
-ok_data_extra = np.load("Data/BSE_ok_extra.npy")
+#ok_data_extra = np.load("Data/BSE_ok_extra.npy")
+ok_data_extra = np.load("Data/low_dim_BSE_ok_extra.npy")
 # Concat both of the OK BSE data
 ok_data = np.concatenate((ok_data, ok_data_extra))
 # Load also the anomalous BSE data
-faulty_data = np.load("Data/BSE_faulty_extended.npy")
+#faulty_data = np.load("Data/BSE_faulty_extended.npy")
+faulty_data = np.load("Data/low_dim_BSE_faulty_extended.npy")
 
 # Create structuring element for image opening
-struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
+#struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
+struct_element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2, 2))
 
 okay_scores = []
 # To count how many okay images were incorrectly flagged as faulty
