@@ -39,10 +39,16 @@ def main():
     bse_ok_data = np.load("Data/BSE_ok.npy")
     bse_ok_data_extra = np.load("Data/BSE_ok_extra.npy")
     bse_faulty_data = np.load("Data/BSE_faulty_extended.npy")
+    bse_ok_data_ld = np.load("Data/low_dim_BSE_ok.npy")
+    bse_ok_data_extra_ld = np.load("Data/low_dim_BSE_ok_extra.npy")
+    bse_faulty_data_ld = np.load("Data/low_dim_BSE_faulty_extended.npy")
 
     se_ok_data = np.load("Data/SE_ok.npy")
     se_ok_data_extra = np.load("Data/SE_ok_extra.npy")
     se_faulty_data = np.load("Data/SE_faulty_extended.npy")
+    se_ok_data_ld = np.load("Data/low_dim_SE_ok.npy")
+    se_ok_data_extra_ld = np.load("Data/low_dim_SE_ok_extra.npy")
+    se_faulty_data_ld = np.load("Data/low_dim_SE_faulty_extended.npy")
 
     # Load the Encoding models
     AE_1 = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed", compile=False)
@@ -84,33 +90,37 @@ def main():
                          se_ok_data_extra_features, nu_val=nu_value)
 
 
-    # Load the BSE embedding model
+    # Load the BSE embedding models
     siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
-    #siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=false)
-    # Extract BSE data features from each type of data
-    bse_ok_data_features = extract_features(bse_ok_data, siamese_BSE)
-    bse_faulty_data_features = extract_features(bse_faulty_data, siamese_BSE)
-    bse_ok_data_extra_features = extract_features(bse_ok_data_extra, siamese_BSE)
-    # Iterate over possible 'nu' values even for Siamese nets
     print("\n#MODEL")
-    print("Siamese BSE:")
-    for nu_value in nu_values:
-        print("\nValue of nu: " + str(nu_value) + "\n")
-        train_oc_svm(bse_ok_data_features, bse_faulty_data_features,
-                     bse_ok_data_extra_features, nu_val=nu_value)
+    print("Basic Siamese lowDrop BSE:")
+    # Evaluate the model on several nu values
+    siamese_net_eval(bse_ok_data, bse_ok_data_extra, bse_faulty_data, siamese_BSE, nu_values)
+
+    siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
+    print("\n#MODEL")
+    print("Siamese Lite MultipleConv AltTwo BSE:")
+    siamese_net_eval(bse_ok_data, bse_ok_data_extra, bse_faulty_data, siamese_BSE, nu_values)
 
     # Load the SE embedding model
     siamese_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConv_SE_extended_e40_b4_detailed", compile=False)
-    # Extract SE data features too
-    se_ok_data_features = extract_features(se_ok_data, siamese_SE)
-    se_faulty_data_features = extract_features(se_faulty_data, siamese_SE)
-    se_ok_data_extra_features = extract_features(se_ok_data_extra, siamese_SE)
     print("\n#MODEL")
-    print("Siamese SE:")
-    for nu_value in nu_values:
-        print("\nValue of nu: " + str(nu_value) + "\n")
-        train_oc_svm(se_ok_data_features, se_faulty_data_features,
-                     se_ok_data_extra_features, nu_val=nu_value)
+    print("Siamese Lite MultipleConv SE:")
+    siamese_net_eval(se_ok_data, se_ok_data_extra, se_faulty_data, siamese_SE, nu_values)
+
+    # Now for low dim siamese models
+    global IMG_WIDTH = 384
+    global IMG_HEIGHT = 384
+
+    siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dims_SiameseNetLiteMultipleConvWithoutDropout_BSE_extended_e40_b4_detailed", compile=False)
+    print("\n#MODEL")
+    print("low dim Siamese Lite MultipleConv withoutDrop BSE:")
+    siamese_net_eval(bse_ok_data_ld, bse_ok_data_extra_ld, bse_faulty_data_ld, siamese_BSE, nu_values)
+
+    siamese_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dims_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
+    print("\n#MODEL")
+    print("low dim Siamese Lite MultipleConv withoutDrop SE:")
+    siamese_net_eval(se_ok_data_ld, se_ok_data_extra_ld, se_faulty_data_ld, siamese_SE, nu_values)
 
 
 
@@ -131,7 +141,7 @@ def train_oc_svm(ok_data_features, faulty_data_features,
         nu_val: OC-SVM parameter, refer to:
         https://scikit-learn.org/stable/modules/generated/sklearn.svm.OneClassSVM.html
     '''
-    # Create the OC-SVM model, gamma='auto' vs 'scale', 'auto' seems better
+    # Create the OC-SVM model, gamma='auto' vs 'scale'
     oc_svm_model = OneClassSVM(gamma='auto', nu=nu_val)
     # Train OC-SVM on OK image features
     oc_svm_model.fit(ok_data_features)
@@ -169,6 +179,32 @@ def extract_features(images, model):
     images_features = np.asarray(images_features)
     # Reshape to 2D for OC-SVM, -1 means 'make it fit'
     return images_features.reshape(images_features.shape[0], -1)
+
+
+def siamese_net_eval(ok_data, ok_extra_data, faulty_data, model, nu):
+    '''
+    Helper method for evaluating siamese nets. Extract features from given images
+    using given model and then tests the performance of OC-SVM on extracted features
+    through all nu values given.
+
+    Arguments:
+        ok_data: A numpy array of float32 [0,1] values representing training OK images.
+        ok_data_extra: A numpy array of float32 [0,1] values representing testing
+        OK images.
+        faulty_data: A numpy array of float32 [0,1] values representing testing
+        Faulty images.
+        model: An instantiated pretrained embedding or encoding model.
+        nu: A list of nu values for OC-SVM classifier.
+    '''
+    # Extract features using given model
+    ok_data_features = extract_features(ok_data, model)
+    faulty_data_features = extract_features(faulty_data, model)
+    ok_data_extra_features = extract_features(ok_data_extra, model)
+    # Train and test OC-SVM through several nu values
+    for nu_value in nu_values:
+        print("\nValue of nu: " + str(nu_value) + "\n")
+        train_oc_svm(se_ok_data_features, se_faulty_data_features,
+                     se_ok_data_extra_features, nu_val=nu_value)
 
 
 if __name__ == "__main__":
