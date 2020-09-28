@@ -182,7 +182,7 @@ def extract_features(images, model):
     return images_features.reshape(images_features.shape[0], -1)
 
 
-def siamese_net_eval(ok_data, ok_extra_data, faulty_data, model, nu):
+def siamese_net_eval(ok_data, ok_data_extra, faulty_data, model, nu_values):
     '''
     Helper method for evaluating siamese nets. Extract features from given images
     using given model and then tests the performance of OC-SVM on extracted features
@@ -195,7 +195,7 @@ def siamese_net_eval(ok_data, ok_extra_data, faulty_data, model, nu):
         faulty_data: A numpy array of float32 [0,1] values representing testing
         Faulty images.
         model: An instantiated pretrained embedding or encoding model.
-        nu: A list of nu values for OC-SVM classifier.
+        nu_values: A list of nu values for OC-SVM classifier.
     '''
     # Extract features using given model
     ok_data_features = extract_features(ok_data, model)
@@ -204,8 +204,8 @@ def siamese_net_eval(ok_data, ok_extra_data, faulty_data, model, nu):
     # Train and test OC-SVM through several nu values
     for nu_value in nu_values:
         print("\nValue of nu: " + str(nu_value) + "\n")
-        train_oc_svm(se_ok_data_features, se_faulty_data_features,
-                     se_ok_data_extra_features, nu_val=nu_value)
+        train_oc_svm(ok_data_features, faulty_data_features,
+                     ok_data_extra_features, nu_val=nu_value)
 
 
 if __name__ == "__main__":
