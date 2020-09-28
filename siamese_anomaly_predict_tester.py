@@ -124,7 +124,7 @@ def main():
     # Loading best BSE Model
     # This one leaves 3 faulty as undecided
     #model = load_model("Model_Saves/Detailed/BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
-    # This one leaves 3 OK as undecided
+    # This one leaves 6 OK as undecided
     #model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
     # Best lowDim model - and overall best BSE
     model = load_model("Model_Saves/Detailed/low_dims_SiameseNetLiteMultipleConvWithoutDropout_BSE_extended_e40_b4_detailed", compile=False)
