@@ -7,7 +7,7 @@ work for little award to make it any other way.
 
 Data and Models are first loaded, then features are extracted from the data
 using the model's predict function. OC-SVM is trained using the given best params
-and it's predictions are then used to plot misclassified images (duh). 
+and it's predictions are then used to plot misclassified images (duh).
 
 
 func: extract_features(images, model): Extracts and returns features from given
@@ -56,11 +56,12 @@ def main():
     se_faulty_ld = np.load("Data/low_dim_SE_faulty_extended.npy")
 
     # Load desired models
-    ae_model = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_HighStrideAutoencoderDeeper_e400_b4_detailed", compile=False)
+    ae_model_bse = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_TransposeConvAutoencoder_e400_b4_detailed", compile=False)
+    ae_model_se = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_HighStrideAutoencoderDeeper_e400_b4_detailed", compile=False)
     siam_model_bse = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
     low_dim_siam_model_se = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dims_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
     # Their best nu values
-    nu_values = [0.25, 0.02, 0.01, 0.01]
+    nu_values = [0.01, 0.02, 0.01, 0.01]
     # Their best gammas
     gamma_values = ['scale', 'scale', 'auto', 'auto']
 
@@ -69,12 +70,11 @@ def main():
     # the effort when this is also decently readable and extendable.
 
     # First Autoencoders on both BSE and SE data
-    print("AE:")
-    print("BSE:")
-    model_eval(bse_ok, bse_ok_extra, bse_faulty, ae_model,
+    print("Transpose AE BSE:")
+    model_eval(bse_ok, bse_ok_extra, bse_faulty, ae_model_bse,
                nu_values[0], gamma_values[0])
-    print("SE")
-    model_eval(se_ok, se_ok_extra, se_faulty, ae_model,
+    print("High Stride AE SE:")
+    model_eval(se_ok, se_ok_extra, se_faulty, ae_model_se,
                nu_values[1], gamma_values[1])
 
     # Then Siamese nets
