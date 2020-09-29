@@ -8,6 +8,7 @@ If any argument is given, the scripts loads lower dimension data and models.
 Script outputs results to command line, it also shows the False Negatives
 and False Positives, along with undecided images.
 
+
 func: get_predictions(data, prototypes, model, faulty, image_type):
         Method that performs the prediction itself. Given data, prototypes and model,
         it compares each image with each of the 5 prototypes by using model.predict().
