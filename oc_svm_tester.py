@@ -184,7 +184,7 @@ def extract_features(images, model):
 
 def siamese_net_eval(ok_data, ok_data_extra, faulty_data, model, nu_values):
     '''
-    Helper method for evaluating siamese nets. Extract features from given images
+    Helper method for evaluating siamese nets. Extracts features from given images
     using given model and then tests the performance of OC-SVM on extracted features
     through all nu values given.
 
