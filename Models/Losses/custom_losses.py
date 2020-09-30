@@ -40,4 +40,4 @@ def triplet_loss(y_true, y_pred, alpha=1.0):
     pos_distance = K.sum(K.square(anchor - pos), axis=-1)
     neg_distance = K.sum(K.square(anchor - neg), axis=-1)
     # Return loss
-    return K.maximum(0, pos_distance - neg_distance + alpha)
+    return K.maximum(0.0, pos_distance - neg_distance + alpha)
