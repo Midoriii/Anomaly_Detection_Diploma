@@ -42,18 +42,18 @@ class BaseTripletModel:
     def predict(self, predict_input):
         return self.embedding.predict(predict_input)
 
-    def save_weights(self, epoch, batch_size, type, extended_faulty, low_dims):
-        self.model.save_weights('Model_Saves/Weights/' + str(low_dims) + self.name + '_' + str(type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
+    def save_weights(self, epoch, batch_size, image_type, extended_faulty, low_dims):
+        self.model.save_weights('Model_Saves/Weights/' + str(low_dims) + self.name + '_' + str(image_type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
         return
 
-    def save_model(self, epoch, batch_size, type, extended_faulty, low_dims):
-        self.model.save('Model_Saves/Detailed/' + str(low_dims) + self.name + '_' + str(type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
+    def save_model(self, epoch, batch_size, image_type, extended_faulty, low_dims):
+        self.model.save('Model_Saves/Detailed/' + str(low_dims) + self.name + '_' + str(image_type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
         return
 
-    def save_embedding_weights(self, epoch, batch_size, type, extended_faulty, low_dims):
-        self.embedding.save_weights('Model_Saves/Weights/embedding_' + str(low_dims) + self.name + '_' + str(type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
+    def save_embedding_weights(self, epoch, batch_size, image_type, extended_faulty, low_dims):
+        self.embedding.save_weights('Model_Saves/Weights/embedding_' + str(low_dims) + self.name + '_' + str(image_type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_weights.h5')
         return
 
-    def save_embedding_model(self, epoch, batch_size, type, extended_faulty, low_dims):
-        self.embedding.save('Model_Saves/Detailed/embedding_' + str(low_dims) + self.name + '_' + str(type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
+    def save_embedding_model(self, epoch, batch_size, image_type, extended_faulty, low_dims):
+        self.embedding.save('Model_Saves/Detailed/embedding_' + str(low_dims) + self.name + '_' + str(image_type) + str(extended_faulty) + '_e' + str(epoch) + '_b' + str(batch_size) + '_detailed')
         return
