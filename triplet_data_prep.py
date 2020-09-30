@@ -1,5 +1,12 @@
 '''
-bla
+The purpose of this script is to make input data for Triplet Networks out of
+provided images. Currently generates triplets randomly, while maintaning the data ratio.
+Currently uses low dim images for triplets.
+
+Creates three datasets, for testing purposes, to test the role of randomness when
+generating triplets.
+
+Creates 5000 anchor-pos-neg triplets. 
 '''
 from random import sample
 
@@ -13,7 +20,8 @@ def main():
     '''
     Main function that load the BSE and SE OK and Faulty data and calls
     make_triplets() on training partition of the data. Resulting triplets are
-    then saved.
+    then saved. I've chosen to create three datasets to test the role of randomness
+    when creating the triplets.
     '''
     # Load BSE data - ok and extended faulty, leave ok extra for testing purposes
     # First try using low dim ones as they worked better for Siamese nets
@@ -45,7 +53,11 @@ def main():
 
 def make_triplets(ok_images, faulty_images):
     '''
-    bla
+    Method that makes triplets out of given OK and Faulty data. Anchors are randomly
+    chosen (while maintaining the original data ratio) from OK or Faulty images,
+    positive and negative are then sampled accordingly. Prints out the number
+    of OK and Faulty anchors. Returns a list containing three numpy arrays of anchor,
+    positive and negatives images.
 
     Arguments:
         ok_images: A numpy array of float32 [0,1] values representing OK images.
