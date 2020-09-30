@@ -1,9 +1,9 @@
 '''
 
 '''
-import numpy as np
-
 from random import sample
+
+import numpy as np
 
 # Constants
 TRIPLETS_NUMBER = 5000
@@ -64,10 +64,10 @@ def make_triplets(ok_images, faulty_images):
     while len(anchor) < TRIPLETS_NUMBER:
         # Choose between OK or Faulty anchor image by randomly picking a number in range
         # [0, len(ok) + len(faulty)], where if number < len(ok) -> pick OK, else pick Faulty
-        ok_or_faulty = sample(list(range(0, ok_images.shape[0] + faulty_images.shape[0])))
+        ok_or_faulty = sample(list(range(0, ok_images.shape[0] + faulty_images.shape[0])), 1)
         # Pick Anchor by the random index and decide if it's OK or Faulty
         # If the anchor is an OK image ..
-        if ok_or_faulty < ok_images.shape[0]:
+        if ok_or_faulty[0] < ok_images.shape[0]:
             # Produce 2 OK samples as anchor and pos, and 1 Faulty as neg
             anchor_pos_samples = sample(ok_idx, 2)
             neg_sample = sample(faulty_idx, 1)
