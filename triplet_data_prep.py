@@ -3,6 +3,10 @@
 '''
 import numpy as np
 
+from random import sample
+
+# Constants
+TRIPLETS_NUMBER = 5000
 
 
 def main():
@@ -23,17 +27,18 @@ def main():
     bse_faulty = bse_faulty[:int(0.75*len(bse_faulty))]
     se_ok = se_ok[:int(0.8*len(se_ok))]
     se_faulty = se_faulty[:int(0.75*len(se_faulty))]
-    # Make triplets
-    bse_anchor, bse_pos, bse_neg = make_triplets(bse_ok, bse_faulty)
-    se_anchor, se_pos, se_neg = make_triplets(se_ok, se_faulty)
-    # Save them
-    np.save("DataTriplet/low_dim_BSE_triplet_anchor.npy", bse_anchor)
-    np.save("DataTriplet/low_dim_BSE_triplet_pos.npy", bse_pos)
-    np.save("DataTriplet/low_dim_BSE_triplet_neg.npy", bse_neg)
+    # Make triplets .. three times for good measure
+    for i in range(1, 4):
+        bse_anchor, bse_pos, bse_neg = make_triplets(bse_ok, bse_faulty)
+        se_anchor, se_pos, se_neg = make_triplets(se_ok, se_faulty)
+        # Save them
+        np.save("DataTriplet/low_dim_BSE_triplet_anchor_" + str(i) + ".npy", bse_anchor)
+        np.save("DataTriplet/low_dim_BSE_triplet_pos_" + str(i) + ".npy", bse_pos)
+        np.save("DataTriplet/low_dim_BSE_triplet_neg_" + str(i) + ".npy", bse_neg)
 
-    np.save("DataTriplet/low_dim_SE_triplet_anchor.npy", se_anchor)
-    np.save("DataTriplet/low_dim_SE_triplet_pos.npy", se_pos)
-    np.save("DataTriplet/low_dim_SE_triplet_neg.npy", se_neg)
+        np.save("DataTriplet/low_dim_SE_triplet_anchor_" + str(i) + ".npy", se_anchor)
+        np.save("DataTriplet/low_dim_SE_triplet_pos_" + str(i) + ".npy", se_pos)
+        np.save("DataTriplet/low_dim_SE_triplet_neg_" + str(i) + ".npy", se_neg)
 
 
 def make_triplets(ok_images, faulty_images):
@@ -47,20 +52,41 @@ def make_triplets(ok_images, faulty_images):
     Returns:
         triplets: [anchor, pos, neg] - Three lists of numpy arrays representing images.
     '''
+    # Result lists
     anchor = []
     pos = []
     neg = []
-    # Append ok and faulty together to helper array
+    # Create index lists for image sampling
+    ok_idx = list(range(0, ok_images.shape[0]))
+    faulty_idx = list(range(0, faulty_images.shape[0]))
 
-    # While number of triplets < 5k
-    # Choose random index from 0 to len(helper_array)
+    # While number of triplets < desired number
+    while len(anchor) < TRIPLETS_NUMBER:
+        # Choose between OK or Faulty anchor image by randomly picking a number in range
+        # [0, len(ok) + len(faulty)], where if number < len(ok) -> pick OK, else pick Faulty
+        ok_or_faulty = sample(list(range(0, ok_images.shape[0] + faulty_images.shape[0])))
+        # Pick Anchor by the random index and decide if it's OK or Faulty
+        # If the anchor is an OK image ..
+        if ok_or_faulty < ok_images.shape[0]:
+            # Produce 2 OK samples as anchor and pos, and 1 Faulty as neg
+            anchor_pos_samples = sample(ok_idx, 2)
+            neg_sample = sample(faulty_idx, 1)
+            # Append the data on sampled indexes
+            anchor.append(ok_images[anchor_pos_samples[0]])
+            pos.append(ok_images[anchor_pos_samples[1]])
+            neg.append(faulty_images[neg_sample[0]])
+        else:
+            # Produce 2 Faulty samples as anchor and pos, and 1 OK as neg
+            anchor_pos_samples = sample(faulty_idx, 2)
+            neg_sample = sample(ok_idx, 1)
+            # Append the data on sampled indexes
+            anchor.append(ok_images[anchor_pos_samples[0]])
+            pos.append(ok_images[anchor_pos_samples[1]])
+            neg.append(faulty_images[neg_sample[0]])
 
-    # Pick Anchor by the random index and decide if it's OK or Faulty
-
-    # Get another Positive image and a Negative one
-
-    # Append each to their respective lists
-
+    print(len(anchor))
+    print(len(pos))
+    print(len(neg))
     # Concat the lists turned to numpy arrays and return them
     return [np.array(anchor), np.array(pos), np.array(neg)]
 
