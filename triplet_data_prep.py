@@ -59,6 +59,9 @@ def make_triplets(ok_images, faulty_images):
     # Create index lists for image sampling
     ok_idx = list(range(0, ok_images.shape[0]))
     faulty_idx = list(range(0, faulty_images.shape[0]))
+    # Counters of how many OK and how many Faulty anchors were selected
+    ok_anchor_counter = 0
+    faulty_anchor_counter = 0
 
     # While number of triplets < desired number
     while len(anchor) < TRIPLETS_NUMBER:
@@ -75,6 +78,7 @@ def make_triplets(ok_images, faulty_images):
             anchor.append(ok_images[anchor_pos_samples[0]])
             pos.append(ok_images[anchor_pos_samples[1]])
             neg.append(faulty_images[neg_sample[0]])
+            ok_anchor_counter += 1
         else:
             # Produce 2 Faulty samples as anchor and pos, and 1 OK as neg
             anchor_pos_samples = sample(faulty_idx, 2)
@@ -83,7 +87,12 @@ def make_triplets(ok_images, faulty_images):
             anchor.append(ok_images[anchor_pos_samples[0]])
             pos.append(ok_images[anchor_pos_samples[1]])
             neg.append(faulty_images[neg_sample[0]])
+            faulty_anchor_counter += 1
 
+    print("OK anchors:")
+    print(ok_anchor_counter)
+    print("Faulty anchors:")
+    print(faulty_anchor_counter)
     print(len(anchor))
     print(len(pos))
     print(len(neg))
