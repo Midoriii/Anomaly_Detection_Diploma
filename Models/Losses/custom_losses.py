@@ -19,3 +19,25 @@ def contrastive_loss(y_true, y_pred):
     # Loss itself
     return K.mean((1 - y_true) * K.square(y_pred)
                   + y_true * K.square(K.maximum(margin - y_pred, 0)))
+
+
+def triplet_loss(y_true, y_pred, alpha=1.0):
+    '''
+    A basic triplet loss function
+
+    Arguments:
+        y_true: Required by Keras, not used here.
+        y_pred: A list of three numpy arrays, representing embeddings of Anchor,
+        Positive and Negative Input.
+        alpha: Desired margin to be learned between anchor-pos and anchor-neg distances.
+
+    Returns:
+        loss: A real number, value of loss.
+    '''
+    # Unpack the y_pred
+    anchor, pos, neg = y_pred
+    # Calculate Square Euclidean distances
+    pos_distance = K.sum(K.square(anchor - pos), axis=-1)
+    neg_distance = K.sum(K.square(anchor - neg), axis=-1)
+    # Return loss
+    return K.maximum(0, pos_distance - neg_distance + alpha)
