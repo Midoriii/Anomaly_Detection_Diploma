@@ -6,7 +6,7 @@ Currently uses low dim images for triplets.
 Creates three datasets, for testing purposes, to test the role of randomness when
 generating triplets.
 
-Creates 5000 anchor-pos-neg triplets. 
+Creates 5000 anchor-pos-neg triplets.
 '''
 from random import sample
 
