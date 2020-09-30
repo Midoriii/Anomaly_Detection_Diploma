@@ -1,5 +1,5 @@
 '''
-
+bla
 '''
 from random import sample
 
@@ -29,7 +29,9 @@ def main():
     se_faulty = se_faulty[:int(0.75*len(se_faulty))]
     # Make triplets .. three times for good measure
     for i in range(1, 4):
+        print("BSE " + str(i) + ":")
         bse_anchor, bse_pos, bse_neg = make_triplets(bse_ok, bse_faulty)
+        print("SE " + str(i) + ":")
         se_anchor, se_pos, se_neg = make_triplets(se_ok, se_faulty)
         # Save them
         np.save("DataTriplet/low_dim_BSE_triplet_anchor_" + str(i) + ".npy", bse_anchor)
@@ -43,7 +45,7 @@ def main():
 
 def make_triplets(ok_images, faulty_images):
     '''
-
+    bla
 
     Arguments:
         ok_images: A numpy array of float32 [0,1] values representing OK images.
