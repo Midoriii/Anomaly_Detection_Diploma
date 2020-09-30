@@ -84,9 +84,9 @@ def make_triplets(ok_images, faulty_images):
             anchor_pos_samples = sample(faulty_idx, 2)
             neg_sample = sample(ok_idx, 1)
             # Append the data on sampled indexes
-            anchor.append(ok_images[anchor_pos_samples[0]])
-            pos.append(ok_images[anchor_pos_samples[1]])
-            neg.append(faulty_images[neg_sample[0]])
+            anchor.append(faulty_images[anchor_pos_samples[0]])
+            pos.append(faulty_images[anchor_pos_samples[1]])
+            neg.append(ok_images[neg_sample[0]])
             faulty_anchor_counter += 1
 
     print("OK anchors:")
