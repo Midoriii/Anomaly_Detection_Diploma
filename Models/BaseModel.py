@@ -36,7 +36,7 @@ class BaseModel:
 
 
     def train_net(self, training_input, epochs, batch_size):
-        self.history = self.model.fit(training_input, training_input, epochs = epochs, batch_size=batch_size)
+        self.history = self.model.fit(training_input, training_input, epochs=epochs, batch_size=batch_size)
         return
 
 

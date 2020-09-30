@@ -40,7 +40,7 @@ class BaseSiameseModel:
         return
 
     def train_net(self, training_input_left, training_input_right, training_labels, epochs, batch_size):
-        self.history = self.model.fit([training_input_left, training_input_right], training_labels, epochs = epochs, batch_size=batch_size)
+        self.history = self.model.fit([training_input_left, training_input_right], training_labels, epochs=epochs, batch_size=batch_size)
         return
 
     def predict(self, predict_input, prototype):
