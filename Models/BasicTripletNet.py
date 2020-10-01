@@ -4,7 +4,7 @@ Basic Triplet Network
 import numpy as np
 import keras.backend as K
 
-from Models.BaseSiameseModel import BaseTripletModel
+from Models.BaseTripletModel import BaseTripletModel
 
 from keras.layers import Input, Reshape, Dense, Flatten
 from keras.layers import Activation, Conv2D, MaxPooling2D, BatchNormalization, Dropout, ReLU
