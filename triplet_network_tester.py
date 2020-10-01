@@ -5,10 +5,13 @@ import sys
 import getopt
 import numpy as np
 import matplotlib.pyplot as plt
+#import tensorflow as tf
 
 from Models.BasicTripletNet import BasicTripletNet
 
 
+# To allows tensor unpacking
+#tf.enable_eager_execution()
 # Constants
 IMG_WIDTH = 384
 IMG_HEIGHT = 384

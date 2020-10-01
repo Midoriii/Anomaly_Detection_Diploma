@@ -35,7 +35,9 @@ def triplet_loss(y_true, y_pred, alpha=1.0):
         loss: A real number, value of loss.
     '''
     # Unpack the y_pred
-    anchor, pos, neg = y_pred
+    anchor = y_pred[0]
+    pos = y_pred[1]
+    neg = y_pred[2]
     # Calculate Square Euclidean distances
     pos_distance = K.sum(K.square(anchor - pos), axis=-1)
     neg_distance = K.sum(K.square(anchor - neg), axis=-1)
