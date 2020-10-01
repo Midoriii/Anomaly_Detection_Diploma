@@ -24,7 +24,7 @@ mkdir -p Graphs/Losses
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python triplet_network_tester.py -e 5 -m BasicTripletNet -t SE -s 1
+python triplet_network_tester.py -e 5 -m BasicTripletNet -t BSE -s 2
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
 cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/
