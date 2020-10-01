@@ -1,7 +1,7 @@
 '''
 bla
 '''
-import numpy as np
+import sys
 import getopt
 import numpy as np
 import matplotlib.pyplot as plt
