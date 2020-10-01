@@ -43,7 +43,7 @@ for current_argument, current_value in arguments:
     elif current_argument in ("-t", "--type"):
         image_type = current_value
     elif current_argument in ("-s", "--imset"):
-        image_set = current_value
+        image_set = str(current_value)
 
 
 # Load appropriate data, selected by image type and image set number
