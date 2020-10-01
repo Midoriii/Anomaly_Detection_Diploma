@@ -8,6 +8,10 @@ import matplotlib.pyplot as plt
 #import tensorflow as tf
 
 from Models.BasicTripletNet import BasicTripletNet
+from Models.BasicTripletNetHLR import BasicTripletNetHLR
+from Models.BasicTripletNetLLR import BasicTripletNetLLR
+from Models.BasicTripletNetDeeper import BasicTripletNetDeeper
+from Models.TripletNetMultipleConv import TripletNetMultipleConv
 
 
 # To allows tensor unpacking
@@ -66,6 +70,14 @@ else:
 # Choose desired model
 if desired_model == "BasicTripletNet":
     model = BasicTripletNet()
+elif desired_model == "BasicTripletNetHLR":
+    model = BasicTripletNetHLR()
+elif desired_model == "BasicTripletNetLLR":
+    model = BasicTripletNetLLR()
+elif desired_model == "BasicTripletNetDeeper":
+    model = BasicTripletNetDeeper()
+elif desired_model == "TripletNetMultipleConv":
+    model = TripletNetMultipleConv()
 else:
     print("Wrong Model specified!")
     sys.exit()
