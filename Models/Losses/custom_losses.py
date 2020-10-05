@@ -34,12 +34,13 @@ def triplet_loss(y_true, y_pred, alpha=1.0):
     Returns:
         loss: A real number, value of loss.
     '''
+    batch_length = y_pred.shape.as_list()[-1]
     # Unpack the y_pred
-    anchor = y_pred[0]
-    pos = y_pred[1]
-    neg = y_pred[2]
+    anchor = y_pred(:, 0:int(batch_length * 1/3))
+    pos = y_pred(:, int(batch_length * 1/3):int(batch_length * 2/3))
+    neg = y_pred(:, int(batch_length * 2/3):int(batch_length))
     # Calculate Square Euclidean distances
-    pos_distance = K.sum(K.square(anchor - pos), axis=-1)
-    neg_distance = K.sum(K.square(anchor - neg), axis=-1)
+    pos_distance = K.sum(K.square(anchor - pos), axis=1)
+    neg_distance = K.sum(K.square(anchor - neg), axis=1)
     # Return loss
     return K.maximum(0.0, pos_distance - neg_distance + alpha)

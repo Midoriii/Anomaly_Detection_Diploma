@@ -6,7 +6,7 @@ import keras.backend as K
 
 from Models.BaseTripletModel import BaseTripletModel
 
-from keras.layers import Input, Reshape, Dense, Flatten
+from keras.layers import Input, Reshape, Dense, Flatten, concatenate
 from keras.layers import Activation, Conv2D, MaxPooling2D, BatchNormalization, Dropout, ReLU
 from keras.models import Model, Sequential
 from keras.callbacks import History
@@ -68,7 +68,7 @@ class BasicTripletNetLLR(BaseTripletModel):
         # Keep the anchor branch as embedding model for predictions
         self.embedding = Model(anchor_input, anchor_embedding)
         # Output a list containing the embeddings
-        output = [anchor_embedding, pos_embedding, neg_embedding]
+        output = concatenate([anchor_embedding, pos_embedding, neg_embedding], axis=-1)
 
         self.model = Model(input, output)
         return
