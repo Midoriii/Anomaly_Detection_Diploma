@@ -100,3 +100,46 @@ plt.close('all')
 # Save the model and embedding model architecture
 model.save_model(epochs, batch_size, image_type, image_set, dimensions)
 model.save_embedding_model(epochs, batch_size, image_type, image_set, dimensions)
+
+
+# Load data by image type for predictions
+if image_type == "BSE":
+    ok_data = np.load("Data/low_dim_BSE_ok.npy")
+    ok_data_extra = np.load("Data/low_dim_BSE_ok_extra.npy")
+    faulty_data = np.load("Data/low_dim_BSE_faulty_extended.npy")
+else:
+    ok_data = np.load("Data/low_dim_SE_ok.npy")
+    ok_data_extra = np.load("Data/low_dim_SE_ok_extra.npy")
+    faulty_data = np.load("Data/low_dim_SE_faulty_extended.npy")
+
+
+# Try some predictions
+test_anchor = model.predict(ok_data[24].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+test_prototype = model.predict(ok_data[48].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+print("OK and OK:")
+print(np.sum(np.square(test_anchor - test_prototype)))
+
+test_anchor = model.predict(ok_data[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+test_prototype = model.predict(ok_data[86].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+print("OK and OK:")
+print(np.sum(np.square(test_anchor - test_prototype)))
+
+test_anchor = model.predict(ok_data[37].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+test_prototype = model.predict(faulty_data[7].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+print("OK and Faulty:")
+print(np.sum(np.square(test_anchor - test_prototype)))
+
+test_anchor = model.predict(faulty_data[14].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+test_prototype = model.predict(faulty_data[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+print("Faulty and Faulty:")
+print(np.sum(np.square(test_anchor - test_prototype)))
+
+test_anchor = model.predict(faulty_data[11].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+test_prototype = model.predict(ok_data[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+print("Faulty and OK:")
+print(np.sum(np.square(test_anchor - test_prototype)))
+
+test_anchor = model.predict(faulty_data[11].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+test_prototype = model.predict(faulty_data[8].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+print("Faulty and Faulty:")
+print(np.sum(np.square(test_anchor - test_prototype)))
