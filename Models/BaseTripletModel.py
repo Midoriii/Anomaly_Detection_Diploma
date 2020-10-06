@@ -34,8 +34,8 @@ class BaseTripletModel:
         return
 
     def train_net(self, anchor, positive, negative, epochs, batch_size):
-        # A dummy labels array
-        labels = [np.empty((anchor.shape[0], 1)), np.empty((positive.shape[0], 1)), np.empty((negative.shape[0], 1))]
+        # A dummy labels list
+        labels = np.empty((anchor.shape[0], 1))
         self.history = self.model.fit([anchor, positive, negative], labels, epochs=epochs, batch_size=batch_size)
         return
 
