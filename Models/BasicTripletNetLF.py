@@ -1,5 +1,5 @@
 '''
-Basic Triplet Network, slightly deeper
+Basic Triplet Network, with lowered filter number.
 '''
 import numpy as np
 import keras.backend as K
@@ -13,11 +13,11 @@ from keras.callbacks import History
 
 
 
-class BasicTripletNetDeeper(BaseTripletModel):
+class BasicTripletNetLF(BaseTripletModel):
 
     def __init__(self):
         super().__init__()
-        self.name = "BasicTripletNetDeeper"
+        self.name = "BasicTripletNetLF"
         self.lr = 0.0001
         return
 
@@ -29,7 +29,13 @@ class BasicTripletNetDeeper(BaseTripletModel):
         dropout_rate = 0.5
 
         triplet_model_branch_sequence = [
-            Conv2D(64, (3, 3), padding='same'),
+            Conv2D(32, (3, 3), padding='same'),
+            Dropout(rate=dropout_rate),
+            BatchNormalization(),
+            ReLU(),
+            MaxPooling2D((2, 2), padding='same'),
+
+            Conv2D(32, (3, 3), padding='same'),
             Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
@@ -42,31 +48,13 @@ class BasicTripletNetDeeper(BaseTripletModel):
             MaxPooling2D((2, 2), padding='same'),
 
             Conv2D(64, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
-            Conv2D(128, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
-            Conv2D(128, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
-            Conv2D(128, (3, 3), padding='same'),
             Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
             Flatten(),
-            Dense(64, activation='sigmoid')
+            Dense(32, activation='sigmoid')
         ]
 
         branch = Sequential(triplet_model_branch_sequence)

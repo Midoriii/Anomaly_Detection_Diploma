@@ -18,7 +18,7 @@ class BasicTripletNetHLR(BaseTripletModel):
     def __init__(self):
         super().__init__()
         self.name = "BasicTripletNetHLR"
-        self.lr = 0.0001
+        self.lr = 0.001
         return
 
     def create_net(self, input_shape):

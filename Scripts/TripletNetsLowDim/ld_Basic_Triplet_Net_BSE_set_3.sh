@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q gpu
 #PBS -l select=1:ncpus=1:mem=70gb:ngpus=1:scratch_local=80gb
-#PBS -l walltime=10:00:00
+#PBS -l walltime=12:00:00
 
 
 DATADIR=/storage/brno6/home/apprehension
@@ -24,7 +24,7 @@ mkdir -p Graphs/Losses
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python triplet_network_tester.py -e 40 -m BasicTripletNet -t BSE -s 3
+python triplet_network_tester.py -e 60 -m BasicTripletNet -t BSE -s 3
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
 cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/

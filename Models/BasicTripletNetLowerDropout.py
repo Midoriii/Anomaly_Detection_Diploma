@@ -1,5 +1,5 @@
 '''
-Basic Triplet Network, slightly deeper
+Basic Triplet Network with lowered dropout rate,
 '''
 import numpy as np
 import keras.backend as K
@@ -13,11 +13,11 @@ from keras.callbacks import History
 
 
 
-class BasicTripletNetDeeper(BaseTripletModel):
+class BasicTripletNetLowerDropout(BaseTripletModel):
 
     def __init__(self):
         super().__init__()
-        self.name = "BasicTripletNetDeeper"
+        self.name = "BasicTripletNetLowerDropout"
         self.lr = 0.0001
         return
 
@@ -26,7 +26,7 @@ class BasicTripletNetDeeper(BaseTripletModel):
         pos_input = Input(shape=input_shape)
         neg_input = Input(shape=input_shape)
 
-        dropout_rate = 0.5
+        dropout_rate = 0.2
 
         triplet_model_branch_sequence = [
             Conv2D(64, (3, 3), padding='same'),
@@ -36,18 +36,6 @@ class BasicTripletNetDeeper(BaseTripletModel):
             MaxPooling2D((2, 2), padding='same'),
 
             Conv2D(64, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
-            Conv2D(64, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
-            Conv2D(128, (3, 3), padding='same'),
             Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),

@@ -7,9 +7,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from Models.BasicTripletNet import BasicTripletNet
+from Models.BasicTripletNetLowerDropout import BasicTripletNetLowerDropout
 from Models.BasicTripletNetHLR import BasicTripletNetHLR
+from Models.BasicTripletNetHLRLowerDropout import BasicTripletNetHLRLowerDropout
 from Models.BasicTripletNetLLR import BasicTripletNetLLR
 from Models.BasicTripletNetDeeper import BasicTripletNetDeeper
+from Models.BasicTripletNetLF import BasicTripletNetLF
 from Models.TripletNetMultipleConv import TripletNetMultipleConv
 
 
@@ -67,12 +70,18 @@ else:
 # Choose desired model
 if desired_model == "BasicTripletNet":
     model = BasicTripletNet()
+elif desired_model == "BasicTripletNetLowerDropout":
+    model = BasicTripletNetLowerDropout()
 elif desired_model == "BasicTripletNetHLR":
     model = BasicTripletNetHLR()
+elif desired_model == "BasicTripletNetHLRLowerDropout":
+    model = BasicTripletNetHLRLowerDropout()
 elif desired_model == "BasicTripletNetLLR":
     model = BasicTripletNetLLR()
 elif desired_model == "BasicTripletNetDeeper":
     model = BasicTripletNetDeeper()
+elif desired_model == "BasicTripletNetLF":
+    model = BasicTripletNetLF()
 elif desired_model == "TripletNetMultipleConv":
     model = TripletNetMultipleConv()
 else:
