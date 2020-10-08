@@ -7,13 +7,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from Models.BasicTripletNet import BasicTripletNet
+from Models.BasicTripletNetLite import BasicTripletNetLite
 from Models.BasicTripletNetLowerDropout import BasicTripletNetLowerDropout
+from Models.BasicTripletNetWoutDropout import BasicTripletNetWoutDropout
 from Models.BasicTripletNetHLR import BasicTripletNetHLR
 from Models.BasicTripletNetHLRLowerDropout import BasicTripletNetHLRLowerDropout
 from Models.BasicTripletNetLLR import BasicTripletNetLLR
 from Models.BasicTripletNetDeeper import BasicTripletNetDeeper
 from Models.BasicTripletNetLF import BasicTripletNetLF
+from Models.BasicTripletNetHF import BasicTripletNetHF
 from Models.TripletNetMultipleConv import TripletNetMultipleConv
+from Models.TripletNetLiteMultipleConv import TripletNetLiteMultipleConv
 
 
 # Constants
@@ -70,8 +74,12 @@ else:
 # Choose desired model
 if desired_model == "BasicTripletNet":
     model = BasicTripletNet()
+elif desired_model == "BasicTripletNetLite":
+    model = BasicTripletNetLite()
 elif desired_model == "BasicTripletNetLowerDropout":
     model = BasicTripletNetLowerDropout()
+elif desired_model == "BasicTripletNetWoutDropout":
+    model = BasicTripletNetWoutDropout()
 elif desired_model == "BasicTripletNetHLR":
     model = BasicTripletNetHLR()
 elif desired_model == "BasicTripletNetHLRLowerDropout":
@@ -82,8 +90,12 @@ elif desired_model == "BasicTripletNetDeeper":
     model = BasicTripletNetDeeper()
 elif desired_model == "BasicTripletNetLF":
     model = BasicTripletNetLF()
+elif desired_model == "BasicTripletNetHF":
+    model = BasicTripletNetHF()
 elif desired_model == "TripletNetMultipleConv":
     model = TripletNetMultipleConv()
+elif desired_model == "TripletNetLiteMultipleConv":
+    model = TripletNetLiteMultipleConv()
 else:
     print("Wrong Model specified!")
     sys.exit()
@@ -126,29 +138,31 @@ else:
 test_anchor = model.predict(ok_data[24].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 test_prototype = model.predict(ok_data[48].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 print("OK and OK:")
-print(np.sum(np.square(test_anchor - test_prototype), axis=1))
+print(np.sum(np.square(test_anchor - test_prototype)))
 
 test_anchor = model.predict(ok_data[2].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 test_prototype = model.predict(ok_data[86].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 print("OK and OK:")
-print(np.sum(np.square(test_anchor - test_prototype), axis=1))
+print(np.sum(np.square(test_anchor - test_prototype)))
 
 test_anchor = model.predict(ok_data[37].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 test_prototype = model.predict(faulty_data[7].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 print("OK and Faulty:")
-print(np.sum(np.square(test_anchor - test_prototype), axis=1))
+print(np.sum(np.square(test_anchor - test_prototype)))
 
 test_anchor = model.predict(faulty_data[14].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 test_prototype = model.predict(faulty_data[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 print("Faulty and Faulty:")
-print(np.sum(np.square(test_anchor - test_prototype), axis=1))
+print(np.sum(np.square(test_anchor - test_prototype)))
 
 test_anchor = model.predict(faulty_data[11].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 test_prototype = model.predict(ok_data[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 print("Faulty and OK:")
-print(np.sum(np.square(test_anchor - test_prototype), axis=1))
+print(np.sum(np.square(test_anchor - test_prototype)))
 
 test_anchor = model.predict(faulty_data[11].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 test_prototype = model.predict(faulty_data[8].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 print("Faulty and Faulty:")
-print(np.sum(np.square(test_anchor - test_prototype), axis=1))
+print(np.sum(np.square(test_anchor - test_prototype)))
+
+# Try some training triplets

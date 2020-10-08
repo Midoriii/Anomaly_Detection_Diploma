@@ -1,5 +1,5 @@
 '''
-Basic Triplet Network with lowered dropout rate
+Basic Triplet Network with more filters
 '''
 import numpy as np
 import keras.backend as K
@@ -13,11 +13,11 @@ from keras.callbacks import History
 
 
 
-class BasicTripletNetLowerDropout(BaseTripletModel):
+class BasicTripletNetHF(BaseTripletModel):
 
     def __init__(self):
         super().__init__()
-        self.name = "BasicTripletNetLowerDropout"
+        self.name = "BasicTripletNetHF"
         self.lr = 0.0001
         return
 
@@ -26,7 +26,7 @@ class BasicTripletNetLowerDropout(BaseTripletModel):
         pos_input = Input(shape=input_shape)
         neg_input = Input(shape=input_shape)
 
-        dropout_rate = 0.2
+        dropout_rate = 0.5
 
         triplet_model_branch_sequence = [
             Conv2D(64, (3, 3), padding='same'),
@@ -35,12 +35,6 @@ class BasicTripletNetLowerDropout(BaseTripletModel):
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
-            Conv2D(64, (3, 3), padding='same'),
-            Dropout(rate=dropout_rate),
-            BatchNormalization(),
-            ReLU(),
-            MaxPooling2D((2, 2), padding='same'),
-
             Conv2D(128, (3, 3), padding='same'),
             Dropout(rate=dropout_rate),
             BatchNormalization(),
@@ -48,13 +42,19 @@ class BasicTripletNetLowerDropout(BaseTripletModel):
             MaxPooling2D((2, 2), padding='same'),
 
             Conv2D(128, (3, 3), padding='same'),
+            Dropout(rate=dropout_rate),
+            BatchNormalization(),
+            ReLU(),
+            MaxPooling2D((2, 2), padding='same'),
+
+            Conv2D(256, (3, 3), padding='same'),
             Dropout(rate=dropout_rate),
             BatchNormalization(),
             ReLU(),
             MaxPooling2D((2, 2), padding='same'),
 
             Flatten(),
-            Dense(64, activation='sigmoid')
+            Dense(128, activation='sigmoid')
         ]
 
         branch = Sequential(triplet_model_branch_sequence)

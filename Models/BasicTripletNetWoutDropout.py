@@ -1,5 +1,5 @@
 '''
-Basic Triplet Network with lowered dropout rate
+Basic Triplet Network with no dropout rate
 '''
 import numpy as np
 import keras.backend as K
@@ -13,11 +13,11 @@ from keras.callbacks import History
 
 
 
-class BasicTripletNetLowerDropout(BaseTripletModel):
+class BasicTripletNetWoutDropout(BaseTripletModel):
 
     def __init__(self):
         super().__init__()
-        self.name = "BasicTripletNetLowerDropout"
+        self.name = "BasicTripletNetWithoutDropout"
         self.lr = 0.0001
         return
 
@@ -26,7 +26,7 @@ class BasicTripletNetLowerDropout(BaseTripletModel):
         pos_input = Input(shape=input_shape)
         neg_input = Input(shape=input_shape)
 
-        dropout_rate = 0.2
+        dropout_rate = 0.0
 
         triplet_model_branch_sequence = [
             Conv2D(64, (3, 3), padding='same'),

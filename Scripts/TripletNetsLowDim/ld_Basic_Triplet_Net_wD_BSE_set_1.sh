@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -q gpu
-#PBS -l select=1:ncpus=1:mem=90gb:ngpus=1:scratch_local=80gb
+#PBS -l select=1:ncpus=1:mem=70gb:ngpus=1:scratch_local=80gb
 #PBS -l walltime=12:00:00
 
 
@@ -24,7 +24,7 @@ mkdir -p Graphs/Losses
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python triplet_network_tester.py -e 60 -m TripletNetMultipleConv -t BSE -s 1
+python triplet_network_tester.py -e 60 -m BasicTripletNetWoutDropout -t BSE -s 1
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
 cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/
