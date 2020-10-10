@@ -128,10 +128,64 @@ if image_type == "BSE":
     ok_data = np.load("Data/low_dim_BSE_ok.npy")
     ok_data_extra = np.load("Data/low_dim_BSE_ok_extra.npy")
     faulty_data = np.load("Data/low_dim_BSE_faulty_extended.npy")
+    prototype_data = no.load("Data/low_dim_BSE_prototypes.npy")
 else:
     ok_data = np.load("Data/low_dim_SE_ok.npy")
     ok_data_extra = np.load("Data/low_dim_SE_ok_extra.npy")
     faulty_data = np.load("Data/low_dim_SE_faulty_extended.npy")
+    prototype_data = no.load("Data/low_dim_SE_prototypes.npy")
+
+# Concat the ok data .. unlike in Siamese tester, where only the original OK data is used.
+ok_data = np.concatenate((ok_data, ok_data_extra))
+# Lists to save scores
+anomaly_scores_ok = []
+anomaly_scores_faulty = []
+
+# For each okay image, get the score with each prototype
+for sample in range(0, ok_data.shape[0]):
+    score = 0
+    for proto in range(0, prototype_data.shape[0]):
+        # It's rounded because we care only about 0s or 1s as predicted labels
+        score += np.around(model.predict(ok_data[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                                         prototype_data[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+    anomaly_scores_ok.append(score)
+
+# For each faulty image, get the score with each prototype
+for sample in range(0, faulty_data.shape[0]):
+    score = 0
+    for proto in range(0, prototype_data.shape[0]):
+        score += np.around(model.predict(faulty_data[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
+                                         prototype_data[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+    anomaly_scores_faulty.append(score)
+
+anomaly_scores_ok = np.array(anomaly_scores_ok)
+anomaly_scores_faulty = np.array(anomaly_scores_faulty)
+
+# Set colors for graphs based on image type
+if image_type == 'BSE':
+    scatter_color = 'b'
+else:
+    scatter_color = 'g'
+
+# X axis coords representing indices of the individual images
+x = range(0, len(anomaly_scores_ok))
+z = range(0 + len(anomaly_scores_ok),
+          len(anomaly_scores_ok) + len(anomaly_scores_faulty))
+
+# Plot the resulting numbers stored in array
+plt.scatter(x, anomaly_scores_ok, c=scatter_color,
+            s=10, marker='o', edgecolors='black', label='OK')
+plt.scatter(z, anomaly_scores_faulty, c='r',
+            s=10, marker='o', edgecolors='black', label='Anomalous')
+plt.legend(loc='upper left')
+plt.title('Model ' + model.name + "_" + image_type)
+plt.yticks(np.arange(0.0, 6.0, 1.0))
+plt.ylabel('Anomaly Score')
+plt.xlabel('Index')
+plt.savefig('Graphs/TripletScores/' + dimensions + model.name + "_" + str(image_type)
+            + "_set_" + image_set + '_e' + str(epochs) + '_b' + str(batch_size)
+            + '_AnoScore.png', bbox_inches="tight")
+plt.close('all')
 
 
 # Try some predictions
@@ -160,9 +214,12 @@ test_prototype = model.predict(ok_data[5].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 print("Faulty and OK:")
 print(np.sum(np.square(test_anchor - test_prototype)))
 
+test_anchor = model.predict(faulty_data[17].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+test_prototype = model.predict(ok_data[55].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+print("Faulty and OK:")
+print(np.sum(np.square(test_anchor - test_prototype)))
+
 test_anchor = model.predict(faulty_data[11].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 test_prototype = model.predict(faulty_data[8].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
 print("Faulty and Faulty:")
 print(np.sum(np.square(test_anchor - test_prototype)))
-
-# Try some training triplets
