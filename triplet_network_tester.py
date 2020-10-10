@@ -14,9 +14,12 @@ from Models.BasicTripletNetHLR import BasicTripletNetHLR
 from Models.BasicTripletNetHLRLowerDropout import BasicTripletNetHLRLowerDropout
 from Models.BasicTripletNetLLR import BasicTripletNetLLR
 from Models.BasicTripletNetDeeper import BasicTripletNetDeeper
+from Models.BasicTripletNetDeeperWoutDropout import BasicTripletNetDeeperWoutDropout
 from Models.BasicTripletNetLF import BasicTripletNetLF
 from Models.BasicTripletNetHF import BasicTripletNetHF
+from Models.BasicTripletNetHFWoutDropout import BasicTripletNetHFWoutDropout
 from Models.TripletNetMultipleConv import TripletNetMultipleConv
+from Models.TripletNetMultipleConvWoutDropout import TripletNetMultipleConvWoutDropout
 from Models.TripletNetLiteMultipleConv import TripletNetLiteMultipleConv
 
 
@@ -88,12 +91,18 @@ elif desired_model == "BasicTripletNetLLR":
     model = BasicTripletNetLLR()
 elif desired_model == "BasicTripletNetDeeper":
     model = BasicTripletNetDeeper()
+elif desired_model == "BasicTripletNetDeeperWoutDropout":
+    model = BasicTripletNetDeeperWoutDropout()
 elif desired_model == "BasicTripletNetLF":
     model = BasicTripletNetLF()
 elif desired_model == "BasicTripletNetHF":
     model = BasicTripletNetHF()
+elif desired_model == "BasicTripletNetHFWoutDropout":
+    model = BasicTripletNetHFWoutDropout()
 elif desired_model == "TripletNetMultipleConv":
     model = TripletNetMultipleConv()
+elif desired_model == "TripletNetMultipleConvWoutDropout":
+    model = TripletNetMultipleConvWoutDropout()
 elif desired_model == "TripletNetLiteMultipleConv":
     model = TripletNetLiteMultipleConv()
 else:
