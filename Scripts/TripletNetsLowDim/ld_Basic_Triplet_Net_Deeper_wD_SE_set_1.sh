@@ -20,13 +20,14 @@ cp -R $DATADIR/triplet_network_tester.py $DATADIR/Models $DATADIR/Data $DATADIR/
 
 
 cd $SCRATCHDIR
-mkdir -p Graphs/Losses
+mkdir -p Graphs/{Losses,TripletScores}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
 python triplet_network_tester.py -e 60 -m BasicTripletNetDeeperWoutDropout -t SE -s 1
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
+cp -vr $SCRATCHDIR/Graphs/TripletScores/* $DATADIR/Graphs/TripletScores/
 cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/
 cp -vr $SCRATCHDIR/Model_Saves/Weights/* $DATADIR/Model_Saves/Weights/
 
