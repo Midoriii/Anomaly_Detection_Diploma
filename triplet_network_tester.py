@@ -137,12 +137,12 @@ if image_type == "BSE":
     ok_data = np.load("Data/low_dim_BSE_ok.npy")
     ok_data_extra = np.load("Data/low_dim_BSE_ok_extra.npy")
     faulty_data = np.load("Data/low_dim_BSE_faulty_extended.npy")
-    prototype_data = no.load("Data/low_dim_BSE_prototypes.npy")
+    prototype_data = np.load("Data/low_dim_BSE_prototypes.npy")
 else:
     ok_data = np.load("Data/low_dim_SE_ok.npy")
     ok_data_extra = np.load("Data/low_dim_SE_ok_extra.npy")
     faulty_data = np.load("Data/low_dim_SE_faulty_extended.npy")
-    prototype_data = no.load("Data/low_dim_SE_prototypes.npy")
+    prototype_data = np.load("Data/low_dim_SE_prototypes.npy")
 
 # Concat the ok data .. unlike in Siamese tester, where only the original OK data is used.
 ok_data = np.concatenate((ok_data, ok_data_extra))
