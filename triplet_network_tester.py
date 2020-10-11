@@ -153,18 +153,27 @@ anomaly_scores_faulty = []
 # For each okay image, get the score with each prototype
 for sample in range(0, ok_data.shape[0]):
     score = 0
+    sample_prediction = model.predict(ok_data[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
     for proto in range(0, prototype_data.shape[0]):
-        # It's rounded because we care only about 0s or 1s as predicted labels
-        score += np.around(model.predict(ok_data[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
-                                         prototype_data[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+        prototype_prediction = model.predict(prototype_data[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+        # Calculate the distance
+        distance = np.sum(np.square(sample_prediction - prototype_prediction))
+        # If distance is over 5.0 (for margin 10.0), it's most likely an anomaly.
+        if distance > 5.0:
+            score += 1
     anomaly_scores_ok.append(score)
 
 # For each faulty image, get the score with each prototype
 for sample in range(0, faulty_data.shape[0]):
     score = 0
+    sample_prediction = model.predict(faulty_data[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
     for proto in range(0, prototype_data.shape[0]):
-        score += np.around(model.predict(faulty_data[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
-                                         prototype_data[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
+        prototype_prediction = model.predict(prototype_data[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+        # Calculate the distance
+        distance = np.sum(np.square(sample_prediction - prototype_prediction))
+        # If distance is over 5.0 (for margin 10.0), it's most likely an anomaly.
+        if distance > 5.0:
+            score += 1
     anomaly_scores_faulty.append(score)
 
 anomaly_scores_ok = np.array(anomaly_scores_ok)
