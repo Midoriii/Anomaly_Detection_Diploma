@@ -95,18 +95,18 @@ def main():
     print("\n#MODEL")
     print("Basic Siamese lowDrop BSE:")
     # Evaluate the model on several nu values
-    siamese_net_eval(bse_ok_data, bse_ok_data_extra, bse_faulty_data, siamese_BSE, nu_values)
+    model_eval(bse_ok_data, bse_ok_data_extra, bse_faulty_data, siamese_BSE, nu_values)
 
     siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
     print("\n#MODEL")
     print("Siamese Lite MultipleConv AltTwo BSE:")
-    siamese_net_eval(bse_ok_data, bse_ok_data_extra, bse_faulty_data, siamese_BSE, nu_values)
+    model_eval(bse_ok_data, bse_ok_data_extra, bse_faulty_data, siamese_BSE, nu_values)
 
     # Load the SE embedding model
     siamese_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConv_SE_extended_e40_b4_detailed", compile=False)
     print("\n#MODEL")
     print("Siamese Lite MultipleConv SE:")
-    siamese_net_eval(se_ok_data, se_ok_data_extra, se_faulty_data, siamese_SE, nu_values)
+    model_eval(se_ok_data, se_ok_data_extra, se_faulty_data, siamese_SE, nu_values)
 
     # Now for low dim siamese models
     globals_list = globals()
@@ -116,12 +116,12 @@ def main():
     siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dims_SiameseNetLiteMultipleConvWithoutDropout_BSE_extended_e40_b4_detailed", compile=False)
     print("\n#MODEL")
     print("low dim Siamese Lite MultipleConv withoutDrop BSE:")
-    siamese_net_eval(bse_ok_data_ld, bse_ok_data_extra_ld, bse_faulty_data_ld, siamese_BSE, nu_values)
+    model_eval(bse_ok_data_ld, bse_ok_data_extra_ld, bse_faulty_data_ld, siamese_BSE, nu_values)
 
     siamese_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dims_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
     print("\n#MODEL")
     print("low dim Siamese Lite MultipleConv withoutDrop SE:")
-    siamese_net_eval(se_ok_data_ld, se_ok_data_extra_ld, se_faulty_data_ld, siamese_SE, nu_values)
+    model_eval(se_ok_data_ld, se_ok_data_extra_ld, se_faulty_data_ld, siamese_SE, nu_values)
 
 
 
@@ -182,7 +182,7 @@ def extract_features(images, model):
     return images_features.reshape(images_features.shape[0], -1)
 
 
-def siamese_net_eval(ok_data, ok_data_extra, faulty_data, model, nu_values):
+def model_eval(ok_data, ok_data_extra, faulty_data, model, nu_values):
     '''
     Helper method for evaluating siamese nets. Extracts features from given images
     using given model and then tests the performance of OC-SVM on extracted features
