@@ -159,7 +159,7 @@ for sample in range(0, ok_data.shape[0]):
         # Calculate the distance
         distance = np.sum(np.square(sample_prediction - prototype_prediction))
         # If distance is over 5.0 (for margin 10.0), it's most likely an anomaly.
-        if distance > 5.0:
+        if distance < 5.0:
             score += 1
     anomaly_scores_ok.append(score)
 
