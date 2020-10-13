@@ -8,19 +8,24 @@ import matplotlib.pyplot as plt
 
 from Models.BasicTripletNet import BasicTripletNet
 from Models.BasicTripletNetLite import BasicTripletNetLite
+from Models.BasicTripletNetLiteWoutDropout import BasicTripletNetLiteWoutDropout
 from Models.BasicTripletNetLowerDropout import BasicTripletNetLowerDropout
 from Models.BasicTripletNetWoutDropout import BasicTripletNetWoutDropout
 from Models.BasicTripletNetHLR import BasicTripletNetHLR
 from Models.BasicTripletNetHLRLowerDropout import BasicTripletNetHLRLowerDropout
+from Models.BasicTripletNetHLRWoutDropout import BasicTripletNetHLRWoutDropout
 from Models.BasicTripletNetLLR import BasicTripletNetLLR
+from Models.BasicTripletNetLLRWoutDropout import BasicTripletNetLLRWoutDropout
 from Models.BasicTripletNetDeeper import BasicTripletNetDeeper
 from Models.BasicTripletNetDeeperWoutDropout import BasicTripletNetDeeperWoutDropout
 from Models.BasicTripletNetLF import BasicTripletNetLF
+from Models.BasicTripletNetLFWoutDropout import BasicTripletNetLFWoutDropout
 from Models.BasicTripletNetHF import BasicTripletNetHF
 from Models.BasicTripletNetHFWoutDropout import BasicTripletNetHFWoutDropout
 from Models.TripletNetMultipleConv import TripletNetMultipleConv
 from Models.TripletNetMultipleConvWoutDropout import TripletNetMultipleConvWoutDropout
 from Models.TripletNetLiteMultipleConv import TripletNetLiteMultipleConv
+from Models.TripletNetLiteMultipleConvWoutDropout import TripletNetLiteMultipleConvWoutDropout
 
 
 # Constants
@@ -79,6 +84,8 @@ if desired_model == "BasicTripletNet":
     model = BasicTripletNet()
 elif desired_model == "BasicTripletNetLite":
     model = BasicTripletNetLite()
+elif desired_model == "BasicTripletNetLiteWoutDropout":
+    model = BasicTripletNetLiteWoutDropout()
 elif desired_model == "BasicTripletNetLowerDropout":
     model = BasicTripletNetLowerDropout()
 elif desired_model == "BasicTripletNetWoutDropout":
@@ -87,14 +94,20 @@ elif desired_model == "BasicTripletNetHLR":
     model = BasicTripletNetHLR()
 elif desired_model == "BasicTripletNetHLRLowerDropout":
     model = BasicTripletNetHLRLowerDropout()
+elif desired_model == "BasicTripletNetHLRWoutDropout":
+    model = BasicTripletNetHLRWoutDropout()
 elif desired_model == "BasicTripletNetLLR":
     model = BasicTripletNetLLR()
+elif desired_model == "BasicTripletNetLLRWoutDropout":
+    model = BasicTripletNetLLRWoutDropout()
 elif desired_model == "BasicTripletNetDeeper":
     model = BasicTripletNetDeeper()
 elif desired_model == "BasicTripletNetDeeperWoutDropout":
     model = BasicTripletNetDeeperWoutDropout()
 elif desired_model == "BasicTripletNetLF":
     model = BasicTripletNetLF()
+elif desired_model == "BasicTripletNetLFWoutDropout":
+    model = BasicTripletNetLFWoutDropout()
 elif desired_model == "BasicTripletNetHF":
     model = BasicTripletNetHF()
 elif desired_model == "BasicTripletNetHFWoutDropout":
@@ -105,6 +118,8 @@ elif desired_model == "TripletNetMultipleConvWoutDropout":
     model = TripletNetMultipleConvWoutDropout()
 elif desired_model == "TripletNetLiteMultipleConv":
     model = TripletNetLiteMultipleConv()
+elif desired_model == "TripletNetLiteMultipleConvWoutDropout":
+    model = TripletNetLiteMultipleConvWoutDropout()
 else:
     print("Wrong Model specified!")
     sys.exit()
