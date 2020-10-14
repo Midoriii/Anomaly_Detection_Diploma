@@ -118,8 +118,8 @@ def main():
     data_ok = np.concatenate((data_ok, data_ok_extra))
 
     # Loading best BSE Models
-    model = load_model("Model_Saves/Detailed/low_dim_BasicTripletNetWithoutDropout_BSE_set_3_e60_b4_detailed", compile=False)
-    #model = load_model("Model_Saves/Detailed/low_dim_BasicTripletNetHFWithoutDropout_BSE_set_1_e60_b4_detailed", compile=False)
+    model = load_model("Model_Saves/Detailed/embedding_low_dim_BasicTripletNetWithoutDropout_BSE_set_3_e60_b4_detailed", compile=False)
+    #model = load_model("Model_Saves/Detailed/embedding_low_dim_BasicTripletNetHFWithoutDropout_BSE_set_1_e60_b4_detailed", compile=False)
     # First get the predictions for BSE OK and then Faulty images
     get_predictions(data_ok, data_prototypes, model, "OK", "BSE")
     get_predictions(data_faulty, data_prototypes, model, "Faulty", "BSE")
@@ -134,8 +134,8 @@ def main():
     data_ok = np.concatenate((data_ok, data_ok_extra))
 
     # Loading best SE Models
-    model = load_model("Model_Saves/Detailed/low_dim_BasicTripletNetWithoutDropout_SE_set_2_e60_b4_detailed", compile=False)
-    #model = load_model("Model_Saves/Detailed/low_dim_BasicTripletNetHFWithoutDropout_SE_set_3_e60_b4_detailed", compile=False)
+    model = load_model("Model_Saves/Detailed/embedding_low_dim_BasicTripletNetWithoutDropout_SE_set_2_e60_b4_detailed", compile=False)
+    #model = load_model("Model_Saves/Detailed/embedding_low_dim_BasicTripletNetHFWithoutDropout_SE_set_3_e60_b4_detailed", compile=False)
     # Then the same for SE images
     get_predictions(data_ok, data_prototypes, model, "OK", "SE")
     get_predictions(data_faulty, data_prototypes, model, "Faulty", "SE")
