@@ -7,15 +7,13 @@ encompass the given instances. Anything otuside of the hypersphere should be
 treated as an anomaly.
 
 As OC-SVM requires extracted features as its training/testing input, a suitable
-pre-trained encoding (part of Autoencoders) or embedding (branch in Siamese Nets)
-model needs to be provided.
+pre-trained encoding (part of Autoencoders) or embedding (branch in Siamese/Triplet
+Nets) model needs to be provided.
 
 After training is done, the OC-SVM is tested on extracted features of extra OK and
 Faulty data. The amount of False Negatives and False Positives is finally printed out.
 This is done for several possible values of 'nu' parameter of OC-SVM models, to try
 and find the best model and config.
-
-Results will be added here.
 '''
 import numpy as np
 
@@ -122,6 +120,27 @@ def main():
     print("\n#MODEL")
     print("low dim Siamese Lite MultipleConv withoutDrop SE:")
     model_eval(se_ok_data_ld, se_ok_data_extra_ld, se_faulty_data_ld, siamese_SE, nu_values)
+
+    # Now the triplet models
+    triplet_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_BasicTripletNetWithoutDropout_BSE_set_1_e60_b4_detailed", compile=False)
+    print("\n#MODEL")
+    print("low dim Basic Triplet Net withoutDrop BSE:")
+    model_eval(bse_ok_data_ld, bse_ok_data_extra_ld, bse_faulty_data_ld, triplet_BSE, nu_values)
+
+    triplet_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_BasicTripletNetHFWithoutDropout_BSE_set_1_e60_b4_detailed", compile=False)
+    print("\n#MODEL")
+    print("low dim Basic Triplet Net HF withoutDrop BSE:")
+    model_eval(bse_ok_data_ld, bse_ok_data_extra_ld, bse_faulty_data_ld, triplet_BSE, nu_values)
+
+    triplet_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_BasicTripletNetWithoutDropout_SE_set_1_e60_b4_detailed", compile=False)
+    print("\n#MODEL")
+    print("low dim Basic Triplet Net withoutDrop SE:")
+    model_eval(se_ok_data_ld, se_ok_data_extra_ld, se_faulty_data_ld, triplet_SE, nu_values)
+
+    triplet_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_BasicTripletNetHFWithoutDropout_SE_set_1_e60_b4_detailed", compile=False)
+    print("\n#MODEL")
+    print("low dim Basic Triplet Net HF withoutDrop SE:")
+    model_eval(se_ok_data_ld, se_ok_data_extra_ld, se_faulty_data_ld, triplet_SE, nu_values)
 
 
 
