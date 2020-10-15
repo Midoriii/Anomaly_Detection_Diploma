@@ -121,7 +121,7 @@ def main():
     print("low dim Siamese Lite MultipleConv withoutDrop SE:")
     model_eval(se_ok_data_ld, se_ok_data_extra_ld, se_faulty_data_ld, siamese_SE, nu_values)
 
-    # Now the triplet models
+    # Now the triplet models .. Could possibly extract method but eh ..
     triplet_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_BasicTripletNetWithoutDropout_BSE_set_3_e60_b4_detailed", compile=False)
     print("\n#MODEL")
     print("low dim Basic Triplet Net withoutDrop BSE:")

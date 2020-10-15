@@ -7,7 +7,7 @@ work for little award to make it any other way.
 
 Data and Models are first loaded, then features are extracted from the data
 using the model's predict function. OC-SVM is trained using the given best params
-and it's predictions are then used to plot misclassified images (duh).
+and it's predictions are then used to plot misclassified images.
 
 
 func: extract_features(images, model): Extracts and returns features from given
@@ -60,10 +60,12 @@ def main():
     ae_model_se = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_HighStrideAutoencoderDeeper_e400_b4_detailed", compile=False)
     siam_model_bse = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
     low_dim_siam_model_se = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dims_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
+    low_dim_triplet_model_bse = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_TripletNetMultipleConvWithoutDropout_BSE_set_1_e60_b4_detailed", compile=False)
+    low_dim_triplet_model_se = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_TripletNetMultipleConvWithoutDropout_SE_set_1_e60_b4_detailed", compile=False)
     # Their best nu values
-    nu_values = [0.01, 0.02, 0.01, 0.01]
+    nu_values = [0.01, 0.02, 0.01, 0.01, 0.01, 0.01]
     # Their best gammas
-    gamma_values = ['scale', 'scale', 'auto', 'auto']
+    gamma_values = ['scale', 'scale', 'auto', 'auto', 'auto', 'auto']
 
     # Eval each model with its attributes .. I wish I knew how to make this
     # in a for loop, but alas the difference in accepted data makes it not worth
@@ -90,6 +92,15 @@ def main():
     print("Low Dim Siam SE:")
     model_eval(se_ok_ld, se_ok_extra_ld, se_faulty_ld, low_dim_siam_model_se,
                nu_values[3], gamma_values[3])
+
+    # Triplet models
+    print("Low Dim Triplet BSE:")
+    model_eval(se_ok_ld, se_ok_extra_ld, se_faulty_ld, low_dim_triplet_model_bse,
+               nu_values[4], gamma_values[4])
+
+    print("Low Dim Triplet SE:")
+    model_eval(se_ok_ld, se_ok_extra_ld, se_faulty_ld, low_dim_triplet_model_se,
+               nu_values[5], gamma_values[5])
 
 
 
