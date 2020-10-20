@@ -142,6 +142,11 @@ def main():
     print("low dim Basic Triplet Net HF withoutDrop BSE:")
     model_eval(bse_ok_data_ld, bse_ok_data_extra_ld, bse_faulty_data_ld, triplet_BSE, nu_values)
 
+    triplet_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_BasicTripletNetLowerDropout_BSE_set_1_e60_b4_detailed", compile=False)
+    print("\n#MODEL")
+    print("low dim Basic Triplet Net  lowerDrop BSE:")
+    model_eval(bse_ok_data_ld, bse_ok_data_extra_ld, bse_faulty_data_ld, triplet_BSE, nu_values)
+
     triplet_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_BasicTripletNetWithoutDropout_SE_set_2_e60_b4_detailed", compile=False)
     print("\n#MODEL")
     print("low dim Basic Triplet Net withoutDrop SE:")
@@ -160,6 +165,11 @@ def main():
     triplet_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_BasicTripletNetHFWithoutDropout_SE_set_3_e60_b4_detailed", compile=False)
     print("\n#MODEL")
     print("low dim Basic Triplet Net HF withoutDrop SE:")
+    model_eval(se_ok_data_ld, se_ok_data_extra_ld, se_faulty_data_ld, triplet_SE, nu_values)
+
+    triplet_SE = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_BasicTripletNetLowerDropout_SE_set_1_e60_b4_detailed", compile=False)
+    print("\n#MODEL")
+    print("low dim Basic Triplet Net lowerDrop SE:")
     model_eval(se_ok_data_ld, se_ok_data_extra_ld, se_faulty_data_ld, triplet_SE, nu_values)
 
 
