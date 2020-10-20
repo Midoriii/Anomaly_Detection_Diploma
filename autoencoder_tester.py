@@ -110,26 +110,35 @@ if is_data_filtered == "low_dims":
 # If filtered is desired, load those
 if is_data_filtered == "filtered":
     train_input = np.load("Data/OK_filtered.npy")
+    test_input = np.load("Data/OK_extra.npy")
     # Add the underscore so that later graph and file
     # names contain the 'filtered_' prefix when expected
     is_data_filtered = "filtered_"
 # If we want only the BSE Data
 elif is_data_filtered == "BSE":
     train_input = np.load("Data/BSE_ok.npy")
+    test_input = np.load("Data/BSE_ok_extra.npy")
     is_data_filtered = "BSE_"
 # If we want only the SE Data
 elif is_data_filtered == "SE":
     train_input = np.load("Data/SE_ok.npy")
+    test_input = np.load("Data/SE_ok_extra.npy")
     is_data_filtered = "SE_"
 # If we want only the lower dimensional data
 elif is_data_filtered == "low_dims":
     train_input = np.load("Data/low_dim_OK.npy")
+    test_input = np.load("Data/low_dim_OK_extra.npy")
     is_data_filtered = "low_dims_"
 # Otherwise load the full OK data
 else:
     train_input = np.load("Data/OK.npy")
+    test_input = np.load("Data/OK_extra.npy")
+
+# Concat the test input to form full testing dataset
+test_input = np.concatenate((train_input, test_input))
 
 print(train_input.shape)
+print(test_input.shape)
 
 # Load the anomalies too
 # Extended with plugged center part
@@ -224,9 +233,9 @@ model.save_encoder_model(epochs, batch_size, is_data_filtered, faulty_extended)
 
 # To see the actual reconstructed images of the training data
 # And also to save them for MSE anomaly detection
-for i in range(0, train_input.shape[0]):
+for i in range(0, test_input.shape[0]):
     # Every image needs to be reshaped into 1,768,768,1
-    reconstructed_img = model.predict(train_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
+    reconstructed_img = model.predict(test_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
     # The reconstructed image afterwards needs to be reshaped back into 768 x 768
     reconstructed_img = reconstructed_img.reshape(IMG_WIDTH, IMG_HEIGHT)
 
@@ -269,9 +278,9 @@ reconstructed_ok_errors = []
 reconstructed_anomalous_errors = []
 
 # Compute the reconstruction MSE for ok data
-for i in range(0, train_input.shape[0]):
+for i in range(0, test_input.shape[0]):
     # Reshape into 768x768
-    original_image = train_input[i].reshape(IMG_WIDTH, IMG_HEIGHT)
+    original_image = test_input[i].reshape(IMG_WIDTH, IMG_HEIGHT)
     # Add reconstructed image MSE to the array
     reconstruction_error = np.square(np.subtract(original_image, reconstructed_ok_array[i])).mean()
     reconstructed_ok_errors.append(reconstruction_error)

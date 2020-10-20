@@ -228,9 +228,11 @@ if image_type == 'SE':
     if low_dims == 'low_dims_':
         test_prototypes = np.load("Data/low_dim_SE_prototypes.npy")
         test_ok = np.load("Data/low_dim_SE_ok.npy")
+        test_ok_extra = np.load("Data/low_dim_SE_ok_extra.npy")
     else:
         test_prototypes = np.load("Data/SE_prototypes.npy")
         test_ok = np.load("Data/SE_ok.npy")
+        test_ok_extra = np.load("Data/SE_ok_extra.npy")
 
     if extended_faulty == '_extended':
         if low_dims == 'low_dims_':
@@ -243,9 +245,11 @@ else:
     if low_dims == 'low_dims_':
         test_prototypes = np.load("Data/low_dim_BSE_prototypes.npy")
         test_ok = np.load("Data/low_dim_BSE_ok.npy")
+        test_ok_extra = np.load("Data/low_dim_BSE_ok_extra.npy")
     else:
         test_prototypes = np.load("Data/BSE_prototypes.npy")
         test_ok = np.load("Data/BSE_ok.npy")
+        test_ok_extra = np.load("Data/BSE_ok_extra.npy")
 
     if extended_faulty == '_extended':
         if low_dims == 'low_dims_':
@@ -255,6 +259,8 @@ else:
     else:
         test_faulty = np.load("Data/BSE_faulty.npy")
 
+# Concat the ok data to form the full training set
+test_ok = np.concatenate((test_ok, test_ok_extra))
 # Lists to save scores
 anomaly_scores_ok = []
 anomaly_scores_faulty = []
