@@ -11,7 +11,7 @@ model's loss is plotted to a graph and saved. The model itself and the weights
 are saved too, along with the model's Encoder part, which transforms input into
 features.
 
-For performance evaluation, the OK and Faulty images are served to the trained
+For performance evaluation, the OK, extra OK, and Faulty images are served to the trained
 model (using Model.predict()) and the reconstructions are saved to OK and Faulty
 lists. Afterwards, for each image, the MSE of the difference of the original image
 and its reconstruction is computed and serves as a 'score' of sorts.
@@ -231,7 +231,7 @@ model.save_model(epochs, batch_size, is_data_filtered, faulty_extended)
 # Save also the encoder part
 model.save_encoder_model(epochs, batch_size, is_data_filtered, faulty_extended)
 
-# To see the actual reconstructed images of the training data
+# To see the actual reconstructed images of the training and extra OK data
 # And also to save them for MSE anomaly detection
 for i in range(0, test_input.shape[0]):
     # Every image needs to be reshaped into 1,768,768,1

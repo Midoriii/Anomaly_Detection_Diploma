@@ -222,8 +222,7 @@ model.save_model(epochs, batch_size, image_type, extended_faulty, loss_string,
 model.save_embedding_model(epochs, batch_size, image_type, extended_faulty, loss_string,
                            low_dims)
 
-# For performance evaluation, load prototypes and each image and get anomaly score
-# Load prototypes and actual data sorted by methods
+# For performance evaluation, load prototypes and actual data sorted by methods.
 if image_type == 'SE':
     if low_dims == 'low_dims_':
         test_prototypes = np.load("Data/low_dim_SE_prototypes.npy")
