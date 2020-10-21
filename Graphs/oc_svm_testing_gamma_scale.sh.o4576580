@@ -1711,6 +1711,81 @@ FP:35
 FN:0
 
 #MODEL
+low dim Basic Triplet Net  lowerDrop BSE:
+
+Value of nu: 0.9
+
+Training FP:111
+FP:33
+FN:7
+
+Value of nu: 0.7
+
+Training FP:80
+FP:23
+FN:9
+
+Value of nu: 0.5
+
+Training FP:82
+FP:25
+FN:9
+
+Value of nu: 0.4
+
+Training FP:24
+FP:6
+FN:19
+
+Value of nu: 0.3
+
+Training FP:97
+FP:27
+FN:8
+
+Value of nu: 0.25
+
+Training FP:136
+FP:35
+FN:1
+
+Value of nu: 0.2
+
+Training FP:9
+FP:0
+FN:23
+
+Value of nu: 0.1
+
+Training FP:67
+FP:14
+FN:13
+
+Value of nu: 0.05
+
+Training FP:133
+FP:33
+FN:1
+
+Value of nu: 0.02
+
+Training FP:103
+FP:21
+FN:12
+
+Value of nu: 0.01
+
+Training FP:29
+FP:5
+FN:20
+
+Value of nu: 0.001
+
+Training FP:137
+FP:35
+FN:0
+
+#MODEL
 low dim Basic Triplet Net withoutDrop SE:
 
 Value of nu: 0.9
@@ -1954,6 +2029,81 @@ Value of nu: 0.5
 
 Training FP:138
 FP:34
+FN:0
+
+Value of nu: 0.4
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.3
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.25
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.2
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.1
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.05
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.02
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.01
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.001
+
+Training FP:138
+FP:34
+FN:0
+
+#MODEL
+low dim Basic Triplet Net lowerDrop SE:
+
+Value of nu: 0.9
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.7
+
+Training FP:138
+FP:34
+FN:0
+
+Value of nu: 0.5
+
+Training FP:40
+FP:4
 FN:0
 
 Value of nu: 0.4
