@@ -17,7 +17,7 @@ Hand-picked prototypes are then loaded, and each OK and each Faulty image of
 given type is tested against all 5 of the prototypes. Model.predict() returns a
 value in range [0,1], where > 0.5 means the model predicts the images to be similar
 and value <= 0.5 means the images are dissimilar. The sum of rounded predictions
-for each image serves as anomaly score, where score of 5 means that the image
+for each image serves as prototype similarity score, where score of 5 means that the image
 was predicted to be similar to all 5 prototypes and hence is considered OK,
 score of 0 means an anomaly, since the image wasn't similar enough to the prototypes.
 Anything in between is open for custom interpretation according to needs.
@@ -45,6 +45,9 @@ import getopt
 import numpy as np
 import matplotlib.pyplot as plt
 
+from collections import Counter
+from collections import OrderedDict
+
 from Models.BasicSiameseNet import BasicSiameseNet
 from Models.SiameseNetLF import SiameseNetLF
 from Models.SiameseNetDeeper import SiameseNetDeeper
@@ -61,6 +64,21 @@ from Models.BasicSiameseNetLowerDropout import BasicSiameseNetLowerDropout
 from Models.SiameseNetLiteMultipleConvLowerDropout import SiameseNetLiteMultipleConvLowerDropout
 from Models.SiameseNetLiteMultipleConvWithoutDropout import SiameseNetLiteMultipleConvWithoutDropout
 
+
+def autolabel(rects, color):
+    """
+    A helper function for barplot labeling. I chose to include this with the script
+    to prevent additional file importing.
+
+    Arguments:
+        rects: A list of rectangles representing bar plots.
+        color: Desired color of the labels.
+    """
+    for rect in rects:
+        height = rect.get_height()
+        plt.text(rect.get_x() + rect.get_width()/2., 0.25 + height,
+                '%d' % int(height), color=color,
+                ha='center', va='bottom')
 
 #Constants
 IMG_WIDTH = 768
@@ -261,8 +279,8 @@ else:
 # Concat the ok data to form the full training set
 test_ok = np.concatenate((test_ok, test_ok_extra))
 # Lists to save scores
-anomaly_scores_ok = []
-anomaly_scores_faulty = []
+prototype_similarity_scores_ok = []
+prototype_similarity_scores_faulty = []
 
 # For each okay image, get the score with each prototype
 for sample in range(0, test_ok.shape[0]):
@@ -271,7 +289,7 @@ for sample in range(0, test_ok.shape[0]):
         # It's rounded because we care only about 0s or 1s as predicted labels
         score += np.around(model.predict(test_ok[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
                                          test_prototypes[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-    anomaly_scores_ok.append(score)
+    prototype_similarity_scores_ok.append(score)
 
 # For each faulty image, get the score with each prototype
 for sample in range(0, test_faulty.shape[0]):
@@ -279,32 +297,37 @@ for sample in range(0, test_faulty.shape[0]):
     for proto in range(0, test_prototypes.shape[0]):
         score += np.around(model.predict(test_faulty[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
                                          test_prototypes[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-    anomaly_scores_faulty.append(score)
+    prototype_similarity_scores_faulty.append(score)
 
-anomaly_scores_ok = np.array(anomaly_scores_ok)
-anomaly_scores_faulty = np.array(anomaly_scores_faulty)
+
+# Use Counters to get the total # of images by each score
+ok_counter = Counter(prototype_similarity_scores_ok)
+anomalous_counter = Counter(prototype_similarity_scores_faulty)
+# Make ordered dictionaries out of the Counters, for plotting purposes, sorted
+# in ascending order; from 0 to 5
+ok_ordered = OrderedDict(sorted(ok_counter.items(), key=lambda x: x[0]))
+anomalous_ordered = OrderedDict(sorted(anomalous_counter.items(), key=lambda x: x[0]))
 
 # Set colors for graphs based on image type
 if image_type == 'BSE':
-    scatter_color = 'b'
+    graph_color = 'tab:blue'
 else:
-    scatter_color = 'g'
+    graph_color = 'tab:green'
 
-# X axis coords representing indices of the individual images
-x = range(0, len(anomaly_scores_ok))
-z = range(0 + len(anomaly_scores_ok),
-          len(anomaly_scores_ok) + len(anomaly_scores_faulty))
+# X axis coords representing prototype similarity scores; 0-5
+X = np.arange(6)
 
-# Plot the resulting numbers stored in array
-plt.scatter(x, anomaly_scores_ok, c=scatter_color,
-            s=10, marker='o', edgecolors='black', label='OK')
-plt.scatter(z, anomaly_scores_faulty, c='r',
-            s=10, marker='o', edgecolors='black', label='Anomalous')
-plt.legend(loc='upper left')
+# Plot the results
+ok_bars = plt.bar(X - 0.10, ok_ordered.values(), color = graph_color, width = 0.20,
+                  label="OK")
+anomalous_bars = plt.bar(X + 0.10, anomalous_ordered.values(), color = 'tab:red', width = 0.20,
+                         label="Anomalous")
+plt.legend(loc='upper center')
 plt.title('Model ' + model.name + "_" + image_type)
-plt.yticks(np.arange(0.0, 6.0, 1.0))
-plt.ylabel('Anomaly Score')
-plt.xlabel('Index')
+plt.xlabel('Prototype similarity score')
+plt.ylabel('Image count')
+autolabel(ok_bars, graph_color)
+autolabel(anomalous_bars, 'tab:red')
 plt.savefig('Graphs/SiameseScores/' + str(low_dims) + model.name + "_" + str(image_type)
             + str(extended_faulty) + str(loss_string) + '_e' + str(epochs)
             + '_b' + str(batch_size) + '_AnoScore.png', bbox_inches="tight")
