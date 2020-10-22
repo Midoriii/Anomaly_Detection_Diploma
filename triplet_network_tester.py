@@ -42,7 +42,7 @@ def autolabel(rects, color):
     """
     for rect in rects:
         height = rect.get_height()
-        plt.text(rect.get_x() + rect.get_width()/2., 0.25 + height,
+        plt.text(rect.get_x() + rect.get_width()/2., 0.1 + height,
                  '%d' % int(height), color=color,
                  ha='center', va='bottom')
 
@@ -213,6 +213,12 @@ for sample in range(0, faulty_data.shape[0]):
 # Use Counters to get the total # of images by each score
 ok_counter = Counter(prototype_similarity_scores_ok)
 anomalous_counter = Counter(prototype_similarity_scores_faulty)
+# Fill any possible missing key values between 0-5 with zeroes, for the plots to work
+for i in range(0, 6):
+    if not ok_counter.get(i):
+        ok_counter[i] = 0
+    if not anomalous_counter.get(i):
+        anomalous_counter[i] = 0
 # Make ordered dictionaries out of the Counters, for plotting purposes, sorted
 # in ascending order; from 0 to 5
 ok_ordered = OrderedDict(sorted(ok_counter.items(), key=lambda x: x[0]))
