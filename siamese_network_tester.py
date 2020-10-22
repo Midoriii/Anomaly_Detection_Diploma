@@ -40,13 +40,13 @@ Arguments:
     instead. Low dimensional data is already using 'extended' faulty data, so
     this option requires the -f argument to be also set.
 '''
+from collections import Counter
+from collections import OrderedDict
+
 import sys
 import getopt
 import numpy as np
 import matplotlib.pyplot as plt
-
-from collections import Counter
-from collections import OrderedDict
 
 from Models.BasicSiameseNet import BasicSiameseNet
 from Models.SiameseNetLF import SiameseNetLF
@@ -77,8 +77,8 @@ def autolabel(rects, color):
     for rect in rects:
         height = rect.get_height()
         plt.text(rect.get_x() + rect.get_width()/2., 0.25 + height,
-                '%d' % int(height), color=color,
-                ha='center', va='bottom')
+                 '%d' % int(height), color=color,
+                 ha='center', va='bottom')
 
 #Constants
 IMG_WIDTH = 768
@@ -318,9 +318,9 @@ else:
 X = np.arange(6)
 
 # Plot the results
-ok_bars = plt.bar(X - 0.10, ok_ordered.values(), color = graph_color, width = 0.20,
+ok_bars = plt.bar(X - 0.10, ok_ordered.values(), color=graph_color, width=0.20,
                   label="OK")
-anomalous_bars = plt.bar(X + 0.10, anomalous_ordered.values(), color = 'tab:red', width = 0.20,
+anomalous_bars = plt.bar(X + 0.10, anomalous_ordered.values(), color='tab:red', width=0.20,
                          label="Anomalous")
 plt.legend(loc='upper center')
 plt.title('Model ' + model.name + "_" + image_type)
