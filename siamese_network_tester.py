@@ -48,21 +48,21 @@ import getopt
 import numpy as np
 import matplotlib.pyplot as plt
 
-from Models.BasicSiameseNet import BasicSiameseNet
-from Models.SiameseNetLF import SiameseNetLF
-from Models.SiameseNetDeeper import SiameseNetDeeper
-from Models.SiameseNetDeeperLLR import SiameseNetDeeperLLR
-from Models.SiameseNetMultipleConv import SiameseNetMultipleConv
-from Models.SiameseNetLite import SiameseNetLite
-from Models.SiameseNetLiteMultipleConv import SiameseNetLiteMultipleConv
-from Models.SiameseNetLiteMultipleConvAlt import SiameseNetLiteMultipleConvAlt
-from Models.SiameseNetLiteMultipleConvAltTwo import SiameseNetLiteMultipleConvAltTwo
-from Models.BasicSiameseNetLLR import BasicSiameseNetLLR
-from Models.BasicSiameseNetWoutBN import BasicSiameseNetWoutBN
-from Models.BasicSiameseNetWoutDropout import BasicSiameseNetWoutDropout
-from Models.BasicSiameseNetLowerDropout import BasicSiameseNetLowerDropout
-from Models.SiameseNetLiteMultipleConvLowerDropout import SiameseNetLiteMultipleConvLowerDropout
-from Models.SiameseNetLiteMultipleConvWithoutDropout import SiameseNetLiteMultipleConvWithoutDropout
+from Models.Siamese.BasicSiameseNet import BasicSiameseNet
+from Models.Siamese.SiameseNetLF import SiameseNetLF
+from Models.Siamese.SiameseNetDeeper import SiameseNetDeeper
+from Models.Siamese.SiameseNetDeeperLLR import SiameseNetDeeperLLR
+from Models.Siamese.SiameseNetMultipleConv import SiameseNetMultipleConv
+from Models.Siamese.SiameseNetLite import SiameseNetLite
+from Models.Siamese.SiameseNetLiteMultipleConv import SiameseNetLiteMultipleConv
+from Models.Siamese.SiameseNetLiteMultipleConvAlt import SiameseNetLiteMultipleConvAlt
+from Models.Siamese.SiameseNetLiteMultipleConvAltTwo import SiameseNetLiteMultipleConvAltTwo
+from Models.Siamese.BasicSiameseNetLLR import BasicSiameseNetLLR
+from Models.Siamese.BasicSiameseNetWoutBN import BasicSiameseNetWoutBN
+from Models.Siamese.BasicSiameseNetWoutDropout import BasicSiameseNetWoutDropout
+from Models.Siamese.BasicSiameseNetLowerDropout import BasicSiameseNetLowerDropout
+from Models.Siamese.SiameseNetLiteMultipleConvLowerDropout import SiameseNetLiteMultipleConvLowerDropout
+from Models.Siamese.SiameseNetLiteMultipleConvWithoutDropout import SiameseNetLiteMultipleConvWithoutDropout
 
 
 def autolabel(rects, color):
