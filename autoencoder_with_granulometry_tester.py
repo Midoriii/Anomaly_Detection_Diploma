@@ -12,6 +12,9 @@ Green dots represent truly OK images, red dots the faulty ones.
 It appears that using Granulometry can help, as it marked 3 images as faulty
 of the 6 that the best Autoencoder model marked as False Negatives.
 '''
+from collections import Counter
+from collections import OrderedDict
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -52,21 +55,34 @@ def main():
     # For each OK / Faulty image
     ok_scores = get_scores(ok_data, model, AE_THRESHOLD)
     faulty_scores = get_scores(faulty_data, model, AE_THRESHOLD)
-    # Plot the final score for each image by index
-    # X axis coords representing indices of the individual images
-    x = range(0, len(ok_scores))
-    z = range(0 + len(ok_scores),
-              len(ok_scores) + len(faulty_scores))
+    # Use Counters and OrderedDicts as in siamese and triplet runner scripts
+    ok_counter = Counter(ok_scores)
+    faulty_counter = Counter(faulty_scores)
 
-    plt.scatter(x, ok_scores, c='g', s=10,
-                marker='o', edgecolors='black', label='OK')
-    plt.scatter(z, faulty_scores, c='r', s=10,
-                marker='o', edgecolors='black', label='Anomalous')
-    plt.legend(loc='upper left')
+    for i in range(0, 4):
+        if not ok_counter.get(i):
+            ok_counter[i] = 0
+        if not faulty_counter.get(i):
+            faulty_counter[i] = 0
+
+    ok_ordered = OrderedDict(sorted(ok_counter.items(), key=lambda x: x[0]))
+    faulty_ordered = OrderedDict(sorted(faulty_counter.items(), key=lambda x: x[0]))
+    # Plot the final score for each image by index
+    # X axis coords representing scores 0-3, which in turn represent which
+    # Model called out an anomaly
+    X = np.arange(4)
+
+    ok_bars = plt.bar(X - 0.15, ok_ordered.values(), color='tab:green', width=0.30,
+                      label="OK")
+    faulty_bars = plt.bar(X + 0.15, faulty_ordered.values(), color='tab:red', width=0.30,
+                          label="Anomalous")
+    plt.legend(loc='upper center')
     plt.title('AE & Granulo scores')
-    plt.yticks(np.arange(0.0, 4.0, 1.0), ('None', 'AE', 'GR', 'Both'))
-    plt.ylabel('Flagged as Anomaly by:')
-    plt.xlabel('Index')
+    plt.xticks(np.arange(0.0, 4.0, 1.0), ('None', 'AE', 'GR', 'Both'))
+    plt.xlabel('Flagged as Anomaly by:')
+    plt.ylabel('Image count')
+    autolabel(ok_bars, 'tab:green')
+    autolabel(faulty_bars, 'tab:red')
     plt.show()
 
 
@@ -136,6 +152,22 @@ def get_scores(images, model, ae_threshold):
         resulting_scores.append(result)
 
     return resulting_scores
+
+
+def autolabel(rects, color):
+    """
+    A helper function for barplot labeling. I chose to include this with the script
+    to prevent additional file importing.
+
+    Arguments:
+        rects: A list of rectangles representing bar plots.
+        color: Desired color of the labels.
+    """
+    for rect in rects:
+        height = rect.get_height()
+        plt.text(rect.get_x() + rect.get_width()/2., 0.1 + height,
+                 '%d' % int(height), color=color,
+                 ha='center', va='bottom')
 
 
 if __name__ == "__main__":
