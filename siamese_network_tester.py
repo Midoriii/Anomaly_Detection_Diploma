@@ -289,7 +289,7 @@ for sample in range(0, test_ok.shape[0]):
         # It's rounded because we care only about 0s or 1s as predicted labels
         score += np.around(model.predict(test_ok[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
                                          test_prototypes[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-    prototype_similarity_scores_ok.append(score)
+    prototype_similarity_scores_ok.append(int(score))
 
 # For each faulty image, get the score with each prototype
 for sample in range(0, test_faulty.shape[0]):
@@ -297,7 +297,7 @@ for sample in range(0, test_faulty.shape[0]):
     for proto in range(0, test_prototypes.shape[0]):
         score += np.around(model.predict(test_faulty[sample].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
                                          test_prototypes[proto].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)))
-    prototype_similarity_scores_faulty.append(score)
+    prototype_similarity_scores_faulty.append(int(score))
 
 
 # Use Counters to get the total # of images by each score
