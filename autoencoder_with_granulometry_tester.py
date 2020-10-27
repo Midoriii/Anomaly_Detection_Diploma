@@ -73,9 +73,9 @@ def main():
     X = np.arange(4)
 
     ok_bars = plt.bar(X - 0.15, ok_ordered.values(), color='tab:green', width=0.30,
-                      label="OK")
+                      label="Without Defect")
     faulty_bars = plt.bar(X + 0.15, faulty_ordered.values(), color='tab:red', width=0.30,
-                          label="Anomalous")
+                          label="Defective")
     plt.legend(loc='upper center')
     plt.title('AE & Granulo scores')
     plt.xticks(np.arange(0.0, 4.0, 1.0), ('None', 'AE', 'GR', 'Both'))

@@ -42,9 +42,10 @@ def autolabel(rects, color):
     """
     for rect in rects:
         height = rect.get_height()
-        plt.text(rect.get_x() + rect.get_width()/2., 0.1 + height,
-                 '%d' % int(height), color=color,
-                 ha='center', va='bottom')
+        if height > 0:
+            plt.text(rect.get_x() + rect.get_width()/2., 0.1 + height,
+                     '%d' % int(height), color=color,
+                     ha='center', va='bottom')
 
 # Constants
 IMG_WIDTH = 384
@@ -234,12 +235,12 @@ else:
 X = np.arange(6)
 
 # Plot the results
-ok_bars = plt.bar(X - 0.10, ok_ordered.values(), color=graph_color, width=0.20,
-                  label="OK")
-anomalous_bars = plt.bar(X + 0.10, anomalous_ordered.values(), color='tab:red', width=0.20,
-                         label="Anomalous")
+ok_bars = plt.bar(X + 0.20, ok_ordered.values(), color=graph_color, width=0.40,
+                  label="Without Defect")
+anomalous_bars = plt.bar(X - 0.20, anomalous_ordered.values(), color='tab:red', width=0.40,
+                         label="Defective")
 plt.legend(loc='upper center')
-plt.title('Model ' + model.name + "_" + image_type)
+plt.title('Model ' + model.name + " " + image_type)
 plt.xlabel('Prototype similarity score')
 plt.ylabel('Image count')
 autolabel(ok_bars, graph_color)
