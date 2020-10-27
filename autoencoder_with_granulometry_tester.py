@@ -72,9 +72,9 @@ def main():
     # Model called out an anomaly
     X = np.arange(4)
 
-    ok_bars = plt.bar(X - 0.15, ok_ordered.values(), color='tab:green', width=0.30,
+    ok_bars = plt.bar(X + 0.15, ok_ordered.values(), color='tab:green', width=0.30,
                       label="Without Defect")
-    faulty_bars = plt.bar(X + 0.15, faulty_ordered.values(), color='tab:red', width=0.30,
+    faulty_bars = plt.bar(X - 0.15, faulty_ordered.values(), color='tab:red', width=0.30,
                           label="Defective")
     plt.legend(loc='upper center')
     plt.title('AE & Granulo scores')
