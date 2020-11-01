@@ -1,5 +1,6 @@
 '''
-Custom losses for Siamese nets, namely Triplet Loss and Contrastive Loss
+Custom losses for Siamese nets, namely Triplet Loss and Contrastive Loss.
+Also contains Hinge Loss and Wasserstein Loss for biGAN.
 '''
 
 from keras import backend as K
@@ -43,4 +44,28 @@ def triplet_loss(y_true, y_pred, alpha=10.0):
     pos_distance = K.sum(K.square(anchor - pos), axis=1)
     neg_distance = K.sum(K.square(anchor - neg), axis=1)
     # Return loss
-    return K.maximum(0.0, pos_distance - neg_distance + alpha)
+    return K.mean(K.maximum(0.0, pos_distance - neg_distance + alpha))
+
+
+def hinge_loss(y_true, y_pred):
+    '''
+    A loss used with Classifiers. It should be noted that this loss expects y
+    to be a raw number, not sigmoided one.
+    Viz: https://en.wikipedia.org/wiki/Hinge_loss
+
+    Arguments:
+        y_true: True labels of samples - A list of either -1 (Fake) or 1 (Real).
+        y_pred: A list of raw, un-sigmoided outputs of the classifier.
+    '''
+    return K.mean(K.maximum(0.0, 1.0 - (y_true * y_pred)))
+
+
+def wasserstein_loss(y_true, y_pred):
+    '''
+    https://machinelearningmastery.com/how-to-implement-wasserstein-loss-for-generative-adversarial-networks/
+
+    Arguments:
+        y_true: True labels of samples - A list of either -1 (Fake) or 1 (Real).
+        y_pred: A list of raw, un-sigmoided outputs of the classifier.
+    '''
+    return K.mean(y_true * y_pred)
