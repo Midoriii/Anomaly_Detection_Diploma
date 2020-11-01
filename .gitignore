@@ -14,3 +14,5 @@ Clonky-vadne-orig/*
 
 Reconstructed/*
 !Reconstructed/Error_Arrays/
+
+test_bar*
