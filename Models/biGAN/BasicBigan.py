@@ -24,7 +24,7 @@ class BasicBigan(BaseBiganModel):
         self.g = build_generator()
         self.e = build_encoder()
         # The Discriminator part in GE model won't be trainable - GANs take turns.
-        # Sincw the Discrimiantor itself has been previously compiled, this won't affect it.
+        # Since the Discrimiantor itself has been previously compiled, this won't affect it.
         self.d.trainable = False
         self.ge = build_ge_enc()
         self.ge.compile(optimizer=optimizer, loss=[wasserstein_loss, wasserstein_loss])
