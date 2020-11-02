@@ -5,11 +5,6 @@ import numpy as np
 
 from keras.models import Model
 
-# These will be needed in actual models
-from keras.optimizers import RMSprop
-from Models.Losses.custom_losses import wasserstein_loss
-from Models.biGAN.weightclip_constraint import WeightClip
-
 
 
 class BaseBiganModel:
@@ -31,13 +26,8 @@ class BaseBiganModel:
         self.dropout = 0.2
         self.batch_size = 4
 
-        self.d = build_discriminator()
-        self.g = build_generator()
-        self.e = build_encoder()
-        # The Discriminator part in GE model won't be trainable - GANs take turns.
-        # Sincw the Discrimiantor itself has been previously compiled, this won't affect it.
-        self.d.trainable = false
-        self.ge = build_ge_enc()
+        self.labels_real = np.ones((self.batch_size, 1))
+        self.labels_fake = -np.ones((self.batch_size, 1))
         return
 
 
@@ -54,13 +44,38 @@ class BaseBiganModel:
         raise NotImplementedError
 
 
-    def train():
-        #TODO
+    def train(self, images, epochs):
+        for epoch in range(epochs):
+            # D training
+            noise = self.latent_noise(self.batch_size, self.latent_dim)
+            img_batch = self.get_image_batch(images, self.batch_size)
+
+            fake_noise = self.e.predict(img_batch)
+            fake_img_batch = self.g.predict(noise)
+
+            d_real_loss = self.d.train_on_batch([img_batch, fake_noise], self.labels_real)
+            d_fake_loss = self.d.train_on_batch([fake_img_batch, noise], self.labels_fake)
+            d_loss = (0.5 * np.add(d_real_loss, d_fake_loss))
+            self.d_losses.append(d_loss)
+            # E+G training
+            ge_enc_loss = self.ge.train_on_batch([img_batch, noise],
+                                                 [self.labels_real, self.labels_fake])
+            self.ge_losses.append(ge_enc_loss)
+
+            print("Epoch: " + str(epoch) + ", D loss: " + str(d_loss[0])
+                  + "; D acc: " + str(d_loss[1]) + "; E loss: " + str(ge_enc_loss[0])
+                  + "; G loss: " + str(ge_enc_loss[1]))
         return
 
-    def predict(self, predict_input):
-        #TODO - rec Error + Discrim error
-        return
+    def predict(self, img):
+        # Get the latent representation of the input image
+        z = self.e.predict(img.reshape(1, self.input_shape, self.input_shape, 1))
+        # Get the reconstruction
+        re_img = self.g.predict(z).reshape(self.input_shape, self.input_shape)
+        # Calculate both errors
+        reconstruction_error = np.square(np.subtract(img, re_img)).mean()
+        critic_error = self.d.predict([img, z])
+        return reconstruction_error + critic_error
 
     def latent_noise(batch_size, latent_dim):
         return np.random.normal(0.0, 1.0, size=(batch_size, latent_dim))
