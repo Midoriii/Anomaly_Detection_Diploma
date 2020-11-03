@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -q gpu
-#PBS -l select=1:ncpus=1:mem=10gb:ngpus=1:scratch_local=3gb
+#PBS -l select=1:ncpus=1:mem=15gb:ngpus=1:scratch_local=3gb
 #PBS -l walltime=3:00:00
 
 
@@ -24,7 +24,7 @@ mkdir -p Graphs/{Losses,biGANErrors}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python bigan_tester.py -e 2000 -b 16 -m BasicBigan -t BSE
+python bigan_tester.py -e 5000 -b 16 -m BasicBigan -t BSE
 
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
