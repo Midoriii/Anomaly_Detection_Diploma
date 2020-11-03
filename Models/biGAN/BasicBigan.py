@@ -6,7 +6,7 @@ from Models.Losses.custom_losses import wasserstein_loss
 from Models.biGAN.weightclip_constraint import WeightClip
 
 from keras.layers import Input, Reshape, Dense, Flatten, concatenate
-from keras.layers import UpSampling2D, Conv2D, MaxPooling2D, BatchNormalization, Dropout, LeakyReLU
+from keras.layers import UpSampling2D, Conv2D, MaxPooling2D, Dropout, LeakyReLU
 from keras.models import Model
 from keras.optimizers import RMSprop
 
@@ -115,25 +115,21 @@ class BasicBigan(BaseBiganModel):
         # Image
         x = Conv2D(64, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(img_input)
         x = Dropout(rate=self.dropout)(x)
-        x = BatchNormalization()(x)
         x = LeakyReLU(0.2)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(64, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = Dropout(rate=self.dropout)(x)
-        x = BatchNormalization()(x)
         x = LeakyReLU(0.2)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = Dropout(rate=self.dropout)(x)
-        x = BatchNormalization()(x)
         x = LeakyReLU(0.2)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = Dropout(rate=self.dropout)(x)
-        x = BatchNormalization()(x)
         x = LeakyReLU(0.2)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
