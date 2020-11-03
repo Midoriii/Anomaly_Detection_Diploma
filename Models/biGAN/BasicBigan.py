@@ -93,7 +93,7 @@ class BasicBigan(BaseBiganModel):
         x = LeakyReLU(0.2)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
-        x = Flatten(x)
+        x = Flatten()(x)
 
         x = Dense(128, kernel_constraint=WeightClip(self.w_clip))(x)
         x = LeakyReLU(0.2)(x)
@@ -138,7 +138,7 @@ class BasicBigan(BaseBiganModel):
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         # Joint
-        x = Flatten(x)
+        x = Flatten()(x)
         x = concatenate([x, l])
 
         x = Dense(128, kernel_constraint=WeightClip(self.w_clip))(x)
