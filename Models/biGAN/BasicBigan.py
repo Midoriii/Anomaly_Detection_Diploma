@@ -14,7 +14,7 @@ from keras.optimizers import RMSprop
 
 class BasicBigan(BaseBiganModel):
 
-    def __init__(self, input_shape, latent_dim=24, lr=0.0001, w_clip=0.01, batch_size=4):
+    def __init__(self, input_shape, latent_dim=24, lr=0.00001, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
         self.name = "BasicBigan"
         optimizer = RMSprop(lr=self.lr)
@@ -143,7 +143,7 @@ class BasicBigan(BaseBiganModel):
 
         x = Dense(128, kernel_constraint=WeightClip(self.w_clip))(x)
         x = LeakyReLU(0.2)(x)
-        x = Dense(1)(x)
+        x = Dense(1, kernel_constraint=WeightClip(self.w_clip))(x)
 
         return Model(inputs=[img_input, z_input], outputs=x)
 
