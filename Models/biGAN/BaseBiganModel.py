@@ -81,10 +81,10 @@ class BaseBiganModel:
         critic_error = self.d.predict([img, z])
         return reconstruction_error + critic_error
 
-    def latent_noise(batch_size, latent_dim):
+    def latent_noise(self, batch_size, latent_dim):
         return np.random.normal(0.0, 1.0, size=(batch_size, latent_dim))
 
-    def get_image_batch(images, batch_size):
+    def get_image_batch(self, images, batch_size):
         idx = np.random.randint(0, images.shape[0], batch_size)
         return images[idx]
 
