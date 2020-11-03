@@ -19,14 +19,14 @@ class BasicBigan(BaseBiganModel):
         self.name = "BasicBigan"
         optimizer = RMSprop(lr=self.lr)
 
-        self.d = build_discriminator()
+        self.d = self.build_discriminator()
         self.d.compile(optimizer=optimizer, loss=wasserstein_loss, metrics=['accuracy'])
-        self.g = build_generator()
-        self.e = build_encoder()
+        self.g = self.build_generator()
+        self.e = self.build_encoder()
         # The Discriminator part in GE model won't be trainable - GANs take turns.
         # Since the Discrimiantor itself has been previously compiled, this won't affect it.
         self.d.trainable = False
-        self.ge = build_ge_enc()
+        self.ge = self.build_ge_enc()
         self.ge.compile(optimizer=optimizer, loss=[wasserstein_loss, wasserstein_loss])
         return
 
