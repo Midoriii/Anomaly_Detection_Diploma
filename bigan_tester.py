@@ -63,7 +63,7 @@ else:
 
 # Choose desired model
 if desired_model == "BasicBigan":
-    model = BasicBigan(IMG_WIDTH)
+    model = BasicBigan(IMG_WIDTH, batch_size=batch_size)
 else:
     print("Wrong Model specified!")
     sys.exit()

@@ -9,7 +9,7 @@ from keras.models import Model
 
 class BaseBiganModel:
 
-    def __init__(self, input_shape, latent_dim=24, lr=0.0001, w_clip=0.01):
+    def __init__(self, input_shape, latent_dim=24, lr=0.0001, w_clip=0.01, batch_size=4):
         self.g = Model()
         self.e = Model()
         self.d = Model()
@@ -25,7 +25,7 @@ class BaseBiganModel:
         self.latent_dim = latent_dim
         self.input_shape = input_shape
         self.dropout = 0.2
-        self.batch_size = 4
+        self.batch_size = batch_size
 
         self.labels_real = np.ones((self.batch_size, 1))
         self.labels_fake = -np.ones((self.batch_size, 1))
