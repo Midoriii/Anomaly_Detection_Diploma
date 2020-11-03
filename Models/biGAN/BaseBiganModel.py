@@ -78,9 +78,7 @@ class BaseBiganModel:
         re_img = self.g.predict(z).reshape(self.input_shape, self.input_shape)
         # Calculate both errors
         reconstruction_error = np.square(np.subtract(orig_img, re_img)).mean()
-        print(str(reconstruction_error))
         critic_error = self.d.predict([img, z])
-        print(str(critic_error))
         return reconstruction_error + critic_error
 
     def latent_noise(self, batch_size, latent_dim):
