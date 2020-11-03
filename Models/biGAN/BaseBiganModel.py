@@ -28,7 +28,7 @@ class BaseBiganModel:
         self.batch_size = batch_size
 
         self.labels_real = np.ones((self.batch_size, 1))
-        self.labels_fake = -np.ones((self.batch_size, 1))
+        self.labels_fake = -self.labels_real
         return
 
 
