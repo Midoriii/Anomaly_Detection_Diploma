@@ -24,7 +24,7 @@ mkdir -p Graphs/{Losses,biGANErrors}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python bigan_tester.py -e 5 -b 16 -m BasicBigan -t BSE
+python bigan_tester.py -e 200 -b 16 -m BasicBigan -t BSE
 
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
