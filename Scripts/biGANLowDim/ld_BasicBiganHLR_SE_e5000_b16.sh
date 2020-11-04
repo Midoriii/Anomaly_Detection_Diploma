@@ -16,7 +16,7 @@ module add cuda-10.0
 module add cudnn-7.4.2-cuda10
 
 
-cp -R $DATADIR/bigan_tester.py $DATADIR/Models $DATADIR/Data $SCRATCHDIR
+cp -R $DATADIR/bigan_tester.py $DATADIR/Models $DATADIR/DataBigan $SCRATCHDIR
 
 
 cd $SCRATCHDIR
