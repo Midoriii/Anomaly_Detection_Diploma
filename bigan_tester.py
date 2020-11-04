@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from Models.biGAN.BasicBigan import BasicBigan
+from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
 
 
 # Constants
@@ -48,14 +49,20 @@ for current_argument, current_value in arguments:
 # Load appropriate data, selected by image type
 if image_type == "BSE":
     train_input = np.load("Data/low_dim_BSE_ok.npy")
+    train_input = (train_input - 0.5) * 2.0
     test_input = np.load("Data/low_dim_BSE_ok_extra.npy")
+    test_input = (test_input - 0.5) * 2.0
     test_input = np.concatenate((train_input, test_input))
     anomalous_input = np.load("Data/low_dim_BSE_faulty_extended.npy")
+    anomalous_input = (anomalous_input - 0.5) * 2.0
 elif image_type == "SE":
     train_input = np.load("Data/low_dim_SE_ok.npy")
+    train_input = (train_input - 0.5) * 2.0
     test_input = np.load("Data/low_dim_SE_ok_extra.npy")
+    test_input = (test_input - 0.5) * 2.0
     test_input = np.concatenate((train_input, test_input))
     anomalous_input = np.load("Data/low_dim_SE_faulty_extended.npy")
+    anomalous_input = (anomalous_input - 0.5) * 2.0
 else:
     print("Wrong Image Type specified!")
     sys.exit()
@@ -64,6 +71,8 @@ else:
 # Choose desired model
 if desired_model == "BasicBigan":
     model = BasicBigan(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganWoutBN":
+    model = BasicBiganWoutBN(IMG_WIDTH, batch_size=batch_size)
 else:
     print("Wrong Model specified!")
     sys.exit()

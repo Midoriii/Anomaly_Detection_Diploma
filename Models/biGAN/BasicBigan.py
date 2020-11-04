@@ -6,9 +6,9 @@ from Models.Losses.custom_losses import wasserstein_loss
 from Models.biGAN.weightclip_constraint import WeightClip
 
 from keras.layers import Input, Reshape, Dense, Flatten, concatenate
-from keras.layers import UpSampling2D, Conv2D, MaxPooling2D, LayerNormalization, Dropout, LeakyReLU
+from keras.layers import UpSampling2D, Conv2D, MaxPooling2D, BatchNormalization Dropout, LeakyReLU
 from keras.models import Model
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, Adam, SGD
 
 
 
@@ -17,17 +17,18 @@ class BasicBigan(BaseBiganModel):
     def __init__(self, input_shape, latent_dim=24, lr=0.00005, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
         self.name = "BasicBigan"
-        optimizer = RMSprop(lr=self.lr)
+        g_optimizer = Adam(lr=self.lr)
+        d_optimizer = SGD(lr=self.lr)
 
         self.d = self.build_discriminator()
-        self.d.compile(optimizer=optimizer, loss=wasserstein_loss, metrics=['accuracy'])
+        self.d.compile(optimizer=d_optimizer, loss=wasserstein_loss, metrics=['accuracy'])
         self.g = self.build_generator()
         self.e = self.build_encoder()
         # The Discriminator part in GE model won't be trainable - GANs take turns.
         # Since the Discrimiantor itself has been previously compiled, this won't affect it.
         self.d.trainable = False
         self.ge = self.build_ge_enc()
-        self.ge.compile(optimizer=optimizer, loss=[wasserstein_loss, wasserstein_loss])
+        self.ge.compile(optimizer=g_optimizer, loss=[wasserstein_loss, wasserstein_loss])
         return
 
 
@@ -61,7 +62,7 @@ class BasicBigan(BaseBiganModel):
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = LeakyReLU(0.2)(x)
         x = UpSampling2D((2, 2))(x)
-        x = Conv2D(1, (1, 1), activation='sigmoid', padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(1, (1, 1), activation='tanh', padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
 
         return Model(inputs=z_input, outputs=x)
 
@@ -115,25 +116,25 @@ class BasicBigan(BaseBiganModel):
         # Image
         x = Conv2D(64, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(img_input)
         x = Dropout(rate=self.dropout)(x)
-        x = LayerNormalization()(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.2)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(64, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = Dropout(rate=self.dropout)(x)
-        x = LayerNormalization()(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.2)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = Dropout(rate=self.dropout)(x)
-        x = LayerNormalization()(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.2)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = Dropout(rate=self.dropout)(x)
-        x = LayerNormalization()(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.2)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
