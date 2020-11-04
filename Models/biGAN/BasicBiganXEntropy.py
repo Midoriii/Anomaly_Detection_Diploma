@@ -1,6 +1,7 @@
 '''
-Basic bigAN net
+Basic bigAN net, using cross entropy as loss
 '''
+import numpy as np
 from Models.biGAN.BaseBiganModel import BaseBiganModel
 from Models.Losses.custom_losses import wasserstein_loss
 from Models.biGAN.weightclip_constraint import WeightClip
@@ -12,23 +13,24 @@ from keras.optimizers import RMSprop, Adam, SGD
 
 
 
-class BasicBiganWoutWeightClip(BaseBiganModel):
+class BasicBiganXEntropy(BaseBiganModel):
 
     def __init__(self, input_shape, latent_dim=24, lr=0.00005, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
-        self.name = "BasicBigan"
+        self.name = "BasicBiganXEntropy"
         g_optimizer = Adam(lr=self.lr)
         d_optimizer = SGD(lr=self.lr)
+        self.labels_fake = np.zeros((self.batch_size, 1))
 
         self.d = self.build_discriminator()
-        self.d.compile(optimizer=d_optimizer, loss=wasserstein_loss, metrics=['accuracy'])
+        self.d.compile(optimizer=d_optimizer, loss='binary_crossentropy', metrics=['accuracy'])
         self.g = self.build_generator()
         self.e = self.build_encoder()
         # The Discriminator part in GE model won't be trainable - GANs take turns.
         # Since the Discrimiantor itself has been previously compiled, this won't affect it.
         self.d.trainable = False
         self.ge = self.build_ge_enc()
-        self.ge.compile(optimizer=g_optimizer, loss=[wasserstein_loss, wasserstein_loss])
+        self.ge.compile(optimizer=g_optimizer, loss=['binary_crossentropy', 'binary_crossentropy'])
         return
 
 

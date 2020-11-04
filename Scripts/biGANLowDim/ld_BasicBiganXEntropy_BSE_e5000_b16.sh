@@ -24,7 +24,7 @@ mkdir -p Graphs/{Losses,biGANErrors}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python bigan_tester.py -e 5000 -b 16 -m BasicBiganWoutWeightClip -t SE
+python bigan_tester.py -e 5000 -b 16 -m BasicBiganXEntropy -t BSE
 
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
