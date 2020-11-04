@@ -10,6 +10,8 @@ from Models.biGAN.BasicBigan import BasicBigan
 from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
 from Models.biGAN.BasicBiganXEntropy import BasicBiganXEntropy
 from Models.biGAN.BasicBiganHLR import BasicBiganHLR
+from Models.biGAN.BasicBiganHiDropout import BasicBiganHiDropout
+from Models.biGAN.BasicBiganLowerWeightClip import BasicBiganLowerWeightClip
 
 
 # Constants
@@ -79,6 +81,10 @@ elif desired_model == "BasicBiganXEntropy":
     model = BasicBiganXEntropy(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganHLR":
     model = BasicBiganHLR(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganLowerWeightClip":
+    model = BasicBiganLowerWeightClip(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganHiDropout":
+    model = BasicBiganHiDropout(IMG_WIDTH, batch_size=batch_size)
 else:
     print("Wrong Model specified!")
     sys.exit()
