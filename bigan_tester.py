@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 from Models.biGAN.BasicBigan import BasicBigan
 from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
-from Models.biGAN.basicbiganwoutweightclip import BasicBiganWoutWeightClip
+from Models.biGAN.BasicBiganWoutWeightClip import BasicBiganWoutWeightClip
 
 
 # Constants
