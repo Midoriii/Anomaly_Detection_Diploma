@@ -6,7 +6,7 @@ from Models.Losses.custom_losses import wasserstein_loss
 from Models.biGAN.weightclip_constraint import WeightClip
 
 from keras.layers import Input, Reshape, Dense, Flatten, concatenate
-from keras.layers import UpSampling2D, Conv2D, MaxPooling2D, BatchNormalization Dropout, LeakyReLU
+from keras.layers import UpSampling2D, Conv2D, MaxPooling2D, BatchNormalization, Dropout, LeakyReLU
 from keras.models import Model
 from keras.optimizers import RMSprop, Adam, SGD
 
