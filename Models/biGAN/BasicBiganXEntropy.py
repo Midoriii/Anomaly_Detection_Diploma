@@ -146,7 +146,7 @@ class BasicBiganXEntropy(BaseBiganModel):
 
         x = Dense(256)(x)
         x = LeakyReLU(0.2)(x)
-        x = Dense(1)(x)
+        x = Dense(1, activation='sigmoid')(x)
 
         return Model(inputs=[img_input, z_input], outputs=x)
 
