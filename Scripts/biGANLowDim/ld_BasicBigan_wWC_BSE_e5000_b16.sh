@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q gpu
 #PBS -l select=1:ncpus=1:mem=15gb:ngpus=1:scratch_local=3gb
-#PBS -l walltime=1:00:00
+#PBS -l walltime=1:30:00
 
 
 DATADIR=/storage/brno6/home/apprehension
@@ -24,7 +24,7 @@ mkdir -p Graphs/{Losses,biGANErrors}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python bigan_tester.py -e 500 -b 16 -m BasicBiganWoutBN -t SE
+python bigan_tester.py -e 5000 -b 16 -m BasicBiganWoutWeightClip -t BSE
 
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/

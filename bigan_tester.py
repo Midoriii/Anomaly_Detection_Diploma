@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 
 from Models.biGAN.BasicBigan import BasicBigan
 from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
+from Models.biGAN.basicbiganwoutweightclip import BasicBiganWoutWeightClip
 
 
 # Constants
@@ -73,6 +74,8 @@ if desired_model == "BasicBigan":
     model = BasicBigan(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganWoutBN":
     model = BasicBiganWoutBN(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganWoutWeightClip":
+    model = BasicBiganWoutWeightClip(IMG_WIDTH, batch_size=batch_size)
 else:
     print("Wrong Model specified!")
     sys.exit()
