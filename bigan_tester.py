@@ -6,6 +6,8 @@ import getopt
 import numpy as np
 import matplotlib.pyplot as plt
 
+from PIL import Image
+
 from Models.biGAN.BasicBigan import BasicBigan
 from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
 from Models.biGAN.BasicBiganXEntropy import BasicBiganXEntropy
@@ -92,6 +94,86 @@ else:
 
 # Train it
 model.train(train_input, epochs=epochs)
+# Save it
+model.save_model(epochs, image_type, dimensions)
+
+
+# The X axis of the plots - number of epochs .. +1 since it's arange
+X = np.arange(1, epochs+1)
+# Plot and save G, R, D losses .. use tab: colors
+plt.plot(X, model.g_losses, label="Gen loss", color='tab:green')
+plt.plot(X, model.e_losses, label="Enc loss", color='tab:blue')
+plt.plot(X, model.d_losses, label="Dis loss", color='tab:red')
+plt.legend(loc='upper right')
+plt.title('Model ' + model.name + " " + image_type)
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.savefig('Graphs/Losses/' + str(low_dims) + model.name + "_" + str(image_type)
+            + '_e' + str(epochs) + '_b' + str(batch_size) + '.png', bbox_inches="tight")
+plt.close('all')
+
+# Plot and save Dfake and Dreal accuracies
+plt.plot(X, model.dr_acc, label="Real Accuracy", color='tab:green')
+plt.plot(X, model.df_acc, label="Fake Accuracy", color='tab:red')
+plt.legend(loc='upper right')
+plt.title('Model ' + model.name + " " + image_type)
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.savefig('Graphs/Accuracies/' + str(low_dims) + model.name + "_" + str(image_type)
+            + '_e' + str(epochs) + '_b' + str(batch_size) + '.png', bbox_inches="tight")
+plt.close('all')
+
+
+# Calculate Anomaly scores for test input
+test_scores = []
+for i in range(0, test_input.shape[0]):
+    test_scores.append(model.predict(test_input[i]))
+
+# Calculate Anomaly scores for anomalous input
+anomalous_scores = []
+for i in range(0, anomalous_input.shape[0]):
+    anomalous_scores.append(model.predict(anomalous_input[i]))
+
+# Plot and save the anomaly scores
+X1 = np.arange(0, len(test_scores))
+X2 = np.arange(len(test_scores), len(test_scores) + len(anomalous_scores))
+
+plt.scatter(X1, test_scores, c='g', s=10,
+            marker='o', edgecolors='black', label='Without Defect')
+plt.scatter(X2, anomalous_scores, c='r', s=10,
+            marker='o', edgecolors='black', label='Defective')
+plt.legend(loc='upper left')
+plt.title('Model ' + model.name + " " + image_type)
+plt.ylabel('Anomaly Score')
+plt.xlabel('Index')
+plt.savefig('Graphs/biGANScores/' + str(low_dims) + model.name + "_" + str(image_type)
+            + '_e' + str(epochs) + '_b' + str(batch_size) + '_AS.png', bbox_inches="tight")
+plt.close('all')
+
+
+# Save several image reconstructions to gauge performance of G
+ok_idx = [2, 15, 44, 56, 30, 84, 101]
+for i in ok_idx:
+    img = test_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)
+    reconstructed_img = model.e.predict(img)
+    reconstructed_img = model.g.predict(reconstructed_img).reshape(IMG_WIDTH, IMG_HEIGHT)
+
+    im = Image.fromarray((reconstructed_img * 127.5) + 127.5)
+    im = im.convert("L")
+    im.save('Graph/biGANReco/' + str(i) + str(low_dims) + model.name + "_" + str(image_type)
+            + '_e' + str(epochs) + '_b' + str(batch_size) + '.png', bbox_inches="tight")
+
+an_idx = [2, 10, 14, 17, 20, 12, 7]
+for i in an_idx:
+    img = anomalous_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)
+    reconstructed_img = model.e.predict(img)
+    reconstructed_img = model.g.predict(reconstructed_img).reshape(IMG_WIDTH, IMG_HEIGHT)
+
+    im = Image.fromarray((reconstructed_img * 127.5) + 127.5)
+    im = im.convert("L")
+    im.save('Graph/biGANReco/' + "anomalous_" + str(i) + str(low_dims) + model.name + "_"
+            + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size)
+            + '.png', bbox_inches="tight")
 
 
 # Try Predictions
