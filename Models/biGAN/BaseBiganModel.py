@@ -32,8 +32,10 @@ class BaseBiganModel:
         self.dropout = 0.2
         self.batch_size = batch_size
 
-        self.labels_real = np.ones((self.batch_size, 1))
-        self.labels_fake = -self.labels_real
+        self.genc_labels_real = np.ones((self.batch_size, 1))
+        self.genc_labels_fake = -self.genc_labels_real
+        self.disc_labels_real = np.ones((self.batch_size, 1))
+        self.disc_labels_fake = -self.disc_labels_real
         return
 
 
@@ -59,17 +61,17 @@ class BaseBiganModel:
             fake_noise = self.e.predict(img_batch)
             fake_img_batch = self.g.predict(noise)
 
-            d_real_loss = self.d.train_on_batch([img_batch, fake_noise], self.labels_real)
+            d_real_loss = self.d.train_on_batch([img_batch, fake_noise], self.disc_labels_real)
             self.dr_losses.append(d_real_loss[0])
             self.dr_acc.append(d_real_loss[1])
-            d_fake_loss = self.d.train_on_batch([fake_img_batch, noise], self.labels_fake)
+            d_fake_loss = self.d.train_on_batch([fake_img_batch, noise], self.disc_labels_fake)
             self.df_losses.append(d_fake_loss[0])
             self.df_acc.append(d_fake_loss[1])
             d_loss = (0.5 * np.add(d_real_loss, d_fake_loss))
             self.d_losses.append(d_loss[0])
             # E+G training
             ge_enc_loss = self.ge.train_on_batch([img_batch, noise],
-                                                 [self.labels_real, self.labels_fake])
+                                                 [self.genc_labels_real, self.genc_labels_fake])
             self.e_losses.append(ge_enc_loss[0])
             self.g_losses.append(ge_enc_loss[1])
 

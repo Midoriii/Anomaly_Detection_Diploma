@@ -9,11 +9,19 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 from Models.biGAN.BasicBigan import BasicBigan
+from Models.biGAN.BasicBiganHF import BasicBiganHF
+from Models.biGAN.BasicBiganAlt import BasicBiganAlt
+from Models.biGAN.BasicBiganAVGPool import BasicBiganAVGPool
 from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
 from Models.biGAN.BasicBiganXEntropy import BasicBiganXEntropy
 from Models.biGAN.BasicBiganHLR import BasicBiganHLR
+from Models.biGAN.BasicBiganLLR import BasicBiganLLR
+from Models.biGAN.BasicBiganShallower import BasicBiganShallower
 from Models.biGAN.BasicBiganHiDropout import BasicBiganHiDropout
+from Models.biGAN.BasicBiganExtraDropout import BasicBiganExtraDropout
 from Models.biGAN.BasicBiganLowerWeightClip import BasicBiganLowerWeightClip
+from Models.biGAN.BasicBiganHigherWeightClip import BasicBiganHigherWeightClip
+from Models.biGAN.BasicBiganMixedLoss import BasicBiganMixedLoss
 
 
 # Constants
@@ -77,16 +85,32 @@ else:
 # Choose desired model
 if desired_model == "BasicBigan":
     model = BasicBigan(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganHF":
+    model = BasicBiganHF(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganAlt":
+    model = BasicBiganAlt(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganAVGPool":
+    model = BasicBiganAVGPool(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganWoutBN":
     model = BasicBiganWoutBN(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganXEntropy":
     model = BasicBiganXEntropy(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganHLR":
     model = BasicBiganHLR(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganLLR":
+    model = BasicBiganLLR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganLowerWeightClip":
     model = BasicBiganLowerWeightClip(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganHigherWeightClip":
+    model = BasicBiganHigherWeightClip(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganHiDropout":
     model = BasicBiganHiDropout(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganExtraDropout":
+    model = BasicBiganExtraDropout(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganMixedLoss":
+    model = BasicBiganMixedLoss(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganShallower":
+    model = BasicBiganShallower(IMG_WIDTH, batch_size=batch_size)
 else:
     print("Wrong Model specified!")
     sys.exit()
@@ -160,7 +184,7 @@ for i in ok_idx:
 
     im = Image.fromarray((reconstructed_img * 127.5) + 127.5)
     im = im.convert("L")
-    im.save('Graph/biGANReco/' + str(i) + str(dimensions) + model.name + "_" + str(image_type)
+    im.save('Graphs/biGANReco/' + str(i) + "_" + str(dimensions) + model.name + "_" + str(image_type)
             + '_e' + str(epochs) + '_b' + str(batch_size) + '.png', bbox_inches="tight")
 
 an_idx = [2, 10, 14, 17, 20, 12, 7]
@@ -171,7 +195,7 @@ for i in an_idx:
 
     im = Image.fromarray((reconstructed_img * 127.5) + 127.5)
     im = im.convert("L")
-    im.save('Graph/biGANReco/' + "anomalous_" + str(i) + str(dimensions) + model.name + "_"
+    im.save('Graphs/biGANReco/' + "anomalous_" + str(i) + "_" + str(dimensions) + model.name + "_"
             + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size)
             + '.png', bbox_inches="tight")
 
