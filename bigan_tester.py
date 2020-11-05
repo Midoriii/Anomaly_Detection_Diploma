@@ -108,7 +108,7 @@ plt.legend(loc='upper right')
 plt.title('Model ' + model.name + " " + image_type)
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
-plt.savefig('Graphs/Losses/' + str(low_dims) + model.name + "_" + str(image_type)
+plt.savefig('Graphs/Losses/' + str(dimensions) + model.name + "_" + str(image_type)
             + '_e' + str(epochs) + '_b' + str(batch_size) + '.png', bbox_inches="tight")
 plt.close('all')
 
@@ -119,7 +119,7 @@ plt.legend(loc='upper right')
 plt.title('Model ' + model.name + " " + image_type)
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
-plt.savefig('Graphs/Accuracies/' + str(low_dims) + model.name + "_" + str(image_type)
+plt.savefig('Graphs/Accuracies/' + str(dimensions) + model.name + "_" + str(image_type)
             + '_e' + str(epochs) + '_b' + str(batch_size) + '.png', bbox_inches="tight")
 plt.close('all')
 
@@ -146,7 +146,7 @@ plt.legend(loc='upper left')
 plt.title('Model ' + model.name + " " + image_type)
 plt.ylabel('Anomaly Score')
 plt.xlabel('Index')
-plt.savefig('Graphs/biGANScores/' + str(low_dims) + model.name + "_" + str(image_type)
+plt.savefig('Graphs/biGANScores/' + str(dimensions) + model.name + "_" + str(image_type)
             + '_e' + str(epochs) + '_b' + str(batch_size) + '_AS.png', bbox_inches="tight")
 plt.close('all')
 
@@ -160,7 +160,7 @@ for i in ok_idx:
 
     im = Image.fromarray((reconstructed_img * 127.5) + 127.5)
     im = im.convert("L")
-    im.save('Graph/biGANReco/' + str(i) + str(low_dims) + model.name + "_" + str(image_type)
+    im.save('Graph/biGANReco/' + str(i) + str(dimensions) + model.name + "_" + str(image_type)
             + '_e' + str(epochs) + '_b' + str(batch_size) + '.png', bbox_inches="tight")
 
 an_idx = [2, 10, 14, 17, 20, 12, 7]
@@ -171,7 +171,7 @@ for i in an_idx:
 
     im = Image.fromarray((reconstructed_img * 127.5) + 127.5)
     im = im.convert("L")
-    im.save('Graph/biGANReco/' + "anomalous_" + str(i) + str(low_dims) + model.name + "_"
+    im.save('Graph/biGANReco/' + "anomalous_" + str(i) + str(dimensions) + model.name + "_"
             + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size)
             + '.png', bbox_inches="tight")
 
