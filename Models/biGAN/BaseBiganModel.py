@@ -18,7 +18,9 @@ class BaseBiganModel:
 
         self.d_losses = []
         self.df_losses = []
+        self.df_acc = []
         self.dr_losses = []
+        self.dr_acc = []
         self.e_losses = []
         self.g_losses = []
 
@@ -58,9 +60,11 @@ class BaseBiganModel:
             fake_img_batch = self.g.predict(noise)
 
             d_real_loss = self.d.train_on_batch([img_batch, fake_noise], self.labels_real)
-            self.dr_losses.append(d_real_loss)
+            self.dr_losses.append(d_real_loss[0])
+            self.dr_acc.append(d_real_loss[1])
             d_fake_loss = self.d.train_on_batch([fake_img_batch, noise], self.labels_fake)
-            self.df_losses.append(d_fake_loss)
+            self.df_losses.append(d_fake_loss[0])
+            self.df_acc.append(d_fake_loss[1])
             d_loss = (0.5 * np.add(d_real_loss, d_fake_loss))
             self.d_losses.append(d_loss)
             # E+G training
