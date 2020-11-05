@@ -20,7 +20,7 @@ cp -R $DATADIR/bigan_tester.py $DATADIR/Models $DATADIR/DataBigan $SCRATCHDIR
 
 
 cd $SCRATCHDIR
-mkdir -p Graphs/{Accuracies,Losses,biGANErrors}
+mkdir -p Graphs/{Accuracies,Losses,biGANErrors,biGANReco}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
@@ -30,6 +30,7 @@ python bigan_tester.py -e 5000 -b 16 -m BasicBiganHiDropout -t BSE
 cp -vr $SCRATCHDIR/Graphs/Accuracies/* $DATADIR/Graphs/Accuracies/
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
 cp -vr $SCRATCHDIR/Graphs/biGANErrors/* $DATADIR/Graphs/biGANErrors/
+cp -vr $SCRATCHDIR/Graphs/biGANReco/* $DATADIR/Graphs/biGANReco/
 cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/
 cp -vr $SCRATCHDIR/Model_Saves/Weights/* $DATADIR/Model_Saves/Weights/
 
