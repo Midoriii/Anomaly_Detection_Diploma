@@ -190,8 +190,9 @@ for i in ok_idx:
 
     im = Image.fromarray((reconstructed_img * 127.5) + 127.5)
     im = im.convert("L")
-    im.save('Graphs/biGANReco/' + str(i) + "_" + str(dimensions) + model.name + "_" + str(image_type)
-            + '_e' + str(epochs) + '_b' + str(batch_size) + '.png', bbox_inches="tight")
+    im.save('Graphs/biGANReco/' + str(dimensions) + model.name +  "_" + str(i) + "_"
+            + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size)
+            + '.png', bbox_inches="tight")
 
 an_idx = [2, 10, 14, 17, 20, 12, 7]
 for i in an_idx:
@@ -201,8 +202,8 @@ for i in an_idx:
 
     im = Image.fromarray((reconstructed_img * 127.5) + 127.5)
     im = im.convert("L")
-    im.save('Graphs/biGANReco/' + "anomalous_" + str(i) + "_" + str(dimensions) + model.name + "_"
-            + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size)
+    im.save('Graphs/biGANReco/' + str(dimensions) + model.name + "_" + "anomalous_"
+            + str(i) + "_" + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size)
             + '.png', bbox_inches="tight")
 
 
