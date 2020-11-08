@@ -38,7 +38,7 @@ class BasicBiganXEntropyShallower(BaseBiganModel):
     def build_generator(self):
         z_input = Input(shape=[self.latent_dim])
 
-        x = Dense(6*6*32)(z_input)
+        x = Dense(24*24*32)(z_input)
         x = Reshape([24, 24, 32])(x)
 
         # 24 -> 48
