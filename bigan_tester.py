@@ -14,7 +14,9 @@ from Models.biGAN.BasicBiganAlt import BasicBiganAlt
 from Models.biGAN.BasicBiganAVGPool import BasicBiganAVGPool
 from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
 from Models.biGAN.BasicBiganXEntropy import BasicBiganXEntropy
+from Models.biGAN.BasicBiganXEntropyTTUR import BasicBiganXEntropyTTUR
 from Models.biGAN.BasicBiganHLR import BasicBiganHLR
+from Models.biGAN.BasicBiganExtraHLR import BasicBiganExtraHLR
 from Models.biGAN.BasicBiganLLR import BasicBiganLLR
 from Models.biGAN.BasicBiganShallower import BasicBiganShallower
 from Models.biGAN.BasicBiganHiDropout import BasicBiganHiDropout
@@ -95,8 +97,12 @@ elif desired_model == "BasicBiganWoutBN":
     model = BasicBiganWoutBN(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganXEntropy":
     model = BasicBiganXEntropy(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganXEntropyTTUR":
+    model = BasicBiganXEntropyTTUR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganHLR":
     model = BasicBiganHLR(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganExtraHLR":
+    model = BasicBiganExtraHLR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganLLR":
     model = BasicBiganLLR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganLowerWeightClip":
