@@ -33,7 +33,7 @@ class BaseBiganModel:
         self.batch_size = batch_size
 
         # Subtracting 0.1 as a means of label smoothing
-        self.genc_labels_real = np.ones((self.batch_size, 1)) - 0.1
+        self.genc_labels_real = np.ones((self.batch_size, 1))
         self.genc_labels_fake = -self.genc_labels_real
         self.disc_labels_real = np.ones((self.batch_size, 1)) - 0.1
         self.disc_labels_fake = -self.disc_labels_real
