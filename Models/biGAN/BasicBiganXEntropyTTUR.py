@@ -20,7 +20,8 @@ class BasicBiganXEntropyTTUR(BaseBiganModel):
         self.name = "BasicBiganXEntropyTTUR"
         g_optimizer = Adam(lr=0.0001, beta_1=0.5)
         d_optimizer = SGD(lr=0.0004)
-        self.labels_fake = np.zeros((self.batch_size, 1))
+        self.disc_labels_fake = np.zeros((self.batch_size, 1))
+        self.genc_labels_fake = np.zeros((self.batch_size, 1))
 
         self.d = self.build_discriminator()
         self.d.compile(optimizer=d_optimizer, loss='binary_crossentropy', metrics=['accuracy'])
