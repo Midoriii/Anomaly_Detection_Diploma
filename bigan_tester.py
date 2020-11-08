@@ -15,6 +15,9 @@ from Models.biGAN.BasicBiganAVGPool import BasicBiganAVGPool
 from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
 from Models.biGAN.BasicBiganXEntropy import BasicBiganXEntropy
 from Models.biGAN.BasicBiganXEntropyTTUR import BasicBiganXEntropyTTUR
+from Models.biGAN.BasicBiganXEntropyHLR import BasicBiganXEntropyHLR
+from Models.biGAN.BasicBiganXEntropyExtraHLR import BasicBiganXEntropyExtraHLR
+from Models.biGAN.BasicBiganXEntropyLLR import BasicBiganXEntropyLLR
 from Models.biGAN.BasicBiganHLR import BasicBiganHLR
 from Models.biGAN.BasicBiganExtraHLR import BasicBiganExtraHLR
 from Models.biGAN.BasicBiganLLR import BasicBiganLLR
@@ -99,6 +102,12 @@ elif desired_model == "BasicBiganXEntropy":
     model = BasicBiganXEntropy(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganXEntropyTTUR":
     model = BasicBiganXEntropyTTUR(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganXEntropyHLR":
+    model = BasicBiganXEntropyHLR(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganXEntropyExtraHLR":
+    model = BasicBiganXEntropyExtraHLR(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganXEntropyLLR":
+    model = BasicBiganXEntropyLLR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganHLR":
     model = BasicBiganHLR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganExtraHLR":
