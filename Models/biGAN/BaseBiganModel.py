@@ -71,7 +71,7 @@ class BaseBiganModel:
             self.d_losses.append(d_loss[0])
             # E+G training
             ge_enc_loss = self.ge.train_on_batch([img_batch, noise],
-                                                 [self.genc_labels_real, self.genc_labels_fake])
+                                                 [self.genc_labels_fake, self.genc_labels_real])
             self.e_losses.append(ge_enc_loss[0])
             self.g_losses.append(ge_enc_loss[1])
 
