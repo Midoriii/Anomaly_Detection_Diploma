@@ -32,10 +32,9 @@ class BaseBiganModel:
         self.dropout = 0.2
         self.batch_size = batch_size
 
-        # Subtracting 0.1 as a means of label smoothing
         self.genc_labels_real = np.ones((self.batch_size, 1))
         self.genc_labels_fake = -self.genc_labels_real
-        self.disc_labels_real = np.ones((self.batch_size, 1)) - 0.1
+        self.disc_labels_real = np.ones((self.batch_size, 1))
         self.disc_labels_fake = -self.disc_labels_real
         return
 
@@ -92,7 +91,7 @@ class BaseBiganModel:
         # Calculate both errors
         reconstruction_error = np.square(np.subtract(orig_img, re_img)).mean()
         critic_error = self.d.predict([img, z])
-        print("Critic error: " + critic_error)
+        print("Critic error: " + str(critic_error))
         return reconstruction_error + critic_error
 
     def latent_noise(self, batch_size, latent_dim):
