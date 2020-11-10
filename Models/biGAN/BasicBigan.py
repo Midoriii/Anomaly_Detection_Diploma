@@ -40,27 +40,27 @@ class BasicBigan(BaseBiganModel):
 
         # 6 -> 12
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 12 -> 24
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 24 -> 48
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 48 -> 96
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 96 -> 192
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 192 -> 384
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         x = Conv2D(1, (1, 1), activation='tanh', padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
 
@@ -71,33 +71,33 @@ class BasicBigan(BaseBiganModel):
         img_input = Input(shape=[self.input_shape, self.input_shape, 1])
         # 384 -> 192
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(img_input)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 192 -> 96
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 96 -> 48
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 48 -> 24
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 24 -> 12
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 12 -> 6
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Flatten()(x)
 
         x = Dense(256, kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = Dense(self.latent_dim, kernel_constraint=WeightClip(self.w_clip))(x)
 
         return Model(inputs=img_input, outputs=x)
@@ -109,33 +109,33 @@ class BasicBigan(BaseBiganModel):
 
         # Latent
         l = Dense(256, kernel_constraint=WeightClip(self.w_clip))(z_input)
-        l = LeakyReLU(0.02)(l)
+        l = LeakyReLU(0.1)(l)
         l = Dense(256, kernel_constraint=WeightClip(self.w_clip))(l)
-        l = LeakyReLU(0.02)(l)
+        l = LeakyReLU(0.1)(l)
 
         # Image
         x = Conv2D(64, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(img_input)
         x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(64, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         # Joint
@@ -143,7 +143,7 @@ class BasicBigan(BaseBiganModel):
         x = concatenate([x, l])
 
         x = Dense(256, kernel_constraint=WeightClip(self.w_clip))(x)
-        x = LeakyReLU(0.02)(x)
+        x = LeakyReLU(0.1)(x)
         x = Dense(1, kernel_constraint=WeightClip(self.w_clip))(x)
 
         return Model(inputs=[img_input, z_input], outputs=x)
