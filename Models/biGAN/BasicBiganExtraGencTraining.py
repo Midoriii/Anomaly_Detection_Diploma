@@ -1,6 +1,7 @@
 '''
 Basic bigAN net with extra training for G and E
 '''
+import numpy as np
 from Models.biGAN.BaseBiganModel import BaseBiganModel
 from Models.Losses.custom_losses import wasserstein_loss
 from Models.biGAN.weightclip_constraint import WeightClip
