@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 from Models.biGAN.BasicBigan import BasicBigan
+from Models.biGAN.BasicBiganTTUR import BasicBiganTTUR
 from Models.biGAN.BasicBiganHF import BasicBiganHF
 from Models.biGAN.BasicBiganAlt import BasicBiganAlt
 from Models.biGAN.BasicBiganAVGPool import BasicBiganAVGPool
@@ -19,9 +20,13 @@ from Models.biGAN.BasicBiganXEntropyTTUR import BasicBiganXEntropyTTUR
 from Models.biGAN.BasicBiganXEntropyHLR import BasicBiganXEntropyHLR
 from Models.biGAN.BasicBiganXEntropyExtraHLR import BasicBiganXEntropyExtraHLR
 from Models.biGAN.BasicBiganXEntropyLLR import BasicBiganXEntropyLLR
+from Models.biGAN.BasicBiganXEntropyExtraBN import BasicBiganXEntropyExtraBN
+from Models.biGAN.BasicBiganXEntropyExtraGencTraining import BasicBiganXEntropyExtraGencTraining
 from Models.biGAN.BasicBiganHLR import BasicBiganHLR
 from Models.biGAN.BasicBiganExtraHLR import BasicBiganExtraHLR
 from Models.biGAN.BasicBiganLLR import BasicBiganLLR
+from Models.biGAN.BasicBiganExtraBN import BasicBiganExtraBN
+from Models.biGAN.BasicBiganExtraGencTraining import BasicBiganExtraGencTraining
 from Models.biGAN.BasicBiganShallower import BasicBiganShallower
 from Models.biGAN.BasicBiganHiDropout import BasicBiganHiDropout
 from Models.biGAN.BasicBiganExtraDropout import BasicBiganExtraDropout
@@ -91,6 +96,8 @@ else:
 # Choose desired model
 if desired_model == "BasicBigan":
     model = BasicBigan(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganTTUR":
+    model = BasicBiganTTUR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganHF":
     model = BasicBiganHF(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganAlt":
@@ -111,10 +118,18 @@ elif desired_model == "BasicBiganXEntropyExtraHLR":
     model = BasicBiganXEntropyExtraHLR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganXEntropyLLR":
     model = BasicBiganXEntropyLLR(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganXEntropyExtraBN":
+    model = BasicBiganXEntropyExtraBN(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganXEntropyExtraGencTraining":
+    model = BasicBiganXEntropyExtraGencTraining(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganHLR":
     model = BasicBiganHLR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganExtraHLR":
     model = BasicBiganExtraHLR(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganExtraBN":
+    model = BasicBiganExtraBN(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganExtraGencTraining":
+    model = BasicBiganExtraGencTraining(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganLLR":
     model = BasicBiganLLR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganLowerWeightClip":

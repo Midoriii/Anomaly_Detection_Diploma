@@ -15,7 +15,7 @@ from keras.optimizers import RMSprop, Adam, SGD
 
 class BasicBiganXEntropyLLR(BaseBiganModel):
 
-    def __init__(self, input_shape, latent_dim=24, lr=0.000005, w_clip=0.01, batch_size=4):
+    def __init__(self, input_shape, latent_dim=24, lr=0.00005, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
         self.name = "BasicBiganXEntropyLLR"
         g_optimizer = Adam(lr=self.lr, beta_1=0.5)
@@ -118,27 +118,27 @@ class BasicBiganXEntropyLLR(BaseBiganModel):
 
         # Image
         x = Conv2D(64, (3, 3), padding='same')(img_input)
-        x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
+        x = Dropout(rate=self.dropout)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(64, (3, 3), padding='same')(x)
-        x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
+        x = Dropout(rate=self.dropout)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same')(x)
-        x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
+        x = Dropout(rate=self.dropout)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same')(x)
-        x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
+        x = Dropout(rate=self.dropout)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         # Joint

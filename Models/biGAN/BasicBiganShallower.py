@@ -14,7 +14,7 @@ from keras.optimizers import RMSprop, Adam, SGD
 
 class BasicBiganShallower(BaseBiganModel):
 
-    def __init__(self, input_shape, latent_dim=48, lr=0.00005, w_clip=0.01, batch_size=4):
+    def __init__(self, input_shape, latent_dim=48, lr=0.0005, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
         self.name = "BasicBiganShallower"
         g_optimizer = Adam(lr=self.lr, beta_1=0.5)
@@ -80,7 +80,7 @@ class BasicBiganShallower(BaseBiganModel):
 
         x = Flatten()(x)
 
-        x = Dense(128, kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Dense(256, kernel_constraint=WeightClip(self.w_clip))(x)
         x = LeakyReLU(0.1)(x)
         x = Dense(self.latent_dim, kernel_constraint=WeightClip(self.w_clip))(x)
 
@@ -99,34 +99,34 @@ class BasicBiganShallower(BaseBiganModel):
 
         # Image
         x = Conv2D(64, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(img_input)
-        x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
+        x = Dropout(rate=self.dropout)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(64, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
+        x = Dropout(rate=self.dropout)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
+        x = Dropout(rate=self.dropout)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Conv2D(128, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
-        x = Dropout(rate=self.dropout)(x)
         x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
+        x = Dropout(rate=self.dropout)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         # Joint
         x = Flatten()(x)
         x = concatenate([x, l])
 
-        x = Dense(128, kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Dense(256, kernel_constraint=WeightClip(self.w_clip))(x)
         x = LeakyReLU(0.1)(x)
         x = Dense(1, kernel_constraint=WeightClip(self.w_clip))(x)
 

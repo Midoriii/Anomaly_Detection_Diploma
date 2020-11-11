@@ -1,5 +1,5 @@
 '''
-Basic bigAN net with higher dropout
+Basic bigAN net with different learning rates for D and G
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel
 from Models.Losses.custom_losses import wasserstein_loss
@@ -12,14 +12,13 @@ from keras.optimizers import RMSprop, Adam, SGD
 
 
 
-class BasicBiganHiDropout(BaseBiganModel):
+class BasicBiganTTUR(BaseBiganModel):
 
     def __init__(self, input_shape, latent_dim=24, lr=0.0005, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
-        self.name = "BasicBiganHigherDropout"
-        self.dropout = 0.5
-        g_optimizer = Adam(lr=self.lr, beta_1=0.5)
-        d_optimizer = SGD(lr=self.lr)
+        self.name = "BasicBiganTTUR"
+        g_optimizer = Adam(lr=0.0001, beta_1=0.5)
+        d_optimizer = SGD(lr=0.0004)
 
         self.d = self.build_discriminator()
         self.d.compile(optimizer=d_optimizer, loss=wasserstein_loss, metrics=['accuracy'])

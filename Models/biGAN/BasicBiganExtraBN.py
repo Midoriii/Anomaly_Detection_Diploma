@@ -1,5 +1,5 @@
 '''
-Basic bigAN net with higher dropout
+Basic bigAN net with Batch Norm in G and E
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel
 from Models.Losses.custom_losses import wasserstein_loss
@@ -12,12 +12,11 @@ from keras.optimizers import RMSprop, Adam, SGD
 
 
 
-class BasicBiganHiDropout(BaseBiganModel):
+class BasicBiganExtraBN(BaseBiganModel):
 
     def __init__(self, input_shape, latent_dim=24, lr=0.0005, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
-        self.name = "BasicBiganHigherDropout"
-        self.dropout = 0.5
+        self.name = "BasicBiganExtraBN"
         g_optimizer = Adam(lr=self.lr, beta_1=0.5)
         d_optimizer = SGD(lr=self.lr)
 
@@ -41,26 +40,32 @@ class BasicBiganHiDropout(BaseBiganModel):
 
         # 6 -> 12
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 12 -> 24
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 24 -> 48
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 48 -> 96
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 96 -> 192
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 192 -> 384
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         x = Conv2D(1, (1, 1), activation='tanh', padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
@@ -72,32 +77,39 @@ class BasicBiganHiDropout(BaseBiganModel):
         img_input = Input(shape=[self.input_shape, self.input_shape, 1])
         # 384 -> 192
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(img_input)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 192 -> 96
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 96 -> 48
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 48 -> 24
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 24 -> 12
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 12 -> 6
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Flatten()(x)
 
         x = Dense(256, kernel_constraint=WeightClip(self.w_clip))(x)
+        x = BatchNormalization()(x)
         x = LeakyReLU(0.1)(x)
         x = Dense(self.latent_dim, kernel_constraint=WeightClip(self.w_clip))(x)
 
