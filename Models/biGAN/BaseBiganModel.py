@@ -72,12 +72,12 @@ class BaseBiganModel:
             # E+G training
             ge_enc_loss = self.ge.train_on_batch([img_batch, noise],
                                                  [self.genc_labels_fake, self.genc_labels_real])
-            self.e_losses.append(ge_enc_loss[0])
-            self.g_losses.append(ge_enc_loss[1])
+            self.e_losses.append(ge_enc_loss[1])
+            self.g_losses.append(ge_enc_loss[2])
 
             print("Epoch: " + str(epoch) + ", D loss: " + str(d_loss[0])
-                  + "; D acc: " + str(d_loss[1]) + "; E loss: " + str(ge_enc_loss[0])
-                  + "; G loss: " + str(ge_enc_loss[1]))
+                  + "; D acc: " + str(d_loss[1]) + "; E loss: " + str(ge_enc_loss[1])
+                  + "; G loss: " + str(ge_enc_loss[2]))
         return
 
     def predict(self, orig_img):

@@ -183,17 +183,17 @@ class BasicBiganXEntropyExtraGencTraining(BaseBiganModel):
             d_loss = (0.5 * np.add(d_real_loss, d_fake_loss))
             self.d_losses.append(d_loss[0])
             # E+G training
-            ge_enc_loss = np.empty(2)
+            ge_enc_loss = np.empty(3)
             for _ in range(0, 5):
                 noise = self.latent_noise(self.batch_size, self.latent_dim)
                 img_batch = self.get_image_batch(images, self.batch_size)
 
                 ge_enc_loss += self.ge.train_on_batch([img_batch, noise],
                                                       [self.genc_labels_fake, self.genc_labels_real])
-            self.e_losses.append(ge_enc_loss[0]/5.0)
-            self.g_losses.append(ge_enc_loss[1]/5.0)
+            self.e_losses.append(ge_enc_loss[1]/5.0)
+            self.g_losses.append(ge_enc_loss[2]/5.0)
 
             print("Epoch: " + str(epoch) + ", D loss: " + str(d_loss[0])
-                  + "; D acc: " + str(d_loss[1]) + "; E loss: " + str(ge_enc_loss[0]/5.0)
-                  + "; G loss: " + str(ge_enc_loss[1]/5.0))
+                  + "; D acc: " + str(d_loss[1]) + "; E loss: " + str(ge_enc_loss[1]/5.0)
+                  + "; G loss: " + str(ge_enc_loss[2]/5.0))
         return
