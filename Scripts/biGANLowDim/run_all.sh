@@ -1,5 +1,5 @@
 #!/bin/bash
-FILES=*.sh
+FILES=ld_*.sh
 for f in $FILES
 do
   qsub $f
