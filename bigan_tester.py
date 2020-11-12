@@ -26,6 +26,7 @@ from Models.biGAN.BasicBiganHLR import BasicBiganHLR
 from Models.biGAN.BasicBiganExtraHLR import BasicBiganExtraHLR
 from Models.biGAN.BasicBiganLLR import BasicBiganLLR
 from Models.biGAN.BasicBiganExtraBN import BasicBiganExtraBN
+from Models.biGAN.BasicBiganExtraBNHigherWeightClip import BasicBiganExtraBNHigherWeightClip
 from Models.biGAN.BasicBiganExtraGencTraining import BasicBiganExtraGencTraining
 from Models.biGAN.BasicBiganShallower import BasicBiganShallower
 from Models.biGAN.BasicBiganHiDropout import BasicBiganHiDropout
@@ -33,7 +34,10 @@ from Models.biGAN.BasicBiganExtraDropout import BasicBiganExtraDropout
 from Models.biGAN.BasicBiganLowerWeightClip import BasicBiganLowerWeightClip
 from Models.biGAN.BasicBiganHigherWeightClip import BasicBiganHigherWeightClip
 from Models.biGAN.BasicBiganMixedLoss import BasicBiganMixedLoss
-
+from Models.biGAN.lowerDimBigan import lowerDimBigan
+from Models.biGAN.lowerDimBiganExtraBN import lowerDimBiganExtraBN
+from Models.biGAN.lowerDimBiganHigherWeightClip import lowerDimBiganHigherWeightClip
+from Models.biGAN.lowerDimBiganXEntropy import lowerDimBiganXEntropy
 
 # Constants
 IMG_WIDTH = 384
@@ -136,6 +140,8 @@ elif desired_model == "BasicBiganExtraHLR":
     model = BasicBiganExtraHLR(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganExtraBN":
     model = BasicBiganExtraBN(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "BasicBiganExtraBNHigherWeightClip":
+    model = BasicBiganExtraBNHigherWeightClip(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganExtraGencTraining":
     model = BasicBiganExtraGencTraining(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganLLR":
@@ -152,6 +158,14 @@ elif desired_model == "BasicBiganMixedLoss":
     model = BasicBiganMixedLoss(IMG_WIDTH, batch_size=batch_size)
 elif desired_model == "BasicBiganShallower":
     model = BasicBiganShallower(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "lowerDimBigan":
+    model = lowerDimBigan(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "lowerDimBiganExtraBN":
+    model = lowerDimBiganExtraBN(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "lowerDimBiganHigherWeightClip":
+    model = lowerDimBiganHigherWeightClip(IMG_WIDTH, batch_size=batch_size)
+elif desired_model == "lowerDimBiganXEntropy":
+    model = lowerDimBiganXEntropy(IMG_WIDTH, batch_size=batch_size)
 else:
     print("Wrong Model specified!")
     sys.exit()
