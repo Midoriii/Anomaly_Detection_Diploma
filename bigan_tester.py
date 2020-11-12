@@ -53,8 +53,8 @@ full_cmd_arguments = sys.argv
 # Keep all but the first
 argument_list = full_cmd_arguments[1:]
 # Getopt options
-short_options = "e:b:m:t:"
-long_options = ["epochs=", "batch_size=", "model=", "type="]
+short_options = "e:b:m:t:d:"
+long_options = ["epochs=", "batch_size=", "model=", "type=", "dimensions="]
 # Get the arguments and their respective values
 arguments, values = getopt.getopt(argument_list, short_options, long_options)
 
@@ -69,25 +69,33 @@ for current_argument, current_value in arguments:
         desired_model = current_value
     elif current_argument in ("-t", "--type"):
         image_type = current_value
+    elif current_argument in ("-d", "--dimensions"):
+        dimensions = current_value
 
 
 # Load appropriate data, selected by image type
 if image_type == "BSE":
-    train_input = np.load("DataBigan/low_dim_BSE_ok_bigan.npy")
-    train_input = (train_input - 0.5) * 2.0
-    test_input = np.load("DataBigan/low_dim_BSE_ok_extra_bigan.npy")
-    test_input = (test_input - 0.5) * 2.0
-    test_input = np.concatenate((train_input, test_input))
-    anomalous_input = np.load("DataBigan/low_dim_BSE_faulty_extended_bigan.npy")
-    anomalous_input = (anomalous_input - 0.5) * 2.0
+    if dimensions == "low_dim_":
+        train_input = np.load("DataBigan/low_dim_BSE_ok_bigan.npy")
+        test_input = np.load("DataBigan/low_dim_BSE_ok_extra_bigan.npy")
+        test_input = np.concatenate((train_input, test_input))
+        anomalous_input = np.load("DataBigan/low_dim_BSE_faulty_extended_bigan.npy")
+    else:
+        train_input = np.load("DataBigan/extra_low_dim_BSE_ok_bigan.npy")
+        test_input = np.load("DataBigan/extra_low_dim_BSE_ok_extra_bigan.npy")
+        test_input = np.concatenate((train_input, test_input))
+        anomalous_input = np.load("DataBigan/extra_low_dim_BSE_faulty_extended_bigan.npy")
 elif image_type == "SE":
-    train_input = np.load("DataBigan/low_dim_SE_ok_bigan.npy")
-    train_input = (train_input - 0.5) * 2.0
-    test_input = np.load("DataBigan/low_dim_SE_ok_extra_bigan.npy")
-    test_input = (test_input - 0.5) * 2.0
-    test_input = np.concatenate((train_input, test_input))
-    anomalous_input = np.load("DataBigan/low_dim_SE_faulty_extended_bigan.npy")
-    anomalous_input = (anomalous_input - 0.5) * 2.0
+    if dimensions == "low_dim_":
+        train_input = np.load("DataBigan/low_dim_SE_ok_bigan.npy")
+        test_input = np.load("DataBigan/low_dim_SE_ok_extra_bigan.npy")
+        test_input = np.concatenate((train_input, test_input))
+        anomalous_input = np.load("DataBigan/low_dim_SE_faulty_extended_bigan.npy")
+    else:
+        train_input = np.load("DataBigan/extra_low_dim_SE_ok_bigan.npy")
+        test_input = np.load("DataBigan/extra_low_dim_SE_ok_extra_bigan.npy")
+        test_input = np.concatenate((train_input, test_input))
+        anomalous_input = np.load("DataBigan/extra_low_dim_SE_faulty_extended_bigan.npy")
 else:
     print("Wrong Image Type specified!")
     sys.exit()
