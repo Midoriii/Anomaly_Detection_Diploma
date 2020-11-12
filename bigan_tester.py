@@ -89,6 +89,8 @@ if image_type == "BSE":
         test_input = np.load("DataBigan/extra_low_dim_BSE_ok_extra_bigan.npy")
         test_input = np.concatenate((train_input, test_input))
         anomalous_input = np.load("DataBigan/extra_low_dim_BSE_faulty_extended_bigan.npy")
+        IMG_HEIGHT = 192
+        IMG_WIDTH = 192
 elif image_type == "SE":
     if dimensions == "low_dim_":
         train_input = np.load("DataBigan/low_dim_SE_ok_bigan.npy")
@@ -100,6 +102,8 @@ elif image_type == "SE":
         test_input = np.load("DataBigan/extra_low_dim_SE_ok_extra_bigan.npy")
         test_input = np.concatenate((train_input, test_input))
         anomalous_input = np.load("DataBigan/extra_low_dim_SE_faulty_extended_bigan.npy")
+        IMG_HEIGHT = 192
+        IMG_WIDTH = 192
 else:
     print("Wrong Image Type specified!")
     sys.exit()
