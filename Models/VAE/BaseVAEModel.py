@@ -30,7 +30,7 @@ class BaseVAEModel:
         self.history = self.vae.fit(training_input, training_input, epochs=epochs, batch_size=batch_size)
         return
 
-    def sampling(mu_log_variance):
+    def sampling(self, mu_log_variance):
         mu, log_variance = mu_log_variance
         epsilon = K.random_normal(shape=K.shape(mu), mean=0.0, stddev=1.0)
         random_sample = mu + K.exp(log_variance/2) * epsilon

@@ -20,14 +20,13 @@ cp -R $DATADIR/vae_tester.py $DATADIR/Models $DATADIR/Data $SCRATCHDIR
 
 
 cd $SCRATCHDIR
-mkdir -p Graphs/{Accuracies,Losses,VAEScores}
+mkdir -p Graphs/{Losses,VAEScores}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
 python vae_tester.py -e 400 -b 16 -m BasicVAE -t SE
 
 
-cp -vr $SCRATCHDIR/Graphs/Accuracies/* $DATADIR/Graphs/Accuracies/
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
 cp -vr $SCRATCHDIR/Graphs/VAEScores/* $DATADIR/Graphs/VAEScores/
 cp -vr $SCRATCHDIR/Model_Saves/Detailed/* $DATADIR/Model_Saves/Detailed/

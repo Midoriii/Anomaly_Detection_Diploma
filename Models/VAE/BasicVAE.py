@@ -77,7 +77,7 @@ class BasicVAE(BaseVAEModel):
         self.e = Model(e_input, e_output)
 
         # And now the decoder part
-        d_input = Input(shape=self.latent_dim)
+        d_input = Input(shape=[self.latent_dim])
         x = Dense(np.prod(shape_before_flatten))(d_input)
         x = Reshape(target_shape=shape_before_flatten)(x)
 
