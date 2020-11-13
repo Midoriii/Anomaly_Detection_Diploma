@@ -18,6 +18,8 @@ class BaseVAEModel:
         self.encoder_log_variance = Model()
         self.history = History()
 
+        self.rl_factor = 1000
+
         self.name = "BaseVAEModel"
         self.filters = 64
         self.lr = lr

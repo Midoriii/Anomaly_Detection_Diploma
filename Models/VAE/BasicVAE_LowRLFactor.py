@@ -1,5 +1,5 @@
 '''
-Basic Variational Autoencoder
+Basic Variational Autoencoder with lowered reconstruction loss factor
 '''
 import numpy as np
 from keras import backend as K
@@ -15,15 +15,17 @@ from Models.Losses.custom_losses import vae_loss_func
 
 
 
-class BasicVAE(BaseVAEModel):
+class BasicVAE_LowRLFactor(BaseVAEModel):
 
     def __init__(self, input_shape, latent_dim=12, lr=0.0005):
         super().__init__(input_shape, latent_dim, lr)
 
-        self.name = "BasicVAE"
+        self.name = "BasicVAE_LowRLFactor"
 
         self.optimizer = Adam(lr=self.lr)
         self.filters = 64
+
+        self.rl_factor = 100
 
         self.create_net()
 

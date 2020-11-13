@@ -1,5 +1,5 @@
 '''
-Basic Variational Autoencoder
+Basic Variational Autoencoder, slightly deeper
 '''
 import numpy as np
 from keras import backend as K
@@ -15,12 +15,12 @@ from Models.Losses.custom_losses import vae_loss_func
 
 
 
-class BasicVAE(BaseVAEModel):
+class BasicVAEDeeper(BaseVAEModel):
 
     def __init__(self, input_shape, latent_dim=12, lr=0.0005):
         super().__init__(input_shape, latent_dim, lr)
 
-        self.name = "BasicVAE"
+        self.name = "BasicVAEDeeper"
 
         self.optimizer = Adam(lr=self.lr)
         self.filters = 64
@@ -66,6 +66,11 @@ class BasicVAE(BaseVAEModel):
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
+        x = Conv2D(self.filters, (3, 3), padding='same')(x)
+        x = BatchNormalization()(x)
+        x = PReLU(alpha_initializer=Constant(value=0.25))(x)
+        x = MaxPooling2D((2, 2), padding='same')(x)
+
         shape_before_flatten = K.int_shape(x)[1:]
         x = Flatten()(x)
 
@@ -81,6 +86,11 @@ class BasicVAE(BaseVAEModel):
         d_input = Input(shape=[self.latent_dim])
         x = Dense(np.prod(shape_before_flatten))(d_input)
         x = Reshape(target_shape=shape_before_flatten)(x)
+
+        x = Conv2D(self.filters, (3, 3), padding='same')(x)
+        x = BatchNormalization()(x)
+        x = PReLU(alpha_initializer=Constant(value=0.25))(x)
+        x = UpSampling2D((2, 2))(x)
 
         x = Conv2D(self.filters, (3, 3), padding='same')(x)
         x = BatchNormalization()(x)

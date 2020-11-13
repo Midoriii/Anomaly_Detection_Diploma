@@ -1,5 +1,5 @@
 '''
-Basic Variational Autoencoder
+Basic Variational Autoencoder with higher learning rate
 '''
 import numpy as np
 from keras import backend as K
@@ -15,12 +15,12 @@ from Models.Losses.custom_losses import vae_loss_func
 
 
 
-class BasicVAE(BaseVAEModel):
+class BasicVAE_HLR(BaseVAEModel):
 
-    def __init__(self, input_shape, latent_dim=12, lr=0.0005):
+    def __init__(self, input_shape, latent_dim=12, lr=0.005):
         super().__init__(input_shape, latent_dim, lr)
 
-        self.name = "BasicVAE"
+        self.name = "BasicVAE_HLR"
 
         self.optimizer = Adam(lr=self.lr)
         self.filters = 64

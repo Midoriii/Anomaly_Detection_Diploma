@@ -71,15 +71,14 @@ def wasserstein_loss(y_true, y_pred):
     return K.mean(y_true * y_pred)
 
 
-def vae_loss_func(encoder_mu, encoder_log_variance):
+def vae_loss_func(encoder_mu, encoder_log_variance, rl_factor):
     '''
     A loss function for VAE, needs outputs from encoder - mu and log variance,
     as well as y_pred and y_true, as per usual.
     '''
     def vae_reconstruction_loss(y_true, y_predict):
-        reconstruction_loss_factor = 1000
         reconstruction_loss = K.mean(K.square(y_true-y_predict), axis=[1, 2, 3])
-        return reconstruction_loss_factor * reconstruction_loss
+        return rl_factor * reconstruction_loss
 
     def vae_kl_loss(encoder_mu, encoder_log_variance):
         kl_loss = -0.5 * K.sum(1.0 + encoder_log_variance - K.square(encoder_mu)

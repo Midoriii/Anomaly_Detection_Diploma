@@ -8,6 +8,12 @@ import matplotlib.pyplot as plt
 
 
 from Models.VAE.BasicVAE import BasicVAE
+from Models.VAE.BasicVAEDeeper import BasicVAEDeeper
+from Models.VAE.BasicVAE_HLR import BasicVAE_HLR
+from Models.VAE.BasicVAE_LLR import BasicVAE_LLR
+from Models.VAE.BasicVAE_HiLatDim import BasicVAE_HiLatDim
+from Models.VAE.BasicVAE_LowLatDim import BasicVAE_LowLatDim
+from Models.VAE.BasicVAE_LowRLFactor import BasicVAE_LowRLFactor
 
 
 # Constants
@@ -64,6 +70,18 @@ else:
 # Choose desired model
 if desired_model == "BasicVAE":
     model = BasicVAE(IMG_WIDTH)
+elif desired_model == "BasicVAEDeeper":
+    model = BasicVAEDeeper(IMG_WIDTH)
+elif desired_model == "BasicVAE_HiLatDim":
+    model = BasicVAE_HiLatDim(IMG_WIDTH)
+elif desired_model == "BasicVAE_LowLatDim":
+    model = BasicVAE_LowLatDim(IMG_WIDTH)
+elif desired_model == "BasicVAE_LowRLFactor":
+    model = BasicVAE_LowRLFactor(IMG_WIDTH)
+elif desired_model == "BasicVAE_HLR":
+    model = BasicVAE_HLR(IMG_WIDTH)
+elif desired_model == "BasicVAE_LLR":
+    model = BasicVAE_LLR(IMG_WIDTH)
 else:
     print("Wrong Model specified!")
     sys.exit()

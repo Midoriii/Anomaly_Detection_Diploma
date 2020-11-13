@@ -24,7 +24,7 @@ mkdir -p Graphs/{Losses,VAEScores}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python vae_tester.py -e 400 -b 16 -m BasicVAE -t BSE
+python vae_tester.py -e 400 -b 16 -m BasicVAE_LowLatDim -t BSE
 
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
