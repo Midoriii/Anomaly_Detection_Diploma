@@ -98,8 +98,8 @@ plt.plot(model.history.history['loss'])
 plt.title('model loss - ' + model.name)
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.savefig('Graphs/Losses/vae_' + str(dimensions) + model.name + '_e' + str(epochs)
-            + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
+plt.savefig('Graphs/Losses/vae_' + str(dimensions) + model.name + str(image_type)
+            + '_e' + str(epochs) + '_b' + str(batch_size) + '_loss.png', bbox_inches="tight")
 plt.close('all')
 
 
