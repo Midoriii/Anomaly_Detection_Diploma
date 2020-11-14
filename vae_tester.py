@@ -121,6 +121,9 @@ plt.scatter(X1, test_scores, c='g', s=10,
             marker='o', edgecolors='black', label='Without Defect')
 plt.scatter(X2, anomalous_scores, c='r', s=10,
             marker='o', edgecolors='black', label='Defective')
+# Plot threshold line, defined as 3 times the standard deviation of
+# reconstruction error on non-defective images
+plt.axhline(y=(3 * np.std(test_scores[:train_input.shape[0]])), color='r', linestyle='-')
 plt.legend(loc='upper left')
 plt.title('Model ' + model.name + " " + image_type)
 plt.ylabel('Anomaly Score')
