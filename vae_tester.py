@@ -9,12 +9,20 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 from Models.VAE.BasicVAE import BasicVAE
+from Models.VAE.BasicVAE_HF import BasicVAE_HF
 from Models.VAE.BasicVAEDeeper import BasicVAEDeeper
+from Models.VAE.BasicVAEDeeper_LLR import BasicVAEDeeper_LLR
+from Models.VAE.BasicVAEDeeper_LowLatDim import BasicVAEDeeper_LowLatDim
+from Models.VAE.BasicVAEEvenDeeper import BasicVAEEvenDeeper
 from Models.VAE.BasicVAE_HLR import BasicVAE_HLR
 from Models.VAE.BasicVAE_LLR import BasicVAE_LLR
 from Models.VAE.BasicVAE_HiLatDim import BasicVAE_HiLatDim
+from Models.VAE.BasicVAE_ExtraHiLatDim import BasicVAE_ExtraHiLatDim
 from Models.VAE.BasicVAE_LowLatDim import BasicVAE_LowLatDim
+from Models.VAE.BasicVAE_HiLatDim_LLR import BasicVAE_HiLatDim_LLR
+from Models.VAE.BasicVAE_LowLatDim_LLR import BasicVAE_LowLatDim_LLR
 from Models.VAE.BasicVAE_LowRLFactor import BasicVAE_LowRLFactor
+from Models.VAE.BasicVAE_HiRLFactor import BasicVAE_HiRLFactor
 
 
 # Constants
@@ -73,12 +81,28 @@ if desired_model == "BasicVAE":
     model = BasicVAE(IMG_WIDTH)
 elif desired_model == "BasicVAEDeeper":
     model = BasicVAEDeeper(IMG_WIDTH)
+elif desired_model == "BasicVAE_HF":
+    model = BasicVAE_HF(IMG_WIDTH)
+elif desired_model == "BasicVAEDeeper_LLR":
+    model = BasicVAEDeeper_LLR(IMG_WIDTH)
+elif desired_model == "BasicVAEDeeper_LowLatDim":
+    model = BasicVAEDeeper_LowLatDim(IMG_WIDTH)
+elif desired_model == "BasicVAEEvenDeeper":
+    model = BasicVAEEvenDeeper(IMG_WIDTH)
 elif desired_model == "BasicVAE_HiLatDim":
     model = BasicVAE_HiLatDim(IMG_WIDTH)
+elif desired_model == "BasicVAE_ExtraHiLatDim":
+    model = BasicVAE_ExtraHiLatDim(IMG_WIDTH)
 elif desired_model == "BasicVAE_LowLatDim":
     model = BasicVAE_LowLatDim(IMG_WIDTH)
+elif desired_model == "BasicVAE_HiLatDim_LLR":
+    model = BasicVAE_HiLatDim_LLR(IMG_WIDTH)
+elif desired_model == "BasicVAE_LowLatDim_LLR":
+    model = BasicVAE_LowLatDim_LLR(IMG_WIDTH)
 elif desired_model == "BasicVAE_LowRLFactor":
     model = BasicVAE_LowRLFactor(IMG_WIDTH)
+elif desired_model == "BasicVAE_HiRLFactor":
+    model = BasicVAE_HiRLFactor(IMG_WIDTH)
 elif desired_model == "BasicVAE_HLR":
     model = BasicVAE_HLR(IMG_WIDTH)
 elif desired_model == "BasicVAE_LLR":
