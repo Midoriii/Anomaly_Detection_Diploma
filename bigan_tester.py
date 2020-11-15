@@ -217,6 +217,9 @@ anomalous_scores = []
 for i in range(0, anomalous_input.shape[0]):
     anomalous_scores.append(model.predict(anomalous_input[i]))
 
+# Define simple Anomaly detection threshold
+threshold = 3 * np.std(test_scores[:train_input.shape[0]])
+
 # Plot and save the anomaly scores
 X1 = np.arange(0, len(test_scores))
 X2 = np.arange(len(test_scores), len(test_scores) + len(anomalous_scores))
@@ -225,6 +228,9 @@ plt.scatter(X1, test_scores, c='g', s=10,
             marker='o', edgecolors='black', label='Without Defect')
 plt.scatter(X2, anomalous_scores, c='r', s=10,
             marker='o', edgecolors='black', label='Defective')
+# Plot threshold line, defined as 3 times the standard deviation of
+# reconstruction error on non-defective images
+plt.axhline(y=(threshold), color='r', linestyle='-')
 plt.legend(loc='upper left')
 plt.title('Model ' + model.name + " " + image_type)
 plt.ylabel('Anomaly Score')
