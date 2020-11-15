@@ -6,6 +6,7 @@ import getopt
 import numpy as np
 import matplotlib.pyplot as plt
 
+from PIL import Image
 
 from Models.VAE.BasicVAE import BasicVAE
 from Models.VAE.BasicVAEDeeper import BasicVAEDeeper
@@ -134,6 +135,30 @@ plt.xlabel('Index')
 plt.savefig('Graphs/VAEScores/' + str(dimensions) + model.name + "_" + str(image_type)
             + '_e' + str(epochs) + '_b' + str(batch_size) + '_AS.png', bbox_inches="tight")
 plt.close('all')
+
+
+# Save several image reconstructions to gauge performance of G
+ok_idx = [2, 15, 44, 56, 30, 84, 101]
+for i in ok_idx:
+    img = test_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)
+    model.vae.predict(img).reshape(IMG_WIDTH, IMG_HEIGHT)
+
+    im = Image.fromarray(reconstructed_img * 255.0)
+    im = im.convert("L")
+    im.save('Graphs/VAEReco/' + str(dimensions) + model.name +  "_" + str(i) + "_"
+            + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size)
+            + '.png', bbox_inches="tight")
+
+an_idx = [2, 10, 14, 17, 20, 12, 7]
+for i in an_idx:
+    img = anomalous_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)
+    reconstructed_img = model.vae.predict(img).reshape(IMG_WIDTH, IMG_HEIGHT)
+
+    im = Image.fromarray(reconstructed_img * 255.0)
+    im = im.convert("L")
+    im.save('Graphs/VAEReco/' + str(dimensions) + model.name + "_" + "anomalous_"
+            + str(i) + "_" + str(image_type) + '_e' + str(epochs) + '_b' + str(batch_size)
+            + '.png', bbox_inches="tight")
 
 
 # Try Predictions
