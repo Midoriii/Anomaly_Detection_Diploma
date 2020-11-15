@@ -141,7 +141,7 @@ plt.close('all')
 ok_idx = [2, 15, 44, 56, 30, 84, 101]
 for i in ok_idx:
     img = test_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)
-    model.vae.predict(img).reshape(IMG_WIDTH, IMG_HEIGHT)
+    reconstructed_img = model.vae.predict(img).reshape(IMG_WIDTH, IMG_HEIGHT)
 
     im = Image.fromarray(reconstructed_img * 255.0)
     im = im.convert("L")
