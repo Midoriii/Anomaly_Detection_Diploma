@@ -62,7 +62,7 @@ class BasicBigan(BaseBiganModel):
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
-        x = Conv2D(1, (1, 1), activation='tanh', padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(1, (3, 3), activation='tanh', padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
 
         return Model(inputs=z_input, outputs=x)
 

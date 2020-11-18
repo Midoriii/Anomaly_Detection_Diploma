@@ -57,7 +57,7 @@ class BasicBiganXEntropyShallower(BaseBiganModel):
         x = Conv2D(32, (3, 3), padding='same')(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
-        x = Conv2D(1, (1, 1), activation='tanh', padding='same')(x)
+        x = Conv2D(1, (3, 3), activation='tanh', padding='same')(x)
 
         return Model(inputs=z_input, outputs=x)
 
