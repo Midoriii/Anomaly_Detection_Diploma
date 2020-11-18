@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -q gpu
-#PBS -l select=1:ncpus=1:mem=8gb:ngpus=1:scratch_local=3gb:cluster=adan
+#PBS -l select=1:ncpus=1:mem=16gb:ngpus=1:scratch_local=3gb:cluster=adan
 #PBS -l walltime=3:00:00
 
 
@@ -24,7 +24,7 @@ mkdir -p Graphs/{Losses,VAEScores,VAEReco}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python vae_tester.py -e 400 -b 16 -m BasicVAE_HF -t SE
+python vae_tester.py -e 400 -b 8 -m BasicVAE_HF -t BSE
 
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
