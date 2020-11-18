@@ -82,7 +82,6 @@ model_class = globals()[desired_model]
 model = model_class(IMG_WIDTH)
 
 
-
 # Train it
 model.train_net(train_input, epochs=epochs, batch_size=batch_size)
 # Save it
