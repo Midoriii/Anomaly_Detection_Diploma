@@ -171,42 +171,10 @@ reconstructed_ok_array = []
 reconstructed_anomalous_array = []
 
 
-# Choose the correct model
-if desired_model == "BasicAutoencoder":
-    model = BasicAutoencoder()
-elif desired_model == "BasicAutoencoder_LF":
-    model = BasicAutoencoder_LF()
-elif desired_model == "HighStrideAutoencoder":
-    model = HighStrideAutoencoder()
-elif desired_model == "HighStrideAutoencoderDeeper":
-    model = HighStrideAutoencoderDeeper()
-elif desired_model == "BasicAutoencoderDeeper":
-    model = BasicAutoencoderDeeper()
-elif desired_model == "BasicAutoencoderDeeperExtraLLR":
-    model = BasicAutoencoderDeeperExtraLLR()
-elif desired_model == "BasicAutoencoderEvenDeeper":
-    model = BasicAutoencoderEvenDeeper()
-elif desired_model == "BasicAutoencoderEvenDeeperLLR":
-    model = BasicAutoencoderEvenDeeperLLR()
-elif desired_model == "BasicAutoencoderEvenDeeperExtraLLR":
-    model = BasicAutoencoderEvenDeeperExtraLLR()
-elif desired_model == "BasicAutoencoderEvenDeeperExtraLLRMultipleConv":
-    model = BasicAutoencoderEvenDeeperExtraLLRMultipleConv()
-elif desired_model == "TransposeConvAutoencoder":
-    model = TransposeConvAutoencoder()
-elif desired_model == "HighStrideTransposeConvAutoencoder":
-    model = HighStrideTransposeConvAutoencoder()
-elif desired_model == "TransposeConvAutoencoderDeepExtraLLR":
-    model = TransposeConvAutoencoderDeepExtraLLR()
-elif desired_model == "BasicAutoencoderLFDeeperLLR":
-    model = BasicAutoencoderLFDeeperLLR()
-elif desired_model == "BasicAutoencoderHFDeeperLLR":
-    model = BasicAutoencoderHFDeeperLLR()
-elif desired_model == "BasicAutoencoderEvenDeeperSuperLLR":
-    model = BasicAutoencoderEvenDeeperSuperLLR()
-else:
-    print("No model specified")
-    sys.exit()
+# Choose desired model
+model_class = globals()[desired_model]
+model = model_class()
+
 
 # Create and compile the model
 input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)

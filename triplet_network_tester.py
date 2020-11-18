@@ -99,49 +99,8 @@ else:
 
 
 # Choose desired model
-if desired_model == "BasicTripletNet":
-    model = BasicTripletNet()
-elif desired_model == "BasicTripletNetLite":
-    model = BasicTripletNetLite()
-elif desired_model == "BasicTripletNetLiteWoutDropout":
-    model = BasicTripletNetLiteWoutDropout()
-elif desired_model == "BasicTripletNetLowerDropout":
-    model = BasicTripletNetLowerDropout()
-elif desired_model == "BasicTripletNetWoutDropout":
-    model = BasicTripletNetWoutDropout()
-elif desired_model == "BasicTripletNetHLR":
-    model = BasicTripletNetHLR()
-elif desired_model == "BasicTripletNetHLRLowerDropout":
-    model = BasicTripletNetHLRLowerDropout()
-elif desired_model == "BasicTripletNetHLRWoutDropout":
-    model = BasicTripletNetHLRWoutDropout()
-elif desired_model == "BasicTripletNetLLR":
-    model = BasicTripletNetLLR()
-elif desired_model == "BasicTripletNetLLRWoutDropout":
-    model = BasicTripletNetLLRWoutDropout()
-elif desired_model == "BasicTripletNetDeeper":
-    model = BasicTripletNetDeeper()
-elif desired_model == "BasicTripletNetDeeperWoutDropout":
-    model = BasicTripletNetDeeperWoutDropout()
-elif desired_model == "BasicTripletNetLF":
-    model = BasicTripletNetLF()
-elif desired_model == "BasicTripletNetLFWoutDropout":
-    model = BasicTripletNetLFWoutDropout()
-elif desired_model == "BasicTripletNetHF":
-    model = BasicTripletNetHF()
-elif desired_model == "BasicTripletNetHFWoutDropout":
-    model = BasicTripletNetHFWoutDropout()
-elif desired_model == "TripletNetMultipleConv":
-    model = TripletNetMultipleConv()
-elif desired_model == "TripletNetMultipleConvWoutDropout":
-    model = TripletNetMultipleConvWoutDropout()
-elif desired_model == "TripletNetLiteMultipleConv":
-    model = TripletNetLiteMultipleConv()
-elif desired_model == "TripletNetLiteMultipleConvWoutDropout":
-    model = TripletNetLiteMultipleConvWoutDropout()
-else:
-    print("Wrong Model specified!")
-    sys.exit()
+model_class = globals()[desired_model]
+model = model_class()
 
 
 # Create and compile the model

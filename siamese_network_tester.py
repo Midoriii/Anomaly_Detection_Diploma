@@ -175,39 +175,9 @@ else:
 
 
 # Choose desired model
-if desired_model == "BasicSiameseNet":
-    model = BasicSiameseNet()
-elif desired_model == "BasicSiameseNetLLR":
-    model = BasicSiameseNetLLR()
-elif desired_model == "BasicSiameseNetWoutBN":
-    model = BasicSiameseNetWoutBN()
-elif desired_model == "SiameseNetLF":
-    model = SiameseNetLF()
-elif desired_model == "SiameseNetDeeper":
-    model = SiameseNetDeeper()
-elif desired_model == "SiameseNetDeeperLLR":
-    model = SiameseNetDeeperLLR()
-elif desired_model == "SiameseNetMultipleConv":
-    model = SiameseNetMultipleConv()
-elif desired_model == "SiameseNetLite":
-    model = SiameseNetLite()
-elif desired_model == "SiameseNetLiteMultipleConv":
-    model = SiameseNetLiteMultipleConv()
-elif desired_model == "SiameseNetLiteMultipleConvAlt":
-    model = SiameseNetLiteMultipleConvAlt()
-elif desired_model == "SiameseNetLiteMultipleConvAltTwo":
-    model = SiameseNetLiteMultipleConvAltTwo()
-elif desired_model == "BasicSiameseNetWoutDropout":
-    model = BasicSiameseNetWoutDropout()
-elif desired_model == "BasicSiameseNetLowerDropout":
-    model = BasicSiameseNetLowerDropout()
-elif desired_model == "SiameseNetLiteMultipleConvLowerDropout":
-    model = SiameseNetLiteMultipleConvLowerDropout()
-elif desired_model == "SiameseNetLiteMultipleConvWithoutDropout":
-    model = SiameseNetLiteMultipleConvWithoutDropout()
-else:
-    print("Wrong Model specified!")
-    sys.exit()
+model_class = globals()[desired_model]
+model = model_class()
+
 
 # Create and compile the model
 input_shape = (IMG_WIDTH, IMG_HEIGHT, 1)
