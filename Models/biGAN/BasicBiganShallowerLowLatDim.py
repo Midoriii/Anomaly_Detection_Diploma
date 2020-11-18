@@ -1,5 +1,5 @@
 '''
-Basic bigAN net, shallower
+Basic bigAN net, shallower and lowered lat dims
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel
 from Models.Losses.custom_losses import wasserstein_loss
@@ -12,11 +12,11 @@ from keras.optimizers import RMSprop, Adam, SGD
 
 
 
-class BasicBiganShallower(BaseBiganModel):
+class BasicBiganShallowerLowLatDim(BaseBiganModel):
 
-    def __init__(self, input_shape, latent_dim=24, lr=0.0005, w_clip=0.01, batch_size=4):
+    def __init__(self, input_shape, latent_dim=12, lr=0.0005, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
-        self.name = "BasicBiganShallower"
+        self.name = "BasicBiganShallowerLowLatDim"
         g_optimizer = Adam(lr=self.lr, beta_1=0.5)
         d_optimizer = SGD(lr=self.lr)
 

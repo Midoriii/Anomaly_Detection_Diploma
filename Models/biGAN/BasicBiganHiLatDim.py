@@ -1,5 +1,5 @@
 '''
-Basic bigAN net, shallower
+Basic bigAN net with higher latent dimension
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel
 from Models.Losses.custom_losses import wasserstein_loss
@@ -12,11 +12,11 @@ from keras.optimizers import RMSprop, Adam, SGD
 
 
 
-class BasicBiganShallower(BaseBiganModel):
+class BasicBiganHiLatDim(BaseBiganModel):
 
-    def __init__(self, input_shape, latent_dim=24, lr=0.0005, w_clip=0.01, batch_size=4):
+    def __init__(self, input_shape, latent_dim=40, lr=0.0005, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
-        self.name = "BasicBiganShallower"
+        self.name = "BasicBiganHiLatDim"
         g_optimizer = Adam(lr=self.lr, beta_1=0.5)
         d_optimizer = SGD(lr=self.lr)
 
@@ -35,9 +35,17 @@ class BasicBiganShallower(BaseBiganModel):
     def build_generator(self):
         z_input = Input(shape=[self.latent_dim])
 
-        x = Dense(24*24*32, kernel_constraint=WeightClip(self.w_clip))(z_input)
-        x = Reshape([24, 24, 32])(x)
+        x = Dense(6*6*32, kernel_constraint=WeightClip(self.w_clip))(z_input)
+        x = Reshape([6, 6, 32])(x)
 
+        # 6 -> 12
+        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = LeakyReLU(0.1)(x)
+        x = UpSampling2D((2, 2))(x)
+        # 12 -> 24
+        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = LeakyReLU(0.1)(x)
+        x = UpSampling2D((2, 2))(x)
         # 24 -> 48
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = LeakyReLU(0.1)(x)
@@ -77,6 +85,14 @@ class BasicBiganShallower(BaseBiganModel):
         x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
+        # 24 -> 12
+        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = LeakyReLU(0.1)(x)
+        x = MaxPooling2D((2, 2), padding='same')(x)
+        # 12 -> 6
+        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = LeakyReLU(0.1)(x)
+        x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Flatten()(x)
 
@@ -92,9 +108,9 @@ class BasicBiganShallower(BaseBiganModel):
         z_input = Input(shape=[self.latent_dim])
 
         # Latent
-        l = Dense(128, kernel_constraint=WeightClip(self.w_clip))(z_input)
+        l = Dense(256, kernel_constraint=WeightClip(self.w_clip))(z_input)
         l = LeakyReLU(0.1)(l)
-        l = Dense(128, kernel_constraint=WeightClip(self.w_clip))(l)
+        l = Dense(256, kernel_constraint=WeightClip(self.w_clip))(l)
         l = LeakyReLU(0.1)(l)
 
         # Image

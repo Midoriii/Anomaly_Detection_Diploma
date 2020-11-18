@@ -9,12 +9,17 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 from Models.biGAN.BasicBigan import BasicBigan
+from Models.biGAN.BasicBiganHiLatDim import BasicBiganHiLatDim
+from Models.biGAN.BasicBiganLowLatDim import BasicBiganLowLatDim
 from Models.biGAN.BasicBiganTTUR import BasicBiganTTUR
 from Models.biGAN.BasicBiganHF import BasicBiganHF
 from Models.biGAN.BasicBiganAlt import BasicBiganAlt
 from Models.biGAN.BasicBiganAVGPool import BasicBiganAVGPool
 from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
+from Models.biGAN.BasicBiganWoutWeightClip import BasicBiganWoutWeightClip
 from Models.biGAN.BasicBiganXEntropy import BasicBiganXEntropy
+from Models.biGAN.BasicBiganXEntropyHiLatDim import BasicBiganXEntropyHiLatDim
+from Models.biGAN.BasicBiganXEntropyLowLatDim import BasicBiganXEntropyLowLatDim
 from Models.biGAN.BasicBiganXEntropyShallower import BasicBiganXEntropyShallower
 from Models.biGAN.BasicBiganXEntropyTTUR import BasicBiganXEntropyTTUR
 from Models.biGAN.BasicBiganXEntropyHLR import BasicBiganXEntropyHLR
@@ -27,8 +32,11 @@ from Models.biGAN.BasicBiganExtraHLR import BasicBiganExtraHLR
 from Models.biGAN.BasicBiganLLR import BasicBiganLLR
 from Models.biGAN.BasicBiganExtraBN import BasicBiganExtraBN
 from Models.biGAN.BasicBiganExtraBNHigherWeightClip import BasicBiganExtraBNHigherWeightClip
+from Models.biGAN.BasicBiganExtraBNLowerWeightClip import BasicBiganExtraBNLowerWeightClip
 from Models.biGAN.BasicBiganExtraGencTraining import BasicBiganExtraGencTraining
 from Models.biGAN.BasicBiganShallower import BasicBiganShallower
+from Models.biGAN.BasicBiganShallowerHiLatDim import BasicBiganShallowerHiLatDim
+from Models.biGAN.BasicBiganShallowerLowLatDim import BasicBiganShallowerLowLatDim
 from Models.biGAN.BasicBiganHiDropout import BasicBiganHiDropout
 from Models.biGAN.BasicBiganExtraDropout import BasicBiganExtraDropout
 from Models.biGAN.BasicBiganLowerWeightClip import BasicBiganLowerWeightClip
@@ -37,6 +45,7 @@ from Models.biGAN.BasicBiganMixedLoss import BasicBiganMixedLoss
 from Models.biGAN.lowerDimBigan import lowerDimBigan
 from Models.biGAN.lowerDimBiganExtraBN import lowerDimBiganExtraBN
 from Models.biGAN.lowerDimBiganHigherWeightClip import lowerDimBiganHigherWeightClip
+from Models.biGAN.lowerDimBiganLowerWeightClip import lowerDimBiganLowerWeightClip
 from Models.biGAN.lowerDimBiganXEntropy import lowerDimBiganXEntropy
 
 # Constants
