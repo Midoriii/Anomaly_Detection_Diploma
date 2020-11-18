@@ -110,69 +110,8 @@ else:
 
 
 # Choose desired model
-if desired_model == "BasicBigan":
-    model = BasicBigan(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganTTUR":
-    model = BasicBiganTTUR(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganHF":
-    model = BasicBiganHF(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganAlt":
-    model = BasicBiganAlt(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganAVGPool":
-    model = BasicBiganAVGPool(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganWoutBN":
-    model = BasicBiganWoutBN(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganXEntropy":
-    model = BasicBiganXEntropy(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganXEntropyShallower":
-    model = BasicBiganXEntropyShallower(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganXEntropyTTUR":
-    model = BasicBiganXEntropyTTUR(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganXEntropyHLR":
-    model = BasicBiganXEntropyHLR(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganXEntropyExtraHLR":
-    model = BasicBiganXEntropyExtraHLR(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganXEntropyLLR":
-    model = BasicBiganXEntropyLLR(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganXEntropyExtraBN":
-    model = BasicBiganXEntropyExtraBN(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganXEntropyExtraGencTraining":
-    model = BasicBiganXEntropyExtraGencTraining(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganHLR":
-    model = BasicBiganHLR(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganExtraHLR":
-    model = BasicBiganExtraHLR(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganExtraBN":
-    model = BasicBiganExtraBN(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganExtraBNHigherWeightClip":
-    model = BasicBiganExtraBNHigherWeightClip(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganExtraGencTraining":
-    model = BasicBiganExtraGencTraining(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganLLR":
-    model = BasicBiganLLR(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganLowerWeightClip":
-    model = BasicBiganLowerWeightClip(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganHigherWeightClip":
-    model = BasicBiganHigherWeightClip(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganHiDropout":
-    model = BasicBiganHiDropout(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganExtraDropout":
-    model = BasicBiganExtraDropout(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganMixedLoss":
-    model = BasicBiganMixedLoss(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "BasicBiganShallower":
-    model = BasicBiganShallower(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "lowerDimBigan":
-    model = lowerDimBigan(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "lowerDimBiganExtraBN":
-    model = lowerDimBiganExtraBN(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "lowerDimBiganHigherWeightClip":
-    model = lowerDimBiganHigherWeightClip(IMG_WIDTH, batch_size=batch_size)
-elif desired_model == "lowerDimBiganXEntropy":
-    model = lowerDimBiganXEntropy(IMG_WIDTH, batch_size=batch_size)
-else:
-    print("Wrong Model specified!")
-    sys.exit()
+model_class = globals()[desired_model]
+model = model_class(IMG_WIDTH, batch_size=batch_size)
 
 
 # Train it
