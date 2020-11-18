@@ -1,12 +1,12 @@
 '''
-Basic Variational Autoencoder, even deeper
+Basic Variational Autoencoder using Transpose2D layers
 '''
 import numpy as np
 from keras import backend as K
 from Models.VAE.BaseVAEModel import BaseVAEModel
 
 from keras.layers import Input, Reshape, Dense, Flatten, BatchNormalization, Lambda
-from keras.layers import Activation, Conv2D, MaxPooling2D, UpSampling2D, PReLU
+from keras.layers import Activation, Conv2D, MaxPooling2D, Conv2DTranspose, PReLU
 from keras.initializers import Constant
 from keras.models import Model
 from keras.callbacks import History
@@ -15,12 +15,12 @@ from Models.Losses.custom_losses import vae_loss_func
 
 
 
-class BasicVAEEvenDeeper(BaseVAEModel):
+class TransposeVAE(BaseVAEModel):
 
     def __init__(self, input_shape, latent_dim=12, lr=0.0005):
         super().__init__(input_shape, latent_dim, lr)
 
-        self.name = "BasicVAEEvenDeeper"
+        self.name = "TransposeVAE"
 
         self.optimizer = Adam(lr=self.lr)
         self.filters = 64
@@ -66,16 +66,6 @@ class BasicVAEEvenDeeper(BaseVAEModel):
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
-        x = BatchNormalization()(x)
-        x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = MaxPooling2D((2, 2), padding='same')(x)
-
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
-        x = BatchNormalization()(x)
-        x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = MaxPooling2D((2, 2), padding='same')(x)
-
         shape_before_flatten = K.int_shape(x)[1:]
         x = Flatten()(x)
 
@@ -92,46 +82,30 @@ class BasicVAEEvenDeeper(BaseVAEModel):
         x = Dense(np.prod(shape_before_flatten))(d_input)
         x = Reshape(target_shape=shape_before_flatten)(x)
 
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
+        x = Conv2DTranspose(self.filters, (3, 3), strides=(2, 2), padding='same')(x)
         x = BatchNormalization()(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = UpSampling2D((2, 2))(x)
 
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
+        x = Conv2DTranspose(self.filters, (3, 3), strides=(2, 2), padding='same')(x)
         x = BatchNormalization()(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = UpSampling2D((2, 2))(x)
 
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
+        x = Conv2DTranspose(self.filters, (3, 3), strides=(2, 2), padding='same')(x)
         x = BatchNormalization()(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = UpSampling2D((2, 2))(x)
 
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
+        x = Conv2DTranspose(self.filters, (3, 3), strides=(2, 2), padding='same')(x)
         x = BatchNormalization()(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = UpSampling2D((2, 2))(x)
 
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
+        x = Conv2DTranspose(self.filters, (3, 3), strides=(2, 2), padding='same')(x)
         x = BatchNormalization()(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = UpSampling2D((2, 2))(x)
 
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
+        x = Conv2DTranspose(self.filters, (3, 3), strides=(2, 2), padding='same')(x)
         x = BatchNormalization()(x)
         x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = UpSampling2D((2, 2))(x)
-
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
-        x = BatchNormalization()(x)
-        x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = UpSampling2D((2, 2))(x)
-
-        x = Conv2D(self.filters, (3, 3), padding='same')(x)
-        x = BatchNormalization()(x)
-        x = PReLU(alpha_initializer=Constant(value=0.25))(x)
-        x = UpSampling2D((2, 2))(x)
-        d_output = Conv2D(1, (3, 3), activation='sigmoid', padding='same')(x)
+        d_output = Conv2DTranspose(1, (3, 3), strides=1, padding='same')(x)
 
         self.d = Model(d_input, d_output)
 

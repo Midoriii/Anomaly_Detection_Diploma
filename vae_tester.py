@@ -13,7 +13,6 @@ from Models.VAE.BasicVAE_HF import BasicVAE_HF
 from Models.VAE.BasicVAEDeeper import BasicVAEDeeper
 from Models.VAE.BasicVAEDeeper_LLR import BasicVAEDeeper_LLR
 from Models.VAE.BasicVAEDeeper_LowLatDim import BasicVAEDeeper_LowLatDim
-from Models.VAE.BasicVAEEvenDeeper import BasicVAEEvenDeeper
 from Models.VAE.BasicVAE_HLR import BasicVAE_HLR
 from Models.VAE.BasicVAE_LLR import BasicVAE_LLR
 from Models.VAE.BasicVAE_HiLatDim import BasicVAE_HiLatDim
@@ -23,6 +22,8 @@ from Models.VAE.BasicVAE_HiLatDim_LLR import BasicVAE_HiLatDim_LLR
 from Models.VAE.BasicVAE_LowLatDim_LLR import BasicVAE_LowLatDim_LLR
 from Models.VAE.BasicVAE_LowRLFactor import BasicVAE_LowRLFactor
 from Models.VAE.BasicVAE_HiRLFactor import BasicVAE_HiRLFactor
+from Models.VAE.TransposeVAE import TransposeVAE
+from Models.VAE.TransposeVAEDeeper import TransposeVAEDeeper
 
 
 # Constants
