@@ -77,39 +77,9 @@ else:
     sys.exit()
 
 # Choose desired model
-if desired_model == "BasicVAE":
-    model = BasicVAE(IMG_WIDTH)
-elif desired_model == "BasicVAEDeeper":
-    model = BasicVAEDeeper(IMG_WIDTH)
-elif desired_model == "BasicVAE_HF":
-    model = BasicVAE_HF(IMG_WIDTH)
-elif desired_model == "BasicVAEDeeper_LLR":
-    model = BasicVAEDeeper_LLR(IMG_WIDTH)
-elif desired_model == "BasicVAEDeeper_LowLatDim":
-    model = BasicVAEDeeper_LowLatDim(IMG_WIDTH)
-elif desired_model == "BasicVAEEvenDeeper":
-    model = BasicVAEEvenDeeper(IMG_WIDTH)
-elif desired_model == "BasicVAE_HiLatDim":
-    model = BasicVAE_HiLatDim(IMG_WIDTH)
-elif desired_model == "BasicVAE_ExtraHiLatDim":
-    model = BasicVAE_ExtraHiLatDim(IMG_WIDTH)
-elif desired_model == "BasicVAE_LowLatDim":
-    model = BasicVAE_LowLatDim(IMG_WIDTH)
-elif desired_model == "BasicVAE_HiLatDim_LLR":
-    model = BasicVAE_HiLatDim_LLR(IMG_WIDTH)
-elif desired_model == "BasicVAE_LowLatDim_LLR":
-    model = BasicVAE_LowLatDim_LLR(IMG_WIDTH)
-elif desired_model == "BasicVAE_LowRLFactor":
-    model = BasicVAE_LowRLFactor(IMG_WIDTH)
-elif desired_model == "BasicVAE_HiRLFactor":
-    model = BasicVAE_HiRLFactor(IMG_WIDTH)
-elif desired_model == "BasicVAE_HLR":
-    model = BasicVAE_HLR(IMG_WIDTH)
-elif desired_model == "BasicVAE_LLR":
-    model = BasicVAE_LLR(IMG_WIDTH)
-else:
-    print("Wrong Model specified!")
-    sys.exit()
+model_class = globals()[desired_model]
+model = model_class(IMG_WIDTH)
+
 
 
 # Train it
