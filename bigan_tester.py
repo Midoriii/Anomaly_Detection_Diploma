@@ -13,11 +13,13 @@ from Models.biGAN.BasicBiganHiLatDim import BasicBiganHiLatDim
 from Models.biGAN.BasicBiganLowLatDim import BasicBiganLowLatDim
 from Models.biGAN.BasicBiganTTUR import BasicBiganTTUR
 from Models.biGAN.BasicBiganHF import BasicBiganHF
+from Models.biGAN.BasicBiganIF import BasicBiganIF
 from Models.biGAN.BasicBiganAlt import BasicBiganAlt
 from Models.biGAN.BasicBiganAVGPool import BasicBiganAVGPool
 from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
 from Models.biGAN.BasicBiganWoutWeightClip import BasicBiganWoutWeightClip
 from Models.biGAN.BasicBiganXEntropy import BasicBiganXEntropy
+from Models.biGAN.BasicBiganXEntropyHF import BasicBiganXEntropyHF
 from Models.biGAN.BasicBiganXEntropyHiLatDim import BasicBiganXEntropyHiLatDim
 from Models.biGAN.BasicBiganXEntropyLowLatDim import BasicBiganXEntropyLowLatDim
 from Models.biGAN.BasicBiganXEntropyShallower import BasicBiganXEntropyShallower
