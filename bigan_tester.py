@@ -20,6 +20,7 @@ from Models.biGAN.BasicBiganWoutBN import BasicBiganWoutBN
 from Models.biGAN.BasicBiganWoutWeightClip import BasicBiganWoutWeightClip
 from Models.biGAN.BasicBiganXEntropy import BasicBiganXEntropy
 from Models.biGAN.BasicBiganXEntropyHF import BasicBiganXEntropyHF
+from Models.biGAN.BasicBiganXEntropyIF import BasicBiganXEntropyIF
 from Models.biGAN.BasicBiganXEntropyHiLatDim import BasicBiganXEntropyHiLatDim
 from Models.biGAN.BasicBiganXEntropyLowLatDim import BasicBiganXEntropyLowLatDim
 from Models.biGAN.BasicBiganXEntropyShallower import BasicBiganXEntropyShallower
