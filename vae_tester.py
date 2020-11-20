@@ -24,6 +24,7 @@ from Models.VAE.BasicVAE_HiLatDim_LLR import BasicVAE_HiLatDim_LLR
 from Models.VAE.BasicVAE_LowLatDim_LLR import BasicVAE_LowLatDim_LLR
 from Models.VAE.BasicVAE_LowRLFactor import BasicVAE_LowRLFactor
 from Models.VAE.BasicVAE_HiRLFactor import BasicVAE_HiRLFactor
+from Models.VAE.BasicVAE_ExtraHiRLFactor import BasicVAE_ExtraHiRLFactor
 from Models.VAE.TransposeVAE import TransposeVAE
 from Models.VAE.TransposeVAEDeeper import TransposeVAEDeeper
 
