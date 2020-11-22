@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q gpu
 #PBS -l select=1:ncpus=1:mem=8gb:ngpus=1:scratch_local=3gb:cluster=adan
-#PBS -l walltime=3:00:00
+#PBS -l walltime=2:00:00
 
 
 DATADIR=/storage/brno6/home/apprehension
@@ -24,7 +24,7 @@ mkdir -p Graphs/{Losses,VAEScores,VAEReco}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python vae_tester.py -e 1600 -b 16 -m BasicVAE_HiRLFactor -t BSE
+python vae_tester.py -e 1200 -b 16 -m BasicVAE_HiRLFactor_LowLatDim -t BSE
 
 
 cp -vr $SCRATCHDIR/Graphs/Losses/* $DATADIR/Graphs/Losses/
