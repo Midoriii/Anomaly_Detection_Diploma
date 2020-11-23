@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q gpu
 #PBS -l select=1:ncpus=1:mem=10gb:ngpus=1:scratch_local=3gb:cluster=adan
-#PBS -l walltime=2:30:00
+#PBS -l walltime=4:30:00
 
 
 DATADIR=/storage/brno6/home/apprehension
