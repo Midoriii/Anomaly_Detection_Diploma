@@ -6,8 +6,8 @@ Basic_Even_Deeper
 Value of nu: 0.9
 
 BSE:
-Training FP:124
-FP:32
+Training FP:123
+FP:33
 FN:0
 
 SE:
@@ -18,8 +18,8 @@ FN:0
 Value of nu: 0.7
 
 BSE:
-Training FP:95
-FP:26
+Training FP:96
+FP:25
 FN:6
 
 SE:
@@ -30,98 +30,98 @@ FN:0
 Value of nu: 0.5
 
 BSE:
-Training FP:69
-FP:21
-FN:9
+Training FP:70
+FP:22
+FN:7
 
 SE:
-Training FP:69
-FP:16
+Training FP:71
+FP:11
 FN:0
 
 Value of nu: 0.4
 
 BSE:
-Training FP:54
-FP:17
+Training FP:55
+FP:16
 FN:9
 
 SE:
-Training FP:56
+Training FP:54
 FP:9
 FN:0
 
 Value of nu: 0.3
 
 BSE:
-Training FP:41
-FP:12
+Training FP:40
+FP:13
 FN:9
 
 SE:
-Training FP:43
-FP:6
-FN:1
+Training FP:42
+FP:5
+FN:0
 
 Value of nu: 0.25
 
 BSE:
 Training FP:34
-FP:8
+FP:9
 FN:9
 
 SE:
 Training FP:34
-FP:5
-FN:1
+FP:4
+FN:0
 
 Value of nu: 0.2
 
 BSE:
 Training FP:28
-FP:7
-FN:18
+FP:8
+FN:9
 
 SE:
-Training FP:27
+Training FP:28
 FP:4
-FN:2
+FN:0
 
 Value of nu: 0.1
 
 BSE:
-Training FP:14
+Training FP:13
 FP:2
-FN:21
+FN:20
 
 SE:
 Training FP:15
-FP:2
-FN:9
+FP:4
+FN:0
 
 Value of nu: 0.05
 
 BSE:
-Training FP:8
+Training FP:7
 FP:1
-FN:22
+FN:21
 
 SE:
 Training FP:7
 FP:1
-FN:15
+FN:2
 
 Value of nu: 0.02
 
 BSE:
-Training FP:3
+Training FP:2
 FP:1
 FN:23
 
 SE:
 Training FP:3
 FP:1
-FN:19
+FN:6
 
 Value of nu: 0.01
 
@@ -133,7 +133,7 @@ FN:23
 SE:
 Training FP:2
 FP:0
-FN:23
+FN:21
 
 Value of nu: 0.001
 
@@ -145,7 +145,7 @@ FN:23
 SE:
 Training FP:2
 FP:0
-FN:23
+FN:21
 
 #MODEL
 Basic
@@ -154,45 +154,45 @@ Basic
 Value of nu: 0.9
 
 BSE:
-Training FP:125
-FP:33
+Training FP:124
+FP:30
 FN:0
 
 SE:
-Training FP:124
-FP:31
+Training FP:125
+FP:32
 FN:0
 
 Value of nu: 0.7
 
 BSE:
-Training FP:96
-FP:25
-FN:3
+Training FP:95
+FP:22
+FN:0
 
 SE:
 Training FP:97
-FP:24
+FP:21
 FN:0
 
 Value of nu: 0.5
 
 BSE:
-Training FP:67
-FP:18
-FN:9
+Training FP:68
+FP:17
+FN:0
 
 SE:
 Training FP:69
-FP:16
+FP:17
 FN:0
 
 Value of nu: 0.4
 
 BSE:
-Training FP:54
-FP:14
-FN:9
+Training FP:55
+FP:13
+FN:6
 
 SE:
 Training FP:55
@@ -202,96 +202,96 @@ FN:0
 Value of nu: 0.3
 
 BSE:
-Training FP:40
-FP:9
-FN:9
+Training FP:42
+FP:10
+FN:6
 
 SE:
 Training FP:41
-FP:7
-FN:0
+FP:6
+FN:5
 
 Value of nu: 0.25
 
 BSE:
-Training FP:36
+Training FP:34
 FP:9
-FN:9
+FN:6
 
 SE:
-Training FP:36
-FP:6
-FN:0
+Training FP:33
+FP:4
+FN:12
 
 Value of nu: 0.2
 
 BSE:
 Training FP:27
-FP:7
-FN:17
+FP:5
+FN:6
 
 SE:
 Training FP:28
-FP:4
-FN:2
+FP:3
+FN:15
 
 Value of nu: 0.1
 
 BSE:
-Training FP:15
-FP:2
-FN:21
+Training FP:12
+FP:3
+FN:6
 
 SE:
-Training FP:14
+Training FP:13
 FP:2
-FN:8
+FN:21
 
 Value of nu: 0.05
 
 BSE:
 Training FP:7
 FP:2
-FN:22
+FN:3
 
 SE:
 Training FP:7
 FP:1
-FN:18
+FN:23
 
 Value of nu: 0.02
 
 BSE:
 Training FP:3
 FP:1
-FN:23
+FN:4
 
 SE:
-Training FP:2
+Training FP:3
 FP:0
 FN:23
 
 Value of nu: 0.01
 
 BSE:
-Training FP:2
-FP:0
-FN:23
+Training FP:3
+FP:1
+FN:4
 
 SE:
-Training FP:0
+Training FP:1
 FP:0
 FN:23
 
 Value of nu: 0.001
 
 BSE:
-Training FP:2
-FP:0
-FN:23
+Training FP:6
+FP:1
+FN:4
 
 SE:
-Training FP:0
+Training FP:3
 FP:0
 FN:23
 
@@ -307,55 +307,55 @@ FP:32
 FN:0
 
 SE:
-Training FP:125
+Training FP:124
 FP:30
 FN:0
 
 Value of nu: 0.7
 
 BSE:
-Training FP:96
+Training FP:95
 FP:26
-FN:4
+FN:5
 
 SE:
-Training FP:97
-FP:21
+Training FP:96
+FP:22
 FN:0
 
 Value of nu: 0.5
 
 BSE:
-Training FP:68
+Training FP:69
 FP:22
 FN:9
 
 SE:
 Training FP:69
-FP:16
+FP:17
 FN:0
 
 Value of nu: 0.4
 
 BSE:
 Training FP:55
-FP:16
+FP:17
 FN:9
 
 SE:
-Training FP:55
+Training FP:56
 FP:9
 FN:0
 
 Value of nu: 0.3
 
 BSE:
-Training FP:42
-FP:11
+Training FP:41
+FP:13
 FN:9
 
 SE:
-Training FP:41
+Training FP:42
 FP:6
 FN:0
 
@@ -367,21 +367,21 @@ FP:9
 FN:9
 
 SE:
-Training FP:35
-FP:6
-FN:1
+Training FP:36
+FP:5
+FN:0
 
 Value of nu: 0.2
 
 BSE:
-Training FP:27
+Training FP:28
 FP:7
-FN:14
+FN:12
 
 SE:
-Training FP:28
+Training FP:27
 FP:4
-FN:1
+FN:0
 
 Value of nu: 0.1
 
@@ -391,57 +391,57 @@ FP:2
 FN:21
 
 SE:
-Training FP:15
-FP:3
-FN:6
+Training FP:13
+FP:4
+FN:1
 
 Value of nu: 0.05
 
 BSE:
-Training FP:6
+Training FP:7
 FP:1
 FN:21
 
 SE:
 Training FP:7
-FP:1
-FN:12
+FP:2
+FN:2
 
 Value of nu: 0.02
 
 BSE:
-Training FP:2
+Training FP:3
 FP:1
 FN:23
 
 SE:
 Training FP:3
 FP:1
-FN:17
+FN:4
 
 Value of nu: 0.01
 
 BSE:
-Training FP:2
+Training FP:0
 FP:0
 FN:23
 
 SE:
 Training FP:0
 FP:0
-FN:23
+FN:16
 
 Value of nu: 0.001
 
 BSE:
-Training FP:2
+Training FP:0
 FP:0
 FN:23
 
 SE:
 Training FP:0
 FP:0
-FN:23
+FN:16
 
 #MODEL
 LF_Deeper
@@ -450,56 +450,56 @@ LF_Deeper
 Value of nu: 0.9
 
 BSE:
-Training FP:124
-FP:33
+Training FP:123
+FP:31
 FN:0
 
 SE:
-Training FP:123
-FP:29
+Training FP:124
+FP:33
 FN:0
 
 Value of nu: 0.7
 
 BSE:
-Training FP:95
-FP:25
-FN:5
+Training FP:94
+FP:26
+FN:6
 
 SE:
-Training FP:96
-FP:23
+Training FP:95
+FP:19
 FN:0
 
 Value of nu: 0.5
 
 BSE:
-Training FP:69
-FP:22
+Training FP:70
+FP:23
 FN:6
 
 SE:
-Training FP:69
+Training FP:68
 FP:10
 FN:0
 
 Value of nu: 0.4
 
 BSE:
-Training FP:55
-FP:16
-FN:9
+Training FP:54
+FP:19
+FN:8
 
 SE:
-Training FP:54
-FP:9
+Training FP:55
+FP:8
 FN:0
 
 Value of nu: 0.3
 
 BSE:
 Training FP:42
-FP:13
+FP:17
 FN:9
 
 SE:
@@ -510,50 +510,50 @@ FN:0
 Value of nu: 0.25
 
 BSE:
-Training FP:35
-FP:9
+Training FP:33
+FP:11
 FN:9
 
 SE:
-Training FP:35
+Training FP:34
 FP:4
-FN:0
+FN:2
 
 Value of nu: 0.2
 
 BSE:
-Training FP:29
-FP:7
-FN:10
+Training FP:26
+FP:8
+FN:9
 
 SE:
-Training FP:29
+Training FP:28
 FP:4
-FN:0
+FN:5
 
 Value of nu: 0.1
 
 BSE:
 Training FP:13
-FP:2
-FN:20
+FP:7
+FN:15
 
 SE:
 Training FP:13
 FP:4
-FN:1
+FN:10
 
 Value of nu: 0.05
 
 BSE:
-Training FP:7
-FP:1
+Training FP:6
+FP:2
 FN:21
 
 SE:
 Training FP:7
-FP:1
-FN:3
+FP:2
+FN:17
 
 Value of nu: 0.02
 
@@ -563,33 +563,33 @@ FP:1
 FN:23
 
 SE:
-Training FP:4
+Training FP:3
 FP:0
-FN:4
+FN:18
 
 Value of nu: 0.01
 
 BSE:
-Training FP:1
+Training FP:0
 FP:0
 FN:23
 
 SE:
 Training FP:2
 FP:0
-FN:8
+FN:23
 
 Value of nu: 0.001
 
 BSE:
-Training FP:1
+Training FP:0
 FP:0
 FN:23
 
 SE:
 Training FP:2
 FP:0
-FN:8
+FN:23
 
 #MODEL
 High_Stride
@@ -598,21 +598,21 @@ High_Stride
 Value of nu: 0.9
 
 BSE:
-Training FP:124
+Training FP:123
 FP:29
 FN:0
 
 SE:
 Training FP:124
-FP:31
+FP:32
 FN:0
 
 Value of nu: 0.7
 
 BSE:
-Training FP:96
-FP:22
-FN:2
+Training FP:95
+FP:20
+FN:1
 
 SE:
 Training FP:97
@@ -622,57 +622,57 @@ FN:0
 Value of nu: 0.5
 
 BSE:
-Training FP:70
+Training FP:68
 FP:17
 FN:9
 
 SE:
 Training FP:69
-FP:15
+FP:14
 FN:0
 
 Value of nu: 0.4
 
 BSE:
-Training FP:55
+Training FP:54
 FP:13
 FN:9
 
 SE:
-Training FP:56
-FP:13
+Training FP:55
+FP:11
 FN:0
 
 Value of nu: 0.3
 
 BSE:
-Training FP:42
+Training FP:41
 FP:9
 FN:9
 
 SE:
-Training FP:42
-FP:7
+Training FP:43
+FP:5
 FN:0
 
 Value of nu: 0.25
 
 BSE:
-Training FP:34
+Training FP:35
 FP:9
-FN:10
+FN:9
 
 SE:
-Training FP:35
+Training FP:32
 FP:4
 FN:0
 
 Value of nu: 0.2
 
 BSE:
-Training FP:28
+Training FP:26
 FP:5
-FN:17
+FN:13
 
 SE:
 Training FP:28
@@ -682,12 +682,12 @@ FN:0
 Value of nu: 0.1
 
 BSE:
-Training FP:12
+Training FP:13
 FP:2
-FN:22
+FN:21
 
 SE:
-Training FP:14
+Training FP:13
 FP:1
 FN:0
 
@@ -699,16 +699,16 @@ FP:1
 FN:22
 
 SE:
-Training FP:8
-FP:0
+Training FP:7
+FP:1
 FN:0
 
 Value of nu: 0.02
 
 BSE:
-Training FP:5
+Training FP:4
 FP:0
-FN:12
+FN:11
 
 SE:
 Training FP:4
@@ -720,22 +720,22 @@ Value of nu: 0.01
 BSE:
 Training FP:3
 FP:0
-FN:16
+FN:14
 
 SE:
-Training FP:5
+Training FP:2
 FP:0
 FN:0
 
 Value of nu: 0.001
 
 BSE:
-Training FP:5
+Training FP:3
 FP:0
 FN:15
 
 SE:
-Training FP:7
+Training FP:5
 FP:0
 FN:0
 
@@ -746,8 +746,8 @@ High_Stride_Transpose
 Value of nu: 0.9
 
 BSE:
-Training FP:123
-FP:30
+Training FP:124
+FP:33
 FN:0
 
 SE:
@@ -758,37 +758,37 @@ FN:0
 Value of nu: 0.7
 
 BSE:
-Training FP:96
-FP:23
-FN:2
+Training FP:95
+FP:24
+FN:5
 
 SE:
-Training FP:97
-FP:21
+Training FP:95
+FP:25
 FN:0
 
 Value of nu: 0.5
 
 BSE:
-Training FP:70
+Training FP:69
 FP:17
 FN:9
 
 SE:
 Training FP:69
-FP:14
+FP:16
 FN:0
 
 Value of nu: 0.4
 
 BSE:
-Training FP:54
+Training FP:56
 FP:13
 FN:9
 
 SE:
 Training FP:55
-FP:12
+FP:13
 FN:0
 
 Value of nu: 0.3
@@ -796,96 +796,96 @@ Value of nu: 0.3
 BSE:
 Training FP:41
 FP:9
-FN:11
+FN:9
 
 SE:
-Training FP:42
-FP:6
+Training FP:41
+FP:10
 FN:0
 
 Value of nu: 0.25
 
 BSE:
-Training FP:35
+Training FP:36
 FP:9
-FN:14
+FN:12
 
 SE:
 Training FP:35
-FP:4
+FP:5
 FN:1
 
 Value of nu: 0.2
 
 BSE:
 Training FP:27
-FP:6
+FP:7
 FN:17
 
 SE:
 Training FP:27
 FP:4
-FN:5
+FN:3
 
 Value of nu: 0.1
 
 BSE:
-Training FP:13
+Training FP:15
 FP:2
-FN:22
+FN:21
 
 SE:
 Training FP:14
-FP:2
-FN:16
+FP:3
+FN:8
 
 Value of nu: 0.05
 
 BSE:
 Training FP:7
 FP:2
-FN:23
+FN:22
 
 SE:
 Training FP:7
-FP:0
-FN:23
+FP:1
+FN:15
 
 Value of nu: 0.02
 
 BSE:
-Training FP:4
+Training FP:3
 FP:1
 FN:23
 
 SE:
 Training FP:4
 FP:0
-FN:23
+FN:18
 
 Value of nu: 0.01
 
 BSE:
-Training FP:0
-FP:0
-FN:23
-
-SE:
 Training FP:1
 FP:0
 FN:23
 
+SE:
+Training FP:0
+FP:0
+FN:22
+
 Value of nu: 0.001
 
 BSE:
-Training FP:0
+Training FP:3
 FP:0
 FN:23
 
 SE:
-Training FP:4
+Training FP:0
 FP:0
-FN:23
+FN:22
 
 #MODEL
 Transpose
@@ -894,72 +894,72 @@ Transpose
 Value of nu: 0.9
 
 BSE:
-Training FP:124
+Training FP:123
 FP:34
 FN:0
 
 SE:
-Training FP:123
-FP:33
+Training FP:124
+FP:32
 FN:0
 
 Value of nu: 0.7
 
 BSE:
-Training FP:96
-FP:28
+Training FP:95
+FP:29
 FN:0
 
 SE:
 Training FP:97
-FP:26
+FP:27
 FN:0
 
 Value of nu: 0.5
 
 BSE:
-Training FP:69
-FP:21
+Training FP:70
+FP:24
 FN:6
 
 SE:
-Training FP:68
+Training FP:69
 FP:19
 FN:0
 
 Value of nu: 0.4
 
 BSE:
-Training FP:55
+Training FP:54
 FP:19
 FN:6
 
 SE:
-Training FP:55
+Training FP:56
 FP:9
 FN:0
 
 Value of nu: 0.3
 
 BSE:
-Training FP:43
-FP:16
+Training FP:42
+FP:15
 FN:6
 
 SE:
-Training FP:41
+Training FP:42
 FP:7
 FN:0
 
 Value of nu: 0.25
 
 BSE:
-Training FP:35
+Training FP:34
 FP:14
 FN:6
 
 SE:
-Training FP:38
+Training FP:35
 FP:6
 FN:0
 
@@ -971,68 +971,68 @@ FP:10
 FN:6
 
 SE:
-Training FP:28
-FP:5
+Training FP:27
+FP:6
 FN:0
 
 Value of nu: 0.1
 
 BSE:
-Training FP:13
-FP:9
+Training FP:14
+FP:10
 FN:6
 
 SE:
-Training FP:13
-FP:2
+Training FP:14
+FP:3
 FN:0
 
 Value of nu: 0.05
 
 BSE:
-Training FP:9
-FP:6
-FN:3
+Training FP:7
+FP:7
+FN:6
 
 SE:
-Training FP:10
+Training FP:11
 FP:2
 FN:0
 
 Value of nu: 0.02
 
 BSE:
-Training FP:8
+Training FP:4
 FP:7
-FN:2
+FN:6
 
 SE:
-Training FP:8
+Training FP:7
 FP:2
 FN:0
 
 Value of nu: 0.01
 
 BSE:
-Training FP:6
+Training FP:3
 FP:7
-FN:2
+FN:6
 
 SE:
-Training FP:9
+Training FP:6
 FP:2
 FN:0
 
 Value of nu: 0.001
 
 BSE:
-Training FP:10
+Training FP:6
 FP:7
-FN:2
+FN:6
 
 SE:
-Training FP:11
-FP:1
+Training FP:5
+FP:2
 FN:0
 
 #MODEL
@@ -1041,7 +1041,82 @@ Basic Siamese lowDrop BSE:
 Value of nu: 0.9
 
 Training FP:123
-FP:33
+FP:30
+FN:0
+
+Value of nu: 0.7
+
+Training FP:95
+FP:25
+FN:0
+
+Value of nu: 0.5
+
+Training FP:68
+FP:18
+FN:2
+
+Value of nu: 0.4
+
+Training FP:56
+FP:12
+FN:2
+
+Value of nu: 0.3
+
+Training FP:41
+FP:5
+FN:2
+
+Value of nu: 0.25
+
+Training FP:34
+FP:5
+FN:2
+
+Value of nu: 0.2
+
+Training FP:29
+FP:4
+FN:3
+
+Value of nu: 0.1
+
+Training FP:11
+FP:3
+FN:4
+
+Value of nu: 0.05
+
+Training FP:9
+FP:2
+FN:4
+
+Value of nu: 0.02
+
+Training FP:8
+FP:2
+FN:4
+
+Value of nu: 0.01
+
+Training FP:8
+FP:2
+FN:4
+
+Value of nu: 0.001
+
+Training FP:11
+FP:2
+FN:3
+
+#MODEL
+Siamese Lite MultipleConv AltTwo BSE:
+
+Value of nu: 0.9
+
+Training FP:124
+FP:29
 FN:0
 
 Value of nu: 0.7
@@ -1052,187 +1127,112 @@ FN:0
 
 Value of nu: 0.5
 
-Training FP:65
-FP:10
-FN:0
-
-Value of nu: 0.4
-
-Training FP:57
-FP:9
-FN:0
-
-Value of nu: 0.3
-
-Training FP:41
-FP:5
-FN:0
-
-Value of nu: 0.25
-
-Training FP:34
-FP:4
-FN:0
-
-Value of nu: 0.2
-
-Training FP:28
-FP:4
-FN:0
-
-Value of nu: 0.1
-
-Training FP:12
-FP:3
-FN:0
-
-Value of nu: 0.05
-
-Training FP:9
-FP:3
-FN:0
-
-Value of nu: 0.02
-
-Training FP:9
-FP:3
-FN:0
-
-Value of nu: 0.01
-
-Training FP:10
-FP:3
-FN:0
-
-Value of nu: 0.001
-
-Training FP:14
-FP:3
-FN:0
-
-#MODEL
-Siamese Lite MultipleConv AltTwo BSE:
-
-Value of nu: 0.9
-
-Training FP:123
-FP:32
-FN:0
-
-Value of nu: 0.7
-
-Training FP:96
-FP:30
-FN:0
-
-Value of nu: 0.5
-
 Training FP:70
-FP:27
-FN:0
+FP:14
+FN:5
 
 Value of nu: 0.4
 
-Training FP:53
-FP:17
-FN:0
+Training FP:55
+FP:11
+FN:6
 
 Value of nu: 0.3
 
-Training FP:41
-FP:17
-FN:0
+Training FP:44
+FP:8
+FN:6
 
 Value of nu: 0.25
 
-Training FP:36
-FP:16
-FN:0
+Training FP:32
+FP:3
+FN:6
 
 Value of nu: 0.2
 
-Training FP:25
-FP:14
-FN:0
+Training FP:27
+FP:3
+FN:6
 
 Value of nu: 0.1
 
-Training FP:17
-FP:6
-FN:0
+Training FP:16
+FP:1
+FN:6
 
 Value of nu: 0.05
-
-Training FP:10
-FP:4
-FN:0
-
-Value of nu: 0.02
 
 Training FP:8
-FP:4
-FN:0
+FP:1
+FN:6
+
+Value of nu: 0.02
+
+Training FP:6
+FP:1
+FN:6
 
 Value of nu: 0.01
 
-Training FP:10
-FP:4
-FN:0
+Training FP:7
+FP:1
+FN:6
 
 Value of nu: 0.001
 
-Training FP:10
-FP:5
-FN:0
+Training FP:5
+FP:1
+FN:6
 
 #MODEL
 Siamese Lite MultipleConv SE:
 
 Value of nu: 0.9
 
-Training FP:123
-FP:30
+Training FP:124
+FP:33
 FN:0
 
 Value of nu: 0.7
 
-Training FP:97
-FP:23
+Training FP:95
+FP:26
 FN:0
 
 Value of nu: 0.5
 
-Training FP:69
-FP:16
+Training FP:71
+FP:18
 FN:0
 
 Value of nu: 0.4
 
-Training FP:53
-FP:13
+Training FP:56
+FP:17
 FN:0
 
 Value of nu: 0.3
 
-Training FP:44
+Training FP:41
 FP:10
 FN:0
 
 Value of nu: 0.25
 
-Training FP:34
-FP:7
+Training FP:38
+FP:10
 FN:0
 
 Value of nu: 0.2
 
 Training FP:28
-FP:6
+FP:7
 FN:0
 
 Value of nu: 0.1
 
-Training FP:19
+Training FP:21
 FP:5
 FN:0
 
@@ -1245,19 +1245,19 @@ FN:0
 Value of nu: 0.02
 
 Training FP:13
-FP:4
+FP:5
 FN:0
 
 Value of nu: 0.01
 
-Training FP:16
-FP:4
+Training FP:14
+FP:5
 FN:0
 
 Value of nu: 0.001
 
-Training FP:21
-FP:3
+Training FP:18
+FP:5
 FN:0
 
 #MODEL
@@ -1265,13 +1265,13 @@ low dim Siamese Lite MultipleConv withoutDrop BSE:
 
 Value of nu: 0.9
 
-Training FP:124
-FP:26
+Training FP:125
+FP:20
 FN:0
 
 Value of nu: 0.7
 
-Training FP:96
+Training FP:94
 FP:0
 FN:0
 
@@ -1283,55 +1283,55 @@ FN:0
 
 Value of nu: 0.4
 
-Training FP:55
+Training FP:56
 FP:0
 FN:0
 
 Value of nu: 0.3
 
-Training FP:38
+Training FP:42
 FP:0
 FN:0
 
 Value of nu: 0.25
 
-Training FP:33
+Training FP:34
 FP:0
 FN:0
 
 Value of nu: 0.2
 
-Training FP:32
+Training FP:31
 FP:0
 FN:0
 
 Value of nu: 0.1
 
-Training FP:27
+Training FP:29
 FP:0
 FN:0
 
 Value of nu: 0.05
 
-Training FP:30
+Training FP:36
 FP:0
 FN:0
 
 Value of nu: 0.02
 
-Training FP:31
+Training FP:33
 FP:0
 FN:0
 
 Value of nu: 0.01
 
-Training FP:29
+Training FP:32
 FP:0
 FN:0
 
 Value of nu: 0.001
 
-Training FP:36
+Training FP:40
 FP:0
 FN:0
 
@@ -1340,73 +1340,73 @@ low dim Siamese Lite MultipleConv withoutDrop SE:
 
 Value of nu: 0.9
 
-Training FP:126
-FP:16
+Training FP:123
+FP:18
 FN:0
 
 Value of nu: 0.7
 
-Training FP:95
-FP:6
+Training FP:97
+FP:5
 FN:0
 
 Value of nu: 0.5
 
-Training FP:68
-FP:3
+Training FP:71
+FP:2
 FN:0
 
 Value of nu: 0.4
 
-Training FP:54
-FP:1
+Training FP:55
+FP:2
 FN:0
 
 Value of nu: 0.3
-
-Training FP:46
-FP:1
-FN:0
-
-Value of nu: 0.25
 
 Training FP:43
 FP:1
 FN:0
 
+Value of nu: 0.25
+
+Training FP:35
+FP:1
+FN:0
+
 Value of nu: 0.2
 
-Training FP:32
+Training FP:34
 FP:1
 FN:0
 
 Value of nu: 0.1
 
-Training FP:28
+Training FP:20
 FP:1
 FN:0
 
 Value of nu: 0.05
 
-Training FP:31
+Training FP:24
 FP:1
 FN:0
 
 Value of nu: 0.02
 
-Training FP:27
+Training FP:21
 FP:1
 FN:0
 
 Value of nu: 0.01
 
-Training FP:28
+Training FP:23
 FP:1
 FN:0
 
 Value of nu: 0.001
 
-Training FP:36
+Training FP:28
 FP:1
 FN:0
 
@@ -1490,74 +1490,74 @@ low dim Basic Triplet Deeper withoutDrop BSE:
 
 Value of nu: 0.9
 
-Training FP:123
-FP:33
+Training FP:124
+FP:34
 FN:0
 
 Value of nu: 0.7
 
-Training FP:96
-FP:30
+Training FP:97
+FP:27
 FN:0
 
 Value of nu: 0.5
 
 Training FP:69
-FP:22
+FP:13
 FN:0
 
 Value of nu: 0.4
 
-Training FP:55
-FP:17
+Training FP:56
+FP:8
 FN:0
 
 Value of nu: 0.3
 
 Training FP:41
-FP:14
+FP:8
 FN:0
 
 Value of nu: 0.25
 
-Training FP:32
-FP:12
+Training FP:33
+FP:6
 FN:0
 
 Value of nu: 0.2
 
-Training FP:28
-FP:12
+Training FP:26
+FP:5
 FN:0
 
 Value of nu: 0.1
 
-Training FP:15
-FP:7
+Training FP:13
+FP:3
 FN:0
 
 Value of nu: 0.05
 
-Training FP:6
-FP:4
+Training FP:7
+FP:2
 FN:0
 
 Value of nu: 0.02
 
 Training FP:3
-FP:1
+FP:2
 FN:0
 
 Value of nu: 0.01
 
 Training FP:2
-FP:1
+FP:2
 FN:0
 
 Value of nu: 0.001
 
-Training FP:4
-FP:1
+Training FP:3
+FP:2
 FN:0
 
 #MODEL
@@ -1565,50 +1565,50 @@ low dim Triplet Net Multiple Conv withoutDrop BSE:
 
 Value of nu: 0.9
 
-Training FP:125
-FP:32
+Training FP:124
+FP:30
 FN:0
 
 Value of nu: 0.7
 
 Training FP:96
-FP:26
+FP:21
 FN:0
 
 Value of nu: 0.5
 
-Training FP:68
-FP:19
+Training FP:69
+FP:16
 FN:0
 
 Value of nu: 0.4
 
-Training FP:54
-FP:14
+Training FP:55
+FP:13
 FN:0
 
 Value of nu: 0.3
 
-Training FP:41
-FP:12
+Training FP:42
+FP:11
 FN:0
 
 Value of nu: 0.25
 
-Training FP:37
-FP:4
+Training FP:35
+FP:7
 FN:0
 
 Value of nu: 0.2
 
-Training FP:28
-FP:4
+Training FP:29
+FP:7
 FN:0
 
 Value of nu: 0.1
 
-Training FP:13
-FP:2
+Training FP:14
+FP:3
 FN:0
 
 Value of nu: 0.05
@@ -1619,7 +1619,7 @@ FN:0
 
 Value of nu: 0.02
 
-Training FP:3
+Training FP:4
 FP:0
 FN:0
 
@@ -1715,69 +1715,69 @@ low dim Basic Triplet Net  lowerDrop BSE:
 
 Value of nu: 0.9
 
-Training FP:111
-FP:33
-FN:7
+Training FP:136
+FP:34
+FN:0
 
 Value of nu: 0.7
 
-Training FP:80
-FP:23
-FN:9
+Training FP:130
+FP:33
+FN:0
 
 Value of nu: 0.5
 
-Training FP:82
-FP:25
-FN:9
+Training FP:110
+FP:30
+FN:0
 
 Value of nu: 0.4
 
-Training FP:24
-FP:6
-FN:19
+Training FP:31
+FP:7
+FN:13
 
 Value of nu: 0.3
 
-Training FP:97
-FP:27
-FN:8
+Training FP:91
+FP:25
+FN:1
 
 Value of nu: 0.25
 
-Training FP:136
-FP:35
-FN:1
+Training FP:57
+FP:12
+FN:7
 
 Value of nu: 0.2
 
-Training FP:9
-FP:0
+Training FP:13
+FP:2
 FN:23
 
 Value of nu: 0.1
 
-Training FP:67
-FP:14
-FN:13
+Training FP:38
+FP:7
+FN:21
 
 Value of nu: 0.05
 
-Training FP:133
-FP:33
+Training FP:75
+FP:15
 FN:1
 
 Value of nu: 0.02
 
-Training FP:103
-FP:21
-FN:12
+Training FP:98
+FP:22
+FN:11
 
 Value of nu: 0.01
 
-Training FP:29
-FP:5
-FN:20
+Training FP:43
+FP:7
+FN:21
 
 Value of nu: 0.001
 
@@ -1865,74 +1865,74 @@ low dim Basic Triplet Deeper withoutDrop SE:
 
 Value of nu: 0.9
 
-Training FP:125
-FP:30
+Training FP:124
+FP:31
 FN:0
 
 Value of nu: 0.7
 
-Training FP:97
-FP:18
+Training FP:96
+FP:28
 FN:0
 
 Value of nu: 0.5
 
-Training FP:68
-FP:12
+Training FP:70
+FP:19
 FN:0
 
 Value of nu: 0.4
 
-Training FP:56
-FP:9
+Training FP:54
+FP:16
 FN:0
 
 Value of nu: 0.3
 
 Training FP:41
-FP:8
+FP:11
 FN:0
 
 Value of nu: 0.25
 
-Training FP:36
-FP:5
+Training FP:35
+FP:11
 FN:0
 
 Value of nu: 0.2
 
 Training FP:28
-FP:2
+FP:11
 FN:0
 
 Value of nu: 0.1
 
 Training FP:13
-FP:1
+FP:5
 FN:0
 
 Value of nu: 0.05
 
-Training FP:6
-FP:1
+Training FP:7
+FP:5
 FN:0
 
 Value of nu: 0.02
 
-Training FP:5
-FP:1
+Training FP:6
+FP:4
 FN:0
 
 Value of nu: 0.01
 
-Training FP:5
-FP:0
+Training FP:6
+FP:4
 FN:0
 
 Value of nu: 0.001
 
-Training FP:8
-FP:1
+Training FP:11
+FP:6
 FN:0
 
 #MODEL
@@ -1941,49 +1941,49 @@ low dim Triplet Net Multiple Conv withoutDrop SE:
 Value of nu: 0.9
 
 Training FP:125
-FP:29
+FP:31
 FN:0
 
 Value of nu: 0.7
 
-Training FP:95
-FP:20
+Training FP:96
+FP:23
 FN:0
 
 Value of nu: 0.5
 
-Training FP:69
-FP:17
+Training FP:70
+FP:18
 FN:0
 
 Value of nu: 0.4
 
-Training FP:55
-FP:14
+Training FP:56
+FP:10
 FN:0
 
 Value of nu: 0.3
 
 Training FP:41
-FP:14
+FP:7
 FN:0
 
 Value of nu: 0.25
 
 Training FP:34
-FP:12
+FP:7
 FN:0
 
 Value of nu: 0.2
 
 Training FP:27
-FP:9
+FP:6
 FN:0
 
 Value of nu: 0.1
 
 Training FP:15
-FP:2
+FP:3
 FN:0
 
 Value of nu: 0.05
@@ -1994,19 +1994,19 @@ FN:0
 
 Value of nu: 0.02
 
-Training FP:6
-FP:2
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.01
 
-Training FP:5
-FP:2
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.001
 
-Training FP:3
+Training FP:4
 FP:0
 FN:0
 
@@ -2015,73 +2015,73 @@ low dim Basic Triplet Net HF withoutDrop SE:
 
 Value of nu: 0.9
 
-Training FP:138
-FP:34
+Training FP:3
+FP:1
 FN:0
 
 Value of nu: 0.7
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.5
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.4
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.3
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.25
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.2
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.1
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.05
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.02
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.01
 
-Training FP:138
+Training FP:137
 FP:34
 FN:0
 
 Value of nu: 0.001
 
-Training FP:138
+Training FP:137
 FP:34
 FN:0
 
@@ -2090,62 +2090,62 @@ low dim Basic Triplet Net lowerDrop SE:
 
 Value of nu: 0.9
 
-Training FP:138
-FP:34
+Training FP:3
+FP:0
 FN:0
 
 Value of nu: 0.7
 
-Training FP:138
+Training FP:137
 FP:34
 FN:0
 
 Value of nu: 0.5
 
-Training FP:40
-FP:4
+Training FP:133
+FP:34
 FN:0
 
 Value of nu: 0.4
 
-Training FP:138
-FP:34
+Training FP:2
+FP:0
 FN:0
 
 Value of nu: 0.3
 
-Training FP:138
-FP:34
+Training FP:2
+FP:0
 FN:0
 
 Value of nu: 0.25
 
-Training FP:138
-FP:34
+Training FP:2
+FP:0
 FN:0
 
 Value of nu: 0.2
 
-Training FP:138
-FP:34
+Training FP:2
+FP:0
 FN:0
 
 Value of nu: 0.1
 
-Training FP:138
-FP:34
+Training FP:2
+FP:0
 FN:0
 
 Value of nu: 0.05
 
-Training FP:138
-FP:34
+Training FP:1
+FP:0
 FN:0
 
 Value of nu: 0.02
 
-Training FP:138
-FP:34
+Training FP:0
+FP:0
 FN:0
 
 Value of nu: 0.01
