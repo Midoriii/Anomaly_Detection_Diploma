@@ -1,6 +1,6 @@
 '''
 Basic bigAN net, using cross entropy as loss and shallower architecture
-and lower lat dims
+and higher lat dims
 '''
 import numpy as np
 from Models.biGAN.BaseBiganModel import BaseBiganModel
@@ -14,11 +14,11 @@ from keras.optimizers import RMSprop, Adam, SGD
 
 
 
-class BasicBiganXEntropyShallowerLowLatDim(BaseBiganModel):
+class BasicBiganXEntropyShallowerHiLatDim(BaseBiganModel):
 
     def __init__(self, input_shape, latent_dim=64, lr=0.0005, w_clip=0.01, batch_size=4):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
-        self.name = "BasicBiganXEntropyShallowerLowLatDim"
+        self.name = "BasicBiganXEntropyShallowerHiLatDim"
         g_optimizer = Adam(lr=self.lr, beta_1=0.5)
         d_optimizer = SGD(lr=self.lr)
         self.disc_labels_fake = np.zeros((self.batch_size, 1))
