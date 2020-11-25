@@ -20,8 +20,10 @@ class BasicBiganXEntropyLLR(BaseBiganModel):
         self.name = "BasicBiganXEntropyLLR"
         g_optimizer = Adam(lr=self.lr, beta_1=0.5)
         d_optimizer = SGD(lr=self.lr)
-        self.disc_labels_fake = np.zeros((self.batch_size, 1))
-        self.genc_labels_fake = np.zeros((self.batch_size, 1))
+        self.disc_labels_real = np.zeros((self.batch_size, 1))
+        self.genc_labels_real = np.zeros((self.batch_size, 1))
+        self.genc_labels_fake = np.ones((self.batch_size, 1))
+        self.disc_labels_fake = np.ones((self.batch_size, 1))
 
         self.d = self.build_discriminator()
         self.d.compile(optimizer=d_optimizer, loss='binary_crossentropy', metrics=['accuracy'])
