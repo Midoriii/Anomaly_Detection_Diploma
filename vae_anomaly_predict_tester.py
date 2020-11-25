@@ -152,7 +152,7 @@ def main():
 
     # Loading best BSE Model weights
     model = BasicVAE_HiRLFactor_LowLatDim(IMG_WIDTH)
-    model.load_weights("Model_Saves/Weights/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimBSE_e1200_detailed")
+    model.vae.load_weights("Model_Saves/Weights/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimBSE_e1200_detailed")
     #model = load_model("Model_Saves/Detailed/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimBSE_e1200_detailed", compile=False)
     # Get the BSE threshold
     threshold = calculate_threshold(model, data_ok, 3)
@@ -169,7 +169,7 @@ def main():
     data_ok_all = np.concatenate((data_ok, data_ok_extra))
 
     # Loading best SE Model weights
-    model.load_weights("Model_Saves/Weights/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimSE_e1200_detailed")
+    model.vae.load_weights("Model_Saves/Weights/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimSE_e1200_detailed")
     #model = load_model("Model_Saves/Detailed/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimSE_e1200_detailed", compile=False)
     # Get the SE threshold
     threshold = calculate_threshold(model, data_ok, 4)
