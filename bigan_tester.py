@@ -1,5 +1,48 @@
 '''
-bla
+The purpose of this script is to gauge the performance of various biGAN models
+on provided images.
+
+The type of images, BSE or SE, is selected by argument -t, and the models to be
+tested by argument -m. The desired epoch number and batch size by -e and -b
+respectively. The images are by default lower dimensional (384x384), but giving
+argument -d any other value than low_dim_ results in using even lower dimensional
+ones (192x192).
+
+The models are trained exclusively on the original OK images. Once training concludes,
+the Encoder, Generator and Discriminator losses through the epochs are plotted together
+to a single graph. The Discriminator's accuracy on Fake batches each epoch, and on
+Real batches each epoch, are also plotted together to a single graph.
+
+The Encoder, Generator and Discriminator parts are saved separately both as the
+whole architecture, or just the weights.
+
+The performance of the model is then evaluated on the original OK images, the extra
+OK images, and the Faulty images. Model.predict(...) returns an anomaly score for given
+image, consisting of reconstruction error (as in Autoencoders) and discriminator's verdict
+
+As anomalous images aren't used for training, the idea is that they should score higher
+both in reconstruction errors and discriminator's verdict, as during training, the
+discriminator is given real images with label 1 and fake generated images with label -1
+when using Wasserstein loss, which encourages small losses for label 1 and big losses
+for label -1. With Cross-entropy, the labels are 0 for real and 1 for fake, to facilitate
+the same effect.
+
+The performance is visualised in a graph, where each tested image is plotted with
+its score.
+
+Several reconstructed images are also saved, to gain a better insight into the
+performance of the models. Some mock predictions also happen at the end of the
+scripts, with the reconstruction errors printed out to standard output. These
+serve as a quick performance check.
+
+
+Arguments:
+    -e / --epochs: Desired number of epochs for the model to train for.
+    -b / --batch_size: Training batch_size to be used, can't handle more than 16
+    reliably on most GPUs due to VRAM limits.
+    -m / --model: Name of the model class to be instantiated and used.
+    -t / --type: Type of data to be used, BSE or SE.
+    -d / --dimensions: low_dim_ for 384x384, anything else for 192x192 images.
 '''
 import sys
 import getopt
