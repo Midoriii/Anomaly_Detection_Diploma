@@ -53,7 +53,7 @@ def calculate_threshold(model, data, coef):
     scores = []
     for i in range(0, data.shape[0]):
             scores.append(model.predict(data[i]))
-    return coef * np.std(test_scores)
+    return coef * np.std(scores)
 
 
 def predict(model, orig_img):
