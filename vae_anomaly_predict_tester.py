@@ -3,6 +3,10 @@ A script for loading previously trained VAE models and performing anomaly detect
 with them. Prediction is done using reconstruction error and a threshold for it,
 calculated on training OK data.
 
+Unlike other predictors, due to custom loss and lambda layer, the models
+have to be constructed and then filled with weights. Just reloading the trained model
+won't work.
+
 Since only lower dimension (384x384) data has been used with VAE, the same
 happens here.
 
@@ -31,7 +35,7 @@ import numpy as np
 from cv2 import cv2
 
 from PIL import Image
-from keras.models import load_model
+from Models.VAE.BasicVAE_HiRLFactor_LowLatDim import BasicVAE_HiRLFactor_LowLatDim
 
 # Constants
 IMG_WIDTH = 384
@@ -146,8 +150,10 @@ def main():
     # Concat the ok data
     data_ok_all = np.concatenate((data_ok, data_ok_extra))
 
-    # Loading best BSE Model
-    model = load_model("Model_Saves/Detailed/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimBSE_e1200_detailed", compile=False)
+    # Loading best BSE Model weights
+    model = BasicVAE_HiRLFactor_LowLatDim(IMG_WIDTH)
+    model.load_weights("Model_Saves/Weights/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimBSE_e1200_detailed")
+    #model = load_model("Model_Saves/Detailed/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimBSE_e1200_detailed", compile=False)
     # Get the BSE threshold
     threshold = calculate_threshold(model, data_ok, 3)
     # First get the predictions for BSE OK and then Faulty images
@@ -162,8 +168,9 @@ def main():
     # Concat the ok data
     data_ok_all = np.concatenate((data_ok, data_ok_extra))
 
-    # Loading best SE Model
-    model = load_model("Model_Saves/Detailed/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimSE_e1200_detailed", compile=False)
+    # Loading best SE Model weights
+    model.load_weights("Model_Saves/Weights/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimSE_e1200_detailed")
+    #model = load_model("Model_Saves/Detailed/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimSE_e1200_detailed", compile=False)
     # Get the SE threshold
     threshold = calculate_threshold(model, data_ok, 4)
     # Then the same for SE images
