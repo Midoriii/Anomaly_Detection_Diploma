@@ -19,13 +19,16 @@ and its reconstruction is computed and serves as a 'score' of sorts.
 The idea is that a large reconstruction error points to an anomaly, as the model
 is trained only on the OK data, and should struggle to reconstruct anomalous input.
 
-To visualize the performance a graph is plotted of image's and their respective
+To visualize the performance a graph is plotted of images and their respective
 reconstruction errors. Green dots = truly OK images, red dots = truly Faulty images.
 
 Common practice for finding a threshold for anomaly detection is to use 3 times the
 standard deviation of OK scores. Such threshold is also shown on the graph and
 serves as a divider of sorts showing which images are possibly faulty and which are OK.
 Of course any such threshold can be edited to better serve FP vs FN needs.
+
+Reconstructions of all images are also saved, to gain some additional insight into
+the performance of the models.
 
 
 Arguments:
