@@ -1,5 +1,49 @@
 '''
-bla
+The purpose of this script is to train various TripletScores Nets on SE or BSE images
+and test their anomaly detection performance.
+
+Images of desired type (BSE vs SE, given by an argument -t) are loaded, and fed to
+selected model (by an argument -m). Training happens for a number of epochs given
+by an argument -e. Data is already low dimensional (384x384) only. As triplet data
+was generated randomly (3 sets), the desired set can be chosen by argument -s.
+Multiple sets were made to test the role of randomness, as unlike in Siamese nets,
+images can't sipmly be paired each with each, but the triplets have to be randomly
+sampled.
+
+After training, the model's loss is plotted across the epochs and saved for further
+reviewing. The model itself and its embedding part are also saved. Embedding part
+corresponds to a single branch, which transforms input into a feature vector.
+
+Hand-picked prototypes are then loaded, and each OK and each Faulty image of
+given type is tested against all 5 of the prototypes. Model.predict() returns an
+embedding, and the embeddings of tested images and prototypes are then evaluated
+using MSE.
+
+The networks are trained to learn a margin of 10 between OK and Defective images,
+but in practice a threshold of 5 is perfectly fine to decide if image is anomalous
+or not, even though the best models really learn to classify OK as 0.0 and Faulty
+as 10.0.
+
+So the MSE is evaluated like this: distance of over 5.0 means that the images
+are dissimilar - using only OK prototypes, this means that the tested image is
+defective. Distance under 5.0 means that the images are similar enough and the
+tested image is OK. As with Siamese nets, each image is given prototype similarity
+score, where score of 5 means that the image was predicted to be similar to all
+5 prototypes and hence is considered OK, score of 0 means an anomaly, since
+the image wasn't similar enough to the prototypes. Anything in between is open
+for custom interpretation according to needs.
+
+Graph overview of how many OK/Defective images ended up with each score
+is also saved for quick performance rating of the network. The final part of the script
+consist of some mock comparisons which output confidence scores to standard otuput,
+they also serve preformance reviewing purposes.
+
+
+Arguments:
+    -e / --epochs: The desired number of epochs the net should be trained for.
+    -m / --model: Name of the model class to be instantiated and used.
+    -t / --type: Accepts either 'BSE' or 'SE', the type of images to be used.
+    -s / --imset: The desired dataset number - 1, 2, 3.
 '''
 from collections import Counter
 from collections import OrderedDict

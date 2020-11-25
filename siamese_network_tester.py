@@ -22,10 +22,10 @@ was predicted to be similar to all 5 prototypes and hence is considered OK,
 score of 0 means an anomaly, since the image wasn't similar enough to the prototypes.
 Anything in between is open for custom interpretation according to needs.
 
-Graph overview of scores of individual images is also saved for quick performance
-rating of the network. The final part of the script consist of some mock comparisons
-which output confidence scores to standard otuput, they also serve preformance
-reviewing purposes.
+Graph overview of how many OK/Defective images ended up with each score
+is also saved for quick performance rating of the network. The final part of the script
+consist of some mock comparisons which output confidence scores to standard otuput,
+they also serve preformance reviewing purposes.
 
 
 Arguments:
