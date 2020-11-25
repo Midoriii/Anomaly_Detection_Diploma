@@ -1,5 +1,10 @@
 '''
-bla
+This script loads already prepared low dimensional data and changes their normalization
+from [0,1] to [-1,1], which is more suited for biGAN training.
+
+This is the only change made, and the scripts relies on other data prep scripts
+to provide the data, as it does not create it from the raw images, unlike the other
+data prep scripts.
 '''
 import numpy as np
 from PIL import Image
