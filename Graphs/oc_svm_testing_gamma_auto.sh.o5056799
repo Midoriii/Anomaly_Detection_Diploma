@@ -42,7 +42,7 @@ FN:0
 Value of nu: 0.4
 
 BSE:
-Training FP:53
+Training FP:54
 FP:16
 FN:9
 
@@ -78,7 +78,7 @@ FN:0
 Value of nu: 0.2
 
 BSE:
-Training FP:27
+Training FP:28
 FP:7
 FN:9
 
@@ -90,7 +90,7 @@ FN:0
 Value of nu: 0.1
 
 BSE:
-Training FP:14
+Training FP:15
 FP:2
 FN:20
 
@@ -1040,82 +1040,82 @@ Basic Siamese lowDrop BSE:
 
 Value of nu: 0.9
 
-Training FP:123
-FP:30
+Training FP:125
+FP:23
 FN:0
 
 Value of nu: 0.7
 
-Training FP:97
-FP:25
+Training FP:95
+FP:15
 FN:0
 
 Value of nu: 0.5
 
 Training FP:68
-FP:15
-FN:2
+FP:8
+FN:0
 
 Value of nu: 0.4
 
 Training FP:55
-FP:10
-FN:2
+FP:5
+FN:0
 
 Value of nu: 0.3
 
-Training FP:41
-FP:6
-FN:3
+Training FP:40
+FP:3
+FN:0
 
 Value of nu: 0.25
 
-Training FP:35
-FP:4
-FN:3
+Training FP:37
+FP:3
+FN:0
 
 Value of nu: 0.2
 
-Training FP:25
-FP:4
-FN:3
+Training FP:29
+FP:3
+FN:0
 
 Value of nu: 0.1
 
-Training FP:12
-FP:3
-FN:5
+Training FP:14
+FP:1
+FN:0
 
 Value of nu: 0.05
 
-Training FP:8
-FP:3
-FN:5
+Training FP:10
+FP:2
+FN:0
 
 Value of nu: 0.02
 
 Training FP:5
-FP:1
-FN:5
+FP:2
+FN:0
 
 Value of nu: 0.01
 
-Training FP:5
-FP:1
-FN:5
+Training FP:6
+FP:2
+FN:0
 
 Value of nu: 0.001
 
-Training FP:21
+Training FP:8
 FP:2
-FN:4
+FN:0
 
 #MODEL
 Siamese Lite MultipleConv AltTwo BSE:
 
 Value of nu: 0.9
 
-Training FP:124
+Training FP:123
 FP:29
 FN:0
 
@@ -1208,7 +1208,7 @@ FN:0
 
 Value of nu: 0.4
 
-Training FP:53
+Training FP:54
 FP:15
 FN:0
 
