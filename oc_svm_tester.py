@@ -89,7 +89,7 @@ def main():
 
 
     # Load the BSE embedding models
-    siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
+    siamese_BSE = load_model("Model_Saves/Detailed/OcSvm/embedding_BasicSiameseNetLowerDropout_BSE_extended_e90_b4_detailed", compile=False)
     print("\n#MODEL")
     print("Basic Siamese lowDrop BSE:")
     # Evaluate the model on several nu values
