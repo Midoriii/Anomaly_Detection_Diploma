@@ -157,8 +157,8 @@ def main():
     # Get the BSE threshold
     threshold = calculate_threshold(model, data_ok, 3)
     # First get the predictions for BSE OK and then Faulty images
-    get_predictions(data_ok_all, threshold, model, "OK", "BSE")
-    get_predictions(data_faulty, threshold, model, "Defective", "BSE")
+    #get_predictions(data_ok_all, threshold, model, "OK", "BSE")
+    #get_predictions(data_faulty, threshold, model, "Defective", "BSE")
 
 
     # Loading SE data
@@ -171,8 +171,10 @@ def main():
     # Loading best SE Model weights
     model.vae.load_weights("Model_Saves/Weights/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimSE_e1200_weights.h5")
     #model = load_model("Model_Saves/Detailed/vae_low_dim_BasicVAE_HiRLFactor_LowLatDimSE_e1200_detailed", compile=False)
-    # Get the SE threshold
-    threshold = calculate_threshold(model, data_ok, 4)
+    # Get the SE threshold .. this one performs perfectly
+    #threshold = calculate_threshold(model, data_ok, 7)
+    # Manually given might be better
+    threshold = 0.0057
     # Then the same for SE images
     get_predictions(data_ok_all, threshold, model, "OK", "SE")
     get_predictions(data_faulty, threshold, model, "Defective", "SE")
