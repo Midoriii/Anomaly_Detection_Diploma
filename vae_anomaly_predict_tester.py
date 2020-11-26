@@ -157,8 +157,8 @@ def main():
     # Get the BSE threshold
     threshold = calculate_threshold(model, data_ok, 3)
     # First get the predictions for BSE OK and then Faulty images
-    #get_predictions(data_ok_all, threshold, model, "OK", "BSE")
-    #get_predictions(data_faulty, threshold, model, "Defective", "BSE")
+    get_predictions(data_ok_all, threshold, model, "OK", "BSE")
+    get_predictions(data_faulty, threshold, model, "Defective", "BSE")
 
 
     # Loading SE data
