@@ -131,7 +131,7 @@ model.train_net(train_input, epochs=epochs, batch_size=batch_size)
 # Save it
 model.save_model(epochs, image_type, dimensions)
 # Save the weights for predictor
-model.save_weight(epochs, image_type, dimensions)
+model.save_weights(epochs, image_type, dimensions)
 
 
 # Plot the model's loss
