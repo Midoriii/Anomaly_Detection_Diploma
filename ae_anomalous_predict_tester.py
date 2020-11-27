@@ -12,6 +12,7 @@ Upon showing an image that was falsely flagged as OK (and its reconstruction),
 any key press continues the script. The total amount of false negatives is also
 written to the command line after the script finishes.
 '''
+from timeit import default_timer as timer
 import numpy as np
 
 from cv2 import cv2
@@ -51,6 +52,7 @@ missed_anomalies = 0
 # compare it with threshold - if lower, show the image, it's a false negative
 for i in range(0, anomalous_input.shape[0]):
     print(i)
+    start = timer()
     # Every image needs to be reshaped into 1,768,768,1
     reconstructed_img = model.predict(anomalous_input[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
     # The reconstructed image afterwards needs to be reshaped back into 768 x 768
@@ -60,6 +62,8 @@ for i in range(0, anomalous_input.shape[0]):
     # Compute the MSE between original and reconstructed
     reconstruction_error = np.square(np.subtract(original_image, reconstructed_img)).mean()
 
+    end = timer()
+    print("Prediction Time: " + str(end - start))
     # If the reconstruction error is below threshold, show the image
     if threshold > reconstruction_error:
         print("Undiscovered Anomaly!")

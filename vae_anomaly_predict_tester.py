@@ -30,6 +30,7 @@ func: main():
         Loads images and models and calls the other methods. Separately done
         for each image type BSE vs SE.
 '''
+from timeit import default_timer as timer
 import numpy as np
 
 from cv2 import cv2
@@ -118,7 +119,11 @@ def get_predictions(data, threshold, model, faulty="OK", img_type="BSE"):
         either BSE or SE.
     '''
     for i in range(0, data.shape[0]):
+        start = timer()
         score = model.predict(data[i])
+        end = timer()
+
+        print("Prediction Time: " + str(end - start))
 
         if faulty == "OK":
             if score >= threshold:

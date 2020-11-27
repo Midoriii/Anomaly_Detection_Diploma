@@ -14,6 +14,7 @@ of the 6 that the best Autoencoder model marked as False Negatives.
 '''
 from collections import Counter
 from collections import OrderedDict
+from timeit import default_timer as timer
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -113,6 +114,7 @@ def get_scores(images, model, ae_threshold):
     for i in range(0, images.shape[0]):
         ae_result = 0
         gr_result = 0
+        start = timer()
         # Get reconstruction error as per usual
         # Every image needs to be reshaped into 1,768,768,1
         reconstructed_img = model.predict(images[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1))
@@ -122,6 +124,7 @@ def get_scores(images, model, ae_threshold):
         original_image = images[i].reshape(IMG_WIDTH, IMG_HEIGHT)
         # Compute the MSE between original and reconstructed
         reconstruction_error = np.square(np.subtract(original_image, reconstructed_img)).mean()
+
         # Tag as 1 if the error is above the threshold
         if reconstruction_error > ae_threshold:
             ae_result = 1
@@ -148,6 +151,10 @@ def get_scores(images, model, ae_threshold):
         # None marked the image as faulty, result = 0
         else:
             result = 0
+
+        end = timer()
+        print("Prediction Time: " + str(end - start))
+        
         # Append the resulting score
         resulting_scores.append(result)
 

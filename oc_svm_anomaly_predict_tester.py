@@ -23,6 +23,7 @@ Uses other methods to perform thorough model evaluation when used with OC-SVM.
 func: plot_wrong_predictions(data, predictions, target, title): Plots misclassified
 images.
 '''
+from timeit import default_timer as timer
 import numpy as np
 from cv2 import cv2
 
@@ -153,11 +154,16 @@ def run_oc_svm(ok_data_features, faulty_data_features, testing_ok_data_features,
     # Train OC-SVM on OK image features
     oc_svm_model.fit(ok_data_features)
 
+    start = timer()
     # Predict on training OK data, testing OK data and Faulty data
     # 1 for inliers, -1 for outliers
     ok_predictions = oc_svm_model.predict(ok_data_features)
     testing_ok_predictions = oc_svm_model.predict(testing_ok_data_features)
     faulty_predictions = oc_svm_model.predict(faulty_data_features)
+
+    end = timer()
+    average_time = (end - start) / (len(ok_predictions) + len(testing_ok_predictions) + len(faulty_predictions))
+    print("Average Prediction Time: " + str(average_time))
 
     print("Training FP:" + str((ok_predictions == -1).sum()))
     print("FP:" + str((testing_ok_predictions == -1).sum()))

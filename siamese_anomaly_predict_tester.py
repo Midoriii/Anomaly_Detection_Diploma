@@ -21,6 +21,7 @@ func: show_misclassified_image(img, msg): Helper function that shows misclassifi
 func: main(): Loads data, prototypes and model. Then calls get_predictions().
         Does so separately for each image type; BSE and SE.
 '''
+from timeit import default_timer as timer
 import sys
 import numpy as np
 
@@ -58,11 +59,15 @@ def get_predictions(data, data_prototypes, model, faulty="OK", img_type="BSE"):
     for i in range(0, data.shape[0]):
         score = 0
         verdict = ""
+        start = timer()
         # Run through the prototypes
         for j in range(0, data_prototypes.shape[0]):
             score += np.around(model.predict([
                 data[i].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1),
                 data_prototypes[j].reshape(1, IMG_WIDTH, IMG_HEIGHT, 1)]))
+
+        end = timer()
+        print("Prediction Time: " + str(end - start))
 
         if score == 5:
             verdict = "OK"
