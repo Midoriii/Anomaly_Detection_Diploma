@@ -67,6 +67,7 @@ from Models.VAE.BasicVAE_HiRLFactor_LowLatDim import BasicVAE_HiRLFactor_LowLatD
 from Models.VAE.BasicVAE_ExtraHiRLFactor import BasicVAE_ExtraHiRLFactor
 from Models.VAE.TransposeVAE import TransposeVAE
 from Models.VAE.TransposeVAEDeeper import TransposeVAEDeeper
+from Models.VAE.TransposeVAE_HiRLFactor_LowLatDim import TransposeVAE_HiRLFactor_LowLatDim
 
 
 # Constants
