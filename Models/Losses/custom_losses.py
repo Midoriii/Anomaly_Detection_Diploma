@@ -1,6 +1,7 @@
 '''
 Custom losses for Siamese nets, namely Triplet Loss and Contrastive Loss.
-Also contains Hinge Loss and Wasserstein Loss for biGAN.
+Also contains Hinge Loss and Wasserstein Loss for biGAN and a loss function
+for VAE.
 '''
 
 from keras import backend as K
