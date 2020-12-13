@@ -19,7 +19,7 @@ class BasicBiganXEntropy(BaseBiganModel):
         super().__init__(input_shape, latent_dim, lr, w_clip, batch_size)
         self.name = "BasicBiganXEntropy"
         g_optimizer = Adam(lr=self.lr, beta_1=0.5)
-        d_optimizer = SGD(lr=self.lr)
+        d_optimizer = Adam(lr=self.lr, beta_1=0.5)
         self.disc_labels_real = np.zeros((self.batch_size, 1))
         self.genc_labels_real = np.zeros((self.batch_size, 1))
         self.genc_labels_fake = np.ones((self.batch_size, 1))

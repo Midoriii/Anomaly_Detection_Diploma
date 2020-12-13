@@ -35,26 +35,26 @@ class BasicBiganShallower(BaseBiganModel):
     def build_generator(self):
         z_input = Input(shape=[self.latent_dim])
 
-        x = Dense(24*24*32, kernel_constraint=WeightClip(self.w_clip))(z_input)
+        x = Dense(24*24*32)(z_input)
         x = Reshape([24, 24, 32])(x)
 
         # 24 -> 48
-        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(32, (3, 3), padding='same')(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 48 -> 96
-        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(32, (3, 3), padding='same')(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 96 -> 192
-        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(32, (3, 3), padding='same')(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
         # 192 -> 384
-        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(32, (3, 3), padding='same')(x)
         x = LeakyReLU(0.1)(x)
         x = UpSampling2D((2, 2))(x)
-        x = Conv2D(1, (3, 3), activation='tanh', padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(1, (3, 3), activation='tanh', padding='same')(x)
 
         return Model(inputs=z_input, outputs=x)
 
@@ -62,27 +62,27 @@ class BasicBiganShallower(BaseBiganModel):
     def build_encoder(self):
         img_input = Input(shape=[self.input_shape, self.input_shape, 1])
         # 384 -> 192
-        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(img_input)
+        x = Conv2D(32, (3, 3), padding='same')(img_input)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 192 -> 96
-        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(32, (3, 3), padding='same')(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 96 -> 48
-        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(32, (3, 3), padding='same')(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
         # 48 -> 24
-        x = Conv2D(32, (3, 3), padding='same', kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Conv2D(32, (3, 3), padding='same')(x)
         x = LeakyReLU(0.1)(x)
         x = MaxPooling2D((2, 2), padding='same')(x)
 
         x = Flatten()(x)
 
-        x = Dense(256, kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Dense(256)(x)
         x = LeakyReLU(0.1)(x)
-        x = Dense(self.latent_dim, kernel_constraint=WeightClip(self.w_clip))(x)
+        x = Dense(self.latent_dim)(x)
 
         return Model(inputs=img_input, outputs=x)
 
