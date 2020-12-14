@@ -1,5 +1,5 @@
 '''
-Basic bigAN net with (3,3) kernel size in G
+Basic bigAN net with (1,1) kernel size in G
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel
 from Models.Losses.custom_losses import wasserstein_loss
