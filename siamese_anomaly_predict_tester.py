@@ -142,10 +142,7 @@ def main():
         # Best lowDim model - and overall best BSE
         model = load_model("Model_Saves/Detailed/low_dims_SiameseNetLiteMultipleConvWithoutDropout_BSE_extended_e40_b4_detailed", compile=False)
     else:
-        # This one leaves 3 faulty as undecided
-        #model = load_model("Model_Saves/Detailed/BasicSiameseNetLowerDropout_BSE_extended_e60_b4_detailed", compile=False)
-        # This one leaves 6 OK as undecided
-        model = load_model("Model_Saves/Detailed/SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
+        model = load_model("Model_Saves/Detailed/BasicSiameseNetWithoutDropout_BSE_extended_e40_b4_detailed", compile=False)
 
     # First get the predictions for BSE OK and then Faulty images
     get_predictions(data_ok, data_prototypes, model, "OK", "BSE")
