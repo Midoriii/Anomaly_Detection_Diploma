@@ -1,0 +1,158 @@
+Best oc-SVM results per each tested encoder/branch
+--------------------------------------------
+E2/Basic deeper: 
+auto
+BSE: TFP:28, FP:7, FN:9 - nu:0.2	
+SE: TFP:28, FP:4, FN:0 - nu:0.2
+
+scale
+BSE: TFP:28, FP:8, FN:9 - nu:0.2
+SE: TFP:15, FP:4, FN:0 - nu:0.1		BETTER - mnohem min FN, trochu vic FP u SE .. u BSE sice min FN ale nestoji to za rec.
+
+--------------------------------------------
+E1/Basic even deeper extra LLR:
+auto
+BSE: TFP:35, FP:7, FN:6 - nu:0.25	WORSE
+SE: TFP:55, FP:12, FN:0 - nu:0.4	WORSE
+
+scale
+BSE: TFP:7, FP:2, FN:3 - nu:0.05	BETTER
+SE: TFP:55, FP:12, FN:0 - nu:0.4	WORSE
+
+--------------------------------------------
+E3/HF Deeper:
+auto
+BSE: TFP:34, FP:9, FN:9 - nu:0.25	WORSE - kompletne vsude horsi
+SE: TFP:14, FP:4, FN:4 - nu:0.1     -- nulove FN jen pri extremnich FP
+
+scale
+BSE: TFP:35, FP:9, FN:9 - nu:0.25
+SE: TFP:27, FP:4, FN:0 - nu:0.2     -- pak nizsi FP ale uz se vyskytuje FN
+
+--------------------------------------------
+E4/LF Deeper:
+auto
+BSE: TFP:28, FP:8, FN:9 - nu:0.2	WORSE - kompletne vsude horsi
+SE: TFP:54, FP:8, FN:0 - nu:0.4     -- nizsi zase FN
+
+scale
+BSE: TFP:27, FP:8, FN:9 - nu:0.2
+SE: TFP:41, FP:5, FN:0 - nu:0.3     -- nizsi zase FN
+
+--------------------------------------------
+E5/High Stride:
+auto
+BSE: TFP:41, FP:9, FN:9 - nu:0.3
+SE: TFP:34, FP:5, FN:0 - nu:0.25
+
+scale
+BSE: TFP:36, FP:9, FN:9 - nu:0.25
+SE: TFP:2, FP:0, FN:0 - nu:0.01		BETTER - masivni zlepseni u SE
+
+--------------------------------------------
+E7/High Stride + Transpose:
+auto
+BSE: TFP:35, FP:9, FN:9 - nu:0.25
+SE: TFP:42, FP:10, FN:0 - nu:0.3
+
+scale
+BSE: TFP:42, FP:9, FN:9 - nu:0.3
+SE: TFP:42, FP:10, FN:0 - nu:0.3	FN lepsi ale moc FP - nepouzitelne
+
+--------------------------------------------
+E6/Transpose:
+auto
+BSE: TFP:28, FP:98 FN:9 - nu:0.2
+SE: TFP:53, FP:9, FN:0 - nu:0.4
+
+scale
+BSE: TFP:4, FP:7 FN:6 - nu:0.02
+SE: TFP:5, FP:2, FN:0 - nu:0.001	BETTER - masivni zlepseni u SE i BSE
+############################################
+
+--------------------------------------------
+S1/Basic Siamese net lower dropout BSE:
+auto
+BSE: TFP:5, FP:2 FN:0 - nu:0.02		BETTER - ohromne zlepseni FN (z 11 na 0), ale za cenu 7 FP, kdyz puvodne ma 0
+
+scale
+BSE: TFP:8, FP:2 FN:0 - nu:0.02
+
+--------------------------------------------
+
+S2/Siamese net lite multipleconv AltTwo BSE:
+auto
+BSE: TFP:4, FP:1 FN:6 - nu:0.02		BETTER - zlepseni FN (z 19 na 6) za cenu 5 FP, ale porad unusable
+
+scale
+BSE: TFP:5, FP:1 FN:6 - nu:0.001
+
+--------------------------------------------
+
+S3/Siamese net lite multipleconv SE:
+auto
+SE: TFP:8, FP:2 FN:0 - nu:0.05		WORSE - FN stejne, z 0 FP ale 10
+
+scale
+SE: TFP:12, FP:4 FN:0 - nu:0.05
+
+--------------------------------------------
+S4/Siamese net lite multipleconv without dropout, 384x384
+auto
+BSE: TFP:23, FP:0 FN:0 - nu:0.1 	WORSE - zhorseni vsude, protoze tento model ma sam o sobe perfektni detekci
+SE: TFP:13, FP:0 FN:0 - nu:0.02
+
+scale
+BSE: TFP:29, FP:0 FN:0 - nu:0.1
+SE: TFP:20, FP:1 FN:0 - nu:0.1
+############################################
+
+--------------------------------------------
+T2/Basic Triplet Net without dropout
+auto
+BSE: TFP:137, FP:35 FN:0 - nu:matters not	WORSE - zcela neschopne
+SE: TFP:138, FP:34 FN:0 - nu:matters not
+
+scale
+BSE: TFP:137, FP:35 FN:0 - nu:matters not
+SE: TFP:138, FP:34 FN:0 - nu:matters not
+
+--------------------------------------------
+T4/Basic Triplet Net deeper without dropout
+auto
+BSE: TFP:2, FP:1 FN:0 - nu:0.01				WORSE - vsude zhorseni
+SE: TFP:7, FP:0 FN:0 - nu:0.001
+
+scale
+BSE: TFP:2, FP:2 FN:0 - nu:0.01
+SE: TFP:6, FP:4 FN:0 - nu:0.01
+
+--------------------------------------------
+T5/Triplet Net multipleconv without dropout
+auto
+BSE: TFP:1, FP:0 FN:0 - nu:0.01				Vyborne vysledky ale still worse, protoze orig triplet net dokaze perfektne detekovat
+SE: TFP:1, FP:0 FN:0 - nu:0.01
+
+scale
+BSE: TFP:3, FP:0 FN:0 - nu:0.01
+SE: TFP:3, FP:0 FN:0 - nu:0.01
+
+--------------------------------------------
+T3/Basic Triplet Net with more filters and neurons, without dropout
+auto
+BSE: TFP:137, FP:35 FN:0 - nu:matters not	Useless, orig sit detekuje perfektne
+SE: TFP:3, FP:0 FN:0 - nu:0.02
+
+scale
+BSE: TFP:137, FP:35 FN:0 - nu:matters not
+SE: TFP:3, FP:0 FN:0 - nu:0.02
+
+--------------------------------------------
+T1/Basic Triplet Net lower dropout
+auto
+BSE: TFP:52, FP:12 FN:7 - nu:0.25		BETTER - u BSE snizi FN, i kdyz stale unusable .. ale u SE eliminuje 3FN !!
+SE: TFP:2, FP:0 FN:0 - nu:0.2
+
+scale
+BSE: TFP:57, FP:12 FN:7 - nu:0.25
+SE: TFP:0, FP:0 FN:0 - nu:0.02
