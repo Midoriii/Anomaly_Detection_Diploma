@@ -96,7 +96,7 @@ def main():
 
     # Triplet models
     print("Low Dim Triplet BSE:")
-    model_eval(se_ok_ld, se_ok_extra_ld, se_faulty_ld, low_dim_triplet_model_bse,
+    model_eval(bse_ok_ld, bse_ok_extra_ld, bse_faulty_ld, low_dim_triplet_model_bse,
                nu_values[4], gamma_values[4])
 
     print("Low Dim Triplet SE:")
