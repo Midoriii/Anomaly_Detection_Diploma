@@ -57,7 +57,7 @@ def main():
     se_faulty_ld = np.load("Data/low_dim_SE_faulty_extended.npy")
 
     # Load desired models
-    ae_model_bse = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_BasicAutoencoderEvenDeeperExtraLLR_e600_b4_detailed", compile=False)
+    ae_model_bse = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_BasicAutoencoderDeeper_e400_b4_detailed", compile=False)
     ae_model_se = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_HighStrideAutoencoderDeeper_e400_b4_detailed", compile=False)
     siam_model_bse = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
     low_dim_siam_model_se = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dims_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
@@ -73,7 +73,7 @@ def main():
     # the effort when this is also decently readable and extendable.
 
     # First Autoencoders on both BSE and SE data
-    print("EvenDeeper Extra LLR AE BSE:")
+    print("Basic Deeper AE BSE:")
     model_eval(bse_ok, bse_ok_extra, bse_faulty, ae_model_bse,
                nu_values[0], gamma_values[0])
     print("High Stride AE SE:")
@@ -188,9 +188,15 @@ def model_eval(ok_data, ok_data_extra, faulty_data, model, nu_value, gamma_value
         gamma_value: A parameter for OC-SVM classifier.
     '''
     # Extract features using given model
+    start = timer()
     ok_data_features = extract_features(ok_data, model)
     faulty_data_features = extract_features(faulty_data, model)
     ok_data_extra_features = extract_features(ok_data_extra, model)
+
+    end = timer()
+    average_time = (end - start) / (len(ok_data_features) + len(ok_data_extra_features)
+                                    + len(faulty_data_features))
+    print("Average Feature Extraction Time: " + str(average_time))
     # Train and test OC-SVM on given gamma and nu values
     predictions = run_oc_svm(ok_data_features, faulty_data_features,
                              ok_data_extra_features, nu_val=nu_value,
