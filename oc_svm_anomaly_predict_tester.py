@@ -59,12 +59,12 @@ def main():
     # Load desired models
     ae_model_bse = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_BasicAutoencoderDeeper_e400_b4_detailed", compile=False)
     ae_model_se = load_model("Model_Saves/Detailed/OcSvm/encoder_extended_HighStrideAutoencoderDeeper_e400_b4_detailed", compile=False)
-    siam_model_bse = load_model("Model_Saves/Detailed/OcSvm/embedding_SiameseNetLiteMultipleConvAltTwo_BSE_extended_e40_b4_detailed", compile=False)
+    siam_model_bse = load_model("Model_Saves/Detailed/OcSvm/embedding_BasicSiameseNetLowerDropout_BSE_extended_e90_b4_detailed", compile=False)
     low_dim_siam_model_se = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dims_SiameseNetLiteMultipleConvWithoutDropout_SE_extended_e40_b4_detailed", compile=False)
     low_dim_triplet_model_bse = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_TripletNetMultipleConvWithoutDropout_BSE_set_1_e60_b4_detailed", compile=False)
     low_dim_triplet_model_se = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_TripletNetMultipleConvWithoutDropout_SE_set_1_e60_b4_detailed", compile=False)
     # Their best nu values
-    nu_values = [0.05, 0.01, 0.02, 0.1, 0.01, 0.01]
+    nu_values = [0.05, 0.01, 0.02, 0.02, 0.01, 0.01]
     # Their best gammas
     gamma_values = ['scale', 'scale', 'auto', 'auto', 'auto', 'auto']
 
