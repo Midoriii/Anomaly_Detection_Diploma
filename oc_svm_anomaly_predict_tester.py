@@ -64,7 +64,7 @@ def main():
     low_dim_triplet_model_bse = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_TripletNetMultipleConvWithoutDropout_BSE_set_1_e60_b4_detailed", compile=False)
     low_dim_triplet_model_se = load_model("Model_Saves/Detailed/OcSvm/embedding_low_dim_TripletNetMultipleConvWithoutDropout_SE_set_1_e60_b4_detailed", compile=False)
     # Their best nu values
-    nu_values = [0.01, 0.02, 0.01, 0.01, 0.01, 0.01]
+    nu_values = [0.02, 0.01, 0.02, 0.1, 0.01, 0.01]
     # Their best gammas
     gamma_values = ['scale', 'scale', 'auto', 'auto', 'auto', 'auto']
 
