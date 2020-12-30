@@ -1,6 +1,6 @@
 Best oc-SVM results per each tested encoder/branch
 --------------------------------------------
-E1/Basic even deeper extra LLR: 
+E2/Basic even deeper extra LLR: 
 auto
 BSE: TFP:28, FP:7, FN:9 - nu:0.2	Vsude WORSE, at uz kvuli 3 extra FN u BSE, nebo vice FPs
 SE: TFP:28, FP:4, FN:0 - nu:0.2
@@ -10,7 +10,7 @@ BSE: TFP:28, FP:8, FN:9 - nu:0.2
 SE: TFP:15, FP:4, FN:0 - nu:0.1	
 
 --------------------------------------------
-E2/Basic deeper:
+E1/Basic deeper:
 auto
 BSE: TFP:35, FP:7, FN:6 - nu:0.25	Ve vetsine pripadu masivne vylepsi FN, ale za cenu spousty FPs
 SE: TFP:55, FP:12, FN:0 - nu:0.4	
