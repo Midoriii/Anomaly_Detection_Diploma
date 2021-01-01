@@ -24,7 +24,7 @@ mkdir -p Graphs/{Accuracies,Losses,biGANScores,biGANReco}
 mkdir -p Model_Saves/{Detailed,Weights}
 
 
-python bigan_tester.py -e 2000 -b 16 -m basicbiganxentropyextrabnshallower -t BSE -d low_dim_
+python bigan_tester.py -e 2000 -b 16 -m BasicBiganXEntropyExtraBNShallower -t BSE -d low_dim_
 
 
 cp -vr $SCRATCHDIR/Graphs/Accuracies/* $DATADIR/Graphs/Accuracies/
