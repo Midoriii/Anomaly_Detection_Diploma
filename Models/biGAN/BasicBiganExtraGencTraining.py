@@ -182,7 +182,7 @@ class BasicBiganExtraGencTraining(BaseBiganModel):
             self.d_losses.append(d_loss[0])
             # E+G training
             ge_enc_loss = np.empty(3)
-            for _ in range(0, 10):
+            for _ in range(0, 5):
                 noise = self.latent_noise(self.batch_size, self.latent_dim)
                 img_batch = self.get_image_batch(images, self.batch_size)
 
