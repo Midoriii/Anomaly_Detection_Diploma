@@ -190,7 +190,7 @@ class BasicBiganExtraDT(BaseBiganModel):
             self.e_losses.append(ge_enc_loss[1])
             self.g_losses.append(ge_enc_loss[2])
 
-            print("Epoch: " + str(epoch) + ", D loss: " + str(d_loss[0])
+            print("Epoch: " + str(epoch) + ", D loss: " + str(d_loss[0]/5.0)
                   + "; D acc: " + str(d_loss[1]/5.0) + "; E loss: " + str(ge_enc_loss[1])
                   + "; G loss: " + str(ge_enc_loss[2]))
         return
