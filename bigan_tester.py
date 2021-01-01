@@ -75,6 +75,7 @@ from Models.biGAN.BasicBiganXEntropyHLR import BasicBiganXEntropyHLR
 from Models.biGAN.BasicBiganXEntropyExtraHLR import BasicBiganXEntropyExtraHLR
 from Models.biGAN.BasicBiganXEntropyLLR import BasicBiganXEntropyLLR
 from Models.biGAN.BasicBiganXEntropyExtraBN import BasicBiganXEntropyExtraBN
+from Models.biGAN.BasicBiganXEntropyExtraBNExtraDT import BasicBiganXEntropyExtraBNExtraDT
 from Models.biGAN.BasicBiganXEntropyExtraGencTraining import BasicBiganXEntropyExtraGencTraining
 from Models.biGAN.BasicBiganHLR import BasicBiganHLR
 from Models.biGAN.BasicBiganExtraHLR import BasicBiganExtraHLR
