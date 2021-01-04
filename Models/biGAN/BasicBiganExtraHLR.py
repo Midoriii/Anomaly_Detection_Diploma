@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net, with even higher learning rate
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel

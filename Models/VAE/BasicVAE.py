@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Variational Autoencoder
 '''
 import numpy as np

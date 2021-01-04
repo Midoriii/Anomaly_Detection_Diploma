@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 A script for loading previously trained VAE models and performing anomaly detection
 with them. Prediction is done using reconstruction error and a threshold for it,
 calculated on training OK data.

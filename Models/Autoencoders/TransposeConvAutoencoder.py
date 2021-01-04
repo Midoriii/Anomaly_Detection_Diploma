@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Convolutional Autoencoder with learnable Conv2DTranspose layers
 '''
 import numpy as np

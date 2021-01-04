@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Siamese Network, slightly shallower, with multiple convolutions,
 without any dropout at all
 '''

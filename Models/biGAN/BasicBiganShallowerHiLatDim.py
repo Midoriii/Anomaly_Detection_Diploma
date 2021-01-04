@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net, shallower and higher lat dims
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel

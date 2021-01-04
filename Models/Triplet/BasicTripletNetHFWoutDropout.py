@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Triplet Network with more filters and no dropout
 '''
 import numpy as np

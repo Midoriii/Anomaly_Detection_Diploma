@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 This script loads already prepared low dimensional data and changes their normalization
 from [0,1] to [-1,1], which is more suited for biGAN training.
 

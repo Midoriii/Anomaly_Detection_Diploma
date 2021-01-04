@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Siamese Network, slightly shallower
 '''
 import numpy as np

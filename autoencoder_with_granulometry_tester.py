@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Short script to try granulometry with the best Autoencoder model. Granulometry
 params used are the best found so far.
 
@@ -154,7 +157,7 @@ def get_scores(images, model, ae_threshold):
 
         end = timer()
         print("Prediction Time: " + str(end - start))
-        
+
         # Append the resulting score
         resulting_scores.append(result)
 

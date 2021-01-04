@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Deeper Siamese Net based on the basic one
 '''
 import numpy as np

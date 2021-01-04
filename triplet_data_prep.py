@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 The purpose of this script is to make input data for Triplet Networks out of
 provided images. Currently generates triplets randomly, while maintaning the data ratio.
 Currently uses low dim images for triplets.

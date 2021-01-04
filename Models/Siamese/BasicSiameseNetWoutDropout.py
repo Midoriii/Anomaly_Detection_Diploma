@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Siamese Network without any dropout
 '''
 import numpy as np

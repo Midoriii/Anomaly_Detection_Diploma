@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Triplet Network, with multiple convolutions per layer
 '''
 import numpy as np

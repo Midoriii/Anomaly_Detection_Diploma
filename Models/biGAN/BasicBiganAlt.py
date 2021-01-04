@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net with (1,1) kernel size in G
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel

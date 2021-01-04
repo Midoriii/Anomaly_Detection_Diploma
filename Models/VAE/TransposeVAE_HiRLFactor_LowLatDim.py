@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Variational Autoencoder using Transpose2D layers, higher RL factor and
 lower latent dims
 '''

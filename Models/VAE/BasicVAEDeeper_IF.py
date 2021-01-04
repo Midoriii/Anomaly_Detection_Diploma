@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Variational Autoencoder, slightly deeper and with increasing filter size
 '''
 import numpy as np

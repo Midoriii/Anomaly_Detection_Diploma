@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 A script for making pairs of OK-OK and OK-Faulty images out of provided data.
 These images serve as an input for siamese network training. The images are
 divided by type, meaning the pairs are made of either BSE or SE images, not

@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 A script to create data from provided images for autoencoders. Doesn't
 divide the images by type, BSE and SE are mixed together.
 

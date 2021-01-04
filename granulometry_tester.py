@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 The purpose of this script is to try granulometry on BSE type images, both OK
 and faulty ones.
 

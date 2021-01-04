@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Triplet Network, slightly deeper
 '''
 import numpy as np

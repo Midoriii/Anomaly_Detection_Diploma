@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 The purpose of this script is to test various Autoencoder models on provided
 images.
 

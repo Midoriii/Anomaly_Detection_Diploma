@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Util class, is helpful when using Wasserstein loss.
 '''
 from keras.constraints import Constraint

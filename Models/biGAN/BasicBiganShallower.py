@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net, shallower
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel

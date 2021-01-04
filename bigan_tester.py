@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 The purpose of this script is to gauge the performance of various biGAN models
 on provided images.
 

@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Siamese Network without batch normalization to see if it has any effect
 '''
 import numpy as np

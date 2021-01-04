@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Convolutional Autoencoder, especially deep, the encoding is really small
 '''
 import numpy as np

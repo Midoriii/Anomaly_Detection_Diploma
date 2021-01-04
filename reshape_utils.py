@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 A util module containing often used methods while saving / using data.
 
 

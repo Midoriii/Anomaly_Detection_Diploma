@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Variational Autoencoder with lower latent dim and lowered learning ratw
 '''
 import numpy as np

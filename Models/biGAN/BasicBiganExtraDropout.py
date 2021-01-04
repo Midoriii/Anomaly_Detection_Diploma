@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net with Dropout in Generator
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel

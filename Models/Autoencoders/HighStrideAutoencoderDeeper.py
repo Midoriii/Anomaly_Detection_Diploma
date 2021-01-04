@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Convolutional Autoencoder with bigger strides in initial layers, deeper than the other one
 '''
 import numpy as np

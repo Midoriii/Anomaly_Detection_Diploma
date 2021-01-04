@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net, using cross entropy as loss with lower learning rate
 '''
 import numpy as np

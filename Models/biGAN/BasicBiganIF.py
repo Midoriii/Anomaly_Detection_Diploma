@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net with increasing filter count
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel

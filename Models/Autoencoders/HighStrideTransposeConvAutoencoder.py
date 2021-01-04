@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Convolutional Autoencoder with learnable Conv2DTranspose layers and
 bigger strides in initial layers, also fairly deep, and with reduced learning rate
 '''

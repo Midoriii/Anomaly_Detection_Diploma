@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Variational Autoencoder with lowered reconstruction loss factor
 '''
 import numpy as np

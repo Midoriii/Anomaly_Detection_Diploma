@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 The purpose of this script it to take the 5 BSE and 5 SE hand-picked prototype
 images and turn them into the same shape and format as the rest of the data.
 

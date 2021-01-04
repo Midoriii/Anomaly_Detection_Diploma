@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Short script to divide newly acquired OK data for testing purposes into
 BSE and SE data as per usual.
 '''

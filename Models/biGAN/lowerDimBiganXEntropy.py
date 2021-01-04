@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net, using cross entropy as loss and made to work on 192x192
 '''
 import numpy as np

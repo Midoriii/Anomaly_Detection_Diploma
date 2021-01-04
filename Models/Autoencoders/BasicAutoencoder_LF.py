@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Convolutional Autoencoder - with reduced filter number to just 16
 '''
 import numpy as np

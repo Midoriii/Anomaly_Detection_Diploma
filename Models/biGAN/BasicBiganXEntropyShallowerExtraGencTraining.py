@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net, using cross entropy as loss and shallower architecture
 with extra G and E training
 '''

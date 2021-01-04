@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Variational Autoencoder, slightly deeper with lowered learning rate
 '''
 import numpy as np

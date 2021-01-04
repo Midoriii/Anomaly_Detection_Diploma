@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 This a simple visualiser of images that loaded the Autoencoder model deemed falsely
 positive, meaning OK images falsely flagged as faulty.
 

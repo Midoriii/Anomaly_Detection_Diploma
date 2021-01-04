@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net made to work on 192x192 images
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel

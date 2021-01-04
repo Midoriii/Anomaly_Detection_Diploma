@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 A script for loading previously saved triplet network and performing
 anomaly prediction with it. Prediction is done using prototypes, based on
 the same principle as in triplet_network_tester.py.

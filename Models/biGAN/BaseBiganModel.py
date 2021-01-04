@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Base Model for all biGANs
 '''
 import numpy as np

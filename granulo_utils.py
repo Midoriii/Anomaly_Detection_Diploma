@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 A util module containing useful functions for performing granulometry related
 tasks on the given data.
 

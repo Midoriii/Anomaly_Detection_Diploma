@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net with Batch Norm in G and E and made to work on 192x192
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel

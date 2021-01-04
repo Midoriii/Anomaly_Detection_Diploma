@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 The purpose of this script is to train various TripletScores Nets on SE or BSE images
 and test their anomaly detection performance.
 

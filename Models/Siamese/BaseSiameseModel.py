@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Base Model for all Siamese Networks
 '''
 import numpy as np

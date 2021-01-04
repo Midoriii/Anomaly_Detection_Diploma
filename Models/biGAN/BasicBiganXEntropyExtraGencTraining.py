@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net, using cross entropy as loss and extra training for G and E
 '''
 import numpy as np

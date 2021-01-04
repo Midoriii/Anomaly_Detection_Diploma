@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Triplet Network, with lower number of layers and multiple Convolutions
 per layer
 '''

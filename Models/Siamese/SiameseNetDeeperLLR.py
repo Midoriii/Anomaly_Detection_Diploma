@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Deeper Siamese Net with further reduced learning rate
 '''
 import numpy as np

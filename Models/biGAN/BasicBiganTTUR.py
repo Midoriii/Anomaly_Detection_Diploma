@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic bigAN net with different learning rates for D and G
 '''
 from Models.biGAN.BaseBiganModel import BaseBiganModel

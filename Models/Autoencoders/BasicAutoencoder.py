@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 Basic Convolutional Autoencoder
 '''
 import numpy as np

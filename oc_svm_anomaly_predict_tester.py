@@ -1,4 +1,7 @@
 '''
+Copyright (c) 2021, Štěpán Beneš
+
+
 The purpose of this script is to provide some sort of visualisation of what kinds
 of images are misclassified when using the embedding + OC-SVM approach.
 
