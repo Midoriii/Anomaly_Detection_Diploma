@@ -1,2 +1,2 @@
 # Anomaly Detection Diploma
-My Diploma Thesis work concerning Anomaly detection on images obtained using electron microscopy
+Source for my Diploma Thesis concerning Anomaly detection on images obtained using electron microscopy
